@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>vdxsfggaeg
+        DU ANFÄNGER WOLLTEST DAS HIER LÖSCHEN, HA!
     </body>
 </html>
