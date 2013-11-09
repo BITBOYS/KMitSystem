@@ -24,5 +24,13 @@ also nurnoch das Projekt aus dem Repository bekommen.
 	8. Rechtsklick auf das Projekt und "Resolve Problems", dort dann einen 
 	   neuen Server hinzufügen (als Pfad den Installationsordner von dem Apache Tomcat Server)
 	   und diesen dem Projekt zuweisen.
-	8. Fertig
+	9. Fertig
+	
+Folgendermaßen werden commits bei Git getätigt:
+	
+       10. Wichtig zu wissen ist, dass man zunächst nur ein lokales Git-Repository hat. Das bedeutet,
+       	   dass Dateien die per "Rechtsklick->Git->Commit" auch nur lokal erfasst werden. Um sie in das
+	   Repository auf dem Server zu bekommen ist nun noch ein "Rechtsklick->Git->Remote->Push" nötig.
+       11. Dateien oder ganze Ordner werden per "Rechtsklick->Git->Checkout->Checkout Files" aus dem
+           Repository geholt und dann lokal aktualisiert.
 
