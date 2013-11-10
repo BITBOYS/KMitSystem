@@ -69,6 +69,10 @@ public class Team {
     public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Team{" + "name=" + name + ", tag=" + tag + ", leader=" + leader + ", password=" + password + ", statistics=" + statistics + '}';
+    }
     
 }

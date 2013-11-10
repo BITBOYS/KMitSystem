@@ -1,22 +1,17 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.kmitsystem.servlets.team.writeTeamDataServlets;
 
 import com.kmitsystem.services.team.writeTeamDataService.WriteTeamDataServiceProvider;
 import com.kmitsystem.services.team.writeTeamDataService.input.CreateTeamInput;
+import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author v094702
+ * @author Maik
  */
 public class CreateTeamServlet extends HttpServlet {
 
@@ -41,10 +36,13 @@ public class CreateTeamServlet extends HttpServlet {
         WriteTeamDataServiceProvider provider = new WriteTeamDataServiceProvider();
         CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
         
-        provider.createTeam(input);
+        BaseResult result = provider.createTeam(input);
         
-        request.getSession().setAttribute("text", name);
-        response.sendRedirect("team/erstellen");
+        if(result.getErrorList().size() > 0) {
+            request.getSession().setAttribute("errors", result.getErrorList());
+        }
+        
+        response.sendRedirect("teams");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

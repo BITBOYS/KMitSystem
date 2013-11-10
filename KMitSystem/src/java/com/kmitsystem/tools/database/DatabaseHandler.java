@@ -1,10 +1,10 @@
 package com.kmitsystem.tools.database;
 
+import com.kmitsystem.tools.errorhandling.ErrorHandler;
+import com.kmitsystem.tools.errorhandling.Errors;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Maik
@@ -22,9 +22,11 @@ public class DatabaseHandler {
             if(con == null)
                 con = DriverManager.getConnection(host, username, password);
         } catch (SQLException ex) {
-            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, DatabaseHandler.class.getSimpleName() + ":connect");
+            System.out.println(ex.getMessage());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DatabaseHandler.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, DatabaseHandler.class.getSimpleName() + ":connect");
+            System.out.println(ex.getMessage());
         }
         return con;
     }

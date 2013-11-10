@@ -8,6 +8,7 @@ public class User {
     private String username;
     private String email;
     private String password;
+    private Statistics statistics;
 
     public User() {
         super();
@@ -22,6 +23,13 @@ public class User {
         this.username = username;
         this.email = email;
         this.password = password;
+    }
+
+    public User(String username, String email, String password, Statistics statistics) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.statistics = statistics;
     }
 
     public String getUsername() {
@@ -47,7 +55,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
+
+    public Statistics getStatistics() {
+        return statistics;
+    }
+
+    public void setStatistics(Statistics statistics) {
+        this.statistics = statistics;
+    }
     
 }

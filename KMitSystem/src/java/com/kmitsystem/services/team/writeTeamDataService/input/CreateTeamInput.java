@@ -55,6 +55,11 @@ public class CreateTeamInput {
     public void setLeader(User leader) {
         this.leader = leader;
     }
+
+    @Override
+    public String toString() {
+        return "CreateTeamInput{" + "name=" + name + ", tag=" + tag + ", password=" + password + ", leader=" + leader + '}';
+    }
     
     
     
