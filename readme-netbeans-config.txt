@@ -31,6 +31,6 @@ Folgendermaßen werden commits bei Git getätigt:
        10. Wichtig zu wissen ist, dass man zunächst nur ein lokales Git-Repository hat. Das bedeutet,
        	   dass Dateien die per "Rechtsklick->Git->Commit" auch nur lokal erfasst werden. Um sie in das
 	   Repository auf dem Server zu bekommen ist nun noch ein "Rechtsklick->Git->Remote->Push" nötig.
-       11. Dateien oder ganze Ordner werden per "Rechtsklick->Git->Checkout->Checkout Files" aus dem
+       11. Dateien oder ganze Ordner werden per "Rechtsklick->Git->Remot->Pull" aus dem
            Repository geholt und dann lokal aktualisiert.
 
