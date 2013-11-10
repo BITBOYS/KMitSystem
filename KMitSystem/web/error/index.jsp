@@ -9,11 +9,11 @@
     <title>Error Page - KmS</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../../css/css/bootstrap.css" rel="stylesheet">
+    <link href="../public/css/css/bootstrap.css" rel="stylesheet">
 
     <!-- Add custom CSS here -->
-    <link href="../../css/css/modern-business.css" rel="stylesheet">
-    <link href="../../css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../public/css/css/modern-business.css" rel="stylesheet">
+    <link href="../public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -28,24 +28,24 @@
             <span class="icon-bar"></span>
           </button>
           <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-          <a class="navbar-brand" href="../../index.jsp">KmS</a>
+          <a class="navbar-brand" href="../">KmS</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="../Login/index.jsp">Login</a></li>
-            <li><a href="../Register/index.jsp">Sign Up</a></li>            
+            <li><a href="../login">Login</a></li>
+            <li><a href="../register">Sign Up</a></li>          
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
               <ul class="dropdown-menu">
-              	<li role="presentation" class="dropdown-header">For your Interest</li>
+            	<li role="presentation" class="dropdown-header">For your Interest</li>
                 <li role="presentation" class="divider"></li>
-                <li><a href="../AboutUs/index.jsp">About Us</a></li>
-                <li><a href="../Contact/index.jsp">Kontakt</a></li>
-                <li><a href="../service/index.jsp">Info</a></li>
-                <li><a href="../FAQ/index.jsp">FAQ</a></li>
-                <li><a href="../sidebar/index.jsp">Sidebar Page</a></li>
+                <li><a href="../about">About Us</a></li>
+                <li><a href="../contact">Kontakt</a></li>
+                <li><a href="../Service">Info</a></li>
+                <li><a href="../faq">FAQ</a></li>
+                <li><a href="../sidebar">Sidebar Page</a></li>
               </ul>
             </li>
           </ul>
@@ -60,7 +60,7 @@
         <div class="col-lg-12">
           <h1 class="page-header">404 <small>Page Not Found</small></h1>
           <ol class="breadcrumb">
-            <li><a href="../../index.jsp">Home</a></li>
+            <li><a href="../">Home</a></li>
             <li class="disabled"><a href="#">Other Pages</a></li>
             <li class="active">404</li>
           </ol>
@@ -75,13 +75,13 @@
           <p class="lead">Die von dir gesuchte Seite wurde nicht gefunden.</p>
           <p>Das tut uns leid! Hier ein paar hilfreiche Links:</p>
           <ul>
-            <li><a href="../../index.jsp">Home</a></li>
-            <li><a href="../Login/index.jsp">Login</a></li>
-            <li><a href="../Register/index.jsp">Sign Up</a></li>
-            <li><a href="../AboutUs/index.jsp">About Us</a></li>
-            <li><a href="../service/index.jsp">Services</a></li>
-            <li><a href="../Contace/index.jsp">Kontakt</a></li>
-            <li><a href="../FAQ/index.jsp">FAQ</a></li>
+            <li><a href="../">Home</a></li>
+            <li><a href="../login">Login</a></li>
+            <li><a href="../register">Sign Up</a></li>
+            <li><a href="../about">About Us</a></li>
+            <li><a href="../service">Services</a></li>
+            <li><a href="../contact">Kontakt</a></li>
+            <li><a href="../faq">FAQ</a></li>
           </ul>
         </div>
 
@@ -105,8 +105,8 @@
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../../js/jquery.js"></script>
-    <script src="../../js/bootstrap.js"></script>
-    <script src="../../js/modern-business.js"></script>
+    <script src="../public/js/jquery.js"></script>
+    <script src="../public/js/bootstrap.js"></script>
+    <script src="../public/js/modern-business.js"></script>
   </body>
 </html>
