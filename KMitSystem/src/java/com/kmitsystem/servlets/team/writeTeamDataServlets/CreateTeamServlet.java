@@ -4,6 +4,9 @@
  */
 package com.kmitsystem.servlets.team.writeTeamDataServlets;
 
+import com.kmitsystem.services.team.writeTeamDataService.WriteTeamDataServiceProvider;
+import com.kmitsystem.services.team.writeTeamDataService.input.CreateTeamInput;
+import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -29,9 +32,19 @@ public class CreateTeamServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String text = request.getParameter("text");
-        request.getSession().setAttribute("text", text);
-        response.sendRedirect("index.jsp");
+        String name = request.getParameter("name");
+        String tag = request.getParameter("tag");
+        String password = request.getParameter("password");
+//        User leader = GET USER FROM SESSION
+        User leader = new User("Maik", "maik@kms.de");
+        
+        WriteTeamDataServiceProvider provider = new WriteTeamDataServiceProvider();
+        CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
+        
+        provider.createTeam(input);
+        
+        request.getSession().setAttribute("text", name);
+        response.sendRedirect("team/erstellen");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

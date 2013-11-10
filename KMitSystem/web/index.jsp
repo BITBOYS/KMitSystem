@@ -11,11 +11,11 @@
     <title>Kickern mit System - Welcome</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="css/css/bootstrap.css" rel="stylesheet">
+    <link href="public/css/css/bootstrap.css" rel="stylesheet">
 
     <!-- Add custom CSS here -->
-    <link href="css/css/modern-business.css" rel="stylesheet">
-    <link href="css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="public/css/css/modern-business.css" rel="stylesheet">
+    <link href="public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
   </head>
 
   <body>
@@ -36,18 +36,18 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="Page/Login/index.jsp">Login</a></li>
-            <li><a href="Page/Register/index.jsp">Sign Up</a></li>      
+            <li><a href="login/">Login</a></li>
+            <li><a href="register/">Sign Up</a></li>      
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
               <ul class="dropdown-menu">
               	<li role="presentation" class="dropdown-header">For your Interest</li>
               	<li role="presentation" class="divider"></li>
-                <li><a href="Page/AboutUs/index.jsp">About Us</a></li>
-                <li><a href="Page/Contact/index.jsp">Kontakt</a></li>
-                <li><a href="Page/Service/index.jsp">Info</a></li>
-                <li><a href="Page/FAQ/index.jsp">FAQ</a></li>
-                <li><a href="Page/Sidebar/index.jsp">Sidebar Page</a></li>
+                <li><a href="about/">About Us</a></li>
+                <li><a href="contact/">Kontakt</a></li>
+                <li><a href="service">Info</a></li>
+                <li><a href="faq/">FAQ</a></li>
+                <li><a href="sidebar/">Sidebar Page</a></li>
               </ul>
             </li>
           </ul>
@@ -145,7 +145,7 @@
             <ul>
               <li>Erstellt Turniere mit deinen Freunden</li>
               <li>Erstellt Teams</li>
-              <li>Tragt eure Matches ein und behaltet den Ãœberblick</li>
+              <li>Tragt eure Matches ein und behaltet den Überblick</li>
               <li>Sieh deine Statistiken ein</li>
               <li>100% <strong>Free</strong> to Use</li>
               <li>Mobile Responsive Design</li>
@@ -166,10 +166,10 @@
         <div class="col-lg-8 col-md-8">
           <h4>'Kickern mit System' ist ein Webbasiertes Tool um eure Kicker-Statistik zu f&uuml;hren!</h4>
           <p>
-			<a href="login.jsp">Loggt</a> euch ein oder registriert euch jetzt!</p>
+			<a href="login">Loggt</a> euch ein oder registriert euch jetzt!</p>
         </div>
         <div class="col-lg-4 col-md-4">
-          <a class="btn btn-lg btn-primary pull-right" href="Page/Register/index.jsp">Jetzt registrieren <i class="fa fa-angle-right"></i></a>
+          <a class="btn btn-lg btn-primary pull-right" href="register">Jetzt registrieren <i class="fa fa-angle-right"></i></a>
         </div>
       </div><!-- /.row -->
 
@@ -191,8 +191,8 @@
 
     <!-- Bootstrap core JavaScript -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="js/jquery.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/modern-business.js"></script>
+    <script src="public/js/jquery.js"></script>
+    <script src="public/js/bootstrap.js"></script>
+    <script src="public/js/modern-business.js"></script>
   </body>
 </html>
