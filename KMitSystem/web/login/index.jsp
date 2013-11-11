@@ -75,7 +75,7 @@
                     alt="You!">
                 </div>  
                 <br>  
-                <form class="form-signin" action="../dashboard/" method="post" role="form">
+                <form class="form-signin" action="../user/profil" method="post" role="form">
                 <input type="email" class="form-control" placeholder="Email" required autofocus>
                 <input type="password" class="form-control" placeholder="Password" required>
                 <br>
