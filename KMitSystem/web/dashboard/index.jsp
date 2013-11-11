@@ -73,8 +73,71 @@
             <li class="active">User-Dashboard</li>
           </ol>
         </div>
+          
+          <h2>Deine Teams</h2>
         
-       
+          <!-- Schleife zum Anzeigen aller Teams in denen man sich befindet -->
+          
+          <%
+//              for(int i = 0; i < teams.length(); i++){
+//                  
+//              }
+          %>
+          
+        <div class="col-lg-6 col-md-6 hero-feature">
+          <div class="thumbnail">
+                <h3>Teamname</h3>
+            <img src="http://placehold.it/800x500" alt="">
+            <div class="caption">
+                <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Teammitglieder</div>
+              <div class="list-group">
+                <a href="#" class="list-group-item">User2</a>
+                <a href="#" class="list-group-item">...</a>
+              </div>
+                </div>
+              <div class="panel panel-default">
+                <!-- Default panel contents -->
+                <div class="panel-heading">Stats</div>
+
+                <!-- Table -->
+                <table class="table">  
+                    <thead>  
+                      <tr>  
+                        <th>Gesmatsiege</th>  
+                        <th>Turniersiege</th>  
+                        <th>Niederlagen</th>  
+                        <th>Tore</th>  
+                        <th>Gegentore</th>  
+                      </tr>  
+                    </thead>  
+                    <tbody>  
+                      <tr>  
+                        <td>001</td>  
+                        <td>Rammohan </td>  
+                        <td>Reddy</td>  
+                        <td>A+</td>  
+                      </tr>  
+                      <tr>  
+                        <td>002</td>  
+                        <td>Smita</td>  
+                        <td>Pallod</td>  
+                        <td>A</td>  
+                      </tr>  
+                      <tr>  
+                        <td>003</td>  
+                        <td>Rabindranath</td>  
+                        <td>Sen</td>  
+                        <td>A+</td>  
+                      </tr>  
+                    </tbody>  
+                  </table>  
+              </div>  
+              <p><a href="#" class="btn btn-primary">Zum Turnier <i class="fa fa-angle-right"></i></a> <a href="#" class="btn btn-danger">Austreten <i class="fa fa-angle-right"></i></a></p>
+            </div>
+          </div>
+        </div>
 
       </div><!-- /.row -->
       
