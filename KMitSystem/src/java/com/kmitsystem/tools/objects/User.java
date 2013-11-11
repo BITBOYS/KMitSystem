@@ -14,6 +14,10 @@ public class User {
         super();
     }
 
+    public User(String username) {
+        this.username = username;
+    }
+
     public User(String username, String email) {
         this.username = username;
         this.email = email;
