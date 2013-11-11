@@ -23,12 +23,12 @@ public class WriteTeamDataServiceProvider {
             
             // call the database
             DatabaseTeamQueries.createTeam(team);
-            
-            // write the errors into the result object and empty the ErrorHandler
-            if(ErrorHandler.getErrors().size() > 0) {
-                result.setErrorList(ErrorHandler.getErrors());                        
-                ErrorHandler.clear();
-            }
+        }
+        
+        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
         }
         
         return result;
