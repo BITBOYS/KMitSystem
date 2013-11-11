@@ -13,6 +13,6 @@ public class Errors {
     
     public static final Error NAME_ALREADY_TAKEN_ERROR = new Error(00001, "Der Name wird bereits verwendet");
     public static final Error DB_CONNECTION_ERROR = new Error(00002, "Die Verbindung zur Datenbank ist fehlgeschlagen");
-    
+    public static final Error TEAM_DOES_NOT_EXIST = new Error(00003, "Das Team existiert nicht");
     
 }
