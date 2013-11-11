@@ -52,7 +52,8 @@
              <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                  <li><a href="../dashboard">Dashboard</a></li> 
+                  <li><a href="../user/profil">Profil</a></li> 
+                  <li><a href="../user/dashboard">Dashboard</a></li> 
                 <li><a href="../">Logout</a></li> 
               </ul>
              </li>
