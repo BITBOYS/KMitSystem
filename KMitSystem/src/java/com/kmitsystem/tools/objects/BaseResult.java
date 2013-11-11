@@ -17,6 +17,7 @@ public class BaseResult {
             this.errorList = new ArrayList<Error>();
         
         for(int idx = 0; idx < errorList.size(); idx++) {
+            System.out.println("[ERROR] " + errorList.get(idx).getTechnicalErrorMessage() + ": " + errorList.get(idx).getErrorMessage());
             this.errorList.add(errorList.get(idx));
         }
     }

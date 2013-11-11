@@ -1,5 +1,6 @@
-package com.kmitsystem.tools.database;
+package com.kmitsystem.tools.database.queries;
 
+import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.Statistics;
@@ -13,26 +14,28 @@ import java.sql.Statement;
 /**
  * @author Maik
  */
-public class DatabaseTeamQueries {
+public class DBTeamQueries {
     
     private static Statement statement = null;
     private static Connection con = null;
     private static ResultSet resultSet = null;
     
-    public static int countTeams(String name) {
-        int teams = 0;
+    public static boolean isTeamExisiting(String name) {
+        boolean result = false;
         
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             resultSet = statement.executeQuery("select COUNT(*) as count from team where name=\"" + name + "\"");
             resultSet.first();
-            teams = resultSet.getInt("count");
+            
+            if(resultSet.getInt("count") > 0) 
+                result = true;
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         
-        return teams;
+        return result;
     }
     
     public static Team getTeam(String name) {
@@ -59,9 +62,7 @@ public class DatabaseTeamQueries {
     }
     
     public static void createTeam(Team team) {
-        
         try {
-            System.out.println("CREATE TEAMS");
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             

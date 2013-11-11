@@ -15,6 +15,12 @@ public class Team {
         super();
     }
 
+    public Team(String name, String tag, User leader) {
+        this.name = name;
+        this.tag = tag;
+        this.leader = leader;
+    }
+    
     public Team(String name, String tag, String password, User leader) {
         this.name = name;
         this.tag = tag;

@@ -16,14 +16,10 @@ public class CreateUserInput {
     private int wins;
     private int defeats;
 
-    public CreateUserInput(String name, String password, String email, int goals, int goals_conceded, int wins, int defeats) {
+    public CreateUserInput(String name, String password, String email) {
         this.name = name;
         this.password = password;
         this.email = email;
-        this.goals = goals;
-        this.goals_conceded = goals_conceded;
-        this.wins = wins;
-        this.defeats = defeats;
     }
 
     public String getName() {
@@ -50,37 +46,7 @@ public class CreateUserInput {
         this.email = email;
     }
 
-    public int getGoals() {
-        return goals;
-    }
-
-    public void setGoals(int goals) {
-        this.goals = goals;
-    }
-
-    public int getGoals_conceded() {
-        return goals_conceded;
-    }
-
-    public void setGoals_conceded(int goals_conceded) {
-        this.goals_conceded = goals_conceded;
-    }
-
-    public int getWins() {
-        return wins;
-    }
-
-    public void setWins(int wins) {
-        this.wins = wins;
-    }
-
-    public int getDefeats() {
-        return defeats;
-    }
-
-    public void setDefeats(int defeats) {
-        this.defeats = defeats;
-    }
+ 
     
     
     

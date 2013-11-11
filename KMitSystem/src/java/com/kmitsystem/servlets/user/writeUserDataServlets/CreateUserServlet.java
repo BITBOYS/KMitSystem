@@ -1,19 +1,27 @@
-package com.kmitsystem.servlets.team.writeTeamDataServlets;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.kmitsystem.servlets.user.writeUserDataServlets;
 
-import com.kmitsystem.services.team.writeTeamDataService.WriteTeamDataServiceProvider;
-import com.kmitsystem.services.team.writeTeamDataService.input.CreateTeamInput;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
+import com.kmitsystem.services.user.writeUserDataService.WriteUserDataServiceProvider;
+import com.kmitsystem.services.user.writeUserDataService.input.CreateUserInput ;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Maik
+ *
+ * @author Oerlex
  */
-public class CreateTeamServlet extends HttpServlet {
+@WebServlet(name = "CreateUserServlet", urlPatterns = {"/CreateUserServlet"})
+public class CreateUserServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -27,24 +35,21 @@ public class CreateTeamServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String tag = request.getParameter("tag");
+      String name = request.getParameter("name");
         String password = request.getParameter("password");
-//        User leader = GET USER FROM SESSION
-        User leader = new User("Maik", "maik@kms.de");
+        String email = request.getParameter("email"); 
+                
         
-        WriteTeamDataServiceProvider provider = new WriteTeamDataServiceProvider();
-        CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
+        WriteUserDataServiceProvider provider = new WriteUserDataServiceProvider();
+        CreateUserInput input = new CreateUserInput(name, password, email);
         
         BaseResult result = provider.createTeam(input);
         
-        // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {
             request.getSession().setAttribute("errors", result.getErrorList());
         }
         
-        // redirect to the page www.kmitsystem.de/teams
-        response.sendRedirect("MaikDummy");
+        response.sendRedirect("teams");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

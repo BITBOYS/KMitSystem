@@ -4,9 +4,17 @@
         <servlet-name>CreateTeamServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.team.writeTeamDataServlets.CreateTeamServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddPlayerServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.team.writeTeamDataServlets.AddPlayerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateTeamServlet</servlet-name>
         <url-pattern>/CreateTeamServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPlayerServlet</servlet-name>
+        <url-pattern>/AddPlayerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

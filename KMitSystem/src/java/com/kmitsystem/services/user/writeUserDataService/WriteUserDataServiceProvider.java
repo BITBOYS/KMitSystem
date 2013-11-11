@@ -2,7 +2,7 @@ package com.kmitsystem.services.user.writeUserDataService;
 
 import com.kmitsystem.services.user.writeUserDataService.input.CreateUserInput;
 import com.kmitsystem.services.user.writeUserDataService.validator.CreateUserValidator;
-import com.kmitsystem.tools.database.DatabaseUserQueries;
+import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
@@ -22,7 +22,7 @@ public class WriteUserDataServiceProvider {
             User user = new User(input.getName(), input.getPassword(), input.getEmail());
             
             // call the database
-            DatabaseUserQueries.createUser(user);
+            DBUserQueries.createUser(user);
         }
         
         // write the errors into the result object and empty the ErrorHandler

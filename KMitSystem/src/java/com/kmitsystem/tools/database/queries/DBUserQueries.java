@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.kmitsystem.tools.database;
+package com.kmitsystem.tools.database.queries;
 
+import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.Statistics;
@@ -18,25 +19,30 @@ import java.sql.Statement;
  *
  * @author Oerlex
  */
-public class DatabaseUserQueries {
+public class DBUserQueries {
     private static Statement statement = null;
     private static Connection con = null;
     private static ResultSet resultSet = null;
     
-    public static int countUser(String name) {
-        int teams = 0;
+    public static boolean isUserExisting(String name) {
+        boolean result = false;
         
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("select COUNT(*) as count from user where name=\"" + name + "\"");
+            resultSet = statement.executeQuery("select COUNT(*) as count "
+                                             + "from user "
+                                             + "where username='" + name + "'");
             resultSet.first();
-            teams = resultSet.getInt("count");
+            
+            if(resultSet.getInt("count") > 0)
+                result = true;
+            
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         
-        return teams;
+        return result;
     }
     
     public static User getUser(String name) {
@@ -53,7 +59,6 @@ public class DatabaseUserQueries {
                 Statistics statistics = new Statistics();
 
                 user = new User(username, password, email, statistics);
-                System.out.println(user.toString());
             }
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
@@ -62,9 +67,7 @@ public class DatabaseUserQueries {
     }
     
     public static void createUser(User user) {
-        
         try {
-            System.out.println("CREATE USER");
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             
@@ -79,4 +82,5 @@ public class DatabaseUserQueries {
             ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
     }
+   
 }
