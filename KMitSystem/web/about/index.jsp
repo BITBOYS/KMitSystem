@@ -104,7 +104,7 @@
         <div class="col-sm-4">
         	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
             <h3>Malte Dammann <small>Web Developer und System Designer</small></h3>
-            <p>Malte hat leitet das Frontend-Dev Team. Außerdem unterstützt er das Backend Team!</p>
+            <p>Malte hat leitet das Frontend-Dev Teams. Au&szlig;erdem unterstützt er das Backend Team!</p>
             <ul class="list-unstyled list-inline list-social-icons">
               <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
               <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
