@@ -16,5 +16,6 @@ public class Errors {
     public static final Error TEAM_DOES_NOT_EXIST = new Error(00003, "Das Team existiert nicht");
     public static final Error USER_DOES_NOT_EXIST = new Error(00004, "Der Benutzer existiert nicht");
     public static final Error USER_ALREADY_IN_TEAM = new Error(00005, "Der Benutzer ist bereit Mitglied des Teams"); 
+    public static final Error EMAIL_ALREADY_TAKEN_ERROR = new Error(00006, "Die E-Mail wird bereits verwendet");
     
 }

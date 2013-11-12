@@ -42,7 +42,7 @@ public class SignInServlet extends HttpServlet {
         WriteUserDataServiceProvider provider = new WriteUserDataServiceProvider();
         CreateUserInput input = new CreateUserInput(name, password1, email);
         
-        BaseResult result = provider.;
+        BaseResult result = provider.createTeam(input);
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {
