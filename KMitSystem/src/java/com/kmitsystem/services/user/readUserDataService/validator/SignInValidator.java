@@ -15,14 +15,14 @@ import com.kmitsystem.tools.errorhandling.Errors;
  *
  * @author Malte
  */
-public class ReadUserValidator {
+public class SignInValidator {
     
     public boolean validate(ReadUserDataInput input) {
         boolean result = true;
         
         // check if a user with this email is existing
-        if(!DBUserQueries.isUserExisting(input.getUser())) {
-            ErrorHandler.handle(Errors.FALSE_LOGIN_INPUT, DBUserQueries.class.getName() + ":isUserExisting");
+        if(!DBUserQueries.isEMailExisting(input.getUser())) {
+            ErrorHandler.handle(Errors.FALSE_LOGIN_INPUT, DBUserQueries.class.getName() + ":isEMailExisting");
             return false;
         }
         

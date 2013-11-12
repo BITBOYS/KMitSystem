@@ -19,34 +19,46 @@ import java.sql.Statement;
  */
 public class DBUserQueries {
     private static Statement statement = null;
-    private static Statement statement2 = null;
     private static Connection con = null;
     private static ResultSet resultSet = null;
-    private static ResultSet resultSetName = null;
-    private static ResultSet resultSetEmail = null;
     
-    public static boolean isUserExisting(User user) {
+    public static boolean isEMailExisting(User user) {
         boolean result = false;
-        String name = user.getUsername();
         String email = user.getEmail();
         
         try {
             con = DatabaseHandler.connect();
             
             statement = con.createStatement();
-            resultSetName = statement.executeQuery("select COUNT(*) as count "
-                                             + "from user "
-                                             + "where username='" + name + "';");
-            resultSetName.first();
-            
-            statement2 = con.createStatement();
-            resultSetEmail = statement2.executeQuery("select COUNT(*) as count "
+            resultSet = statement.executeQuery("select COUNT(*) as count "
                                              + "from user "
                                              + "where email='" + email + "';");
+            resultSet.first();
             
-            resultSetEmail.first();
+            if(resultSet.getInt("count") > 0 )
+                result = true;
             
-            if(resultSetName.getInt("count") > 0 || resultSetEmail.getInt("count") > 0)
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+        
+        return result;
+    }
+    
+        public static boolean isUsernameExisting(User user) {
+        boolean result = false;
+        String name = user.getUsername();
+        
+        try {
+            con = DatabaseHandler.connect();
+            
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("select COUNT(*) as count "
+                                             + "from user "
+                                             + "where username='" + name + "';");
+            resultSet.first();
+            
+            if(resultSet.getInt("count") > 0 )
                 result = true;
             
         } catch (SQLException ex) {

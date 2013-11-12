@@ -7,7 +7,7 @@
 package com.kmitsystem.services.user.readUserDataService;
 
 import com.kmitsystem.services.user.readUserDataService.input.ReadUserDataInput;
-import com.kmitsystem.services.user.readUserDataService.validator.ReadUserValidator;
+import com.kmitsystem.services.user.readUserDataService.validator.SignInValidator;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.objects.BaseResult;
@@ -19,7 +19,7 @@ import com.kmitsystem.tools.objects.User;
  */
 public class ReadUserDataServiceProvider {
     
-    ReadUserValidator readUserValidator = new ReadUserValidator();
+    SignInValidator readUserValidator = new SignInValidator();
     
     public BaseResult signInUser(ReadUserDataInput input) {
         BaseResult result = new BaseResult();
