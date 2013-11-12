@@ -14,7 +14,7 @@ public class CreateUserValidator {
     public boolean validate(CreateUserInput input) {
         boolean result = true;
         
-        if(!isValidName(input.getName())) {
+        if(!isValidName(input.getName()) && !isValidEmail(input.getName())) {
             result = false;
         }
         
