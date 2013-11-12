@@ -1,7 +1,5 @@
 package com.kmitsystem.services.user.writeUserDataService.input;
 
-import com.kmitsystem.tools.objects.User;
-
 
 /**
  * @author Alex, Malte
