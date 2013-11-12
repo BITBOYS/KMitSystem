@@ -4,8 +4,8 @@
  */
 package com.kmitsystem.servlets.user.writeUserDataServlets;
 
-import com.kmitsystem.services.user.readUserDataService.ReadUserDataServiceProvider;
-import com.kmitsystem.services.user.readUserDataService.input.ReadUserInput;
+import com.kmitsystem.services.user.writeUserDataService.WriteUserDataServiceProvider;
+import com.kmitsystem.services.user.writeUserDataService.input.CreateUserInput;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Oerlex
+ * @author Malte
  */
 @WebServlet(name = "CreateUserServlet", urlPatterns = {"/CreateUserServlet"})
 public class CreateUserServlet extends HttpServlet {
@@ -45,19 +45,16 @@ public class CreateUserServlet extends HttpServlet {
         
         if(user.getPassword().equals(reenter_password)){
         
-            ReadUserDataServiceProvider provider = new ReadUserDataServiceProvider();
-            ReadUserInput input = new ReadUserInput(user.getEmail(), user.getPassword());
-
-            result = null;
+            WriteUserDataServiceProvider provider = new WriteUserDataServiceProvider();
+            CreateUserInput input = new CreateUserInput(user.getEmail(), user.getPassword());
+            
+            result = provider.createUser(input);
         }else{
             fail = true;
         }
         
-        if(result.getErrorList().size() > 0) {
+        if(result.getErrorList().size() > 0 || fail) {
             request.getSession().setAttribute("errors", result.getErrorList());
-        }
-        
-        if(fail){
             response.sendRedirect("register");
         }else{
             response.sendRedirect("user/dashboard");

@@ -8,7 +8,6 @@ import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.Statistics;
-import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -17,7 +16,7 @@ import java.sql.Statement;
 
 /**
  *
- * @author Oerlex
+ * @author Oerlex, Malte
  */
 public class DBUserQueries {
     private static Statement statement = null;
@@ -91,6 +90,33 @@ public class DBUserQueries {
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
+    }
+
+    public static boolean isUserExisiting(String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public static Boolean userPasswordOk(User user) {
+        
+        Boolean result = null;
+        String email = user.getEmail();
+        String password = user.getPassword();
+        
+         try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("select COUNT(*) as count from user where email=\"" + email + "\" and password=\"" + password + "\")");
+            
+            resultSet.first();
+           
+            if(resultSet.getInt("count") > 0)
+                result = true;
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+        
+         return result;
     }
    
 }

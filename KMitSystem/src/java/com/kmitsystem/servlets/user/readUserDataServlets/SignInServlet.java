@@ -7,7 +7,7 @@
 package com.kmitsystem.servlets.user.readUserDataServlets;
 
 import com.kmitsystem.services.user.readUserDataService.ReadUserDataServiceProvider;
-import com.kmitsystem.services.user.readUserDataService.input.ReadUserInput;
+import com.kmitsystem.services.user.readUserDataService.input.ReadUserDataInput;
 import com.kmitsystem.services.user.writeUserDataService.WriteUserDataServiceProvider;
 import com.kmitsystem.services.user.writeUserDataService.input.CreateUserInput;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
@@ -42,9 +42,9 @@ public class SignInServlet extends HttpServlet {
         
         
         ReadUserDataServiceProvider provider = new ReadUserDataServiceProvider();
-        ReadUserInput input = new ReadUserInput(user.getEmail(), user.getPassword());
+        ReadUserDataInput input = new ReadUserDataInput(user);
         
-        BaseResult result = null;//provider.createTeam(input);
+        BaseResult result = provider.signInUser(input);
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {
@@ -52,7 +52,7 @@ public class SignInServlet extends HttpServlet {
             response.sendRedirect("login");
         }else{
             // redirect to the page www.kmitsystem.de/teams
-            response.sendRedirect("Dummy");
+            response.sendRedirect("user/dashboard");
         }
     }
 

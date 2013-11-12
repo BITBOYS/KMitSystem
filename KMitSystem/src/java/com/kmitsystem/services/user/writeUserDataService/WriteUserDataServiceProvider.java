@@ -14,7 +14,7 @@ public class WriteUserDataServiceProvider {
     
     CreateUserValidator createUserValidator = new CreateUserValidator();
     
-    public BaseResult createTeam(CreateUserInput input) {
+    public BaseResult createUser(CreateUserInput input) {
         BaseResult result = new BaseResult();
 
         if(createUserValidator.validate(input)) {
