@@ -80,11 +80,11 @@
 	                <div class="col-md-12">
 	                    <input class="form-control" name="name" placeholder="Name" type="text"
 	                        required autofocus />
+                            <input class="form-control" name="email" placeholder="Deine E-Mail" type="email" required/>
+                            <input class="form-control" name="password" placeholder="Passwort" type="password" required/>
+                            <input class="form-control" name="reenter_password" placeholder="Passwort wiederholen" type="password" required/>
 	                </div>
 	            </div>
-	            <input class="form-control" name="email" placeholder="Deine E-Mail" type="email" required/>
-	            <input class="form-control" name="password" placeholder="Passwort" type="password" required/>
-	            <input class="form-control" name="reenter_password" placeholder="Passwort wiederholen" type="password" required/>
 	           
 	            <br>
 	            <button class="btn btn-lg btn-primary btn-block" type="submit">

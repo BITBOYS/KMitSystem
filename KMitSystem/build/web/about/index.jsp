@@ -86,17 +86,15 @@
       <div class="row">
 
         <div class="col-lg-12">
-          <h2 class="page-header">Our Team</h2>
+          <h2 class="page-header">Das Team</h2>
         </div>
 
         <div class="col-sm-4">
         	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
             <h3>Maik Schmaddebeck <small>Backend Developer und System Designer</small></h3>
-            <p>Maik ist unser Datenbankexperte. Außerdem leitet er das Developer Team</p>
+            <p>Maik ist unser Datenbankexperte. Au&szlig;erdem leitet er das Developer Team</p>
             <ul class="list-unstyled list-inline list-social-icons">
               <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-              <li class="tooltip-social twitter-link"><a href="#twitter-profile" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-2x"></i></a></li>
               <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
             </ul>
         </div>
@@ -104,23 +102,19 @@
         <div class="col-sm-4">
         	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
             <h3>Malte Dammann <small>Web Developer und System Designer</small></h3>
-            <p>Malte hat leitet das Frontend-Dev Team. Außerdem unterstützt er das Backend Team!</p>
+            <p>Malte hat leitet das Frontend-Dev Teams. Au&szlig;erdem unterst&uuml;tzt er das Backend Team!</p>
             <ul class="list-unstyled list-inline list-social-icons">
               <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-              <li class="tooltip-social twitter-link"><a href="#twitter-profile" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-2x"></i></a></li>
               <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
             </ul>
         </div>
 
         <div class="col-sm-4">
         	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
-            <h3>Alexander Spottka <small>G&uuml;nnnnnnnnnnnnnnnenenenene</small></h3>
-            <p>Macht nixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!</p>
+            <h3>Alexander Spottka <small>G&ouml;nnnnnnnnnnnnnnnenenenene</small></h3>
+            <p>Backend! Backend! Backend! Backend! Backend! Backend! Backend! Backend! Backend! Backend! </p>
             <ul class="list-unstyled list-inline list-social-icons">
               <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-              <li class="tooltip-social twitter-link"><a href="#twitter-profile" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-2x"></i></a></li>
               <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
             </ul>
         </div>
@@ -131,20 +125,16 @@
             <p>Macht nixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!</p>
             <ul class="list-unstyled list-inline list-social-icons">
               <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-              <li class="tooltip-social twitter-link"><a href="#twitter-profile" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-2x"></i></a></li>
               <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
             </ul>
         </div>
 
         <div class="col-sm-4">
         	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
-            <h3>Lorenz Spitzm&uuml;ller <small>Job Title</small></h3>
+            <h3>Lorenz Spitzm&uuml;ller <small>Grafiker</small></h3>
             <p>Macht nix!</p>
             <ul class="list-unstyled list-inline list-social-icons">
               <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-              <li class="tooltip-social twitter-link"><a href="#twitter-profile" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-2x"></i></a></li>
               <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
             </ul>
         </div>

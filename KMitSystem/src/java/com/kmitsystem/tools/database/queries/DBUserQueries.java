@@ -23,19 +23,29 @@ public class DBUserQueries {
     private static Statement statement = null;
     private static Connection con = null;
     private static ResultSet resultSet = null;
+    private static ResultSet resultSetName = null;
+    private static ResultSet resultSetEmail = null;
     
-    public static boolean isUserExisting(String name) {
+    public static boolean isUserExisting(User user) {
         boolean result = false;
+        String name = user.getUsername();
+        String email = user.getEmail();
         
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("select COUNT(*) as count "
+            resultSetName = statement.executeQuery("select COUNT(*) as count "
                                              + "from user "
                                              + "where username='" + name + "'");
-            resultSet.first();
+            resultSetName.first();
             
-            if(resultSet.getInt("count") > 0)
+            resultSetEmail = statement.executeQuery("select COUNT(*) as count "
+                                             + "from user "
+                                             + "where email='" + email + "'");
+            
+            resultSetEmail.first();
+            
+            if(resultSetName.getInt("count") > 0 && resultSetEmail.getInt("count") > 0)
                 result = true;
             
         } catch (SQLException ex) {
