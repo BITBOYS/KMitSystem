@@ -92,9 +92,15 @@
       </div><!-- /.row -->
       
       <br>
-        <div class="alert alert-success">Dein Account wurde bestätigt. Log dich jetzt mit deinen Benutzerdaten ein.</div>
+      
+      <% if(request.getAttribute("error") == null/*== 0007*/){ %>
+          <div class="alert alert-danger">Username oder Passwort ist falsch.</div>
+      <% } %>
+      
         <div class="alert alert-info">Check deine Mails und bestätige deinen Account.</div>
-        <div class="alert alert-danger">Username oder Passwort ist falsch.</div>
+        
+        <div class="alert alert-success">Dein Account wurde bestätigt. Log dich jetzt mit deinen Benutzerdaten ein.</div>
+       
       
     </div><!-- /.container -->
 
