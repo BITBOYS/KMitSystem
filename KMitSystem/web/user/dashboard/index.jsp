@@ -71,7 +71,7 @@
                     <h1 class="page-header">User-Dashboard <small>Dein Kontrollzentrum</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="../">Home</a></li>
-                        <li><a href="../">Profil</a></li>
+                        <li><a href="../profil">Profil</a></li>
                         <li class="active">User-Dashboard</li>
                     </ol>
                 </div>
