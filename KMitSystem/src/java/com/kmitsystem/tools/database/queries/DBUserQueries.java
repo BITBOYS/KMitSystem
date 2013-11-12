@@ -45,7 +45,7 @@ public class DBUserQueries {
             
             resultSetEmail.first();
             
-            if(resultSetName.getInt("count") > 0 && resultSetEmail.getInt("count") > 0)
+            if(resultSetName.getInt("count") > 0 || resultSetEmail.getInt("count") > 0)
                 result = true;
             
         } catch (SQLException ex) {
