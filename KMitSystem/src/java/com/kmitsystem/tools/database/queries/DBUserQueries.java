@@ -15,11 +15,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 /**
- *
  * @author Oerlex, Malte
  */
 public class DBUserQueries {
     private static Statement statement = null;
+    private static Statement statement2 = null;
     private static Connection con = null;
     private static ResultSet resultSet = null;
     private static ResultSet resultSetName = null;
@@ -32,15 +32,17 @@ public class DBUserQueries {
         
         try {
             con = DatabaseHandler.connect();
+            
             statement = con.createStatement();
             resultSetName = statement.executeQuery("select COUNT(*) as count "
                                              + "from user "
-                                             + "where username='" + name + "'");
+                                             + "where username='" + name + "';");
             resultSetName.first();
             
-            resultSetEmail = statement.executeQuery("select COUNT(*) as count "
+            statement2 = con.createStatement();
+            resultSetEmail = statement2.executeQuery("select COUNT(*) as count "
                                              + "from user "
-                                             + "where email='" + email + "'");
+                                             + "where email='" + email + "';");
             
             resultSetEmail.first();
             
@@ -91,21 +93,20 @@ public class DBUserQueries {
             ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
     }
-
-    public static boolean isUserExisiting(String email) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public static Boolean userPasswordOk(User user) {
         
-        Boolean result = null;
+        Boolean result = false;
         String email = user.getEmail();
         String password = user.getPassword();
         
          try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("select COUNT(*) as count from user where email=\"" + email + "\" and password=\"" + password + "\")");
+            resultSet = statement.executeQuery("select COUNT(*) as count "
+                                        + "from user "
+                                        + "where email='" + email + "'"
+                                        + "and password='" + password + "'");
             
             resultSet.first();
            

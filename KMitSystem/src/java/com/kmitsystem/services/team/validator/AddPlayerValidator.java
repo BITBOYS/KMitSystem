@@ -1,6 +1,6 @@
-package com.kmitsystem.services.team.writeTeamDataService.validator;
+package com.kmitsystem.services.team.validator;
 
-import com.kmitsystem.services.team.writeTeamDataService.input.AddPlayerInput;
+import com.kmitsystem.services.team.input.TeamInput;
 import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
@@ -12,7 +12,7 @@ import com.kmitsystem.tools.errorhandling.Errors;
  */
 public class AddPlayerValidator {
     
-    public boolean validate(AddPlayerInput input) {
+    public boolean validate(TeamInput input) {
         
         // check if the team exists
         if(!DBTeamQueries.isTeamExisiting(input.getTeam().getName())) {

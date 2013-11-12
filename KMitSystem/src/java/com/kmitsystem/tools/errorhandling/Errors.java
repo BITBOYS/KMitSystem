@@ -19,5 +19,6 @@ public class Errors {
     public static final Error EMAIL_ALREADY_TAKEN_ERROR = new Error(6, "Die E-Mail wird bereits verwendet");
     public static final Error UNKNOWN_EMAIL_ERROR = new Error(7, "Die E-Mail Adresse wurde nicht gefunden");
     public static final Error PASSWORDS_NOT_EQUAL = new Error(8, "Die beiden Passwörter stimmen nicht überein");
+    public static final Error FALSE_LOGIN_INPUT = new Error(9, "Die E-Mail Adresse und das Passwort stimmen nicht überein");
     
 }

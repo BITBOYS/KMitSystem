@@ -6,14 +6,12 @@
 
 package com.kmitsystem.servlets.team.writeTeamDataServlets;
 
-import com.kmitsystem.services.team.writeTeamDataService.WriteTeamDataServiceProvider;
-import com.kmitsystem.services.team.writeTeamDataService.input.AddPlayerInput;
-import com.kmitsystem.services.team.writeTeamDataService.input.CreateTeamInput;
+import com.kmitsystem.services.team.TeamServiceProvider;
+import com.kmitsystem.services.team.input.TeamInput;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,8 +40,8 @@ public class AddPlayerServlet extends HttpServlet {
         User user = new User(request.getParameter("username"));
         User leader = new User(request.getParameter("tleader"));
         Team team = new Team(request.getParameter("tname"), request.getParameter("ttag"), leader);
-        WriteTeamDataServiceProvider provider = new WriteTeamDataServiceProvider();
-        AddPlayerInput input = new AddPlayerInput(user, team);
+        TeamServiceProvider provider = new TeamServiceProvider();
+        TeamInput input = new TeamInput(user, team);
         
         BaseResult result = provider.addPlayer(input);
         

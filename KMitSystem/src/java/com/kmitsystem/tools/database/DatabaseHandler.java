@@ -22,10 +22,10 @@ public class DatabaseHandler {
             if(con == null)
                 con = DriverManager.getConnection(host, username, password);
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, DatabaseHandler.class.getSimpleName() + ":connect");
+            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, DatabaseHandler.class.getName() + ":connect");
             System.out.println(ex.getMessage());
         } catch (ClassNotFoundException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, DatabaseHandler.class.getSimpleName() + ":connect");
+            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, DatabaseHandler.class.getName() + ":connect");
             System.out.println(ex.getMessage());
         }
         return con;

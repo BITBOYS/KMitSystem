@@ -8,7 +8,7 @@ import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 
 /**
- * @author Alex
+ * @author Alex, Malte
  */
 public class WriteUserDataServiceProvider {
     
@@ -19,7 +19,7 @@ public class WriteUserDataServiceProvider {
 
         if(createUserValidator.validate(input)) {
             // prepare the input
-            User user = new User(input.getName(), input.getPassword(), input.getEmail());
+            User user = input.getUser();
             
             // call the database
             DBUserQueries.createUser(user);

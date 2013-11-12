@@ -1,17 +1,24 @@
-package com.kmitsystem.services.team.writeTeamDataService.input;
+package com.kmitsystem.services.team.input;
 
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
-import java.sql.Date;
 
 /**
  * @author Maik
  */
-public class AddPlayerInput {
+public class TeamInput {
     private User user;
     private Team team; 
 
-    public AddPlayerInput(User user, Team team) {
+    public TeamInput() {
+        super();
+    }
+
+    public TeamInput(Team team) {
+        this.team = team;
+    }
+    
+    public TeamInput(User user, Team team) {
         this.user = user;
         this.team = team;
     }
@@ -31,6 +38,4 @@ public class AddPlayerInput {
     public void setTeam(Team team) {
         this.team = team;
     }
-    
-    
 }

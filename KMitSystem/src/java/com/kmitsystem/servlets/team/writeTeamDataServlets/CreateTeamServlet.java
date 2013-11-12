@@ -1,15 +1,20 @@
 package com.kmitsystem.servlets.team.writeTeamDataServlets;
 
-import com.kmitsystem.services.team.writeTeamDataService.WriteTeamDataServiceProvider;
-import com.kmitsystem.services.team.writeTeamDataService.input.CreateTeamInput;
+import com.kmitsystem.services.team.TeamServiceProvider;
+import com.kmitsystem.services.team.input.TeamInput;
+import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.objects.BaseResult;
+import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.kmitsystem.tools.errorhandling.Error;
+import com.kmitsystem.tools.errorhandling.Errors;
+import java.util.List;
 /**
  * @author Maik
  */
@@ -30,13 +35,22 @@ public class CreateTeamServlet extends HttpServlet {
         String name = request.getParameter("name");
         String tag = request.getParameter("tag");
         String password = request.getParameter("password");
+        String reenter_password = request.getParameter("reenter_password");
 //        User leader = GET USER FROM SESSION
-        User leader = new User("Maik", "maik@kms.de");
+        User leader = new User("Maik");
+        Team team = new Team(name, tag, password, leader);
+        BaseResult result = new BaseResult();
         
-        WriteTeamDataServiceProvider provider = new WriteTeamDataServiceProvider();
-        CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
-        
-        BaseResult result = provider.createTeam(input);
+        if(password.equals(reenter_password)) {
+            TeamServiceProvider provider = new TeamServiceProvider();
+            TeamInput input = new TeamInput(team);
+
+            result = provider.createTeam(input);
+        } else {
+            List<Error> errorList = new ArrayList<Error>();
+            errorList.add(Errors.PASSWORDS_NOT_EQUAL);
+            result.setErrorList(errorList);
+       }
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {

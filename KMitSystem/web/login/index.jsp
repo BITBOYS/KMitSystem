@@ -87,8 +87,8 @@
                             </div>  
                             <br>  
                             <form class="form-signin" action="${pageContext.request.contextPath}/SignInServlet" method="post" role="form">
-                                <input type="email" class="form-control" placeholder="Email" required autofocus>
-                                <input type="password" class="form-control" placeholder="Password" required>
+                                <input type="email" class="form-control" placeholder="Email" name="email" required autofocus>
+                                <input type="password" class="form-control" placeholder="Password" name="password" required>
                                 <br>
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                                     Sign in</button>

@@ -46,7 +46,7 @@ public class CreateUserServlet extends HttpServlet {
         if(user.getPassword().equals(reenter_password)){
         
             WriteUserDataServiceProvider provider = new WriteUserDataServiceProvider();
-            CreateUserInput input = new CreateUserInput(user.getEmail(), user.getPassword());
+            CreateUserInput input = new CreateUserInput(user);
             
             result = provider.createUser(input);
         }else{
@@ -57,7 +57,7 @@ public class CreateUserServlet extends HttpServlet {
             request.getSession().setAttribute("errors", result.getErrorList());
             response.sendRedirect("register");
         }else{
-            response.sendRedirect("user/dashboard");
+            response.sendRedirect("login");
         }
     }
 

@@ -1,9 +1,8 @@
-package com.kmitsystem.services.team.writeTeamDataService;
+package com.kmitsystem.services.team;
 
-import com.kmitsystem.services.team.writeTeamDataService.input.AddPlayerInput;
-import com.kmitsystem.services.team.writeTeamDataService.input.CreateTeamInput;
-import com.kmitsystem.services.team.writeTeamDataService.validator.AddPlayerValidator;
-import com.kmitsystem.services.team.writeTeamDataService.validator.CreateTeamValidator;
+import com.kmitsystem.services.team.input.TeamInput;
+import com.kmitsystem.services.team.validator.AddPlayerValidator;
+import com.kmitsystem.services.team.validator.CreateTeamValidator;
 import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
@@ -14,17 +13,18 @@ import com.kmitsystem.tools.objects.User;
 /**
  * @author Maik
  */
-public class WriteTeamDataServiceProvider {
+public class TeamServiceProvider {
     
     CreateTeamValidator createTeamValidator = new CreateTeamValidator();
     AddPlayerValidator addPlayerValidator = new AddPlayerValidator();
     
-    public BaseResult createTeam(CreateTeamInput input) {
+    public BaseResult createTeam(TeamInput input) {
         BaseResult result = new BaseResult();
 
         if(createTeamValidator.validate(input)) {
             // prepare the input
-            Team team = new Team(input.getName(), input.getTag(), input.getPassword(), input.getLeader());
+            Team team = new Team(input.getTeam().getName(), input.getTeam().getTag(), 
+                    input.getTeam().getPassword(), input.getTeam().getLeader());
             
             // call the database
             DBTeamQueries.createTeam(team);
@@ -39,7 +39,7 @@ public class WriteTeamDataServiceProvider {
         return result;
      }
     
-    public BaseResult addPlayer(AddPlayerInput input) {
+    public BaseResult addPlayer(TeamInput input) {
         BaseResult result = new BaseResult();
         
         if(addPlayerValidator.validate(input)) {

@@ -38,8 +38,9 @@ public class SignInServlet extends HttpServlet {
             throws ServletException, IOException {
         
         //User Object with Input-Form-Data to validate
-        User user = new User(request.getParameter("email"), request.getParameter("password"));
-        
+        String email = String.valueOf(request.getParameter("email"));
+        String password = String.valueOf(request.getParameter("password"));
+        User user = new User(email,password);
         
         ReadUserDataServiceProvider provider = new ReadUserDataServiceProvider();
         ReadUserDataInput input = new ReadUserDataInput(user);

@@ -20,30 +20,16 @@ public class ReadUserValidator {
     public boolean validate(ReadUserDataInput input) {
         boolean result = true;
         
-        if(!isValidEmail(input.getUser().getEmail())) {
-            result = false;
+        // check if a user with this email is existing
+        if(!DBUserQueries.isUserExisting(input.getUser())) {
+            ErrorHandler.handle(Errors.FALSE_LOGIN_INPUT, DBUserQueries.class.getName() + ":isUserExisting");
+            return false;
         }
         
-        return result;
-    }
-    
-//    private boolean isValidName(String name) {
-//        boolean result = true;
-//        
-//        if(DBTeamQueries.isTeamExisiting(name)) {
-//            ErrorHandler.handle(Errors.NAME_ALREADY_TAKEN_ERROR, DBTeamQueries.class.getSimpleName() + ":isValidName");
-//            result = false;
-//        }
-//        
-//        return result;
-//    }
-    
-    private boolean isValidEmail(String email) {
-        boolean result = true;
-        
-        if(DBUserQueries.isUserExisiting(email)) {
-            ErrorHandler.handle(Errors.EMAIL_ALREADY_TAKEN_ERROR, DBUserQueries.class.getSimpleName() + ":isValidEmail");
-            result = false;
+        // check if the password is right
+        if(!DBUserQueries.userPasswordOk(input.getUser())) {
+            ErrorHandler.handle(Errors.FALSE_LOGIN_INPUT, DBUserQueries.class.getName() + ":userPasswordOk");
+            return false;
         }
         
         return result;

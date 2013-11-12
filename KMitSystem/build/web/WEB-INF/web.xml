@@ -9,8 +9,12 @@
         <servlet-class>com.kmitsystem.servlets.team.writeTeamDataServlets.AddPlayerServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SignIn</servlet-name>
-        <servlet-class>com.kmitsystem.servlets.access.SignInServlet</servlet-class>
+        <servlet-name>SignInServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.user.readUserDataServlets.SignInServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CreateUserServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.user.readUserDataServlets.CreateUserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CreateTeamServlet</servlet-name>
@@ -21,12 +25,24 @@
         <url-pattern>/AddPlayerServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SignIn</servlet-name>
-        <url-pattern>/SignIn</url-pattern>
+        <servlet-name>SignInServlet</servlet-name>
+        <url-pattern>/SignInServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CreateUserServlet</servlet-name>
+        <url-pattern>/CreateUserServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error/index.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/index.jsp</location>
+    </error-page>
 </web-app>
