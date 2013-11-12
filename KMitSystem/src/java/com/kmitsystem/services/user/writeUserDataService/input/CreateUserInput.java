@@ -1,29 +1,19 @@
 package com.kmitsystem.services.user.writeUserDataService.input;
 
-import com.kmitsystem.tools.objects.User;
-
 
 /**
- * @author Alex
+ * @author Alex, Malte
  */
 public class CreateUserInput {
     
     private String name;    
     private String password;
     private String email;
-    private int goals;
-    private int goals_conceded;
-    private int wins;
-    private int defeats;
 
-    public CreateUserInput(String name, String password, String email) {
+    public CreateUserInput(String name, String email, String password) {
         this.name = name;
-        this.password = password;
         this.email = email;
-    }
-
-    public CreateUserInput(String email, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.password = password;
     }
 
     public String getName() {

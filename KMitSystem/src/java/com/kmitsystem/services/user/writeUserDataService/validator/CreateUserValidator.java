@@ -2,12 +2,11 @@ package com.kmitsystem.services.user.writeUserDataService.validator;
 
 import com.kmitsystem.services.user.writeUserDataService.input.CreateUserInput;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
-import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.errorhandling.Errors;
 
 /**
- * @author Alex
+ * @author Alex, Malte
  */
 public class CreateUserValidator {
     
@@ -24,8 +23,8 @@ public class CreateUserValidator {
     private boolean isValidName(String name) {
         boolean result = true;
         
-        if(DBTeamQueries.isTeamExisiting(name)) {
-            ErrorHandler.handle(Errors.NAME_ALREADY_TAKEN_ERROR, DBTeamQueries.class.getSimpleName() + ":isValidName");
+        if(DBUserQueries.isUserExisiting(name)) {
+            ErrorHandler.handle(Errors.NAME_ALREADY_TAKEN_ERROR, DBUserQueries.class.getSimpleName() + ":isValidName");
             result = false;
         }
         
@@ -35,7 +34,7 @@ public class CreateUserValidator {
     private boolean isValidEmail(String email) {
         boolean result = true;
         
-        if(DBTeamQueries.isTeamExisiting(email)) {
+        if(DBUserQueries.isUserExisiting(email)) {
             ErrorHandler.handle(Errors.EMAIL_ALREADY_TAKEN_ERROR, DBUserQueries.class.getSimpleName() + ":isValidEmail");
             result = false;
         }
