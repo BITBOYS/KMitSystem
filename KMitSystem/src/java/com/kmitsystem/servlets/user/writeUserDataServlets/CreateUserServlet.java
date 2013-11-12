@@ -4,16 +4,15 @@
  */
 package com.kmitsystem.servlets.user.writeUserDataServlets;
 
+import com.kmitsystem.services.user.readUserDataService.ReadUserDataServiceProvider;
+import com.kmitsystem.services.user.readUserDataService.input.ReadUserInput;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
-import com.kmitsystem.services.user.writeUserDataService.WriteUserDataServiceProvider;
-import com.kmitsystem.services.user.writeUserDataService.input.CreateUserInput ;
 import javax.servlet.http.HttpServletResponse;
 
 /**
@@ -35,21 +34,34 @@ public class CreateUserServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      String name = request.getParameter("name");
-        String password = request.getParameter("password");
-        String email = request.getParameter("email"); 
-                
         
-        WriteUserDataServiceProvider provider = new WriteUserDataServiceProvider();
-        CreateUserInput input = new CreateUserInput(name, password, email);
+        //get the user and the team from the session and use it as input
+//        User user = (User) request.getSession().getAttribute("user");
+             
+        Boolean fail = false;
+        User user = new User(request.getParameter("name"), request.getParameter("email"), request.getParameter("password"));
+        String reenter_password = request.getParameter("reenter_password"); 
+        BaseResult result = null;
         
-        BaseResult result = provider.createTeam(input);
+        if(user.getPassword().equals(reenter_password)){
+        
+            ReadUserDataServiceProvider provider = new ReadUserDataServiceProvider();
+            ReadUserInput input = new ReadUserInput(user.getEmail(), user.getPassword());
+
+            result = null;
+        }else{
+            fail = true;
+        }
         
         if(result.getErrorList().size() > 0) {
             request.getSession().setAttribute("errors", result.getErrorList());
         }
         
-        response.sendRedirect("teams");
+        if(fail){
+            response.sendRedirect("register");
+        }else{
+            response.sendRedirect("user/dashboard");
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

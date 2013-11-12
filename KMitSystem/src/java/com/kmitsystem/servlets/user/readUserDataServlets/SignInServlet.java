@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 
-package com.kmitsystem.servlets.user.access;
+package com.kmitsystem.servlets.user.readUserDataServlets;
 
+import com.kmitsystem.services.user.readUserDataService.ReadUserDataServiceProvider;
+import com.kmitsystem.services.user.readUserDataService.input.ReadUserInput;
 import com.kmitsystem.services.user.writeUserDataService.WriteUserDataServiceProvider;
 import com.kmitsystem.services.user.writeUserDataService.input.CreateUserInput;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
@@ -35,26 +37,23 @@ public class SignInServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //Input-Form-Data to validate
-        String name = request.getParameter("name");
-        String email = request.getParameter("email");
-        String password1 = request.getParameter("password");
-        String password2 = request.getParameter("reenter_password");
+        //User Object with Input-Form-Data to validate
+        User user = new User(request.getParameter("email"), request.getParameter("password"));
         
-//        Boolean valid = DBUserQueries.isUserExisting(user);
         
-        WriteUserDataServiceProvider provider = new WriteUserDataServiceProvider();
-        CreateUserInput input = new CreateUserInput(name, password1, email);
+        ReadUserDataServiceProvider provider = new ReadUserDataServiceProvider();
+        ReadUserInput input = new ReadUserInput(user.getEmail(), user.getPassword());
         
-        BaseResult result = provider.createTeam(input);
+        BaseResult result = null;//provider.createTeam(input);
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {
             request.getSession().setAttribute("errors", result.getErrorList());
+            response.sendRedirect("login");
+        }else{
+            // redirect to the page www.kmitsystem.de/teams
+            response.sendRedirect("Dummy");
         }
-        
-        // redirect to the page www.kmitsystem.de/teams
-        response.sendRedirect("Dummy");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
