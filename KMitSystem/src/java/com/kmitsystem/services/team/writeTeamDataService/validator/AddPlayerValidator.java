@@ -21,7 +21,7 @@ public class AddPlayerValidator {
         }
         
         // check if the user exists
-        if(!DBUserQueries.isUserExisting(input.getUser().getUsername())) {
+        if(!DBUserQueries.isUserExisting(input.getUser())) {
             ErrorHandler.handle(Errors.USER_DOES_NOT_EXIST, AddPlayerValidator.class.getSimpleName());
             return false;
         }
