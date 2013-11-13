@@ -2,10 +2,7 @@ package com.kmitsystem.servlets.team.writeTeamDataServlets;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.services.team.input.CreateTeamInput;
-import com.kmitsystem.services.team.input.TeamInput;
-import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.objects.BaseResult;
-import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
 import java.util.ArrayList;

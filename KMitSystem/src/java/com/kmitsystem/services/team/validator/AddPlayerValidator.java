@@ -1,7 +1,6 @@
 package com.kmitsystem.services.team.validator;
 
 import com.kmitsystem.services.team.input.AddPlayerInput;
-import com.kmitsystem.services.team.input.TeamInput;
 import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.database.queries.DBUserTeamQueries;

@@ -2,7 +2,6 @@ package com.kmitsystem.services.team;
 
 import com.kmitsystem.services.team.input.AddPlayerInput;
 import com.kmitsystem.services.team.input.CreateTeamInput;
-import com.kmitsystem.services.team.input.TeamInput;
 import com.kmitsystem.services.team.validator.AddPlayerValidator;
 import com.kmitsystem.services.team.validator.CreateTeamValidator;
 import com.kmitsystem.tools.database.queries.DBTeamQueries;
@@ -10,7 +9,6 @@ import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Team;
-import com.kmitsystem.tools.objects.User;
 
 /**
  * @author Maik
