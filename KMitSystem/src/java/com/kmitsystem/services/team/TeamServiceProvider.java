@@ -1,5 +1,7 @@
 package com.kmitsystem.services.team;
 
+import com.kmitsystem.services.team.input.AddPlayerInput;
+import com.kmitsystem.services.team.input.CreateTeamInput;
 import com.kmitsystem.services.team.input.TeamInput;
 import com.kmitsystem.services.team.validator.AddPlayerValidator;
 import com.kmitsystem.services.team.validator.CreateTeamValidator;
@@ -18,13 +20,13 @@ public class TeamServiceProvider {
     CreateTeamValidator createTeamValidator = new CreateTeamValidator();
     AddPlayerValidator addPlayerValidator = new AddPlayerValidator();
     
-    public BaseResult createTeam(TeamInput input) {
+    public BaseResult createTeam(CreateTeamInput input) {
         BaseResult result = new BaseResult();
 
         if(createTeamValidator.validate(input)) {
             // prepare the input
-            Team team = new Team(input.getTeam().getName(), input.getTeam().getTag(), 
-                    input.getTeam().getPassword(), input.getTeam().getLeader());
+            Team team = new Team(input.getName(), input.getTag(), 
+                    input.getPassword(), input.getLeader());
             
             // call the database
             DBTeamQueries.createTeam(team);
@@ -39,16 +41,16 @@ public class TeamServiceProvider {
         return result;
      }
     
-    public BaseResult addPlayer(TeamInput input) {
+    public BaseResult addPlayer(AddPlayerInput input) {
         BaseResult result = new BaseResult();
         
         if(addPlayerValidator.validate(input)) {
             // prepare the input
-            Team team = input.getTeam();
-            User user = input.getUser();
+            String teamname = input.getTeamname();
+            String username = input.getUsername();
             
             // call the database
-            DBUserTeamQueries.addPlayer(user, team);
+            DBUserTeamQueries.addPlayer(username, teamname);
         }
         
         // write the errors into the result object and empty the ErrorHandler

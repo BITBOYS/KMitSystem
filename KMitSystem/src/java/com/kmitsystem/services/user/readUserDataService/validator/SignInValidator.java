@@ -21,7 +21,7 @@ public class SignInValidator {
         boolean result = true;
         
         // check if a user with this email is existing
-        if(!DBUserQueries.isEMailExisting(input.getUser())) {
+        if(!DBUserQueries.isEMailExisting(input.getUser().getEmail())) {
             ErrorHandler.handle(Errors.FALSE_LOGIN_INPUT, DBUserQueries.class.getName() + ":isEMailExisting");
             return false;
         }

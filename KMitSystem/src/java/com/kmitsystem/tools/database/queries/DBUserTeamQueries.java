@@ -30,13 +30,10 @@ public class DBUserTeamQueries {
     private static Connection con = null;
     private static ResultSet resultSet = null;
     
-    public static void addPlayer(User user, Team team) {
+    public static void addPlayer(String username, String teamname) {
         try {        
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            
-            String username = user.getUsername();
-            String teamname = team.getName();
             
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date enter_date = new Date();
@@ -54,15 +51,12 @@ public class DBUserTeamQueries {
      * Checks if the user is a member of a specific team
      * returns: true if he is a member, false if he's not
      */
-    public static boolean checkTeamMembership(User user, Team team) {
+    public static boolean checkTeamMembership(String username, String teamname) {
         boolean result = false;
         
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            
-            String username = user.getUsername();
-            String teamname = team.getName();
             
             resultSet = statement.executeQuery("SELECT COUNT(*) as count "
                                     + " FROM user_team "

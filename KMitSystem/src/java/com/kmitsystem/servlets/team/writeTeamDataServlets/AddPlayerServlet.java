@@ -3,10 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+ 
 package com.kmitsystem.servlets.team.writeTeamDataServlets;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
+import com.kmitsystem.services.team.input.AddPlayerInput;
 import com.kmitsystem.services.team.input.TeamInput;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Team;
@@ -37,11 +38,11 @@ public class AddPlayerServlet extends HttpServlet {
         // get the user and the team from the session and use it as input
 //        User user = (User) request.getSession().getAttribute("user");
 //        Team team = (Team) request.getSession().getAttribute("team");
-        User user = new User(request.getParameter("username"));
-        User leader = new User(request.getParameter("tleader"));
-        Team team = new Team(request.getParameter("tname"), request.getParameter("ttag"), leader);
+        String username = request.getParameter("username");
+        String teamname = request.getParameter("teamname");
+        
         TeamServiceProvider provider = new TeamServiceProvider();
-        TeamInput input = new TeamInput(user, team);
+        AddPlayerInput input = new AddPlayerInput(username, teamname);
         
         BaseResult result = provider.addPlayer(input);
         

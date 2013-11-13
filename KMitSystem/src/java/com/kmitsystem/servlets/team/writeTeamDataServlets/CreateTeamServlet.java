@@ -1,6 +1,7 @@
 package com.kmitsystem.servlets.team.writeTeamDataServlets;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
+import com.kmitsystem.services.team.input.CreateTeamInput;
 import com.kmitsystem.services.team.input.TeamInput;
 import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.objects.BaseResult;
@@ -38,12 +39,11 @@ public class CreateTeamServlet extends HttpServlet {
         String reenter_password = request.getParameter("reenter_password");
 //        User leader = GET USER FROM SESSION
         User leader = new User("Maik");
-        Team team = new Team(name, tag, password, leader);
         BaseResult result = new BaseResult();
         
         if(password.equals(reenter_password)) {
             TeamServiceProvider provider = new TeamServiceProvider();
-            TeamInput input = new TeamInput(team);
+            CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
 
             result = provider.createTeam(input);
         } else {

@@ -15,13 +15,13 @@ public class CreateUserValidator {
         boolean result = true;
         
         // check if the email is already taken
-        if(DBUserQueries.isEMailExisting(input.getUser())) {
+        if(DBUserQueries.isEMailExisting(input.getUser().getEmail())) {
             ErrorHandler.handle(Errors.NAME_ALREADY_TAKEN_ERROR, DBUserQueries.class.getName() + ": isEmailExisting");
             return false;
         }
         
         // check if the username is already taken
-        if(DBUserQueries.isUsernameExisting(input.getUser())) {
+        if(DBUserQueries.isUsernameExisting(input.getUser().getUsername())) {
             ErrorHandler.handle(Errors.EMAIL_ALREADY_TAKEN_ERROR, DBUserQueries.class.getName() + ": isUsernameExisting");
             return false;
         }
