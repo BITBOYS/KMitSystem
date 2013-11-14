@@ -61,24 +61,19 @@ public class DBTeamQueries {
         return team;
     }
     
-    public static void createTeam(Team team) {
+    public static void createTeam(String name, String tag, String password, User leader) {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             
-            String name = team.getName();
-            String tag = team.getTag();
-            String password = team.getPassword();
-            String leader = team.getLeader().getUsername();
-            
             if(password.equals("")) { 
                 statement.execute("insert into team"
                         + "(name, tag, leader)"
-                        + "VALUES (\"" + name + "\",\"" + tag + "\",\"" + leader + "\")");
+                        + "VALUES (\"" + name + "\",\"" + tag + "\",\"" + leader.getUsername() + "\")");
             } else {
                 statement.execute("insert into team"
                         + "(name, tag, password, leader)"
-                        + "VALUES (\"" + name + "\",\"" + tag + "\",\"" + password + "\",\"" + leader + "\")"); 
+                        + "VALUES (\"" + name + "\",\"" + tag + "\",\"" + password + "\",\"" + leader.getUsername() + "\")"); 
             }
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());

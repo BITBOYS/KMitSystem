@@ -25,32 +25,15 @@ public class Tournament {
         super();
     }
 
-    public Tournament(String name, User leader) {
-        this.name = name;
-        this.leader = leader;
-    }
-    
-    public Tournament(String name, String password, User leader) {
-        this.name = name;
-        this.password = password;
-        this.leader = leader;
-    }
-    
-    public Tournament(String name, SimpleDateFormat start_date, String password, User leader) {
-        this.name = name;
-        this.password = password;
-        this.leader = leader;
-        this.start_date = start_date;
-    }
-
-    public Tournament(String name, SimpleDateFormat start_date, String password, User leader, SimpleDateFormat end_date) {
+    public Tournament(String name, String password, User leader, SimpleDateFormat start_date, SimpleDateFormat end_date, int nr_matchdays) {
         this.name = name;
         this.password = password;
         this.leader = leader;
         this.start_date = start_date;
         this.end_date = end_date;
+        this.nr_matchdays = nr_matchdays;
     }
-
+    
     public String getName() {
         return name;
     }

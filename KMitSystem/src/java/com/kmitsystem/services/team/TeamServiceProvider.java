@@ -8,7 +8,7 @@ import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.objects.BaseResult;
-import com.kmitsystem.tools.objects.Team;
+import com.kmitsystem.tools.objects.User;
 
 /**
  * @author Maik
@@ -23,11 +23,13 @@ public class TeamServiceProvider {
 
         if(createTeamValidator.validate(input)) {
             // prepare the input
-            Team team = new Team(input.getName(), input.getTag(), 
-                    input.getPassword(), input.getLeader());
+            String name = input.getName();
+            String tag = input.getTag();
+            String password = input.getTag();
+            User leader = input.getLeader();
             
             // call the database
-            DBTeamQueries.createTeam(team);
+            DBTeamQueries.createTeam(name, tag, password, leader);
         }
         
         // write the errors into the result object and empty the ErrorHandler
