@@ -101,8 +101,6 @@
                                             <label class="col-sm-2 control-label">E-Mail</label>
                                             <div class="col-sm-6">
                                                 <input type="email" class="form-control" id="input_email_alt" placeholder="alte E-Mail">
-                                            </div>
-                                            <div class="col-sm-6 col-md-offset-2">
                                                 <input type="email" class="form-control" id="input_email_neu1" placeholder="neue E-Mail">
                                                 <input type="email" class="form-control" id="input_email_neu2" placeholder="neue E-Mail">
                                             </div>
