@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>SignInServlet</servlet-name>
-        <servlet-class>com.kmitsystem.servlets.user.readUserDataServlets.SignInServlet</servlet-class>
+        <servlet-class>com.kmitsystem.servlets.user.SignInServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CreateUserServlet</servlet-name>
