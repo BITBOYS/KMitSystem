@@ -86,13 +86,52 @@
                     </ol>
                 </div>
 
-            <div class="row">
+            <div class="row col-lg-offset-10">
                 
-                <a class="btn btn-default" href="../teams/create">Team erstellen <i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-success" href="../teams/create">Team erstellen <i class="fa fa-angle-right"></i></a>
                 
             </div><!-- .row -->
             
-            <hr>
+            <div class="row">  
+                    <div class="col-lg-12">
+                        <h2 class="page-header">Teamsuche</h2>
+                        <form class="form-horizontal" role="form">
+
+                            <div class="col-lg-4 col-lg-offset-1">
+
+                                <div class="form-group">
+                                    <label for="inputTeamname" class="col-sm-2 control-label">Team</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="team_name_search" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputTurniername" class="col-sm-2 control-label">Turnier</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="turnier_name_search" placeholder="Name">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputUsername" class="col-sm-2 control-label">User</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="user_name_search" placeholder="Name">
+                                    </div>
+                                </div>
+                            <p class="help-block">Suche nach Teamnamen, speziell nach Teams die in bestimmtet Turnieren oder in den bestimmte User spielen.</p>
+                            </div>
+                            <div class="col-lg-6">
+                                
+                                <div class="form-group">
+                                    <div class="col-sm-offset-1 col-sm-6">
+                                        <button type="submit" class="btn btn-primary">Suche <i class="fa fa-angle-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> <!-- row --> 
+                
+                <hr>
             
                 <div class="row">  
                     <form action="${pageContext.request.contextPath}/CreateTeamServlet" method="post">
@@ -117,14 +156,14 @@
                 <div class="row">
 
                     <div class="col-md-7">
-                        <a href="../teams/dashboard"><img class="img-responsive" src="http://placehold.it/750x350"></a>
+                        <a href="teams/profil"><img class="img-responsive" src="http://placehold.it/750x350"></a>
                     </div>
 
                     <div class="col-md-5">
                         <h3>Team Name</h3>
                         <h4>Subheading</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                        <a class="btn btn-primary" href="../tournaments/dashboard">Zum Team <i class="fa fa-angle-right"></i></a>
+                        <a class="btn btn-success" href="../tournaments/profil">Zum Team <i class="fa fa-angle-right"></i></a>
                     </div>
 
                 </div>
@@ -134,14 +173,14 @@
                 <div class="row">
 
                     <div class="col-md-7">
-                        <a href="../tournaments/dashboard"><img class="img-responsive" src="http://placehold.it/750x350"></a>
+                        <a href="../tournaments/profil"><img class="img-responsive" src="http://placehold.it/750x350"></a>
                     </div>
 
                     <div class="col-md-5">
                         <h3>Team Name</h3>
                         <h4>Subheading</h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                        <a class="btn btn-primary" href="../tournaments/dashboard">Zum Team <i class="fa fa-angle-right"></i></a>
+                        <a class="btn btn-success" href="../tournaments/profil">Zum Team <i class="fa fa-angle-right"></i></a>
                     </div>
 
                 </div>

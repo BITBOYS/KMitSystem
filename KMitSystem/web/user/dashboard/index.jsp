@@ -242,7 +242,7 @@
                                                     </tbody>  
                                                 </table>  
                                             </div> 
-                                            <p><a href="#" class="btn btn-primary">Turnierprofil <i class="fa fa-angle-right"></i></a> <a href="#" class="btn btn-danger">Austreten <i class="fa fa-angle-right"></i></a></p>
+                                            <p><a href="#" class="btn btn-success">Turnierprofil <i class="fa fa-angle-right"></i></a> <a href="#" class="btn btn-danger">Austreten <i class="fa fa-angle-right"></i></a></p>
                                         </div>
                                     </div>
                                 </div> 
@@ -284,7 +284,7 @@
                                                     </tbody>  
                                                 </table>  
                                             </div>  
-                                            <p><a href="#" class="btn btn-primary">Turnierprofil <i class="fa fa-angle-right"></i></a> <a href="#" class="btn btn-danger">Austreten <i class="fa fa-angle-right"></i></a></p>
+                                            <p><a href="#" class="btn btn-success">Turnierprofil <i class="fa fa-angle-right"></i></a> <a href="#" class="btn btn-danger">Austreten <i class="fa fa-angle-right"></i></a></p>
                                         </div>
                                     </div>
                                 </div> 

@@ -75,155 +75,185 @@
                     </ol>
                 </div>
             </div>
-            
+
             <div class="row">
-                
-               <div class="col-lg-12">
-                    <h2 class="page-header">"Name" persönliche Statistik</h2>
-                    
-                     <div class="panel panel-default">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">&Uuml;bersicht</div>
-
-                                <!-- Table -->
-                                <table class="table">  
-                                    <thead>  
-                                        <tr>  
-                                            <th>Turniersiege</th>  
-                                            <th>Gesmatsiege</th>  
-                                            <th>Niederlagen</th>  
-                                            <th>Tore</th>  
-                                            <th>Gegentore</th>  
-                                            <th>Turnierteilnahmen</th> 
-                                            <th>Matches</th>  
-                                        </tr>  
-                                    </thead>  
-                                    <tbody>  
-                                        <tr>  
-                                            <td>1</td>  
-                                            <td>1</td>  
-                                            <td>10</td>  
-                                            <td>2</td>  
-                                            <td>2</td> 
-                                            <td>2</td>  
-                                            <td>2</td> 
-                                        </tr>  
-                                    </tbody>  
-                                </table>  
-                            </div>  
-                    
-               </div>
-                
-            </div><!-- /.row -->
-
-            <div class="row">  
 
                 <div class="col-lg-12">
-                    <h2 class="page-header">"Name" Teams</h2>
-                </div>
-                
-                <!-- Schleife zum Anzeigen aller Teams in denen man sich befindet -->
-                <%
-      //              for(int i = 0; i < teams.length(); i++){
-      //                  
-      //              }
-%>
+                    <ul id="myTab" class="nav nav-tabs">
+                        <li class="active"><a href="#statistik" data-toggle="tab">Statistik</a></li>
+                        <li><a href="#team" data-toggle="tab">Teams</a></li>
+                        <li><a href="#turnier" data-toggle="tab">Turniere</a></li>
+                    </ul>
+                    <div id="myTabContent" class="tab-content">
 
-                <div class="col-lg-6 col-md-6 hero-feature">
-                    <div class="thumbnail">
-                        <h3>Teamname <small> Leader: <a href="#">User2</a></small></h3>
-                        <img src="http://placehold.it/800x500" alt="">
-                        <div class="caption">
-                            <div class="panel panel-default">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Teammitglieder</div>
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item">User2</a>
-                                    <a href="#" class="list-group-item">...</a>
+                        <div class="tab-pane fade in active" id="statistik">
+                            <i class="fa fa-gear pull-left fa-4x"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <h2 class="page-header">"Name" persönliche Statistik</h2>
+
+                                    <div class="panel panel-default">
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">&Uuml;bersicht</div>
+
+                                        <!-- Table -->
+                                        <table class="table">  
+                                            <thead>  
+                                                <tr>  
+                                                    <th>Turniersiege</th>  
+                                                    <th>Gesmatsiege</th>  
+                                                    <th>Niederlagen</th>  
+                                                    <th>Tore</th>  
+                                                    <th>Gegentore</th>  
+                                                    <th>Turnierteilnahmen</th> 
+                                                    <th>Matches</th>  
+                                                </tr>  
+                                            </thead>  
+                                            <tbody>  
+                                                <tr>  
+                                                    <td>1</td>  
+                                                    <td>1</td>  
+                                                    <td>10</td>  
+                                                    <td>2</td>  
+                                                    <td>2</td> 
+                                                    <td>2</td>  
+                                                    <td>2</td> 
+                                                </tr>  
+                                            </tbody>  
+                                        </table>  
+                                    </div>  
+
                                 </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Stats</div>
 
-                                <!-- Table -->
-                                <table class="table">  
-                                    <thead>  
-                                        <tr>  
-                                            <th>TS</th>  
-                                            <th>GS</th>  
-                                            <th>N</th>  
-                                            <th>T</th>  
-                                            <th>GT</th>  
-                                            <th>aktive Turniere</th> 
-                                        </tr>  
-                                    </thead>  
-                                    <tbody>  
-                                        <tr>  
-                                            <td>1</td>  
-                                            <td>1</td>  
-                                            <td>10</td>  
-                                            <td>2</td>  
-                                            <td>2</td> 
-                                            <td>2</td> 
-                                        </tr>  
-                                    </tbody>  
-                                </table>  
-                            </div>  
-                            <p><a href="#" class="btn btn-primary">Zum Teamprofil <i class="fa fa-angle-right"></i></a></p>
+                            </div><!-- /.row -->
+
+
+                        </div>
+
+
+                        <div class="tab-pane fade" id="team">
+                            <i class="fa fa-beer pull-left fa-4x"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
+                            <div class="row">  
+
+                                <div class="col-lg-12">
+                                    <h2 class="page-header">"Name" Teams</h2>
+                                </div>
+
+                                <!-- Schleife zum Anzeigen aller Teams in denen man sich befindet -->
+                                <%
+                                    //              for(int i = 0; i < teams.length(); i++){
+                                    //                  
+                                    //              }
+                                %>
+
+                                <div class="col-lg-4 col-md-4 hero-feature">
+                                    <div class="thumbnail">
+                                        <h3>Teamname <small> Leader: <a href="#">User2</a></small></h3>
+                                        <img src="http://placehold.it/800x500" alt="">
+                                        <div class="caption">
+                                            <div class="panel panel-default">
+                                                <!-- Default panel contents -->
+                                                <div class="panel-heading">Teammitglieder</div>
+                                                <div class="list-group">
+                                                    <a href="#" class="list-group-item">User2</a>
+                                                    <a href="#" class="list-group-item">...</a>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <!-- Default panel contents -->
+                                                <div class="panel-heading">Stats</div>
+
+                                                <!-- Table -->
+                                                <table class="table">  
+                                                    <thead>  
+                                                        <tr>  
+                                                            <th>TS</th>  
+                                                            <th>GS</th>  
+                                                            <th>N</th>  
+                                                            <th>T</th>  
+                                                            <th>GT</th>  
+                                                            <th>aktive Turniere</th> 
+                                                        </tr>  
+                                                    </thead>  
+                                                    <tbody>  
+                                                        <tr>  
+                                                            <td>1</td>  
+                                                            <td>1</td>  
+                                                            <td>10</td>  
+                                                            <td>2</td>  
+                                                            <td>2</td> 
+                                                            <td>2</td> 
+                                                        </tr>  
+                                                    </tbody>  
+                                                </table>  
+                                            </div>  
+                                            <p><a href="#" class="btn btn-success">Zum Teamprofil <i class="fa fa-angle-right"></i></a></p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div><!-- /.row -->
+                        </div>
+
+                        <div class="tab-pane fade" id="turnier">
+                            <i class="fa fa-flag pull-left fa-4x"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <h2 class="page-header">"Name" aktuellen Turniere</h2>
+                                </div>
+
+                                <div class="col-lg-4 col-md-4 hero-feature">
+                                    <div class="thumbnail">
+                                        <h3>Turniername <small> Leader: <a href="#">User2</a></small></h3>
+                                        <img src="http://placehold.it/800x500" alt="">
+                                        <div class="caption">
+                                            <p>Beschreibung Beschreibung Beschreibung Beschreibung </p>
+                                            <div class="panel panel-default">
+                                                <!-- Default panel contents -->
+                                                <div class="panel-heading">Teams</div>
+                                                <div class="list-group">
+                                                    <a href="#" class="list-group-item">Team1</a>
+                                                    <a href="#" class="list-group-item">Team2</a>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default">
+                                                <!-- Default panel contents -->
+                                                <div class="panel-heading">Daten</div>
+
+                                                <!-- Table -->
+                                                <table class="table">  
+                                                    <thead>  
+                                                        <tr>  
+                                                            <th>Startdatum</th>  
+                                                            <th>Enddatum</th>  
+                                                            <th>Status</th>   
+                                                        </tr>  
+                                                    </thead>  
+                                                    <tbody>  
+                                                        <tr>  
+                                                            <td>1.1.1.1</td>  
+                                                            <td>1.1.1.1</td>  
+                                                            <td>privat</td> 
+                                                        </tr>  
+                                                    </tbody>  
+                                                </table>  
+                                            </div>  
+                                            <p><a href="#" class="btn btn-success">Zum Turnierprofil <i class="fa fa-angle-right"></i></a></p>
+                                        </div>
+                                    </div>
+                                </div> 
+
+                            </div><!-- /.row -->
+
                         </div>
                     </div>
                 </div>
 
-            </div><!-- /.row -->
-            
-            <div class="row">
-                
-               <div class="col-lg-12">
-                   <h2 class="page-header">"Name" aktuellen Turniere</h2>
-               </div>
-                
-               <div class="col-lg-4 col-md-4 hero-feature">
-                    <div class="thumbnail">
-                        <h3>Turniername <small> Leader: <a href="#">User2</a></small></h3>
-                        <img src="http://placehold.it/800x500" alt="">
-                        <div class="caption">
-                            <p>Beschreibung Beschreibung Beschreibung Beschreibung </p>
-                            <div class="panel panel-default">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Teams</div>
-                                <div class="list-group">
-                                    <a href="#" class="list-group-item">Team1</a>
-                                    <a href="#" class="list-group-item">Team2</a>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <!-- Default panel contents -->
-                                <div class="panel-heading">Daten</div>
-
-                                <!-- Table -->
-                                <table class="table">  
-                                    <thead>  
-                                        <tr>  
-                                            <th>Startdatum</th>  
-                                            <th>Enddatum</th>  
-                                            <th>Status</th>   
-                                        </tr>  
-                                    </thead>  
-                                    <tbody>  
-                                        <tr>  
-                                            <td>1.1.1.1</td>  
-                                            <td>1.1.1.1</td>  
-                                            <td>privat</td> 
-                                        </tr>  
-                                    </tbody>  
-                                </table>  
-                            </div>  
-                            <p><a href="#" class="btn btn-primary">Zum Turnierprofil <i class="fa fa-angle-right"></i></a></p>
-                        </div>
-                    </div>
-                </div> 
-                
             </div><!-- /.row -->
 
         </div><!-- /.container -->
