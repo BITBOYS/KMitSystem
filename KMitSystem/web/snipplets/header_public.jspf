@@ -1,3 +1,7 @@
+<%//@include file="domain_link.txt" %>
+
+<%//=domain%>
+
 <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
     <div class="container">
         <div class="navbar-header">
