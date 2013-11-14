@@ -77,40 +77,47 @@
 
                 <div class="row col-lg-offset-10">
 
-                    <a class="btn btn-success" href="../tournaments/create">Turnier erstellen <i class="fa fa-angle-right"></i></a>
+                    <a class="btn btn-success" href="../tournaments/create"><span class="fa fa-pencil"> Turnier erstellen <i class="fa fa-angle-right"></i></a>
 
                 </div><!-- .row -->
 
                 <div class="row">  
                     <div class="col-lg-12">
                         <h2 class="page-header">Turniersuche</h2>
-                        <form class="form-horizontal" role="form">
+                        <div class="row well">
+                            <form class="form-horizontal" role="form">
 
-                            <div class="col-lg-4 col-lg-offset-1">
+                                <div class="col-lg-4 col-lg-offset-1">
 
-                                <div class="form-group">
-                                    <label for="inputTurniername" class="col-sm-2 control-label">Turnier</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" name="turnier_name_search" placeholder="Name">
+                                    <div class="form-group">
+                                        <label for="inputTurniername" class="col-sm-2 control-label">Turnier</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="turnier_name_search" placeholder="Name">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputTeamname" class="col-sm-2 control-label">Team</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" name="team_name_search" placeholder="Name">
+                                    <div class="form-group">
+                                        <label for="inputTeamname" class="col-sm-2 control-label">Team</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="team_name_search" placeholder="Name">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="inputUsername" class="col-sm-2 control-label">User</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" name="user_name_search" placeholder="Name">
+                                    <div class="form-group">
+                                        <label for="inputUsername" class="col-sm-2 control-label">User</label>
+                                        <div class="col-lg-8">
+                                            <input type="text" class="form-control" name="user_name_search" placeholder="Name">
+                                        </div>
                                     </div>
+                                    <p class="help-block">Suche nach Turniernamen oder speziell nach Turnieren in denen Teams und User spielen.</p>
                                 </div>
-                                <p class="help-block">Suche nach Turniernamen oder speziell nach Turnieren in denen Teams und User spielen.</p>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="form-group">
-                                    <div class="col-sm-offset-1 col-lg-4">
+                                <div class="col-lg-6">
+                                    <div class="form-group">
+
+                                        <div class="form-group">
+                                            <label for="inputDate" class="col-sm-2 control-label">Erstelldatum</label>
+                                            <div class="col-lg-6  col-offset-2">
+                                                <input type="date" name="date">
+                                            </div>
+                                        </div>
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" name="aktiv"> Turnier l&auml;uft noch
@@ -121,15 +128,15 @@
                                                 <input type="checkbox" name="beendet"> Turnier beendet
                                             </label>
                                         </div>
+
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-1 col-sm-6">
-                                        <button type="submit" class="btn btn-primary">Suche <i class="fa fa-angle-right"></i></button>
+                                    <div class="form-group">
+                                        <div class="col-offset-10">
+                                            <button type="submit" class="btn btn-primary"><span class="fa fa-search"> Suche <i class="fa fa-angle-right"></i></button>
+                                        </div>
                                     </div>
-                                </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div> <!-- row -->  
 

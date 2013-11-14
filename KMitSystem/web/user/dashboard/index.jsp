@@ -118,7 +118,7 @@
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button class="btn btn-primary btn-default" type="submit">
-                                                    &Auml;ndern</button>
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -152,7 +152,7 @@
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button class="btn btn-primary btn-default" type="submit">
-                                                    &Auml;ndern</button>
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
                                             </div>
                                         </div>
                                     </form>
@@ -186,7 +186,7 @@
                                         <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button class="btn btn-primary btn-default" type="submit">
-                                                    &Auml;ndern</button>
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
                                             </div>
                                         </div>
                                     </form>

@@ -3,10 +3,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Turnier Dshboard">
+        <meta name="description" content="Turnier Profil">
         <meta name="author" content="Malte Dammann">
 
-        <title>Turnier Dashboard - KmS</title>
+        <title>Turnier Profil - KmS</title>
 
         <!-- Bootstrap core CSS -->
         <link href="../../public/css/css/bootstrap.css" rel="stylesheet">
@@ -68,7 +68,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Turnier-Dashboard <small>Hier siehst du alles &uuml;ber das Turnier!</small></h1>
+                    <h1 class="page-header">Turnier-Profil <small>Hier siehst du alles &uuml;ber das Turnier!</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="../../">Home</a></li>
                         <li><a href="../../tournaments">Turniere</a></li>
