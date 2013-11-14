@@ -87,14 +87,10 @@ public class DBUserQueries {
         return user;
     }
     
-    public static void createUser(User user) {
+    public static void createUser(String name, String email, String password) {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            
-            String name = user.getUsername();
-            String email = user.getEmail();
-            String password = user.getPassword();
             
              statement.execute("insert into user"
                         + "(username, password, email)"
@@ -104,11 +100,9 @@ public class DBUserQueries {
         }
     }
     
-    public static Boolean userPasswordOk(User user) {
+    public static Boolean userPasswordOk(String email, String password) {
         
         Boolean result = false;
-        String email = user.getEmail();
-        String password = user.getPassword();
         
          try {
             con = DatabaseHandler.connect();

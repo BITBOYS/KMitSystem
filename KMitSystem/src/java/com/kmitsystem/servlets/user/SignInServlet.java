@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 
-package com.kmitsystem.servlets.user.readUserDataServlets;
+package com.kmitsystem.servlets.user;
 
-import com.kmitsystem.services.user.readUserDataService.ReadUserDataServiceProvider;
-import com.kmitsystem.services.user.readUserDataService.input.ReadUserDataInput;
-import com.kmitsystem.services.user.writeUserDataService.WriteUserDataServiceProvider;
-import com.kmitsystem.services.user.writeUserDataService.input.CreateUserInput;
-import com.kmitsystem.tools.database.queries.DBUserQueries;
+import com.kmitsystem.services.user.input.SignInInput;
+import com.kmitsystem.services.user.UserServiceProvider;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
@@ -40,10 +37,9 @@ public class SignInServlet extends HttpServlet {
         //User Object with Input-Form-Data to validate
         String email = String.valueOf(request.getParameter("email"));
         String password = String.valueOf(request.getParameter("password"));
-        User user = new User(email,password);
         
-        ReadUserDataServiceProvider provider = new ReadUserDataServiceProvider();
-        ReadUserDataInput input = new ReadUserDataInput(user);
+        UserServiceProvider provider = new UserServiceProvider();
+        SignInInput input = new SignInInput(email, password);
         
         BaseResult result = provider.signInUser(input);
         

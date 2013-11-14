@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.kmitsystem.servlets.user.writeUserDataServlets;
+package com.kmitsystem.servlets.user;
 
-import com.kmitsystem.services.user.writeUserDataService.WriteUserDataServiceProvider;
-import com.kmitsystem.services.user.writeUserDataService.input.CreateUserInput;
+import com.kmitsystem.services.user.UserServiceProvider;
+import com.kmitsystem.services.user.input.CreateUserInput;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
@@ -35,18 +35,18 @@ public class CreateUserServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        //get the user and the team from the session and use it as input
-//        User user = (User) request.getSession().getAttribute("user");
-             
+        // TODO: get the user and the team from the session and use it as input
         Boolean fail = false;
-        User user = new User(request.getParameter("name"), request.getParameter("email"), request.getParameter("password"));
+        String name = request.getParameter("name");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
         String reenter_password = request.getParameter("reenter_password"); 
-        BaseResult result = null;
+        BaseResult result = new BaseResult();
         
-        if(user.getPassword().equals(reenter_password)){
+        if(password.equals(reenter_password)){
         
-            WriteUserDataServiceProvider provider = new WriteUserDataServiceProvider();
-            CreateUserInput input = new CreateUserInput(user);
+            UserServiceProvider provider = new UserServiceProvider();
+            CreateUserInput input = new CreateUserInput(name, email, password);
             
             result = provider.createUser(input);
         }else{
