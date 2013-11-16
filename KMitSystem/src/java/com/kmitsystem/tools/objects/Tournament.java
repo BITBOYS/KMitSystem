@@ -1,7 +1,6 @@
 package com.kmitsystem.tools.objects;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * @author Malte
@@ -17,21 +16,26 @@ public class Tournament {
     private String name;
     private String password;
     private User leader;
-    private SimpleDateFormat start_date;
-    private SimpleDateFormat end_date;
+    private Date start_date;
+    private Date end_date;
     private int nr_matchdays;
+    private String venue;
+    private Date term_of_application;
     
     public Tournament() {
         super();
     }
 
-    public Tournament(String name, String password, User leader, SimpleDateFormat start_date, SimpleDateFormat end_date, int nr_matchdays) {
+    public Tournament(String name, String password, User leader, Date start_date, Date end_date, 
+                    int nr_matchdays, String venue, Date term_of_application) {
         this.name = name;
         this.password = password;
         this.leader = leader;
         this.start_date = start_date;
         this.end_date = end_date;
         this.nr_matchdays = nr_matchdays;
+        this.venue = venue;
+        this.term_of_application = term_of_application;
     }
     
     public String getName() {
@@ -58,19 +62,19 @@ public class Tournament {
         this.leader = leader;
     }
     
-    public SimpleDateFormat getStart_date() {
+    public Date getStart_date() {
         return start_date;
     }
     
-    public void getStart_date(SimpleDateFormat start_date) {
+    public void getStart_date(Date start_date) {
         this.start_date = start_date;
     }
 
-    public void setEnd_date(SimpleDateFormat end_date) {
+    public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
 
-    public void getEnd_date(SimpleDateFormat end_date) {
+    public void getEnd_date(Date end_date) {
         this.end_date = end_date;
     }
 
@@ -82,10 +86,27 @@ public class Tournament {
         this.nr_matchdays = nr_matchdays;
     }
 
+    public String getVenue() {
+        return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
+    }
+
+    public Date getTerm_of_application() {
+        return term_of_application;
+    }
+
+    public void setTerm_of_application(Date term_of_application) {
+        this.term_of_application = term_of_application;
+    }
+
     @Override
     public String toString() {
-        return "Tournament{" + "name=" + name + ", Startdatum=" + start_date + ", Enddatum=" + end_date + ", leader=" + leader + ", password=" + password + ", Spieltage=" + nr_matchdays + '}';
+        return "Tournament{" + "name=" + name + ", password=" + password + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + '}';
     }
+    
     
 }
 

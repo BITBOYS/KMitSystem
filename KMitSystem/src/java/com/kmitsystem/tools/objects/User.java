@@ -67,5 +67,10 @@ public class User {
     public void setStatistics(Statistics statistics) {
         this.statistics = statistics;
     }
+
+    @Override
+    public String toString() {
+        return "User{" + "username=" + username + ", email=" + email + ", password=" + password + ", statistics=" + statistics + '}';
+    }
     
 }

@@ -52,7 +52,11 @@ public class Statistics {
     public void setDefeats(int defeats) {
         this.defeats = defeats;
     }
-    
+
+    @Override
+    public String toString() {
+        return "Statistics{" + "goals=" + goals + ", goals_conceded=" + goals_conceded + ", wins=" + wins + ", defeats=" + defeats + '}';
+    }
     
     
 }
