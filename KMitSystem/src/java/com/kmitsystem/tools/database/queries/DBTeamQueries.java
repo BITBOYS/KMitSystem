@@ -10,6 +10,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maik
@@ -78,6 +80,30 @@ public class DBTeamQueries {
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
+    }
+    
+    public static Statistics getStatistics(String name) {
+        Statistics stats = new Statistics();
+            
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            resultSet = statement.executeQuery("select goals, goals_conceded, wins, defeats "
+                                             + "from team "
+                                             + "where name= '" + name + "'");
+            resultSet.first();
+            
+            stats.setGoals(resultSet.getInt("goals"));
+            stats.setGoals_conceded(resultSet.getInt("goals_conceded"));
+            stats.setWins(resultSet.getInt("wins"));
+            stats.setDefeats(resultSet.getInt("defeats"));
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+            
+        return stats;
     }
     
 }
