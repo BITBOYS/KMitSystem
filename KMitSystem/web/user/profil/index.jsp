@@ -102,13 +102,14 @@
                                         <table class="table">  
                                             <thead>  
                                                 <tr>  
-                                                    <th>Turniersiege</th>  
-                                                    <th>Gesmatsiege</th>  
-                                                    <th>Niederlagen</th>  
-                                                    <th>Tore</th>  
-                                                    <th>Gegentore</th>  
-                                                    <th>Turnierteilnahmen</th> 
-                                                    <th>Matches</th>  
+                                                    <th><span class="label label-success">Turniersiege</span></th>  
+                                                    <th><span class="label label-success">Gesmatsiege</span></th>  
+                                                    <th><span class="label label-danger">Niederlagen</span></th>  
+                                                    <th><span class="label label-info">Tore</span></th>  
+                                                    <th><span class="label label-warning">Gegentore</span></th> 
+                                                    <th><span class="label label-default">Tordifferenz</span></th> 
+                                                    <th><span class="label label-primary">Turnierteilnahmen</span></th> 
+                                                    <th><span class="label label-primary">Matches</span></th>  
                                                 </tr>  
                                             </thead>  
                                             <tbody>  
@@ -119,6 +120,7 @@
                                                     <td>2</td>  
                                                     <td>2</td> 
                                                     <td>2</td>  
+                                                    <td>2</td> 
                                                     <td>2</td> 
                                                 </tr>  
                                             </tbody>  
@@ -170,12 +172,13 @@
                                                 <table class="table">  
                                                     <thead>  
                                                         <tr>  
-                                                            <th>TS</th>  
-                                                            <th>GS</th>  
-                                                            <th>N</th>  
-                                                            <th>T</th>  
-                                                            <th>GT</th>  
-                                                            <th>aktive Turniere</th> 
+                                                            <th><span title="Turniersiege" class="label label-success">TS</span></th>  
+                                                            <th><span title="Gesamtsiege" class="label label-success">GS</span></th>  
+                                                            <th><span title="Niederlagen" class="label label-danger">N</span></th>  
+                                                            <th><span title="Tore" class="label label-info">T</span></th>  
+                                                            <th><span title="Gegentore" class="label label-warning">GT</span></th>  
+                                                            <th><span title="Tordifferenz" class="label label-default">TD</span></th> 
+                                                            <th><span title="aktive Turnierteilnahmen" class="label label-primary">AT</span></th> 
                                                         </tr>  
                                                     </thead>  
                                                     <tbody>  
@@ -183,6 +186,7 @@
                                                             <td>1</td>  
                                                             <td>1</td>  
                                                             <td>10</td>  
+                                                            <td>2</td>  
                                                             <td>2</td>  
                                                             <td>2</td> 
                                                             <td>2</td> 
@@ -229,9 +233,10 @@
                                                 <table class="table">  
                                                     <thead>  
                                                         <tr>  
-                                                            <th>Startdatum</th>  
-                                                            <th>Enddatum</th>  
-                                                            <th>Status</th>   
+                                                            <th><span title="Startdatum" class="label label-default">SD</span></th>  
+                                                            <th><span title="Enddatum" class="label label-default">ED</span></th>  
+                                                            <th><span title="Turnierstatus" class="label label-default">TS</span></th>  
+                                                            <th><span title="Tabellenführer" class="label label-primary">TF</span></th>
                                                         </tr>  
                                                     </thead>  
                                                     <tbody>  
@@ -239,6 +244,7 @@
                                                             <td>1.1.1.1</td>  
                                                             <td>1.1.1.1</td>  
                                                             <td>privat</td> 
+                                                            <td><a href="../../teams/profil/">Team1</a></td> 
                                                         </tr>  
                                                     </tbody>  
                                                 </table>  
