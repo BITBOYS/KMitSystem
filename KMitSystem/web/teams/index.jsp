@@ -86,7 +86,7 @@
                     </ol>
                 </div>
 
-                <div class="row col-lg-offset-10">
+                <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
 
                     <a class="btn btn-success" href="../teams/create"><span class="fa fa-pencil"> Team erstellen <i class="fa fa-angle-right"></i></a>
 
@@ -113,13 +113,11 @@
                                             <input type="text" class="form-control" name="turnier_name_search" placeholder="Name">
                                         </div>
                                     </div>
-                                    <p class="help-block">Suche nach Teamnamen, speziell nach Teams die in bestimmtet Turnieren oder in den bestimmte User spielen.</p>
                                 </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
+                                <div class="col-lg-6 col-lg-offset-1">
                                         <div class="form-group">
-                                            <label for="inputUsername" class="col-sm-3 control-label">User</label>
-                                            <div class="col-lg-8">
+                                            <label for="inputUsername" class="col-sm-2 control-label">User</label>
+                                            <div class="col-lg-6">
                                                 <input type="text" class="form-control" name="user_name_search" placeholder="Name">
                                             </div>
                                         </div>
@@ -130,9 +128,10 @@
                                                 <input type="date" name="date">
                                             </div>
                                         </div>
-                                    </div>
+                                    <p class="help-block">Suche nach Teamnamen, speziell nach Teams die in bestimmtet Turnieren oder in den bestimmte User spielen.</p>
+                                    
                                     <div class="form-group">
-                                        <div class="col-offset-1">
+                                        <div class="col-md-offset-8">
                                             <button type="submit" class="btn btn-primary"><span class="fa fa-search"> Suche <i class="fa fa-angle-right"></i></button>
                                         </div>
                                     </div>

@@ -75,7 +75,7 @@
                     </ol>
                 </div>
 
-                <div class="row col-lg-offset-10">
+                <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
 
                     <a class="btn btn-success" href="../tournaments/create"><span class="fa fa-pencil"> Turnier erstellen <i class="fa fa-angle-right"></i></a>
 
@@ -107,31 +107,28 @@
                                             <input type="text" class="form-control" name="user_name_search" placeholder="Name">
                                         </div>
                                     </div>
-                                    <p class="help-block">Suche nach Turniernamen oder speziell nach Turnieren in denen Teams und User spielen.</p>
                                 </div>
-                                <div class="col-lg-6">
+                                <div class="col-lg-6 col-lg-offset-1">
+
                                     <div class="form-group">
-
-                                        <div class="form-group">
-                                            <label for="inputDate" class="col-sm-2 control-label">Erstelldatum</label>
-                                            <div class="col-lg-6  col-offset-2">
-                                                <input type="date" name="date">
-                                            </div>
+                                        <label for="inputDate" class="col-sm-2 control-label">Erstelldatum</label>
+                                        <div class="col-lg-6  col-offset-2">
+                                            <input type="date" name="date">
                                         </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="aktiv"> Turnier l&auml;uft noch
-                                            </label>
-                                        </div>
-                                        <div class="checkbox">
-                                            <label>
-                                                <input type="checkbox" name="beendet"> Turnier beendet
-                                            </label>
-                                        </div>
-
                                     </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="aktiv"> Turnier l&auml;uft noch
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="beendet"> Turnier beendet
+                                        </label>
+                                    </div>
+                                    <p class="help-block">Suche nach Turniernamen oder speziell nach Turnieren in denen Teams und User spielen.</p>
                                     <div class="form-group">
-                                        <div class="col-offset-10">
+                                        <div class="col-md-offset-8">
                                             <button type="submit" class="btn btn-primary"><span class="fa fa-search"> Suche <i class="fa fa-angle-right"></i></button>
                                         </div>
                                     </div>
@@ -197,9 +194,12 @@
                     <hr>
 
                     <footer>
-                        <div class="row">
-                            <div class="col-lg-12">
+                        <div class="row col-lg-12">
+                            <div class="col-lg-6">
                                 <p>Copyright &copy; KmS 2013</p>
+                            </div>
+                            <div class="col-lg-2 col-lg-offset-4">
+                                <a class="btn btn-toolbar"href="../impressum/">Impressum</a>
                             </div>
                         </div>
                     </footer>

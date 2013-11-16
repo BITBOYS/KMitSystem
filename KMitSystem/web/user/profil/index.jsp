@@ -147,7 +147,7 @@
                                     //              for(int i = 0; i < teams.length(); i++){
                                     //                  
                                     //              }
-                                %>
+%>
 
                                 <div class="col-lg-4 col-md-4 hero-feature">
                                     <div class="thumbnail">
@@ -263,9 +263,12 @@
             <hr>
 
             <footer>
-                <div class="row">
-                    <div class="col-lg-12">
+                <div class="row col-lg-12">
+                    <div class="col-lg-6">
                         <p>Copyright &copy; KmS 2013</p>
+                    </div>
+                    <div class="col-lg-2 col-lg-offset-4">
+                        <a class="btn btn-toolbar"href="../impressum/">Impressum</a>
                     </div>
                 </div>
             </footer>

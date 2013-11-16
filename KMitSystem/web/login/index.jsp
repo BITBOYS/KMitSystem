@@ -9,7 +9,7 @@
         <%@page import="java.util.ArrayList"%>
         <%@page import="java.util.List"%>
         <%@page import="com.kmitsystem.tools.errorhandling.Error"%> 
-        
+
         <%
             List<Error> errors = (ArrayList<Error>) request.getSession().getAttribute("errors");
             if (errors == null) {
@@ -78,6 +78,20 @@
                     </ol>
                 </div>
 
+                <!-- Alerts -->
+                <div class="alert alert-info">Check deine Mails und bestätige deinen Account.</div>
+
+                <div class="alert alert-success">Dein Account wurde bestätigt. Log dich jetzt mit deinen Benutzerdaten ein.</div>
+
+                <% if (errors.size() > 0) {
+                        for (int idx = 0; idx < errors.size(); idx++) {%>
+
+                <div class="alert alert-danger"> <%= errors.get(idx).getErrorMessage()%> </div>
+
+                <% }
+                        request.getSession().setAttribute("errors", null);
+                    }%>
+
                 <div class="col-lg-12">
                     <div class="col-sm-6 col-md-4 col-md-offset-4">
                         <div class="account-wall">
@@ -89,6 +103,7 @@
                             <form class="form-signin" action="${pageContext.request.contextPath}/SignInServlet" method="post" role="form">
                                 <input type="email" class="form-control" placeholder="Email" name="email" required autofocus>
                                 <input type="password" class="form-control" placeholder="Password" name="password" required>
+                                <a href="forgotten" class="pull-right need-help">Passwort vergessen? </a><span class="clearfix"></span>
                                 <br>
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">
                                     Sign in</button>
@@ -103,20 +118,6 @@
             </div><!-- /.row -->
 
             <br>
-
-            <% if (errors.size() > 0) {
-               for (int idx = 0; idx < errors.size(); idx++) {%>
-              
-                <div class="alert alert-danger"> <%= errors.get(idx).getErrorMessage()%> </div>
-                
-            <% }
-                request.getSession().setAttribute("errors", null);
-            }%>
-
-            <div class="alert alert-info">Check deine Mails und bestätige deinen Account.</div>
-
-            <div class="alert alert-success">Dein Account wurde bestätigt. Log dich jetzt mit deinen Benutzerdaten ein.</div>
-
 
         </div><!-- /.container -->
 

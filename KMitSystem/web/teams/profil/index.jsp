@@ -87,12 +87,15 @@
             <hr>
 
             <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright &copy; KmS 2013</p>
-                    </div>
-                </div>
-            </footer>
+    <div class="row col-lg-12">
+        <div class="col-lg-6">
+            <p>Copyright &copy; KmS 2013</p>
+        </div>
+        <div class="col-lg-2 col-lg-offset-4">
+            <a class="btn btn-link" href="../impressum/">Impressum</a>
+        </div>
+    </div>
+</footer>
 
         </div><!-- /.container -->
 
