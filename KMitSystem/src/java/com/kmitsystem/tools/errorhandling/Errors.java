@@ -12,7 +12,7 @@ package com.kmitsystem.tools.errorhandling;
 public class Errors {
     
     public static final Error NAME_ALREADY_TAKEN_ERROR = new Error(1, "Der Name wird bereits verwendet");
-    public static final Error DB_CONNECTION_ERROR = new Error(2, "Auf der Datenbank ist ein Fehler aufgetreten");
+    public static final Error DB_ERROR = new Error(2, "Auf der Datenbank ist ein Fehler aufgetreten");
     public static final Error TEAM_DOES_NOT_EXIST = new Error(3, "Das Team existiert nicht");
     public static final Error USER_DOES_NOT_EXIST = new Error(4, "Der Benutzer existiert nicht");
     public static final Error USER_ALREADY_IN_TEAM = new Error(5, "Der Benutzer ist bereit Mitglied des Teams"); 
