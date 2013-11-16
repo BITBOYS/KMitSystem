@@ -71,7 +71,7 @@ public class DBUserTeamQueries {
                 result = true;
             
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         
         return result;
@@ -84,11 +84,12 @@ public class DBUserTeamQueries {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             
-            statement.executeQuery("SELECT username, email, password, goals,"
-                                            + "goals_conceded, wins, defeats"
-                                 + " FROM  user, user_team"
-                                 + " WHERE team = " + teamname
-                                 + "   AND username = user" );
+            resultSet = statement.executeQuery("SELECT username, email, password, goals,"
+                                            + " goals_conceded, wins, defeats"
+                                            + " FROM  user, user_team"
+                                            + " WHERE team = '" + teamname + "'"
+                                            + "   AND username = user" );
+            resultSet.first();
             
             while(!resultSet.isAfterLast()) {
                 teammember.add(new User(resultSet.getString("username"), 
@@ -101,7 +102,7 @@ public class DBUserTeamQueries {
                 resultSet.next();
             }
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         
         return teammember;

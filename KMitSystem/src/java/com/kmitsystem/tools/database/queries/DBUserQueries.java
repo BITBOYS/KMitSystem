@@ -38,7 +38,7 @@ public class DBUserQueries {
                 result = true;
             
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         
         return result;
@@ -60,7 +60,7 @@ public class DBUserQueries {
                 result = true;
             
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         
         return result;
@@ -82,7 +82,7 @@ public class DBUserQueries {
                 user = new User(username, password, email, statistics);
             }
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         return user;
     }
@@ -96,7 +96,7 @@ public class DBUserQueries {
                         + "(username, password, email)"
                         + "VALUES (\"" + name + "\",\"" + password + "\",\"" + email + "\")");
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
     }
     
@@ -118,7 +118,7 @@ public class DBUserQueries {
                 result = true;
             
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         
          return result;

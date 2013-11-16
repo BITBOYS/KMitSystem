@@ -32,7 +32,7 @@ public class DBTeamQueries {
             if(resultSet.getInt("count") > 0) 
                 result = true;
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         
         return result;
@@ -56,7 +56,7 @@ public class DBTeamQueries {
                 System.out.println(team.toString());
             }
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         return team;
     }
@@ -76,7 +76,7 @@ public class DBTeamQueries {
                         + "VALUES (\"" + name + "\",\"" + tag + "\",\"" + password + "\",\"" + leader.getUsername() + "\")"); 
             }
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_CONNECTION_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
     }
     
