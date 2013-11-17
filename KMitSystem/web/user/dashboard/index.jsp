@@ -202,7 +202,7 @@
                                     <h2 class="page-header">Deine Teams</h2>
                                 </div>
 
-                                <div class="col-lg-3 col-md-3 hero-feature">
+                                <div class="col-lg-4 col-md-4 hero-feature">
                                     <div class="thumbnail">
                                         <h3>Teamname <small> Leader: <a href="#">User2</a></small></h3>
                                         <div class="caption">
@@ -222,12 +222,13 @@
                                                 <table class="table">  
                                                     <thead>  
                                                         <tr>  
-                                                            <th>TS</th>  
-                                                            <th>GS</th>  
-                                                            <th>N</th>  
-                                                            <th>T</th>  
-                                                            <th>GT</th>  
-                                                            <th>aktive Turniere</th> 
+                                                            <th><span title="Turniersiege" class="label label-success">TS</span></th>  
+                                                            <th><span title="Gesamtsiege" class="label label-success">GS</span></th>  
+                                                            <th><span title="Niederlagen" class="label label-danger">N</span></th>  
+                                                            <th><span title="Tore" class="label label-info">T</span></th>  
+                                                            <th><span title="Gegentore" class="label label-warning">GT</span></th>  
+                                                            <th><span title="Tordifferenz" class="label label-default">TD</span></th> 
+                                                            <th><span title="aktive Turnierteilnahmen" class="label label-primary">AT</span></th> 
                                                         </tr>  
                                                     </thead>  
                                                     <tbody>  
@@ -236,6 +237,7 @@
                                                             <td>1</td>  
                                                             <td>10</td>  
                                                             <td>2</td>  
+                                                            <td>2</td>
                                                             <td>2</td> 
                                                             <td>2</td> 
                                                         </tr>  
@@ -270,9 +272,10 @@
                                                 <table class="table">  
                                                     <thead>  
                                                         <tr>  
-                                                            <th>Startdate</th>  
-                                                            <th>Enddate</th>  
-                                                            <th>Status</th>   
+                                                            <th><span title="Startdatum" class="label label-default">SD</span></th>  
+                                                            <th><span title="Enddatum" class="label label-default">ED</span></th>  
+                                                            <th><span title="Turnierstatus" class="label label-default">TS</span></th>  
+                                                            <th><span title="Tabellenführer" class="label label-primary">TF</span></th> 
                                                         </tr>  
                                                     </thead>  
                                                     <tbody>  
@@ -280,6 +283,7 @@
                                                             <td>1.1.1.1</td>  
                                                             <td>1.1.1.1</td>  
                                                             <td>privat</td> 
+                                                            <td><a href="../../teams/profil/">Team1</a></td> 
                                                         </tr>  
                                                     </tbody>  
                                                 </table>  
