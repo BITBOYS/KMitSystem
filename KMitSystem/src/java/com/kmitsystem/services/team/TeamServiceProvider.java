@@ -78,7 +78,6 @@ public class TeamServiceProvider {
             result.setTeam(DBTeamQueries.getTeam(teamname));
             result.setMember(DBUserTeamQueries.getAllUserFromTeam(teamname));
             result.setTournaments(DBTeamTournamentQueries.getAllTournamentsFromTeam(teamname));
-            result.setStats(DBTeamQueries.getStatistics(teamname));
         }
         
         // write the errors into the result object and empty the ErrorHandler

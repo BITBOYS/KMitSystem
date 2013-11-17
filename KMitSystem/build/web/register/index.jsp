@@ -71,6 +71,15 @@
 
             <div class="row">
 
+                <% if (errors.size() > 0) {
+                    for (int idx = 0; idx < errors.size(); idx++) {%>
+
+                <div class="alert alert-warning"> <%= errors.get(idx).getErrorMessage()%> </div>
+
+                <% }
+                    request.getSession().setAttribute("errors", null);
+                }%>
+
                 <div class="col-lg-12">
                     <h1 class="page-header">Sign Up <small>Viel Spaß beim Kickern!</small></h1>
                     <ol class="breadcrumb">
@@ -109,21 +118,6 @@
                 </div>
 
             </div><!-- /.row -->
-
-            <br>
-
-            <% if (errors.size() > 0) {
-                    for (int idx = 0; idx < errors.size(); idx++) {%>
-
-            <div class="alert alert-warning"> <%= errors.get(idx).getErrorMessage()%> </div>
-
-            <% }
-                request.getSession().setAttribute("errors", null);
-            }%>
-
-            <div class="alert alert-warning">Nutzername nicht mehr verfügbar!</div>
-            <div class="alert alert-warning">Mail wurde schon registriert!</div>
-            <div class="alert alert-warning">Passw&ouml;rter stimmen nicht &uuml;berein!</div>
 
         </div><!-- /.container -->
 

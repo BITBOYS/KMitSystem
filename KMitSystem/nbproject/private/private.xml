@@ -2,21 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/services/team/writeTeamDataService/validator/AddPlayerValidator.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/services/team/writeTeamDataService/input/CreateTeamInput.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/servlets/team/writeTeamDataServlets/CreateTeamServlet.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/tools/errorhandling/Errors.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/tools/database/queries/DBUserQueries.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/services/user/writeUserDataService/WriteUserDataServiceProvider.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/services/team/writeTeamDataService/validator/CreateTeamValidator.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/tools/errorhandling/ErrorHandler.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/services/team/writeTeamDataService/WriteTeamDataServiceProvider.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/servlets/team/writeTeamDataServlets/AddPlayerServlet.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/services/user/writeUserDataService/validator/CreateUserValidator.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/tools/objects/BaseResult.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/servlets/user/access/SignInServlet.java</file>
-            <file>file:/A:/Benutzer/Maik/Dropbox/GitHub/KMitSystem/KMitSystem/src/java/com/kmitsystem/tools/errorhandling/Error.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

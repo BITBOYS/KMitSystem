@@ -50,7 +50,8 @@ public class DBTeamQueries {
             String tag = resultSet.getString("tag");
             User leader = new User();
             String password = resultSet.getString("password");
-            Statistics statistics = new Statistics();
+            Statistics statistics = new Statistics(resultSet.getInt("goals"), resultSet.getInt("goals_conceded"), resultSet.getInt("wins"), 
+                    resultSet.getInt("defeats"), resultSet.getInt("tournament_wins"), resultSet.getInt("tournament_participations"));
 
             team = new Team(teamname, tag, password, leader, statistics);
             
@@ -77,30 +78,6 @@ public class DBTeamQueries {
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
-    }
-    
-    public static Statistics getStatistics(String name) {
-        Statistics stats = new Statistics();
-            
-        try {
-            con = DatabaseHandler.connect();
-            statement = con.createStatement();
-            
-            resultSet = statement.executeQuery("select goals, goals_conceded, wins, defeats "
-                                             + "from team "
-                                             + "where name= '" + name + "'");
-            resultSet.first();
-            
-            stats.setGoals(resultSet.getInt("goals"));
-            stats.setGoals_conceded(resultSet.getInt("goals_conceded"));
-            stats.setWins(resultSet.getInt("wins"));
-            stats.setDefeats(resultSet.getInt("defeats"));
-            
-        } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
-        }
-            
-        return stats;
     }
     
 }

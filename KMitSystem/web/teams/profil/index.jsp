@@ -24,7 +24,6 @@
             Team team = (Team)request.getAttribute("team");
             List<User> member = (List<User>)request.getAttribute("member");
             List<Tournament> tournaments = (List<Tournament>)request.getAttribute("tournaments");
-            Statistics stats = (Statistics)request.getAttribute("stats");
         %>
         
     </head>
@@ -140,14 +139,6 @@
                                             <p>Beschreibung Beschreibung Beschreibung Beschreibung </p>
                                             <div class="panel panel-default">
                                                 <!-- Default panel contents -->
-                                                <div class="panel-heading">Teams</div>
-                                                <div class="list-group">
-                                                    <a href="#" class="list-group-item">Team1</a>
-                                                    <a href="#" class="list-group-item">Team2</a>
-                                                </div>
-                                            </div>
-                                            <div class="panel panel-default">
-                                                <!-- Default panel contents -->
                                                 <div class="panel-heading">Daten</div>
 
                                                 <!-- Table -->
@@ -196,23 +187,23 @@
                                         <table class="table">  
                                             <thead>  
                                                 <tr>  
-                                                    <th>Turniersiege</th>  
+                                                    <th>Turniersiege</th> 
+                                                    <th>Turnierteilnahmen</th> 
                                                     <th>Gesmatsiege</th>  
                                                     <th>Niederlagen</th>  
                                                     <th>Tore</th>  
                                                     <th>Gegentore</th>  
-                                                    <th>Turnierteilnahmen</th> 
                                                     <th>Matches</th>  
                                                 </tr>  
                                             </thead>  
                                             <tbody>  
                                                 <tr>  
-                                                    <td>?</td>  
+                                                    <td><%= team.getStatistics().getTournament_wins() %></td>
+                                                    <td><%= team.getStatistics().getTournament_participations()%></td>  
                                                     <td><%= team.getStatistics().getWins() %></td>  
                                                     <td><%= team.getStatistics().getDefeats() %></td>  
                                                     <td><%= team.getStatistics().getGoals() %></td>  
                                                     <td><%= team.getStatistics().getGoals_conceded() %></td> 
-                                                    <td>?</td>  
                                                     <td>?</td> 
                                                 </tr>  
                                             </tbody>  

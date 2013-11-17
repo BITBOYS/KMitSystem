@@ -81,13 +81,7 @@
 
             <div class="row">
 
-                <form action="${pageContext.request.contextPath}/CreateTeamServlet" method="post">
-                    <input type="text" name="name" placeholder="Turniername" required>
-                    <input type="text" name="tag" placeholder="Tag" required>
-                    <input type="password" name="password" placeholder="Password">
-                    <input type="submit" name="submit">
-                </form>
-                <% out.print(text.equals("") ? "" : (text + " " + text.length()));%>
+                
 
             </div> <!-- .row -->
 

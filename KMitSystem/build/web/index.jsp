@@ -169,7 +169,7 @@
 			<a href="login">Loggt</a> euch ein oder registriert euch jetzt!</p>
         </div>
         <div class="col-lg-4 col-md-4">
-          <a class="btn btn-lg btn-primary pull-right" href="register">Jetzt registrieren <i class="fa fa-angle-right"></i></a>
+          <a class="btn btn-lg btn-success pull-right" href="register">Jetzt registrieren <i class="fa fa-angle-right"></i></a>
         </div>
       </div><!-- /.row -->
 

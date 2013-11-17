@@ -2,7 +2,6 @@
 package com.kmitsystem.services.team.result;
 
 import com.kmitsystem.tools.objects.BaseResult;
-import com.kmitsystem.tools.objects.Statistics;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
@@ -17,18 +16,16 @@ public class GetEverythingResult extends BaseResult {
     private Team team = new Team();
     private List<User> member = new ArrayList<User>();
     private List<Tournament> tournaments = new ArrayList<Tournament>();
-    private Statistics stats = new Statistics();
     
     public GetEverythingResult() {
         super();
     }    
 
-    public GetEverythingResult(Team team, List<User> member, List<Tournament> tournaments, Statistics stats) {
+    public GetEverythingResult(Team team, List<User> member, List<Tournament> tournaments) {
         super();
         this.team = team;
         this.member = member;
         this.tournaments = tournaments;
-        this.stats = stats;
     }
     
     public Team getTeam() {
@@ -55,17 +52,9 @@ public class GetEverythingResult extends BaseResult {
         this.tournaments = tournaments;
     }
 
-    public Statistics getStats() {
-        return stats;
-    }
-
-    public void setStats(Statistics stats) {
-        this.stats = stats;
-    }
-
     @Override
     public String toString() {
-        return "GetEverythingResult{" +"team=" + team + ", member=" + member + ", tournaments=" + tournaments + ", stats=" + stats + '}';
+        return "GetEverythingResult{" +"team=" + team + ", member=" + member + ", tournaments=" + tournaments + '}';
     }
     
 }

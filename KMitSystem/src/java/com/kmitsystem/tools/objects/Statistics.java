@@ -9,16 +9,20 @@ public class Statistics {
     private int goals_conceded;
     private int wins;
     private int defeats;
+    private int tournament_wins;
+    private int tournament_participations;
 
     public Statistics() {
         super();
     }
 
-    public Statistics(int goals, int goals_conceded, int wins, int defeats) {
+    public Statistics(int goals, int goals_conceded, int wins, int defeats, int tournament_wins, int tournament_participations) {
         this.goals = goals;
         this.goals_conceded = goals_conceded;
         this.wins = wins;
         this.defeats = defeats;
+        this.tournament_wins = tournament_wins;
+        this.tournament_participations = tournament_participations;
     }
 
     public int getGoals() {
@@ -53,10 +57,25 @@ public class Statistics {
         this.defeats = defeats;
     }
 
+    public int getTournament_wins() {
+        return tournament_wins;
+    }
+
+    public void setTournament_wins(int tournament_wins) {
+        this.tournament_wins = tournament_wins;
+    }
+
+    public int getTournament_participations() {
+        return tournament_participations;
+    }
+
+    public void setTournament_participations(int tournament_participations) {
+        this.tournament_participations = tournament_participations;
+    }
+
     @Override
     public String toString() {
-        return "Statistics{" + "goals=" + goals + ", goals_conceded=" + goals_conceded + ", wins=" + wins + ", defeats=" + defeats + '}';
+        return "Statistics{" + "goals=" + goals + ", goals_conceded=" + goals_conceded + ", wins=" + wins + ", defeats=" + defeats + ", tournament_wins=" + tournament_wins + ", tournament_participations=" + tournament_participations + '}';
     }
-    
     
 }

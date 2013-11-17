@@ -16,6 +16,10 @@
         <servlet-name>CreateUserServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.user.readUserDataServlets.CreateUserServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeamProfileServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.team.TeamProfileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CreateTeamServlet</servlet-name>
         <url-pattern>/CreateTeamServlet</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>CreateUserServlet</servlet-name>
         <url-pattern>/CreateUserServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamProfileServlet</servlet-name>
+        <url-pattern>/teams/profile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

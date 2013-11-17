@@ -45,7 +45,7 @@ public class DBUserTeamQueries {
                     + "VALUES ('" + username + "','" + teamname + "','" + formatter.format(enter_date) + "')");
             
         } catch (SQLException ex) {
-            Logger.getLogger(DBTeamQueries.class.getName()).log(Level.SEVERE, null, ex);
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
     }
     
@@ -85,7 +85,7 @@ public class DBUserTeamQueries {
             statement = con.createStatement();
             
             resultSet = statement.executeQuery("SELECT username, email, password, goals,"
-                                            + " goals_conceded, wins, defeats"
+                                            + " goals_conceded, wins, defeats, tournament_wins, tournament_participations"
                                             + " FROM  user, user_team"
                                             + " WHERE team = '" + teamname + "'"
                                             + "   AND username = user" );
@@ -98,7 +98,9 @@ public class DBUserTeamQueries {
                                         new Statistics(resultSet.getInt("goals"), 
                                                        resultSet.getInt("goals_conceded"), 
                                                        resultSet.getInt("wins"),
-                                                       resultSet.getInt("defeats"))));
+                                                       resultSet.getInt("defeats"),
+                                                       resultSet.getInt("tournament_wins"),
+                                                       resultSet.getInt("tournament_participations"))));
                 resultSet.next();
             }
         } catch (SQLException ex) {

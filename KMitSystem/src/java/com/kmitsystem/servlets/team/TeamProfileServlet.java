@@ -44,12 +44,10 @@ public class TeamProfileServlet extends HttpServlet {
         Team team = result.getTeam();
         List<User> member = result.getMember();
         List<Tournament> tournaments = result.getTournaments();
-        Statistics stats = result.getStats();
         
         request.setAttribute("team", team);
         request.setAttribute("member", member);
         request.setAttribute("tournaments", tournaments);
-        request.setAttribute("stats", stats);
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {
