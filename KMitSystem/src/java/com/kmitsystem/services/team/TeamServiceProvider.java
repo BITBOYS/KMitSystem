@@ -75,6 +75,7 @@ public class TeamServiceProvider {
             String teamname = input.getTeamname();
             
             // call the database
+            result.setTeam(DBTeamQueries.getTeam(teamname));
             result.setMember(DBUserTeamQueries.getAllUserFromTeam(teamname));
             result.setTournaments(DBTeamTournamentQueries.getAllTournamentsFromTeam(teamname));
             result.setStats(DBTeamQueries.getStatistics(teamname));
