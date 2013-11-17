@@ -10,8 +10,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  * @author Maik
@@ -46,17 +44,16 @@ public class DBTeamQueries {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             resultSet = statement.executeQuery("select * from team where name=\"" + name + "\"");
+            resultSet.first();
             
-            if(resultSet.getFetchSize() != 0) {
-                String teamname = resultSet.getString("name");
-                String tag = resultSet.getString("tag");
-                User leader = new User();
-                String password = resultSet.getString("password");
-                Statistics statistics = new Statistics();
+            String teamname = resultSet.getString("name");
+            String tag = resultSet.getString("tag");
+            User leader = new User();
+            String password = resultSet.getString("password");
+            Statistics statistics = new Statistics();
 
-                team = new Team(teamname, tag, password, leader, statistics);
-                System.out.println(team.toString());
-            }
+            team = new Team(teamname, tag, password, leader, statistics);
+            
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
