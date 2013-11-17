@@ -190,7 +190,7 @@
                                                     </tbody>  
                                                 </table>  
                                             </div>  
-                                            <p><a href="#" class="btn btn-success">Zum Teamprofil <i class="fa fa-angle-right"></i></a></p>
+                                            <p><a href="<%=request.getContextPath()%>/teams/profile?team=Team Dede" class="btn btn-success">Zum Teamprofil <i class="fa fa-angle-right"></i></a></p>
                                         </div>
                                     </div>
                                 </div>
