@@ -21,5 +21,7 @@ public class Errors {
     public static final Error PASSWORDS_NOT_EQUAL = new Error(8, "Die beiden Passwörter stimmen nicht überein");
     public static final Error FALSE_LOGIN_INPUT = new Error(9, "Die E-Mail Adresse und das Passwort stimmen nicht überein");
     public static final Error FORMATTING_DATA = new Error(10, "Beim Umwandeln des Datums ist ein Fehler aufgetreten");
+    public static final Error EMAIL_REGISTER_INFO = new Error(11, "Eine E-Mail wurde zue Bestätigung an deine Mailadresse versendet.", "info");
+    
     
 }

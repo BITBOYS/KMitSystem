@@ -14,16 +14,24 @@ public class Error {
     private int errorCode;
     private String errorMessage;
     private String technicalErrorMessage;
+    private String status;
 
     public Error(int errorCode, String errorMessage) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
     }
+    
+    public Error(int errorCode, String errorMessage, String status) {
+        this.errorCode = errorCode;
+        this.errorMessage = errorMessage;
+        this.status = status;
+    }
 
-    public Error(int errorCode, String errorMessage, String technicalErrorMessage) {
+    public Error(int errorCode, String errorMessage, String technicalErrorMessage, String status) {
         this.errorCode = errorCode;
         this.errorMessage = errorMessage;
         this.technicalErrorMessage = technicalErrorMessage;
+        this.status = status;
     }    
 
     public int getErrorCode() {
@@ -48,5 +56,13 @@ public class Error {
 
     public void setTechnicalErrorMessage(String technicalErrorMessage) {
         this.technicalErrorMessage = technicalErrorMessage;
+    }
+    
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
