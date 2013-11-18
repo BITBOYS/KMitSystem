@@ -97,12 +97,11 @@
 
             </div><!-- .row -->
 
-                <div class="row">  
+                <div class="row">
                     <div class="col-lg-12">
                         <h2 class="page-header">Teamsuche</h2>
                         <div class="row well">
-
-                            <form class="form-horizontal" role="form" action="<%=path%>/teams">
+                            <form style="well" class="form-horizontal" role="form" action="<%=path%>/teams">
 
                                 <div class="col-lg-4 col-lg-offset-1">
 

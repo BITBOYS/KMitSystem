@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kmitsystem.tools.errorhandling.Error;
 import com.kmitsystem.tools.errorhandling.Errors;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 /**
  * @author Maik
  */
@@ -30,6 +31,10 @@ public class CreateTeamServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RequestDispatcher rd = request.getRequestDispatcher("/teams/profil/index.jsp");
+        
+        if(request.getParameter("name") != null) {
+            
         String name = request.getParameter("name");
         String tag = request.getParameter("tag");
         String password = request.getParameter("password");
@@ -43,19 +48,27 @@ public class CreateTeamServlet extends HttpServlet {
             CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
 
             result = provider.createTeam(input);
+            
+            rd = request.getRequestDispatcher("/teams/profil/index.jsp");
         } else {
             List<Error> errorList = new ArrayList<Error>();
             errorList.add(Errors.PASSWORDS_NOT_EQUAL);
             result.setErrorList(errorList);
+            
+            rd = request.getRequestDispatcher("/teams/create/index.jsp");
        }
-        
+       
+       
         // write the errorlist into the session-attribute "errors"
-        if(result.getErrorList().size() > 0) {
-            request.getSession().setAttribute("errors", result.getErrorList());
+        if(result.getErrorList().size() > 0) 
+            request.setAttribute("errors", result.getErrorList());
+        
+        } else {
+            rd = request.getRequestDispatcher("/teams/create/index.jsp");
         }
         
-        // redirect to the page www.kmitsystem.de/teams
-        response.sendRedirect("MaikDummy");
+        // redirect to the page www.kmitsystem.de/teams/profil
+        rd.include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

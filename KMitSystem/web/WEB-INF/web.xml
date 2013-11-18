@@ -27,7 +27,7 @@
     
     <servlet-mapping>
         <servlet-name>CreateTeamServlet</servlet-name>
-        <url-pattern>/CreateTeamServlet</url-pattern>
+        <url-pattern>/teams/create</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddPlayerServlet</servlet-name>

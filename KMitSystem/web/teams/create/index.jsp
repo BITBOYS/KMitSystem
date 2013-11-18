@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmitsystem.tools.errorhandling.Error"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,16 +9,24 @@
         <meta name="description" content="Teams erstellen">
         <meta name="author" content="Malte Dammann">
 
-        <% String text = String.valueOf(request.getSession().getAttribute("text")); %>
+        <% 
+            String text = String.valueOf(request.getSession().getAttribute("text")); 
+            String path = request.getContextPath();
+            
+            List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
+            if (errors == null) {
+                errors = new ArrayList<Error>();
+            }
+        %>
 
         <title>Teams Erstellen - KmS</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="../../public/css/css/bootstrap.css" rel="stylesheet">
+        <link href="<%=path%>/public/css/css/bootstrap.css" rel="stylesheet">
 
         <!-- Add custom CSS here -->
-        <link href="../../public/css/css/modern-business.css" rel="stylesheet">
-        <link href="../../public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="<%=path%>/public/css/css/modern-business.css" rel="stylesheet">
+        <link href="<%=path%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -36,27 +47,27 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="../../teams">Teams</a></li>
-                        <li><a href="../../tournaments">Turniere</a></li> 
-                        <li><a href="../../statistics">Statistiken</a></li> 
+                        <li class="active"><a href="<%=path%>/teams">Teams</a></li>
+                        <li><a href="<%=path%>/tournaments">Turniere</a></li> 
+                        <li><a href="<%=path%>/statistics">Statistiken</a></li> 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li role="presentation" class="dropdown-header">For your Interest</li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="../../about">About</a></li>
-                                <li><a href="../../faq">FAQ</a></li>
-                                <li><a href="../../contact">Kontakt</a></li>
-                                <li><a href="../../service">Info</a></li>
-                                <li><a href="../../sidebar">Sidebar Page</a></li>
+                                <li><a href="<%=path%>/about">About</a></li>
+                                <li><a href="<%=path%>/faq">FAQ</a></li>
+                                <li><a href="<%=path%>/contact">Kontakt</a></li>
+                                <li><a href="<%=path%>/service">Info</a></li>
+                                <li><a href="<%=path%>/sidebar">Sidebar Page</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="../../user/profil">Profil</a></li> 
-                                <li><a href="../../user/dashboard">Dashboard</a></li> 
-                                <li><a href="../../">Logout</a></li> 
+                                <li><a href="<%=path%>/user/profil">Profil</a></li> 
+                                <li><a href="<%=path%>/user/dashboard">Dashboard</a></li> 
+                                <li><a href="<%=path%>/">Logout</a></li> 
                             </ul>
                         </li>
                 </div><!-- /.navbar-collapse -->
@@ -72,18 +83,67 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Teams Erstellen <small>Erstelle Teams und lade Freunde ein!</small></h1>
                     <ol class="breadcrumb">
-                        <li><a href="../../">Home</a></li>
-                        <li><a href="../../teams">Teams</a></li>
+                        <li><a href="<%=path%>/">Home</a></li>
+                        <li><a href="<%=path%>/teams">Teams</a></li>
                         <li class="active">Teams-erstellen</li>
                     </ol>
                 </div>
             </div><!-- /.row -->
 
             <div class="row">
+                   <div class="col-lg-12">
+                       <div class="row">
+                           <form class="form-horizontal" role="form" action="<%=path%>/teams/create" method="post">
 
-                
+                               <div class="col-lg-4 col-lg-offset-1">
+                                   <div class="form-group">
+                                       <label for="inputTeamname" class="col-sm-2 control-label">Name</label>
+                                       <div class="col-lg-8">
+                                           <input type="text" class="form-control" name="name" placeholder="Teamname" required>
+                                       </div>
+                                   </div>
+                                   
+                                   <div class="form-group">
+                                       <label for="inputTurniername" class="col-sm-2 control-label">Tag</label>
+                                       <div class="col-lg-8">
+                                           <input type="text" class="form-control" name="tag" placeholder="Tag" required>
+                                       </div>
+                                   </div>
+                               </div>
+                               
+                               <div class="col-lg-6 col-lg-offset-1">
+                                    <div class="form-group">
+                                        <label for="inputUsername" class="col-sm-2 control-label">Passwort</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" name="password" placeholder="Passwort">
+                                        </div>
+                                    </div>
 
-            </div> <!-- .row -->
+                                    <div class="form-group">
+                                        <label for="inputUsername" class="col-sm-2 control-label">Passwort wiederholen</label>
+                                        <div class="col-lg-6">
+                                            <input type="text" class="form-control" name="reenter_password" placeholder="Passwort wiederholen">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-offset-6">
+                                            <button type="submit" class="btn btn-primary"><span class="fa fa-search"> Erstellen <i class="fa fa-angle-right"></i></button>
+                                        </div>
+                                    </div>
+                               </div>
+                           </form>
+                        </div>
+                           
+                        <div class="row">
+                            <% for(int idx = 0; idx < errors.size(); idx++) { %>
+                                <div class="alert alert-danger"><%= errors.get(idx).getErrorMessage() %></div>
+                            <% } %>
+                        </div>
+                           
+                   </div>
+               </div>
+           </div> <!-- row --> 
 
         </div><!-- /.container -->
 
@@ -103,9 +163,9 @@
 
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="../../public/js/jquery.js"></script>
-        <script src="../../public/js/bootstrap.js"></script>
-        <script src="../../public/js/modern-business.js"></script>
+        <script src="<%=path%>/public/js/jquery.js"></script>
+        <script src="<%=path%>/public/js/bootstrap.js"></script>
+        <script src="<%=path%>/public/js/modern-business.js"></script>
 
     </body>
 </html>
