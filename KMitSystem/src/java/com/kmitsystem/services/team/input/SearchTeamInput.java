@@ -5,48 +5,48 @@ package com.kmitsystem.services.team.input;
  */
 public class SearchTeamInput {
     
-    private String team_name;
-    private String tournament_name;
-    private String user_name;
+    private String team;
+    private String tournament;
+    private String user;
 
     public SearchTeamInput() {
         super();
     }
 
-    public SearchTeamInput(String team_name, String tournament_name, String user_name) {
+    public SearchTeamInput(String team, String tournament, String user) {
         super();
-        this.team_name = team_name;
-        this.tournament_name = tournament_name;
-        this.user_name = user_name;
+        this.team = team;
+        this.tournament = tournament;
+        this.user = user;
     }
 
-    public String getTeam_name() {
-        return team_name;
+    public String getTeam() {
+        return team;
     }
 
-    public void setTeam_name(String team_name) {
-        this.team_name = team_name;
+    public void setTeam(String team) {
+        this.team = team;
     }
 
-    public String getTournament_name() {
-        return tournament_name;
+    public String getTournament() {
+        return tournament;
     }
 
-    public void setTournament_name(String tournament_name) {
-        this.tournament_name = tournament_name;
+    public void setTournament(String tournament) {
+        this.tournament = tournament;
     }
 
-    public String getUser_name() {
-        return user_name;
+    public String getUser() {
+        return user;
     }
 
-    public void setUser_name(String user_name) {
-        this.user_name = user_name;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     @Override
     public String toString() {
-        return "SearchTeamInput{" + "team_name=" + team_name + ", tournament_name=" + tournament_name + ", user_name=" + user_name + '}';
+        return "SearchTeamInput{" + "team_name=" + team + ", tournament_name=" + tournament + ", user_name=" + user + '}';
     }
     
     

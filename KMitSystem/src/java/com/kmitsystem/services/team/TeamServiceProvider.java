@@ -14,7 +14,10 @@ import com.kmitsystem.tools.database.queries.DBTeamTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.objects.BaseResult;
+import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Maik
@@ -96,19 +99,20 @@ public class TeamServiceProvider {
         SearchTeamResult result = new SearchTeamResult();
      
         // prepare the input
-        String team_name = input.getTeam_name();
-        String tournament_name = input.getTournament_name();
-        String user_name = input.getUser_name();
+        String team = input.getTeam();
+        String tournament = input.getTournament();
+        String user = input.getUser();
 
         // call the database
-        if(team_name != null && !team_name.equals(""))
-            result.getTeams().add(DBTeamQueries.getTeam(team_name));
+        if(team != null && !team.equals("")) {
+            result.addTeam(DBTeamQueries.getTeam(team));
+        }
+                
+        if(tournament != null && !tournament.equals("")) 
+            result.addTeams(DBTeamTournamentQueries.getAllTeamsFromTournament(tournament));
         
-        if(tournament_name != null && !tournament_name.equals("")) 
-            result.addTeams(DBTeamTournamentQueries.getAllTeamsFromTournament(tournament_name));
-        
-        if(user_name != null && !user_name.equals(""))
-            result.addTeams(DBUserTeamQueries.getAllTeamsFromUser(user_name));
+        if(user != null && !user.equals(""))
+            result.addTeams(DBUserTeamQueries.getAllTeamsFromUser(user));
         
         // write the errors into the result object and empty the ErrorHandler
         if(ErrorHandler.getErrors().size() > 0) {

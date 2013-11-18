@@ -5,15 +5,10 @@
 package com.kmitsystem.servlets.team;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
-import com.kmitsystem.services.team.input.GetEverythingInput;
 import com.kmitsystem.services.team.input.SearchTeamInput;
-import com.kmitsystem.services.team.result.GetEverythingResult;
 import com.kmitsystem.services.team.result.SearchTeamResult;
 import com.kmitsystem.tools.objects.Team;
-import com.kmitsystem.tools.objects.Tournament;
-import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,23 +35,23 @@ public class SearchTeamServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String team_name = request.getParameter("team_name_search");
-        String tournament_name = request.getParameter("turnier_name_search");
-        String user_name = request.getParameter("user_name_search");
+        String team =  request.getParameter("team");
+        String tournament = request.getParameter("tournament");
+        String user = request.getParameter("user");
         
         TeamServiceProvider provider = new TeamServiceProvider();
-        SearchTeamInput input = new SearchTeamInput(team_name, tournament_name, user_name);
+        SearchTeamInput input = new SearchTeamInput(team, tournament, user);
         SearchTeamResult result = provider.searchTeam(input);
         
         // prepare the output and write it into the session
         List<Team> teams = result.getTeams();
         
         // write the results into attributes
-        request.setAttribute("teams", teams);
+        request.setAttribute("teams", teams);   
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {
-            request.getSession().setAttribute("errors", result.getErrorList());
+            request.setAttribute("errors", result.getErrorList());
         }
         
         // redirect to the page www.kmitsystem.de/teams

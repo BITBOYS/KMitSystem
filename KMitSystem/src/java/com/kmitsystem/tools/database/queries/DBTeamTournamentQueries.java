@@ -76,7 +76,7 @@ public class DBTeamTournamentQueries {
                 resultSet.next();
             }
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.NO_ENTRYS_FOUND, ex.getSQLState() + " " +ex.getMessage());
         }
         
         return teams;

@@ -119,22 +119,22 @@ public class DBUserTeamQueries {
             resultSet = statement.executeQuery("SELECT name, tag, team.password, leader, team.wins, team.defeats, "
                                                     + "team.goals, team.goals_conceded, team.tournament_wins, team.tournament_participations"
                                             + " FROM  team, user_team"
-                                            + " WHERE username = '" + username + "'"
-                                            + "   AND username = user" );
+                                            + " WHERE user = '" + username + "'"
+                                            + "   AND team = name" );
             resultSet.first();
             
             while(!resultSet.isAfterLast()) {
                 teams.add(new Team(resultSet.getString("name"), 
                                    resultSet.getString("tag"),
-                                   resultSet.getString("team.password"), 
+                                   resultSet.getString("password"), 
                                    new User(resultSet.getString("leader")), 
-                                   new Statistics(resultSet.getInt("team.goals"), resultSet.getInt("team.goals_conceded"), 
-                                                  resultSet.getInt("team.wins"), resultSet.getInt("team.defeats"), resultSet.getInt("team.tournament_wins"), 
-                                                  resultSet.getInt("team.tournament_participations"))));
+                                   new Statistics(resultSet.getInt("goals"), resultSet.getInt("goals_conceded"), 
+                                                  resultSet.getInt("wins"), resultSet.getInt("defeats"), resultSet.getInt("tournament_wins"), 
+                                                  resultSet.getInt("tournament_participations"))));
                 resultSet.next();
             }
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.NO_ENTRYS_FOUND, ex.getSQLState() + " " +ex.getMessage());
         }
         
         return teams;

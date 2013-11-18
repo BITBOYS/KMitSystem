@@ -96,9 +96,9 @@ public class TournamentServiceProvider {
         SearchTeamResult result = new SearchTeamResult();
      
         // prepare the input
-        String team_name = input.getTeam_name();
-        String tournament_name = input.getTournament_name();
-        String user_name = input.getUser_name();
+        String team_name = input.getTeam();
+        String tournament_name = input.getTournament();
+        String user_name = input.getUser();
 
         // call the database
         if(team_name != null && !team_name.equals(""))

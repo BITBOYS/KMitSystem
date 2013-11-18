@@ -20,6 +20,11 @@
         <servlet-name>TeamProfileServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.team.TeamProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchTeamServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.team.SearchTeamServlet</servlet-class>
+    </servlet>
+    
     <servlet-mapping>
         <servlet-name>CreateTeamServlet</servlet-name>
         <url-pattern>/CreateTeamServlet</url-pattern>
@@ -40,6 +45,11 @@
         <servlet-name>TeamProfileServlet</servlet-name>
         <url-pattern>/team/profile</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchTeamServlet</servlet-name>
+        <url-pattern>/teams</url-pattern>
+    </servlet-mapping>
+    
     <session-config>
         <session-timeout>
             30
