@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <%
+            String path = request.getContextPath();
+        %>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="User Profil">
         <meta name="author" content="Malte Dammann">
 
         <title>User Profil - KmS</title>
-
+        
         <!-- Bootstrap core CSS -->
         <link href="../../public/css/css/bootstrap.css" rel="stylesheet">
 
@@ -194,7 +197,7 @@
                                                     </tbody>  
                                                 </table>  
                                             </div>  
-                                            <p><a href="<%=request.getContextPath()%>/teams/profile?team=Team Dede" class="btn btn-success">Zum Teamprofil <i class="fa fa-angle-right"></i></a></p>
+                                            <p><a href="<%=path%>/team/profile?team=Team Dede" class="btn btn-success">Zum Teamprofil <i class="fa fa-angle-right"></i></a></p>
                                         </div>
                                     </div>
                                 </div>

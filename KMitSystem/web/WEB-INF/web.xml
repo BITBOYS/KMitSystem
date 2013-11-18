@@ -38,7 +38,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TeamProfileServlet</servlet-name>
-        <url-pattern>/teams/profile</url-pattern>
+        <url-pattern>/team/profile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

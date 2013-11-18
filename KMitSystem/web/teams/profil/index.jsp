@@ -6,6 +6,14 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        
+        <%
+            String path = request.getContextPath();
+            Team team = (Team)request.getAttribute("team");
+            List<User> member = (List<User>)request.getAttribute("member");
+            List<Tournament> tournaments = (List<Tournament>)request.getAttribute("tournaments");
+        %>
+        
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="User Profil">
@@ -14,18 +22,11 @@
         <title>Team Profil - KmS</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="<%=request.getContextPath()%>/public/css/css/bootstrap.css" rel="stylesheet">
+        <link href="<%=path%>/public/css/css/bootstrap.css" rel="stylesheet">
 
         <!-- Add custom CSS here -->
-        <link href="<%=request.getContextPath()%>/public/css/css/modern-business.css" rel="stylesheet">
-        <link href="<%=request.getContextPath()%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        
-        <%
-            Team team = (Team)request.getAttribute("team");
-            List<User> member = (List<User>)request.getAttribute("member");
-            List<Tournament> tournaments = (List<Tournament>)request.getAttribute("tournaments");
-        %>
-        
+        <link href="<%=path%>/public/css/css/modern-business.css" rel="stylesheet">
+        <link href="<%=path%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -46,27 +47,27 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="<%=request.getContextPath()%>/teams">Teams</a></li>
-                        <li><a href="<%=request.getContextPath()%>/tournaments">Turniere</a></li> 
-                        <li><a href="<%=request.getContextPath()%>/statistics">Statistiken</a></li> 
+                        <li><a href="<%=path%>/teams">Teams</a></li>
+                        <li><a href="<%=path%>/tournaments">Turniere</a></li> 
+                        <li><a href="<%=path%>/statistics">Statistiken</a></li> 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li role="presentation" class="dropdown-header">For your Interest</li>
                                 <li role="presentation" class="divider"></li>
-                                <li><a href="<%=request.getContextPath()%>/about">About</a></li>
-                                <li><a href="<%=request.getContextPath()%>/faq">FAQ</a></li>
-                                <li><a href="<%=request.getContextPath()%>/contact">Kontakt</a></li>
-                                <li><a href="<%=request.getContextPath()%>/service">Info</a></li>
-                                <li><a href="<%=request.getContextPath()%>/sidebar">Sidebar Page</a></li>
+                                <li><a href="<%=path%>/about">About</a></li>
+                                <li><a href="<%=path%>/faq">FAQ</a></li>
+                                <li><a href="<%=path%>/contact">Kontakt</a></li>
+                                <li><a href="<%=path%>/service">Info</a></li>
+                                <li><a href="<%=path%>/sidebar">Sidebar Page</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="<%=request.getContextPath()%>/user/profil">Profil</a></li> 
-                                <li><a href="<%=request.getContextPath()%>/user/dashboard">Dashboard</a></li> 
-                                <li><a href="<%=request.getContextPath()%>">Logout</a></li> 
+                                <li><a href="<%=path%>/user/profil">Profil</a></li> 
+                                <li><a href="<%=path%>/user/dashboard">Dashboard</a></li> 
+                                <li><a href="<%=path%>">Logout</a></li> 
                             </ul>
                         </li>
                 </div><!-- /.navbar-collapse -->
@@ -82,8 +83,8 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Team-Profil <small>Alles &uuml;ber <%=team.getName()%>!</small></h1>
                     <ol class="breadcrumb">
-                        <li><a href="<%=request.getContextPath()%>">Home</a></li>
-                        <li><a href="<%=request.getContextPath()%>\teams">Teams</a></li>
+                        <li><a href="<%=path%>">Home</a></li>
+                        <li><a href="<%=path%>\teams">Teams</a></li>
                         <li class="active">Profil</li>
                     </ol>
                 </div>
@@ -112,7 +113,7 @@
                                         <div class="panel-heading">Teammitglieder</div>
                                         <div class="list-group">
                                             <% for(int idx = 0; idx < member.size(); idx++) { %>
-                                            <a href="#" class="list-group-item"><%= member.get(idx).getUsername() %></a>
+                                            <a href="<%=path%>/user/profile?user=<%=member.get(idx).getUsername()%>" class="list-group-item"><%= member.get(idx).getUsername() %></a>
                                             <% } %>
                                         </div>
                                     </div>
@@ -242,9 +243,9 @@
 
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="<%=request.getContextPath()%>/public/js/jquery.js"></script>
-        <script src="<%=request.getContextPath()%>/public/js/bootstrap.js"></script>
-        <script src="<%=request.getContextPath()%>/public/js/modern-business.js"></script>
+        <script src="<%=path%>/public/js/jquery.js"></script>
+        <script src="<%=path%>/public/js/bootstrap.js"></script>
+        <script src="<%=path%>/public/js/modern-business.js"></script>
 
     </body>
 </html>
