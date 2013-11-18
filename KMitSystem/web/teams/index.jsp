@@ -8,11 +8,12 @@
 
         <%
             String path = request.getContextPath();
-            List<Error> errors = (ArrayList<Error>) request.getSession().getAttribute("errors");
+            List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
             if (errors == null) {
                 errors = new ArrayList<Error>();
             }
             List<Team> teams = (List<Team>)request.getAttribute("teams");
+                
             
         %>
 
@@ -81,7 +82,6 @@
         <div class="container">
 
             <div class="row">
-
                 <div class="col-lg-12">
                     <h1 class="page-header">Teams <small>Suche spezielle Turniere oder deine Freunde!</small></h1>
                     <ol class="breadcrumb">
@@ -89,32 +89,33 @@
                         <li class="active">Teams</li>
                     </ol>
                 </div>
+            </div>
 
-                <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
+            <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
 
-                    <a class="btn btn-success" href="<%=path%>/teams/create"><span class="fa fa-pencil"> Team erstellen <i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-success" href="<%=path%>/teams/create"><span class="fa fa-pencil"> Team erstellen <i class="fa fa-angle-right"></i></a>
 
-                </div><!-- .row -->
+            </div><!-- .row -->
 
                 <div class="row">  
                     <div class="col-lg-12">
                         <h2 class="page-header">Teamsuche</h2>
                         <div class="row well">
 
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" action="<%=path%>/teams">
 
                                 <div class="col-lg-4 col-lg-offset-1">
 
                                     <div class="form-group">
                                         <label for="inputTeamname" class="col-sm-2 control-label">Team</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="team_name_search" placeholder="Name">
+                                            <input type="text" class="form-control" name="team" placeholder="Name">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputTurniername" class="col-sm-2 control-label">Turnier</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="turnier_name_search" placeholder="Name">
+                                            <input type="text" class="form-control" name="tournament" placeholder="Name">
                                         </div>
                                     </div>
                                 </div>
@@ -122,7 +123,7 @@
                                         <div class="form-group">
                                             <label for="inputUsername" class="col-sm-2 control-label">User</label>
                                             <div class="col-lg-6">
-                                                <input type="text" class="form-control" name="user_name_search" placeholder="Name">
+                                                <input type="text" class="form-control" name="user" placeholder="Name">
                                             </div>
                                         </div>
 
@@ -144,8 +145,18 @@
                     </div>
                 </div>
             </div> <!-- row --> 
-
             
+            <% if(teams != null) { %>
+
+                <% if(errors.size() > 0) { %>
+                        <div class="alert alert-info">Es wurden keine Teams geunden</div>
+                <% } else { %>
+                    <% if(teams.size() == 1) { %>
+                        <div class="alert alert-success">Es wurde <%=teams.size()%> Team gefunden</div>
+                    <% } else { %>
+                        <div class="alert alert-success">Es wurden <%=teams.size()%> Teams gefunden</div>
+                    <% } %>
+                <% } %>
             
             <% for(int idx = 0; idx < teams.size(); idx++) { %>
             
@@ -166,29 +177,9 @@
 
             </div>
             
-            <% } %>
-
-            <hr>
-
-            <div class="row text-center">
-
-                <div class="col-lg-12">
-                    <ul class="pagination">
-                        <li><a href="#">&laquo;</a></li>
-                        <li class="active"><a href="#">1</a></li>
-                        <li><a href="#">2</a></li>
-                        <li><a href="#">3</a></li>
-                        <li><a href="#">4</a></li>
-                        <li><a href="#">5</a></li>
-                        <li><a href="#">&raquo;</a></li>
-                    </ul>        
-                </div>
-
-            </div>
+            <% } } %>
 
             <div class="container">
-
-                <hr>
 
                 <footer>
                     <div class="row">
