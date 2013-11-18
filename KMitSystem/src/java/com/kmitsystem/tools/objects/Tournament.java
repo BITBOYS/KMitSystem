@@ -1,5 +1,6 @@
 package com.kmitsystem.tools.objects;
 
+import com.kmitsystem.tools.DateKonverter;
 import java.sql.Date;
 
 /**
@@ -62,16 +63,16 @@ public class Tournament {
         this.leader = leader;
     }
     
-    public Date getStart_date() {
-        return start_date;
+    public String getStart_date() {
+        return DateKonverter.getWebDateString(start_date);
     }
     
     public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
 
-    public Date getEnd_date() {
-        return end_date;
+    public String getEnd_date() {
+        return DateKonverter.getWebDateString(end_date);
     }
 
     public void setEnd_date(Date end_date) {
@@ -94,8 +95,8 @@ public class Tournament {
         this.venue = venue;
     }
 
-    public Date getTerm_of_application() {
-        return term_of_application;
+    public String getTerm_of_application() {
+        return DateKonverter.getWebDateString(term_of_application);
     }
 
     public void setTerm_of_application(Date term_of_application) {
