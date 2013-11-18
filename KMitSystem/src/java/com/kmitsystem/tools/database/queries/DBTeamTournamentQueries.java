@@ -3,6 +3,8 @@ package com.kmitsystem.tools.database.queries;
 import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
+import com.kmitsystem.tools.objects.Statistics;
+import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Connection;
@@ -47,6 +49,37 @@ public class DBTeamTournamentQueries {
         }
         
         return tournaments;
+    }
+    
+    public static List<Team> getAllTeamsFromTournament(String name) {
+        List<Team> teams = new ArrayList<Team>();
+            
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            resultSet = statement.executeQuery("SELECT name, tag, password, leader, team.wins, team.defeats, "
+                                                    + "team.goals, team.goals_conceded, team.tournament_wins, team.tournament_participations" +
+                                              " FROM team, team_tournament" +
+                                              " WHERE tournament =  '" + name + "'" +
+                                              " AND team = name");
+            resultSet.first();
+            
+            while(!resultSet.isAfterLast()) {
+                teams.add(new Team(resultSet.getString("name"), 
+                                   resultSet.getString("tag"),
+                                   resultSet.getString("password"), 
+                                   new User(resultSet.getString("leader")), 
+                                   new Statistics(resultSet.getInt("team.goals"), resultSet.getInt("team.goals_conceded"), 
+                                                  resultSet.getInt("team.wins"), resultSet.getInt("team.defeats"), resultSet.getInt("team.tournament_wins"), 
+                                                  resultSet.getInt("team.tournament_participations"))));
+                resultSet.next();
+            }
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+        
+        return teams;
     }
     
 }

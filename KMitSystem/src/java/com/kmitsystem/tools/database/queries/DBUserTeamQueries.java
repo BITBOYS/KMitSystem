@@ -10,6 +10,7 @@ import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.Statistics;
+import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,8 +20,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -77,7 +76,7 @@ public class DBUserTeamQueries {
         return result;
     }
     
-        public static List<User> getAllUserFromTeam(String teamname) {
+    public static List<User> getAllUserFromTeam(String teamname) {
         List<User> teammember = new ArrayList<User>();
         
         try {
@@ -108,6 +107,37 @@ public class DBUserTeamQueries {
         }
         
         return teammember;
+    }
+    
+    public static List<Team> getAllTeamsFromUser(String username) {
+        List<Team> teams = new ArrayList<Team>();
+        
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            resultSet = statement.executeQuery("SELECT name, tag, team.password, leader, team.wins, team.defeats, "
+                                                    + "team.goals, team.goals_conceded, team.tournament_wins, team.tournament_participations"
+                                            + " FROM  team, user_team"
+                                            + " WHERE username = '" + username + "'"
+                                            + "   AND username = user" );
+            resultSet.first();
+            
+            while(!resultSet.isAfterLast()) {
+                teams.add(new Team(resultSet.getString("name"), 
+                                   resultSet.getString("tag"),
+                                   resultSet.getString("team.password"), 
+                                   new User(resultSet.getString("leader")), 
+                                   new Statistics(resultSet.getInt("team.goals"), resultSet.getInt("team.goals_conceded"), 
+                                                  resultSet.getInt("team.wins"), resultSet.getInt("team.defeats"), resultSet.getInt("team.tournament_wins"), 
+                                                  resultSet.getInt("team.tournament_participations"))));
+                resultSet.next();
+            }
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+        
+        return teams;
     }
     
 }

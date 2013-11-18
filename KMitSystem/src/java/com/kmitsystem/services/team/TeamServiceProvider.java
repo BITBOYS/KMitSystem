@@ -3,7 +3,9 @@ package com.kmitsystem.services.team;
 import com.kmitsystem.services.team.input.AddPlayerInput;
 import com.kmitsystem.services.team.input.CreateTeamInput;
 import com.kmitsystem.services.team.input.GetEverythingInput;
+import com.kmitsystem.services.team.input.SearchTeamInput;
 import com.kmitsystem.services.team.result.GetEverythingResult;
+import com.kmitsystem.services.team.result.SearchTeamResult;
 import com.kmitsystem.services.team.validator.AddPlayerValidator;
 import com.kmitsystem.services.team.validator.CreateTeamValidator;
 import com.kmitsystem.services.team.validator.GetEverythingValidator;
@@ -79,6 +81,34 @@ public class TeamServiceProvider {
             result.setMember(DBUserTeamQueries.getAllUserFromTeam(teamname));
             result.setTournaments(DBTeamTournamentQueries.getAllTournamentsFromTeam(teamname));
         }
+        
+        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
+        }
+        
+        return result;
+    }
+    
+    // no validation needed, because there are no false inputs
+    public SearchTeamResult searchTeam(SearchTeamInput input) {
+        SearchTeamResult result = new SearchTeamResult();
+     
+        // prepare the input
+        String team_name = input.getTeam_name();
+        String tournament_name = input.getTournament_name();
+        String user_name = input.getUser_name();
+
+        // call the database
+        if(team_name != null && !team_name.equals(""))
+            result.getTeams().add(DBTeamQueries.getTeam(team_name));
+        
+        if(tournament_name != null && !tournament_name.equals("")) 
+            result.addTeams(DBTeamTournamentQueries.getAllTeamsFromTournament(tournament_name));
+        
+        if(user_name != null && !user_name.equals(""))
+            result.addTeams(DBUserTeamQueries.getAllTeamsFromUser(user_name));
         
         // write the errors into the result object and empty the ErrorHandler
         if(ErrorHandler.getErrors().size() > 0) {
