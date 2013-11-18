@@ -4,7 +4,6 @@ package com.kmitsystem.services.tournament.result;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
-import com.kmitsystem.tools.objects.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,48 +12,38 @@ import java.util.List;
  */
 public class GetEverythingResult extends BaseResult {
     
-    private Team team = new Team();
-    private List<User> member = new ArrayList<User>();
-    private List<Tournament> tournaments = new ArrayList<Tournament>();
+    private Tournament tournament = new Tournament();
+    private List<Team> teams = new ArrayList<Team>();
     
     public GetEverythingResult() {
         super();
     }    
 
-    public GetEverythingResult(Team team, List<User> member, List<Tournament> tournaments) {
+    public GetEverythingResult(Tournament tournament, List<Team> teams) {
         super();
-        this.team = team;
-        this.member = member;
-        this.tournaments = tournaments;
+        this.tournament = tournament;
+        this.teams = teams;
     }
     
-    public Team getTeam() {
-        return team;
+    public Tournament getTeam() {
+        return tournament;
     }
     
-    public void setTeam(Team team) {
-        this.team = team;
+    public void setTournament(Tournament tournament) {
+        this.tournament = tournament;
     }
 
-    public List<User> getMember() {
-        return member;
+    public List<Team> getTeams() {
+        return teams;
     }
 
-    public void setMember(List<User> member) {
-        this.member = member;
-    }
-
-    public List<Tournament> getTournaments() {
-        return tournaments;
-    }
-
-    public void setTournaments(List<Tournament> tournaments) {
-        this.tournaments = tournaments;
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
     }
 
     @Override
     public String toString() {
-        return "GetEverythingResult{" +"team=" + team + ", member=" + member + ", tournaments=" + tournaments + '}';
+        return "GetEverythingResult{" +"tournament=" + tournament + ", teams=" + teams + '}';
     }
     
 }

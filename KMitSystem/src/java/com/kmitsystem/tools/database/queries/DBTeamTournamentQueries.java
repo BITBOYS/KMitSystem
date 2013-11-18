@@ -11,18 +11,36 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.GregorianCalendar;
+import java.util.Date;
 import java.util.List;
 
 /**
- * @author Maik
+ * @author Maik, Malte
  */
 public class DBTeamTournamentQueries {
     
     private static Statement statement = null;
     private static Connection con = null;
     private static ResultSet resultSet = null;
+    
+    public static void addTeam(String tournamentname, String teamname) {
+        try {        
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date enter_date = new Date();
+            
+            statement.execute("INSERT INTO team_tournament"
+                    + "(team, tournament, enter_date)"
+                    + "VALUES ('" + teamname + "','" + tournamentname + "','" + formatter.format(enter_date) + "')");
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+    }
     
     public static List<Tournament> getAllTournamentsFromTeam(String name) {
         List<Tournament> tournaments = new ArrayList<Tournament>();
@@ -50,6 +68,38 @@ public class DBTeamTournamentQueries {
         
         return tournaments;
     }
+    
+    /**
+     * Checks if the team is a member of a specific tournament
+     * returns: true if it is a team, false if it's not
+     * @param teamname
+     * @param tournamentname
+     * @return boolean
+     */
+    public static boolean checkTournamentMembership(String teamname, String tournamentname) {
+        boolean result = false;
+        
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            resultSet = statement.executeQuery("SELECT COUNT(*) as count "
+                                    + " FROM team_tournament "
+                                    + " WHERE team = '" + teamname + "'"
+                                    + "   AND tournamentname = '" + tournamentname + "'");
+            
+            resultSet.first();
+            
+            if(resultSet.getInt("count") > 0)
+                result = true;
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+        
+        return result;
+    }
+    
     
     public static List<Team> getAllTeamsFromTournament(String name) {
         List<Team> teams = new ArrayList<Team>();

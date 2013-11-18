@@ -11,11 +11,11 @@ public class GetEverythingInput {
         this.tournamentname = tournamentname;
     }
 
-    public String getTeamname() {
+    public String getTournamentname() {
         return tournamentname;
     }
 
-    public void setTeamname(String tournamentname) {
+    public void setTournamentname(String tournamentname) {
         this.tournamentname = tournamentname;
     }   
 }
