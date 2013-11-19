@@ -3,12 +3,15 @@ package com.kmitsystem.services.tournament;
 import com.kmitsystem.services.tournament.input.AddTeamInput;
 import com.kmitsystem.services.tournament.input.CreateTournamentInput;
 import com.kmitsystem.services.tournament.input.GetEverythingInput;
+import com.kmitsystem.services.tournament.input.SearchTournamentInput;
 import com.kmitsystem.services.tournament.result.GetEverythingResult;
+import com.kmitsystem.services.tournament.result.SearchTournamentResult;
 import com.kmitsystem.services.tournament.validator.AddTeamValidator;
 import com.kmitsystem.services.tournament.validator.CreateTournamentValidator;
 import com.kmitsystem.services.tournament.validator.GetEverythingValidator;
 import com.kmitsystem.tools.database.queries.DBTeamTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBTournamentQueries;
+import com.kmitsystem.tools.database.queries.DBUserTournamentQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
@@ -95,32 +98,36 @@ public class TournamentServiceProvider {
     }
     
     // no validation needed, because there are no false inputs
-//    public SearchTournametResult searchTeam(SearchTournamentInput input) {
-//        SearchTournametResult result = new SearchTournametResult();
-//     
-//        // prepare the input
-//        String team_name = input.getTeam();
-//        String tournament_name = input.getTournament();
-//        String user_name = input.getUser();
-//
-//        // call the database
-//        if(team_name != null && !team_name.equals(""))
-//            result.getTeams().add(DBTeamQueries.getTeam(team_name));
-//        
-//        if(tournament_name != null && !tournament_name.equals("")) 
-//            result.addTeams(DBTeamTournamentQueries.getAllTeamsFromTournament(tournament_name));
-//        
-//        if(user_name != null && !user_name.equals(""))
-//            result.addTeams(DBUserTeamQueries.getAllTeamsFromUser(user_name));
-//        
-//        // write the errors into the result object and empty the ErrorHandler
-//        if(ErrorHandler.getErrors().size() > 0) {
-//            result.setErrorList(ErrorHandler.getErrors());                        
-//            ErrorHandler.clear();
-//        }
-//        
-//        return result;
-//    }
+    public SearchTournamentResult searchTournament(SearchTournamentInput input) {
+        
+        SearchTournamentResult result = new SearchTournamentResult();
+     
+        // prepare the input
+        String team_name = input.getTeam();
+        String tournament_name = input.getTournament();
+        String user_name = input.getUser();
+
+        // call the database
+        // search tournament
+        if(tournament_name != null && !tournament_name.equals(""))
+            result.getTournaments().add(DBTournamentQueries.getTournament(tournament_name));
+        
+        // search team
+        if(team_name != null && !team_name.equals("")) 
+            result.addTournaments(DBTeamTournamentQueries.getAllTournamentsFromTeam(team_name));
+        
+        // search user
+        if(user_name != null && !user_name.equals(""))
+            result.addTournaments(DBUserTournamentQueries.getAllTournamentsFromUser(user_name));
+        
+        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
+        }
+        
+        return result;
+    }
        
 }
 
