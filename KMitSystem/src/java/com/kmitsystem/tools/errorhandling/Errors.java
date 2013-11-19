@@ -24,7 +24,9 @@ public class Errors {
     public static final Error EMAIL_REGISTER_INFO = new Error(11, "Eine E-Mail wurde zue Bestätigung an deine Mailadresse versendet.", Error.INFO);
     public static final Error NO_ENTRYS_FOUND = new Error(12, "Es wurden keine Einträge gefunden", Error.INFO);
     public static final Error TOURNAMENT_DOES_NOT_EXIST = new Error(13, "Das Turnie existiert nicht", Error.ERROR);
-    public static final Error TEAM_ALREADY_IN_TOURNAMENT = new Error(14, "Das Team ist bereits Mitglied des Turniers", Error.INFO);
+    public static final Error TEAM_ALREADY_IN_TOURNAMENT = new Error(14, "Das Team ist bereits Mitglied des Turniers", Error.INFO);    
+    public static final Error EMAILS_NOT_EQUAL = new Error(15, "Die beiden E-Mail Adressen stimmen nicht überein", Error.ERROR);
+    public static final Error NAMES_NOT_EQUAL = new Error(16, "Die beiden Namen stimmen nicht überein", Error.ERROR);
     
     
 }
