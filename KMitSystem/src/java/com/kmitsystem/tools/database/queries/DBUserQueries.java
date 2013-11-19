@@ -123,5 +123,37 @@ public class DBUserQueries {
         
          return result;
     }
+    
+    public static void changeEmail(String oldEmail, String newEmail) {
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            statement.execute("update user set email="+ newEmail+" where email ="+ oldEmail);            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }        
+    }
    
+     public static void changeName(String oldName, String newName) {
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            statement.execute("update user set name="+ newName+" where name ="+ oldName);            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }        
+    }
+    
+     //BIn mir nicht sicher mit den SPaltennamen, kann die DB im MOment nicht öffnen
+     
+     public static void changePassword(String oldPassword, String newPassword) {
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            statement.execute("update user set password="+ newPassword+" where password ="+ oldPassword);            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }        
+    }
+    
 }
