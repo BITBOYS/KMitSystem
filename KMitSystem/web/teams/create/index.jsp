@@ -125,20 +125,33 @@
                                             <input type="text" class="form-control" name="reenter_password" placeholder="Passwort wiederholen">
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <div class="col-md-offset-6">
-                                            <button type="submit" class="btn btn-primary"><span class="fa fa-search"> Erstellen <i class="fa fa-angle-right"></i></button>
-                                        </div>
+                               </div>
+                               
+                               <div class="form-group">
+                                    <div class="col-lg-4 col-lg-offset-1">
+                                       <label for="userAuswahl" class="col-sm-2 control-label">User</label>
+                                       <div class="col-lg-8">
+                                            <input type="text" class="form-control" style="display: inline" name="userAuswahl" placeholder="Username">
+                                            <a href="#" style="display: inline">User hinzuf&uuml;gen</a>
+                                       </div>
                                     </div>
                                </div>
+
+                                <div class="form-group col-lg-4 col-lg-offset-1">
+                                    <div class="col-md-offset-6">
+                                        <button type="submit" class="btn btn-primary"><span class="fa fa-search"> Erstellen <i class="fa fa-angle-right"></i></button>
+                                    </div>
+                                </div>
                            </form>
                         </div>
                            
                         <div class="row">
                             <% for(int idx = 0; idx < errors.size(); idx++) { %>
+                                <% if(errors.get(idx).getStatus().equals(Error.ERROR)) { %>
                                 <div class="alert alert-danger"><%= errors.get(idx).getErrorMessage() %></div>
-                            <% } %>
+                                <% } else if(errors.get(idx).getStatus().equals(Error.INFO)) { %>
+                                <div class="alert alert-info"><%= errors.get(idx).getErrorMessage() %></div>
+                            <% } } %>
                         </div>
                            
                    </div>

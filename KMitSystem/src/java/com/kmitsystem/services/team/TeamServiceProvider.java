@@ -14,10 +14,6 @@ import com.kmitsystem.tools.database.queries.DBTeamTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.objects.BaseResult;
-import com.kmitsystem.tools.objects.Team;
-import com.kmitsystem.tools.objects.User;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Maik
@@ -35,11 +31,12 @@ public class TeamServiceProvider {
             // prepare the input
             String name = input.getName();
             String tag = input.getTag();
-            String password = input.getTag();
-            User leader = input.getLeader();
+            String password = input.getPassword();
+            String leader = input.getLeader();
             
             // call the database
             DBTeamQueries.createTeam(name, tag, password, leader);
+            DBUserTeamQueries.addPlayer(leader, name);
         }
         
         // write the errors into the result object and empty the ErrorHandler
@@ -104,9 +101,8 @@ public class TeamServiceProvider {
         String user = input.getUser();
 
         // call the database
-        if(team != null && !team.equals("")) {
+        if(team != null && !team.equals("")) 
             result.addTeam(DBTeamQueries.getTeam(team));
-        }
                 
         if(tournament != null && !tournament.equals("")) 
             result.addTeams(DBTeamTournamentQueries.getAllTeamsFromTournament(tournament));

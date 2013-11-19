@@ -2,8 +2,6 @@ package com.kmitsystem.servlets.team;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.services.team.input.CreateTeamInput;
-import com.kmitsystem.services.team.input.GetEverythingInput;
-import com.kmitsystem.services.team.result.GetEverythingResult;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
@@ -14,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.kmitsystem.tools.errorhandling.Error;
 import com.kmitsystem.tools.errorhandling.Errors;
-import com.kmitsystem.tools.objects.Team;
-import com.kmitsystem.tools.objects.Tournament;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 /**
@@ -44,7 +40,7 @@ public class CreateTeamServlet extends HttpServlet {
         String password = request.getParameter("password");
         String reenter_password = request.getParameter("reenter_password");
 //        User leader = GET USER FROM SESSION
-        User leader = new User("Maik");
+        String leader = "Maik";
         BaseResult result = new BaseResult();
         
         if(password.equals(reenter_password)) {

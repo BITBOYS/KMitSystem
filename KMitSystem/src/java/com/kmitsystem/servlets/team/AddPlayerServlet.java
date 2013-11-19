@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
- 
 package com.kmitsystem.servlets.team;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
@@ -16,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
  * @author Maik
  */
 public class AddPlayerServlet extends HttpServlet {
@@ -33,8 +26,6 @@ public class AddPlayerServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException { 
         // get the user and the team from the session and use it as input
-//        User user = (User) request.getSession().getAttribute("user");
-//        Team team = (Team) request.getSession().getAttribute("team");
         String username = request.getParameter("username");
         String teamname = request.getParameter("teamname");
         

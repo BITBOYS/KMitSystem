@@ -61,20 +61,16 @@ public class DBTeamQueries {
         return team;
     }
     
-    public static void createTeam(String name, String tag, String password, User leader) {
+    public static void createTeam(String name, String tag, String password, String leader) {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             
-            if(password.equals("")) { 
-                statement.execute("insert into team"
-                        + "(name, tag, leader)"
-                        + "VALUES (\"" + name + "\",\"" + tag + "\",\"" + leader.getUsername() + "\")");
-            } else {
-                statement.execute("insert into team"
+            // create the team
+            statement.execute("insert into team"
                         + "(name, tag, password, leader)"
-                        + "VALUES (\"" + name + "\",\"" + tag + "\",\"" + password + "\",\"" + leader.getUsername() + "\")"); 
-            }
+                        + "VALUES ('" + name + "','" + tag + "','" + password + "','" + leader + "')");
+            
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }

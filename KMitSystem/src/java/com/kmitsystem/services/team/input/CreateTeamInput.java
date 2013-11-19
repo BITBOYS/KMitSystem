@@ -1,7 +1,5 @@
 package com.kmitsystem.services.team.input;
 
-import com.kmitsystem.tools.objects.User;
-
 /**
  * @author Maik
  */
@@ -10,9 +8,9 @@ public class CreateTeamInput {
     private String name;
     private String tag;
     private String password;
-    private User leader;
+    private String leader;
 
-    public CreateTeamInput(String name, String tag, String password, User leader) {
+    public CreateTeamInput(String name, String tag, String password, String leader) {
         this.name = name;
         this.tag = tag;
         this.password = password;
@@ -43,11 +41,11 @@ public class CreateTeamInput {
         this.password = password;
     }
 
-    public User getLeader() {
+    public String getLeader() {
         return leader;
     }
 
-    public void setLeader(User leader) {
+    public void setLeader(String leader) {
         this.leader = leader;
     }
         

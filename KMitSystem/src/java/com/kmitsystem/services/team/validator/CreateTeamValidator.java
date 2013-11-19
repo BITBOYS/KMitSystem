@@ -20,8 +20,7 @@ public class CreateTeamValidator {
         }
         
         // check if the leader exists
-        if(!DBUserQueries.isEMailExisting(input.getLeader().getEmail()) &&
-           !DBUserQueries.isUsernameExisting(input.getLeader().getUsername())) {
+        if(!DBUserQueries.isUsernameExisting(input.getLeader())) {
             ErrorHandler.handle(Errors.USER_DOES_NOT_EXIST, AddPlayerValidator.class.getSimpleName());
             return false;
         }
