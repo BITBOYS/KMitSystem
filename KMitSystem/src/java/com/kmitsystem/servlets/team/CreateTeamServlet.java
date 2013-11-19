@@ -2,6 +2,8 @@ package com.kmitsystem.servlets.team;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.services.team.input.CreateTeamInput;
+import com.kmitsystem.services.team.input.GetEverythingInput;
+import com.kmitsystem.services.team.result.GetEverythingResult;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
@@ -12,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.kmitsystem.tools.errorhandling.Error;
 import com.kmitsystem.tools.errorhandling.Errors;
+import com.kmitsystem.tools.objects.Team;
+import com.kmitsystem.tools.objects.Tournament;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 /**
@@ -31,7 +35,7 @@ public class CreateTeamServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd = request.getRequestDispatcher("/teams/profil/index.jsp");
+        RequestDispatcher rd;
         
         if(request.getParameter("name") != null) {
             
@@ -44,18 +48,19 @@ public class CreateTeamServlet extends HttpServlet {
         BaseResult result = new BaseResult();
         
         if(password.equals(reenter_password)) {
+            // first create the team
             TeamServiceProvider provider = new TeamServiceProvider();
             CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
-
             result = provider.createTeam(input);
             
-            rd = request.getRequestDispatcher("/teams/profil/index.jsp");
+           response.sendRedirect(request.getContextPath() + "/team/profile?team="+name);
         } else {
             List<Error> errorList = new ArrayList<Error>();
             errorList.add(Errors.PASSWORDS_NOT_EQUAL);
             result.setErrorList(errorList);
             
             rd = request.getRequestDispatcher("/teams/create/index.jsp");
+            rd.include(request, response);
        }
        
        
@@ -65,10 +70,8 @@ public class CreateTeamServlet extends HttpServlet {
         
         } else {
             rd = request.getRequestDispatcher("/teams/create/index.jsp");
+            rd.include(request, response);
         }
-        
-        // redirect to the page www.kmitsystem.de/teams/profil
-        rd.include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

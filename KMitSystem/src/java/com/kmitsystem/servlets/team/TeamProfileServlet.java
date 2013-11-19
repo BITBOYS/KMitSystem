@@ -55,7 +55,6 @@ public class TeamProfileServlet extends HttpServlet {
         }
         
         // redirect to the page www.kmitsystem.de/teams
-//        response.sendRedirect("/KMitSystem/teams/profil");
         RequestDispatcher rd = request.getRequestDispatcher("/teams/profil/index.jsp");
         rd.include(request, response);
     }
