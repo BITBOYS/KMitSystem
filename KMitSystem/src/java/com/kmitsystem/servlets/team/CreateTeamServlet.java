@@ -2,6 +2,7 @@ package com.kmitsystem.servlets.team;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.services.team.input.CreateTeamInput;
+import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
@@ -33,38 +34,50 @@ public class CreateTeamServlet extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher rd;
         
+        // check if the user filled the form or if he came from another page
         if(request.getParameter("name") != null) {
+
+            // prepare the input
+            String name = request.getParameter("name");
+            String tag = request.getParameter("tag");
+            String password = request.getParameter("password");
+            String reenter_password = request.getParameter("reenter_password");
+            // @TODO: get the username from the leader out of the session
+            String leader = "Maik";
             
-        String name = request.getParameter("name");
-        String tag = request.getParameter("tag");
-        String password = request.getParameter("password");
-        String reenter_password = request.getParameter("reenter_password");
-//        User leader = GET USER FROM SESSION
-        String leader = "Maik";
-        BaseResult result = new BaseResult();
+            // prepare the output
+            BaseResult result = new BaseResult();
+            List<User> users;
+            
+            // get all users and write them into an attribute           
+            users = DBUserQueries.getAllUser();
+            request.setAttribute("users", users);
+            
+            // check if both passwords are equal, if true create the team
+            if(password.equals(reenter_password)) {
+                TeamServiceProvider provider = new TeamServiceProvider();
+                CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
+                result = provider.createTeam(input);
+
+                // redirect to the profile of the new team
+                response.sendRedirect(request.getContextPath() + "/team/profile?team="+name);
+            } else {
+                List<Error> errorList = new ArrayList<Error>();
+                errorList.add(Errors.PASSWORDS_NOT_EQUAL);
+                result.setErrorList(errorList);
+                request.setAttribute("errors", result.getErrorList());
+
+                // redirect to the teamcreation page and show the error
+                rd = request.getRequestDispatcher("/teams/create/index.jsp");
+                rd.include(request, response);
+            }
+
+            // write the errorlist into the session-attribute "errors"
+            if(result.getErrorList().size() > 0) 
+                request.setAttribute("errors", result.getErrorList());
         
-        if(password.equals(reenter_password)) {
-            // first create the team
-            TeamServiceProvider provider = new TeamServiceProvider();
-            CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
-            result = provider.createTeam(input);
-            
-           response.sendRedirect(request.getContextPath() + "/team/profile?team="+name);
         } else {
-            List<Error> errorList = new ArrayList<Error>();
-            errorList.add(Errors.PASSWORDS_NOT_EQUAL);
-            result.setErrorList(errorList);
-            
-            rd = request.getRequestDispatcher("/teams/create/index.jsp");
-            rd.include(request, response);
-       }
-       
-       
-        // write the errorlist into the session-attribute "errors"
-        if(result.getErrorList().size() > 0) 
-            request.setAttribute("errors", result.getErrorList());
-        
-        } else {
+            // redirect to the teamcreation page without doing anything
             rd = request.getRequestDispatcher("/teams/create/index.jsp");
             rd.include(request, response);
         }

@@ -13,6 +13,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Oerlex, Malte
@@ -155,5 +159,26 @@ public class DBUserQueries {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }        
     }
+     
+     public static List<User> getAllUser() {
+        List<User> user = new ArrayList<User>();
+        
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT username FROM user");
+            resultSet.first();
+            
+            while(!resultSet.isAfterLast()) {
+                user.add(new User(resultSet.getString("username")));
+                resultSet.next();
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBUserQueries.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return user;
+     }
     
 }
