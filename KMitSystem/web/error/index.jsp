@@ -1,112 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Error Page">
-    <meta name="author" content="Malte Dammann">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Error Page">
+        <meta name="author" content="Malte Dammann">
 
-    <title>Error Page - KmS</title>
+        <title>Error Page - KmS</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../public/css/css/bootstrap.css" rel="stylesheet">
+        <%
+                String link = request.getContextPath();
+                String loged_in = String.valueOf(request.getSession().getAttribute("loged_in"));
+        %>
 
-    <!-- Add custom CSS here -->
-    <link href="../public/css/css/modern-business.css" rel="stylesheet">
-    <link href="../public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  </head>
+        <!-- Bootstrap core CSS -->
+        <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
 
-  <body>
+        <!-- Add custom CSS here -->
+        <link href="<%=link%>/public/css/css/modern-business.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    </head>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-          <a class="navbar-brand" href="../">KmS</a>
-        </div>
+    <body>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../login">Login</a></li>
-            <li><a href="../register">Sign Up</a></li>          
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-            	<li role="presentation" class="dropdown-header">For your Interest</li>
-                <li role="presentation" class="divider"></li>
-                <li><a href="../about">About Us</a></li>
-                <li><a href="../contact">Kontakt</a></li>
-                <li><a href="../Service">Info</a></li>
-                <li><a href="../faq">FAQ</a></li>
-                <li><a href="../sidebar">Sidebar Page</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container -->
-    </nav>
+        <%
+                // Including Header
+                if (!loged_in.equals("true") || loged_in == null) {
+        %>
+        <%@include file="../snipplets/header_public.jspf" %>
+        <%
+        } else {
+        %>
+        <%@include file="../snipplets/header_private.jspf" %>
+        <% }%>
 
-    <div class="container">
+        <div class="container">
 
-      <div class="row">
+            <div class="row">
 
-        <div class="col-lg-12">
-          <h1 class="page-header">404 <small>Page Not Found</small></h1>
-          <ol class="breadcrumb">
-            <li><a href="../">Home</a></li>
-            <li class="disabled"><a href="#">Other Pages</a></li>
-            <li class="active">404</li>
-          </ol>
-        </div>
+                <div class="col-lg-12">
+                    <h1 class="page-header">Error <small>Page Not Found</small></h1>
+                    <ol class="breadcrumb">
+                        <li><a href="../">Home</a></li>
+                        <li class="disabled"><a href="#">Other Pages</a></li>
+                        <li class="active"><%=pageContext.getErrorData().getStatusCode()%></li>
+                    </ol>
+                </div>
 
-      </div>
+            </div>
 
-      <div class="row">
+            <div class="row">
 
-        <div class="col-lg-12">
-          <p class="error-404">404</p>
-          <p class="lead">Die von dir gesuchte Seite wurde nicht gefunden.</p>
-          <p>Das tut uns leid! Hier ein paar hilfreiche Links:</p>
-          <ul>
-            <li><a href="../">Home</a></li>
-            <li><a href="../login">Login</a></li>
-            <li><a href="../register">Sign Up</a></li>
-            <li><a href="../about">About Us</a></li>
-            <li><a href="../service">Services</a></li>
-            <li><a href="../contact">Kontakt</a></li>
-            <li><a href="../faq">FAQ</a></li>
-          </ul>
-        </div>
+                <div class="col-lg-12">
+                    <p class="error-404">404</p>
+                    <p class="lead">Die von dir gesuchte Seite wurde nicht gefunden.</p>
+                    <p>Das tut uns leid! Hier ein paar hilfreiche Links:</p>
+                    <ul>
+                        <li><a href="<%=link%>">Home</a></li>
+                        <li><a href="<%=link%>/login">Login</a></li>
+                        <li><a href="<%=link%>/register">Sign Up</a></li>
+                        <li><a href="<%=link%>/about">About Us</a></li>
+                        <li><a href="<%=link%>/service">Services</a></li>
+                        <li><a href="<%=link%>/contact">Kontakt</a></li>
+                        <li><a href="<%=link%>/faq">FAQ</a></li>
+                    </ul>
+                </div>
 
-      </div>
+            </div>
 
-    </div><!-- /.container -->
+        </div><!-- /.container -->
 
-    <div class="container">
+        <div class="container">
 
-      <hr>
+            <%@include file="../snipplets/footer.jspf" %>
 
-      <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Copyright &copy; KmS 2013</p>
-          </div>
-        </div>
-      </footer>
+        </div><!-- /.container -->
 
-    </div><!-- /.container -->
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../public/js/jquery.js"></script>
-    <script src="../public/js/bootstrap.js"></script>
-    <script src="../public/js/modern-business.js"></script>
-  </body>
+        <!-- Bootstrap core JavaScript -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="<%=link%>/public/js/jquery.js"></script>
+        <script src="<%=link%>/public/js/bootstrap.js"></script>
+        <script src="<%=link%>/public/js/modern-business.js"></script>
+    </body>
 </html>

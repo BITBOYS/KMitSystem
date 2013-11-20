@@ -1,14 +1,16 @@
-<%@page import="com.kmitsystem.tools.objects.Team"%>
-<%@page import="com.kmitsystem.tools.objects.Tournament"%>
-<%@page import="com.kmitsystem.tools.objects.Statistics"%>
-<%@page import="java.util.List"%>
-<%@page import="com.kmitsystem.tools.objects.User"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <%@page import="com.kmitsystem.tools.objects.Team"%>
+        <%@page import="com.kmitsystem.tools.objects.Tournament"%>
+        <%@page import="com.kmitsystem.tools.objects.Statistics"%>
+        <%@page import="java.util.List"%>
+        <%@page import="com.kmitsystem.tools.objects.User"%>
         
         <%
+            String loged_in = String.valueOf(session.getAttribute("loged_in"));
             String path = request.getContextPath();
+            
             Team team = (Team)request.getAttribute("team");
             List<User> member = (List<User>)request.getAttribute("member");
             List<Tournament> tournaments = (List<Tournament>)request.getAttribute("tournaments");
@@ -31,48 +33,16 @@
 
     <body>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-                    <a class="navbar-brand" href="../">KmS</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="<%=path%>/teams">Teams</a></li>
-                        <li><a href="<%=path%>/tournaments">Turniere</a></li> 
-                        <li><a href="<%=path%>/statistics">Statistiken</a></li> 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li role="presentation" class="dropdown-header">For your Interest</li>
-                                <li role="presentation" class="divider"></li>
-                                <li><a href="<%=path%>/about">About</a></li>
-                                <li><a href="<%=path%>/faq">FAQ</a></li>
-                                <li><a href="<%=path%>/contact">Kontakt</a></li>
-                                <li><a href="<%=path%>/service">Info</a></li>
-                                <li><a href="<%=path%>/sidebar">Sidebar Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<%=path%>/user/profil">Profil</a></li> 
-                                <li><a href="<%=path%>/user/dashboard">Dashboard</a></li> 
-                                <li><a href="<%=path%>">Logout</a></li> 
-                            </ul>
-                        </li>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container -->
-        </nav>
+        <%
+            // Including Header
+            if (!loged_in.equals("true") || loged_in == null) {
+        %>
+        <%@include file="../../snipplets/header_public.jspf" %>
+        <%
+        } else {
+        %>
+        <%@include file="../../snipplets/header_private.jspf" %>
+        <% }%>
 
         <!-- Page Content -->
 
@@ -234,7 +204,7 @@
                         <p>Copyright &copy; KmS 2013</p>
                     </div>
                     <div class="col-lg-2 col-lg-offset-4">
-                        <a class="btn btn-toolbar"href="../impressum/">Impressum</a>
+                        <a class="btn btn-toolbar" href="../impressum/">Impressum</a>
                     </div>
                 </div>
             </footer>

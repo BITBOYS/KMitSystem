@@ -15,6 +15,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -40,6 +41,9 @@ public class SignInServlet extends HttpServlet {
         
         UserServiceProvider provider = new UserServiceProvider();
         SignInInput input = new SignInInput(email, password);
+        
+        //Loged_in Session variable 
+        request.getSession().setAttribute("loged_in", "true");
         
         BaseResult result = provider.signInUser(input);
         

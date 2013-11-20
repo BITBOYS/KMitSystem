@@ -8,58 +8,23 @@
 
         <title>User Dashboard - KmS</title>
 
+        <%
+            String loged_in = String.valueOf(request.getSession().getAttribute("loged_in"));
+            String link = request.getContextPath();
+        %>
+
         <!-- Bootstrap core CSS -->
-        <link href="../../public/css/css/bootstrap.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
 
         <!-- Add custom CSS here -->
-        <link href="../../public/css/css/modern-business.css" rel="stylesheet">
-        <link href="../../public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/css/modern-business.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
     <body>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-                    <a class="navbar-brand" href="../../">KmS</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="../../teams">Teams</a></li>
-                        <li><a href="../../tournaments">Turniere</a></li> 
-                        <li><a href="../../statistics">Statistiken</a></li> 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li role="presentation" class="dropdown-header">For your Interest</li>
-                                <li role="presentation" class="divider"></li>
-                                <li><a href="../../about">About</a></li>
-                                <li><a href="../../faq">FAQ</a></li>
-                                <li><a href="../../contact">Kontakt</a></li>
-                                <li><a href="../../service">Info</a></li>
-                                <li><a href="../../sidebar">Sidebar Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="../profil">Profil</a></li> 
-                                <li><a href="../dashboard">Dashboard</a></li> 
-                                <li><a href="../../">Logout</a></li> 
-                            </ul>
-                        </li>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container -->
-        </nav>
+        <%@include file="../../snipplets/header_private.jspf" %>
+        
 
         <!-- Page Content -->
 
@@ -70,8 +35,8 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">User-Dashboard <small>Dein Kontrollzentrum</small></h1>
                     <ol class="breadcrumb">
-                        <li><a href="../">Home</a></li>
-                        <li><a href="../profil">Profil</a></li>
+                        <li><a href="<%=link%>/">Home</a></li>
+                        <li><a href="<%=link%>/user/profil">Profil</a></li>
                         <li class="active">User-Dashboard</li>
                     </ol>
                 </div>
@@ -283,7 +248,7 @@
                                                             <td>1.1.1.1</td>  
                                                             <td>1.1.1.1</td>  
                                                             <td>privat</td> 
-                                                            <td><a href="../../teams/profil/">Team1</a></td> 
+                                                            <td><a href="<%=link%>/teams/profil/">Team1</a></td> 
                                                         </tr>  
                                                     </tbody>  
                                                 </table>  
@@ -305,23 +270,15 @@
 
         <div class="container">
 
-            <hr>
-
-            <footer>
-                <div class="row">
-                    <div class="col-lg-12">
-                        <p>Copyright &copy; KmS 2013</p>
-                    </div>
-                </div>
-            </footer>
+            <%@include file="../../snipplets/footer.jspf" %>
 
         </div><!-- /.container -->
 
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="../../public/js/jquery.js"></script>
-        <script src="../../public/js/bootstrap.js"></script>
-        <script src="../../public/js/modern-business.js"></script>
+        <script src="<%=link%>/public/js/jquery.js"></script>
+        <script src="<%=link%>/public/js/bootstrap.js"></script>
+        <script src="<%=link%>/public/js/modern-business.js"></script>
 
     </body>
 </html>

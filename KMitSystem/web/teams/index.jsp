@@ -1,20 +1,20 @@
-<%@page import="com.kmitsystem.tools.objects.Team"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <%@page import="java.util.ArrayList"%>
         <%@page import="java.util.List"%>
         <%@page import="com.kmitsystem.tools.errorhandling.Error"%> 
+        <%@page import="com.kmitsystem.tools.objects.Team"%>
 
         <%
-            String path = request.getContextPath();
+            String link = request.getContextPath();
+            
             List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
             if (errors == null) {
                 errors = new ArrayList<Error>();
             }
             List<Team> teams = (List<Team>)request.getAttribute("teams");
                 
-            
         %>
 
         <meta charset="utf-8">
@@ -25,57 +25,16 @@
         <title>Teams - KmS</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="<%=path%>/public/css/css/bootstrap.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
 
         <!-- Add custom CSS here -->
-        <link href="<%=path%>/public/css/css/modern-business.css" rel="stylesheet">
-        <link href="<%=path%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/css/modern-business.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
     <body>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-                    <a class="navbar-brand" href="<%=path%>/">KmS</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="<%=path%>/teams">Teams</a></li>
-                        <li><a href="<%=path%>/tournaments">Turniere</a></li> 
-                        <li><a href="<%=path%>/statistics">Statistiken</a></li> 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li role="presentation" class="dropdown-header">For your Interest</li>
-                                <li role="presentation" class="divider"></li>
-                                <li><a href="<%=path%>/about">About</a></li>
-                                <li><a href="<%=path%>/faq">FAQ</a></li>
-                                <li><a href="<%=path%>/contact">Kontakt</a></li>
-                                <li><a href="<%=path%>/service">Info</a></li>
-                                <li><a href="<%=path%>/sidebar">Sidebar Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<%=path%>/user/profil">Profil</a></li> 
-                                <li><a href="<%=path%>/user/dashboard">Dashboard</a></li> 
-                                <li><a href="<%=path%>">Logout</a></li> 
-                            </ul>
-                        </li>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container -->
-        </nav>
+        <%@include file="../snipplets/header_private.jspf" %>
 
         <!-- Page Content -->
 
@@ -85,7 +44,7 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Teams <small>Suche spezielle Turniere oder deine Freunde!</small></h1>
                     <ol class="breadcrumb">
-                        <li><a href="<%=path%>">Home</a></li>
+                        <li><a href="<%=link%>">Home</a></li>
                         <li class="active">Teams</li>
                     </ol>
                 </div>
@@ -93,7 +52,7 @@
 
             <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
 
-                <a class="btn btn-success" href="<%=path%>/teams/create"><span class="fa fa-pencil"> Team erstellen <i class="fa fa-angle-right"></i></a>
+                <a class="btn btn-success" href="<%=link%>/teams/create"><span class="fa fa-pencil"> Team erstellen <i class="fa fa-angle-right"></i></a>
 
             </div><!-- .row -->
 
@@ -101,7 +60,7 @@
                     <div class="col-lg-12">
                         <h2 class="page-header">Teamsuche</h2>
                         <div class="row well">
-                            <form style="well" class="form-horizontal" role="form" action="<%=path%>/teams">
+                            <form style="well" class="form-horizontal" role="form" action="<%=link%>/teams">
 
                                 <div class="col-lg-4 col-lg-offset-1">
 
@@ -164,14 +123,14 @@
             <div class="row">
 
                 <div class="col-md-7">
-                    <a href="<%=path%>/team/profile?team=<%=teams.get(idx).getName()%>"><img class="img-responsive" src="http://placehold.it/750x350"></a>
+                    <a href="<%=link%>/team/profile?team=<%=teams.get(idx).getName()%>"><img class="img-responsive" src="http://placehold.it/750x350"></a>
                 </div>
 
                 <div class="col-md-5">
                     <h3><%= teams.get(idx).getName() %></h3>
                     <h4>Subheading</h4>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                    <a class="btn btn-success" href="<%=path%>/team/profile?team=<%=teams.get(idx).getName()%>">Zum Team <i class="fa fa-angle-right"></i></a>
+                    <a class="btn btn-success" href="<%=link%>/team/profile?team=<%=teams.get(idx).getName()%>">Zum Team <i class="fa fa-angle-right"></i></a>
                 </div>
 
             </div>
@@ -180,21 +139,15 @@
 
             <div class="container">
 
-                <footer>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p>Copyright &copy; KmS 2013</p>
-                        </div>
-                    </div>
-                </footer>
+                <%@include file="../snipplets/footer.jspf" %>
 
             </div><!-- /.container -->
 
             <!-- Bootstrap core JavaScript -->
             <!-- Placed at the end of the document so the pages load faster -->
-            <script src="<%=path%>/public/js/jquery.js"></script>
-            <script src="<%=path%>/public/js/bootstrap.js"></script>
-            <script src="<%=path%>/public/js/modern-business.js"></script>
+            <script src="<%=link%>/public/js/jquery.js"></script>
+            <script src="<%=link%>/public/js/bootstrap.js"></script>
+            <script src="<%=link%>/public/js/modern-business.js"></script>
 
     </body>
 </html>
