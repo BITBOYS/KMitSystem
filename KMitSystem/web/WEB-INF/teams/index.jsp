@@ -1,13 +1,14 @@
-<%@page import="com.kmitsystem.tools.objects.Team"%>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <%@page import="java.util.ArrayList"%>
         <%@page import="java.util.List"%>
         <%@page import="com.kmitsystem.tools.errorhandling.Error"%> 
-
+        <%@page import="com.kmitsystem.tools.objects.Team"%>
         <%
             String path = request.getContextPath();
+            System.out.println(path);
             List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
             if (errors == null) {
                 errors = new ArrayList<Error>();

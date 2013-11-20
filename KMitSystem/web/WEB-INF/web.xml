@@ -28,6 +28,10 @@
         <servlet-name>ChangeUserSettings</servlet-name>
         <servlet-class>com.kmitsystem.servlets.user.ChangeUserSettings</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeamDashboardServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.team.TeamDashboardServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TeamsCreateServlet</servlet-name>
         <url-pattern>/teams/create</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>ChangeUserSettings</servlet-name>
         <url-pattern>/ChangeUserSettings</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamDashboardServlet</servlet-name>
+        <url-pattern>/team/dashboard</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

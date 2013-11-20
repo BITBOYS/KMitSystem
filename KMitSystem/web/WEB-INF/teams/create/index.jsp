@@ -1,10 +1,10 @@
-<%@page import="com.kmitsystem.tools.objects.User"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="com.kmitsystem.tools.errorhandling.Error"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <%@page import="com.kmitsystem.tools.objects.User"%>
+        <%@page import="java.util.ArrayList"%>
+        <%@page import="java.util.List"%>
+        <%@page import="com.kmitsystem.tools.errorhandling.Error"%>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Teams erstellen">
@@ -13,7 +13,7 @@
         <% 
             String path = request.getContextPath();
             
-            List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
+            List<com.kmitsystem.tools.errorhandling.Error> errors = (ArrayList<com.kmitsystem.tools.errorhandling.Error>) request.getAttribute("errors");
             if (errors == null) {
                 errors = new ArrayList<Error>();
             }
