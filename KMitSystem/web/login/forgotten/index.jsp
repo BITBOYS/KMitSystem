@@ -70,6 +70,25 @@
                     </form>
 
             </div><!-- /.row -->
+            
+            <div class="row">
+                
+                <%System.out.print("Errors:  "+errors);
+                if (errors.size() > 0) {
+                        for (int idx = 0; idx < errors.size(); idx++) {
+                            if (errors.get(idx).getStatus().equals("INFO")) {
+                %>
+
+                      <div class="alert alert-info"> <%= errors.get(idx).getErrorMessage()%> </div>
+
+                <% } else {%>
+                      <div class="alert alert-danger"> <%= errors.get(idx).getErrorMessage()%> </div>  
+                <%   }
+                        }
+                        request.getSession().setAttribute("errors", null);
+                    }%>
+                
+            </div>
 
         </div><!-- /.container -->
 

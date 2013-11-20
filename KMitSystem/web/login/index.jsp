@@ -48,16 +48,18 @@
                 </div>
 
                 <!-- Alerts -->
-                <div class="alert alert-info">Check deine Mails und bestätige deinen Account.</div>
+                <%System.out.print("dededed "+errors);
+                if (errors.size() > 0) {
+                        for (int idx = 0; idx < errors.size(); idx++) {
+                            if (errors.get(idx).getStatus().equals("INFO")) {
+                %>
 
-                <div class="alert alert-success">Dein Account wurde bestätigt. Log dich jetzt mit deinen Benutzerdaten ein.</div>
+                      <div class="alert alert-info"> <%= errors.get(idx).getErrorMessage()%> </div>
 
-                <% if (errors.size() > 0) {
-                        for (int idx = 0; idx < errors.size(); idx++) {%>
-
-                <div class="alert alert-danger"> <%= errors.get(idx).getErrorMessage()%> </div>
-
-                <% }
+                <% } else {%>
+                      <div class="alert alert-warning"> <%= errors.get(idx).getErrorMessage()%> </div>  
+                <%   }
+                        }
                         request.getSession().setAttribute("errors", null);
                     }%>
 

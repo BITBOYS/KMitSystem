@@ -1,3 +1,6 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmitsystem.tools.errorhandling.Error"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -11,6 +14,11 @@
 
         <%            String link = request.getContextPath();
             String loged_in = String.valueOf(request.getSession().getAttribute("loged_in"));
+
+            List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
+            if (errors == null) {
+                errors = new ArrayList<Error>();
+            }
         %>
 
         <!-- Bootstrap core CSS -->
@@ -76,8 +84,21 @@
         <div class="section">
 
             <div class="container">
+                
+                <%System.out.print("dededed "+errors);
+                if (errors.size() > 0) {
+                        for (int idx = 0; idx < errors.size(); idx++) {
+                            if (errors.get(idx).getStatus().equals("INFO")) {
+                %>
 
-                <div class="alert alert-info">Erfolgreich ausgeloggt.</div>
+                      <div class="alert alert-info"> <%= errors.get(idx).getErrorMessage()%> </div>
+
+                <% } else {%>
+                      <div class="alert alert-danger"> <%= errors.get(idx).getErrorMessage()%> </div>  
+                <%   }
+                        }
+                        request.getSession().setAttribute("errors", null);
+                    }%>
 
                 <div class="row">
                     <div class="col-lg-4 col-md-4">

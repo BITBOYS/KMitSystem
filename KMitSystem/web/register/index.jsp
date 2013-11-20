@@ -40,14 +40,21 @@
 
             <div class="row">
 
-                <% if (errors.size() > 0) {
-                    for (int idx = 0; idx < errors.size(); idx++) {%>
+                <!-- Alerts -->
+                <%System.out.print("Errors: "+errors);
+                if (errors.size() > 0) {
+                        for (int idx = 0; idx < errors.size(); idx++) {
+                            if (errors.get(idx).getStatus().equals("INFO")) {
+                %>
 
-                <div class="alert alert-warning"> <%= errors.get(idx).getErrorMessage()%> </div>
+                      <div class="alert alert-info"> <%= errors.get(idx).getErrorMessage()%> </div>
 
-                <% }
-                    request.getSession().setAttribute("errors", null);
-                }%>
+                <% } else {%>
+                      <div class="alert alert-warning"> <%= errors.get(idx).getErrorMessage()%> </div>  
+                <%   }
+                        }
+                        request.getSession().setAttribute("errors", null);
+                    }%>
 
                 <div class="col-lg-12">
                     <h1 class="page-header">Sign Up <small>Viel Spaﬂ beim Kickern!</small></h1>

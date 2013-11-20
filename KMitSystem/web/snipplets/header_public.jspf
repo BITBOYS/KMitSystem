@@ -32,8 +32,18 @@
                         <li><a href="<%=path%>/faq">FAQ</a></li>
                         <li><a href="<%=path%>/sidebar">Index Page</a></li>
                     </ul>
+
                 </li>
             </ul>
+            <% /* System.out.print(pageContext.getPage().getClass().getPackage() + "/" + pageContext.getPage().getClass().getSimpleName().toString()); System.out.print(path);
+                             if(pageContext.getPage().toString().equals("null/index_jsp")) */%>
+
+            <form class="navbar-form navbar-left col-lg-8" role="search" action="#">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Suche Turnier, Team, User" name="search_form">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
 </nav>
