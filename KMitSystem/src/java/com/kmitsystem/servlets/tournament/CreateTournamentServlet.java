@@ -36,7 +36,7 @@ public class CreateTournamentServlet extends HttpServlet {
         String password = request.getParameter("password");
         String reenter_password = request.getParameter("reenter_password");
 //        User leader = GET USER FROM SESSION
-        User leader = new User("Maik");
+        String leader = "Maik";
         BaseResult result = new BaseResult();
         
         if(password.equals(reenter_password)) {
