@@ -14,6 +14,7 @@ import com.kmitsystem.tools.database.queries.DBTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBUserTournamentQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.objects.BaseResult;
+import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Date;
 
@@ -26,10 +27,11 @@ public class TournamentServiceProvider {
     AddTeamValidator addTeamValidator = new AddTeamValidator();
     GetEverythingValidator getEverythingValidator = new GetEverythingValidator();
     
-    public BaseResult createTeam(CreateTournamentInput input) {
+    public BaseResult createTournament(CreateTournamentInput input) {
         BaseResult result = new BaseResult();
 
         if(createTournamentValidator.validate(input)) {
+            
             // prepare the input
             String name = input.getName();
             String password = input.getPassword();
@@ -41,8 +43,8 @@ public class TournamentServiceProvider {
             String term_of_application = input.getTerm_of_application();
             
             // call the database
-            //TODO:
-//            DBTournamentQueries.createTournament(name, password, leader, end_date, start_date, nr_matchdays, venue, term_of_application);
+            //TODO:Date
+            DBTournamentQueries.createTournament(name, password, leader, null, null, nr_matchdays, venue, null);
         }
         
         // write the errors into the result object and empty the ErrorHandler
@@ -84,8 +86,8 @@ public class TournamentServiceProvider {
             
             // call the database
             result.setTournament(DBTournamentQueries.getTournament(tournamentname));
-//            TODO
-//            result.setTournament(DBTeamTournamentQueries.getAllTournamentsFromTeam(teamname));
+            result.setTeams(DBTeamTournamentQueries.getAllTeamsFromTournament(tournamentname));
+            result.setMember(DBUserTournamentQueries.getAllUserFromTournament(tournamentname));
         }
         
         // write the errors into the result object and empty the ErrorHandler
@@ -106,6 +108,8 @@ public class TournamentServiceProvider {
         String team_name = input.getTeam();
         String tournament_name = input.getTournament();
         String user_name = input.getUser();
+        //TODO: runing, finished, Date
+        
 
         // call the database
         // search tournament
@@ -118,7 +122,7 @@ public class TournamentServiceProvider {
         
         // search user
         if(user_name != null && !user_name.equals(""))
-            result.addTournaments(DBUserTournamentQueries.getAllTournamentsFromUser(user_name));
+            result.addTournaments(DBUserTournamentQueries.getAllTournamentFromUser(user_name));
         
         // write the errors into the result object and empty the ErrorHandler
         if(ErrorHandler.getErrors().size() > 0) {

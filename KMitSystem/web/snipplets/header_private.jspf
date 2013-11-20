@@ -18,7 +18,8 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li class="active"><a href="<%=path%>/teams">Teams</a></li>
+                <!--  class="active" -->
+                <li><a href="<%=path%>/teams">Teams</a></li>
                 <li><a href="<%=path%>/tournaments">Turniere</a></li> 
                 <li><a href="<%=path%>/statistics">Statistiken</a></li> 
                 <li class="dropdown">

@@ -9,6 +9,8 @@ package com.kmitsystem.servlets.tournament;
 import com.kmitsystem.servlets.team.*;
 import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.services.team.input.AddPlayerInput;
+import com.kmitsystem.services.tournament.TournamentServiceProvider;
+import com.kmitsystem.services.tournament.input.AddTeamInput;
 import com.kmitsystem.tools.objects.BaseResult;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -18,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Maik
+ * @author Malte
  */
 public class AddTeamServlet extends HttpServlet {
 
@@ -36,13 +38,13 @@ public class AddTeamServlet extends HttpServlet {
         // get the user and the team from the session and use it as input
 //        User user = (User) request.getSession().getAttribute("user");
 //        Team team = (Team) request.getSession().getAttribute("team");
-        String username = request.getParameter("username");
+        String tournamentname = request.getParameter("tournamentname");
         String teamname = request.getParameter("teamname");
         
-        TeamServiceProvider provider = new TeamServiceProvider();
-        AddPlayerInput input = new AddPlayerInput(username, teamname);
+        TournamentServiceProvider provider = new TournamentServiceProvider();
+        AddTeamInput input = new AddTeamInput(tournamentname, teamname);
         
-        BaseResult result = provider.addPlayer(input);
+        BaseResult result = provider.addTeam(input);
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {
@@ -50,7 +52,7 @@ public class AddTeamServlet extends HttpServlet {
         }
         
         // redirect to dashboard of the joined team
-        response.sendRedirect("MaikDummy");
+        response.sendRedirect("#");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

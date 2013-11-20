@@ -1,3 +1,7 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kmitsystem.tools.objects.Tournament"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmitsystem.tools.errorhandling.Error"%> 
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,9 +12,14 @@
 
         <title>Turniere - KmS</title>
 
-        <%  
-            String link = request.getContextPath();
+        <%            String link = request.getContextPath();
             String loged_in = String.valueOf(session.getAttribute("loged_in"));
+
+            List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
+            if (errors == null) {
+                errors = new ArrayList<Error>();
+            }
+            List<Tournament> tournaments = (List<Tournament>) request.getAttribute("tournaments");
         %>
 
         <!-- Bootstrap core CSS -->
@@ -24,7 +33,7 @@
     <body>
 
         <%@include file="../snipplets/header_private.jspf" %>
-      
+
 
         <!-- Page Content -->
 
@@ -83,12 +92,12 @@
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="running_search"> Turnier l&auml;uft noch
+                                            <input type="checkbox" name="running_search"> laufendes Turnier
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="finished_search"> Turnier beendet
+                                            <input type="checkbox" name="finished_search"> beendetes Turnier
                                         </label>
                                     </div>
                                     <p class="help-block">Suche nach Turniernamen oder speziell nach Turnieren in denen Teams und User spielen.</p>
@@ -100,41 +109,42 @@
                             </form>
                         </div>
                     </div>
-                </div> <!-- row -->  
+                </div> <!-- row --> 
+
+                <hr>
+
+                <% if (tournaments != null) { %>
+
+                <% if (errors.size() > 0) { %>
+                <div class="alert alert-info">Es wurden keine Turniere geunden</div>
+                <% } else { %>
+                <% if (tournaments.size() == 1) {%>
+                <div class="alert alert-success">Es wurde <%=tournaments.size()%> Turniere gefunden gefunden</div>
+                <% } else {%>
+                <div class="alert alert-success">Es wurden <%=tournaments.size()%> Turniere gefunden</div>
+                <% } %>
+                <% } %>
+
+                <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
 
                 <hr>
 
                 <div class="row">
 
                     <div class="col-md-7">
-                        <a href="<%=link%>/tournaments/profil"><img class="img-responsive" src="http://placehold.it/750x350"></a>
+                        <a href="<%=link%>/tournaments/profil?tournament=<%=tournaments.get(idx).getName()%>"><img class="img-responsive" src="http://placehold.it/750x350"></a>
                     </div>
 
                     <div class="col-md-5">
-                        <h3>Turnier Name</h3>
-                        <h4>Subheading</h4>
+                        <h3><%=tournaments.get(idx).getName()%></h3>
+                        <h4>Leader: <a href="<%=link%>/user/profil?user=<%=tournaments.get(idx).getLeader()%>"></a></h4>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                        <a class="btn btn-success" href="<%=link%>/tournaments/profil">Zum Turnier <i class="fa fa-angle-right"></i></a>
+                        <a class="btn btn-success" href="<%=link%>/tournaments/profil?tournament=<%=tournaments.get(idx).getName()%>">Zum Turnier <i class="fa fa-angle-right"></i></a>
                     </div>
 
                 </div>
 
-                <hr>
-
-                <div class="row">
-
-                    <div class="col-md-7">
-                        <a href="<%=link%>/tournaments/profil"><img class="img-responsive" src="http://placehold.it/750x350"></a>
-                    </div>
-
-                    <div class="col-md-5">
-                        <h3>Turnier Name</h3>
-                        <h4>Subheading</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                        <a class="btn btn-success" href="<%=link%>/tournaments/profil">Zum Turnier <i class="fa fa-angle-right"></i></a>
-                    </div>
-
-                </div>
+                <% } } %>
 
                 <hr>
 

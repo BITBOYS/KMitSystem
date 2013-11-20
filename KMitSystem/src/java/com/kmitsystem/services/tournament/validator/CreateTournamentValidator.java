@@ -20,7 +20,7 @@ public class CreateTournamentValidator {
         }
         
         // check if the leader exists
-        if(!DBUserQueries.isEMailExisting(input.getLeader().getEmail()) &&
+        if(!DBUserQueries.isEMailExisting(input.getLeader().getEmail()) ||
            !DBUserQueries.isUsernameExisting(input.getLeader().getUsername())) {
             ErrorHandler.handle(Errors.USER_DOES_NOT_EXIST, CreateTournamentValidator.class.getSimpleName());
             return false;

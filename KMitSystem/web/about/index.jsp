@@ -99,25 +99,6 @@
                     </ul>
                 </div>
 
-                <div class="col-sm-4">
-                    <img class="img-circle img-responsive" src="http://placehold.it/200x200">
-                    <h3>Louis Chan <small>Testoooo o o o o o o o oo o </small></h3>
-                    <p>Macht nixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!</p>
-                    <ul class="list-unstyled list-inline list-social-icons">
-                        <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-                        <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-                    </ul>
-                </div>
-
-                <div class="col-sm-4">
-                    <img class="img-circle img-responsive" src="http://placehold.it/200x200">
-                    <h3>Lorenz Spitzm&uuml;ller <small>Grafiker</small></h3>
-                    <p>Macht heftig klar!</p>
-                    <ul class="list-unstyled list-inline list-social-icons">
-                        <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-                        <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-                    </ul>
-                </div>
             </div>
 
         </div><!-- /.container -->

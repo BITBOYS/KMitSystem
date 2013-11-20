@@ -15,7 +15,7 @@ import com.kmitsystem.tools.errorhandling.Error;
 import com.kmitsystem.tools.errorhandling.Errors;
 import java.util.List;
 /**
- * @author Maik
+ * @author Malte
  */
 public class CreateTournamentServlet extends HttpServlet {
 

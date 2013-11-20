@@ -4,6 +4,7 @@ package com.kmitsystem.services.tournament.result;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
+import com.kmitsystem.tools.objects.User;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class GetEverythingResult extends BaseResult {
     
     private Tournament tournament = new Tournament();
     private List<Team> teams = new ArrayList<Team>();
+    private List<User> member = new ArrayList<User>();
     
     public GetEverythingResult() {
         super();
@@ -25,7 +27,7 @@ public class GetEverythingResult extends BaseResult {
         this.teams = teams;
     }
     
-    public Tournament getTeam() {
+    public Tournament getTuornament() {
         return tournament;
     }
     
@@ -40,10 +42,18 @@ public class GetEverythingResult extends BaseResult {
     public void setTeams(List<Team> teams) {
         this.teams = teams;
     }
+    
+    public List<User> getMember() {
+        return member;
+    }
+
+    public void setMember(List<User> member) {
+        this.member = member;
+    }
 
     @Override
     public String toString() {
-        return "GetEverythingResult{" +"tournament=" + tournament + ", teams=" + teams + '}';
+        return "GetEverythingResult{" +"tournament=" + tournament + ", teams=" + teams + ", user=" + member + '}';
     }
     
 }
