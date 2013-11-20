@@ -1,12 +1,13 @@
-
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.kmitsystem.servlets.team;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
-import com.kmitsystem.services.team.input.GetEverythingInput;
-import com.kmitsystem.services.team.result.GetEverythingResult;
+import com.kmitsystem.services.team.input.SearchTeamInput;
+import com.kmitsystem.services.team.result.SearchTeamResult;
 import com.kmitsystem.tools.objects.Team;
-import com.kmitsystem.tools.objects.Tournament;
-import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
@@ -17,13 +18,14 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Smadback
+ * @author v094702
  */
-public class TeamProfileServlet extends HttpServlet {
+public class TeamsServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -33,34 +35,34 @@ public class TeamProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String name = request.getParameter("team");
+        String team =  request.getParameter("team");
+        String tournament = request.getParameter("tournament");
+        String user = request.getParameter("user");
         
         TeamServiceProvider provider = new TeamServiceProvider();
-        GetEverythingInput input = new GetEverythingInput(name);
-        GetEverythingResult result = provider.getEverything(input);
+        SearchTeamInput input = new SearchTeamInput(team, tournament, user);
+        SearchTeamResult result = provider.searchTeam(input);
         
         // prepare the output and write it into the session
-        Team team = result.getTeam();
-        List<User> member = result.getMember();
-        List<Tournament> tournaments = result.getTournaments();
+        List<Team> teams = result.getTeams();
         
-        request.setAttribute("team", team);
-        request.setAttribute("member", member);
-        request.setAttribute("tournaments", tournaments);
+        // write the results into attributes
+        request.setAttribute("teams", teams);   
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {
-            request.getSession().setAttribute("errors", result.getErrorList());
+            request.setAttribute("errors", result.getErrorList());
         }
         
         // redirect to the page www.kmitsystem.de/teams
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/teams/profile/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/teams/index.jsp");
         rd.include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -74,7 +76,8 @@ public class TeamProfileServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -96,5 +99,4 @@ public class TeamProfileServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }
