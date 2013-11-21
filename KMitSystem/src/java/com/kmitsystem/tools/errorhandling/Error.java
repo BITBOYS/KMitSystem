@@ -13,6 +13,7 @@ public class Error {
     
     public static final String INFO = "info";
     public static final String ERROR = "error";
+    public static final String SUCCESS = "success";
     
     private int errorCode;
     private String errorMessage;

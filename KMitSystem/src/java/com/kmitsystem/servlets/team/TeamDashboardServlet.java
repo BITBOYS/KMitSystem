@@ -2,10 +2,13 @@
 package com.kmitsystem.servlets.team;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
-import com.kmitsystem.services.team.input.CreateTeamInput;
+import com.kmitsystem.services.team.input.EditTeamInput;
+import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.errorhandling.Errors;
+import com.kmitsystem.tools.errorhandling.Error;
 import com.kmitsystem.tools.objects.BaseResult;
+import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -33,56 +36,58 @@ public class TeamDashboardServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher rd;     
-        String team = request.getParameter("team");
+        RequestDispatcher rd;
+        String teamname = request.getParameter("team");
+
+        // get the team and write it into the session
+        Team team = DBTeamQueries.getTeam(teamname);
+        request.setAttribute("team", team);
         
         // get all users and write them into an attribute 
-        List<User> users;   
-        users = DBUserQueries.getAllUser();
+        List<User> users = DBUserQueries.getAllUser();
         request.setAttribute("users", users);
         
         // check if the user filled the form or if he came from another page
-        if(request.getParameter("name") != null) {
-
+        if(request.getParameter("name_old") != null) {
+            
             // prepare the input
-            String name = request.getParameter("name");
-            String tag = request.getParameter("tag");
-            String password = request.getParameter("password");
-            String reenter_password = request.getParameter("reenter_password");
-            // @TODO: get the username from the leader out of the session
-            String leader = "Maik";
+            String name_old  = request.getParameter("name_old");
+            String name_new  = request.getParameter("name_new");
+            String name_new2 = request.getParameter("name_new2");
             
             // prepare the output
             BaseResult result = new BaseResult();
             
-            // check if both passwords are equal, if true create the team
-            if(password.equals(reenter_password)) {
-                TeamServiceProvider provider = new TeamServiceProvider();
-                CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
-                result = provider.createTeam(input);
-
-                // redirect to the profile of the new team
-                response.sendRedirect(request.getContextPath() + "/team/profile?team="+name);
+            // check if the name of the team is correct
+            if(name_old.equals(team.getName())) {
+                // check if both names are equal, if true change the teamname
+                if(name_new.equals(name_new2)) {
+                    TeamServiceProvider provider = new TeamServiceProvider();
+                    EditTeamInput input = new EditTeamInput(name_old, name_new, null, null, null);
+                    result = provider.editTeam(input);
+                } else {
+                    List<Error> errorList = new ArrayList<Error>();
+                    errorList.add(Errors.NAMES_NOT_EQUAL);
+                    result.setErrorList(errorList);
+                    request.setAttribute("errors", result.getErrorList());
+                }
             } else {
-                List<com.kmitsystem.tools.errorhandling.Error> errorList = new ArrayList<com.kmitsystem.tools.errorhandling.Error>();
-                errorList.add(Errors.PASSWORDS_NOT_EQUAL);
+                List<Error> errorList = new ArrayList<Error>();
+                errorList.add(Errors.NAME_IS_FALSE);
                 result.setErrorList(errorList);
                 request.setAttribute("errors", result.getErrorList());
-
-                // redirect to the teamcreation page and show the error
-                rd = request.getRequestDispatcher("/WEB-INF/teams/dashboard/index.jsp");
-                rd.include(request, response);
             }
 
             // write the errorlist into the session-attribute "errors"
             if(result.getErrorList().size() > 0) 
                 request.setAttribute("errors", result.getErrorList());
-        
-        } else {
-            // redirect to the teamcreation page without doing anything
-            rd = request.getRequestDispatcher("/WEB-INF/teams/dashboard/index.jsp");
-            rd.include(request, response);
+                
         }
+        
+        // redirect to the dashboard page of the team
+        rd = request.getRequestDispatcher("/WEB-INF/teams/dashboard/index.jsp");
+        rd.include(request, response);
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

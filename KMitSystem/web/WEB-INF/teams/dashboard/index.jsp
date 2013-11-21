@@ -1,4 +1,5 @@
 
+<%@page import="com.kmitsystem.tools.objects.Team"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kmitsystem.tools.objects.User"%>
@@ -10,15 +11,15 @@
             String link = request.getContextPath();
             
             List<User> users = (ArrayList<User>) request.getAttribute("users");
-            if (users == null) {
-                users = new ArrayList<User>();
-            }
+            if (users == null) users = new ArrayList<User>();
+            
+            Team team = (Team) request.getAttribute("team");
         %>
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="User Dshboard">
-        <meta name="author" content="Malte Dammann">
+        <meta name="author" content="Maik Schmaddebeck">
 
         <title>Team Dashboard - KmS</title>
 
@@ -55,7 +56,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h2 class="page-header">Deine Teamoptionen</h2>
+                    <h2 class="page-header"><%=team.getName()%>s Teamoptionen</h2>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#infos" data-toggle="tab">Infos</a></li>
                         <li><a href="#user" data-toggle="tab">Mitglieder</a></li>
@@ -65,19 +66,19 @@
 
                         <div class="tab-pane fade in active" id="infos">
                             <i class="fa fa-gear pull-left fa-4x"></i>
-
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Name &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="change_name" action="#">
+                                    <form class="form-horizontal" role="form" name="change_name" action="<%=path%>/team/dashboard?team=<%=team.getName()%>" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Name</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" id="name_old" placeholder="alter Name">
+                                                <input type="text" class="form-control" name="name_old" placeholder="alter Name" required>
                                             </div>
                                             <div class="col-sm-6 col-md-offset-2">
-                                                <input type="text" class="form-control" id="name_new" placeholder="neuer Name">
-                                                <input type="text" class="form-control" id="name_new2" placeholder="neuer Name">
+                                                <input type="text" class="form-control" name="name_new" placeholder="neuer Name" required>
+                                                <input type="text" class="form-control" name="name_new2" placeholder="neuer Name" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -97,7 +98,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Tag</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" id="tag_new" placeholder="neuer Tag">
+                                                <input type="text" class="form-control" name="tag_new" placeholder="neuer Tag">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -117,11 +118,11 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Passwort</label>
                                             <div class="col-sm-6">
-                                                <input type="password" class="form-control" id="password_old" placeholder="altes Passwort">
+                                                <input type="password" class="form-control" name="password_old" placeholder="altes Passwort">
                                             </div>
                                             <div class="col-sm-6 col-md-offset-2">
-                                                <input type="password" class="form-control" id="password_new" placeholder="neues Passwort">
-                                                <input type="password" class="form-control" id="password_new2" placeholder="neuer Passwort">
+                                                <input type="password" class="form-control" name="password_new" placeholder="neues Passwort">
+                                                <input type="password" class="form-control" name="password_new2" placeholder="neuer Passwort">
                                             </div>
                                         </div>
                                         <div class="form-group">

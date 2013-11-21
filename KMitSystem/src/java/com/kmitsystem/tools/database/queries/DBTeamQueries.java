@@ -43,12 +43,12 @@ public class DBTeamQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("select * from team where name=\"" + name + "\"");
+            resultSet = statement.executeQuery("select * from team where name='" + name + "'");
             resultSet.first();
             
             String teamname = resultSet.getString("name");
             String tag = resultSet.getString("tag");
-            User leader = new User();
+            User leader = new User(resultSet.getString("leader"));
             String password = resultSet.getString("password");
             Statistics statistics = new Statistics(resultSet.getInt("goals"), resultSet.getInt("goals_conceded"), resultSet.getInt("wins"), 
                     resultSet.getInt("defeats"), resultSet.getInt("tournament_wins"), resultSet.getInt("tournament_participations"));
@@ -74,6 +74,21 @@ public class DBTeamQueries {
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
+    }
+    
+    public static boolean editName(String teamname, String new_name) {
+        boolean result = false;
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            // create the team
+            result = statement.execute("");
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+        return result;
     }
     
 }
