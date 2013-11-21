@@ -2,6 +2,7 @@ package com.kmitsystem.services.team;
 
 import com.kmitsystem.services.team.input.AddPlayerInput;
 import com.kmitsystem.services.team.input.CreateTeamInput;
+import com.kmitsystem.services.team.input.EditTeamInput;
 import com.kmitsystem.services.team.input.GetEverythingInput;
 import com.kmitsystem.services.team.input.SearchTeamInput;
 import com.kmitsystem.services.team.result.GetEverythingResult;
@@ -119,6 +120,25 @@ public class TeamServiceProvider {
         return result;
     }
     
+    public BaseResult editTeam(EditTeamInput input) {
+        BaseResult result = new BaseResult();
+     
+        // prepare the input
+        String teamname = input.getTeamname();
+        String new_name = input.getNew_name();
+        
+//        // call the database
+        if(new_name != null) 
+            DBTeamQueries.editName(teamname, new_name);
+       
+//        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
+        }
+        
+        return result;
+    }
     
         
 }

@@ -27,10 +27,12 @@ public class Errors {
     public static final Error TEAM_ALREADY_IN_TOURNAMENT = new Error(14, "Das Team ist bereits Mitglied des Turniers", Error.INFO);    
     public static final Error EMAILS_NOT_EQUAL = new Error(15, "Die beiden E-Mail Adressen stimmen nicht überein", Error.ERROR);
     public static final Error NAMES_NOT_EQUAL = new Error(16, "Die beiden Namen stimmen nicht überein", Error.ERROR);
-    public static final Error SUCCESS_LOGGED_OUT = new Error(17, "Du hast dich erfolgreich ausgelogget", Error.INFO);
+    public static final Error SUCCESS_LOGGED_OUT = new Error(17, "Du hast dich erfolgreich ausgelogget", Error.SUCCESS);
     public static final Error SESSION_OUT = new Error(18, "Deine Session ist abgelaufen", Error.INFO);
     public static final Error EMAIL_CHANGE_OK = new Error(19, "Deine E-Mail wurde erfolgreich geändert", Error.INFO);
     public static final Error PASSWORD_CHANGE_REQUEST = new Error(20, "Ein neues Passwort wurde an deine Mailadresse versendet", Error.INFO); 
+    public static final Error NAME_IS_FALSE = new Error(21, "Der eingegebene Name ist falsch", Error.ERROR); 
+    public static final Error EDIT_SUCCESS = new Error(21, "Die Daten wurden erfolgreich geändert", Error.SUCCESS);
     
     
     
