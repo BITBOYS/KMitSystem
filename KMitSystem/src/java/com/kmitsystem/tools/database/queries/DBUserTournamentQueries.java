@@ -36,7 +36,8 @@ public class DBUserTournamentQueries {
                                             + "   AND teto.team = te.name" + "'"
                                             + "   AND te.name = ut.team" + "'"
                                             + "   AND ut.user = u.username" + "'"
-                                            + "   AND to.name = '" + tournamentname + "'");
+                                            + "   AND to.name = '" + tournamentname + "'"
+                                            + " ORDER BY u.username, u.wins");
             resultSet.first();
             
             
@@ -66,7 +67,8 @@ public class DBUserTournamentQueries {
                                             + "   AND teto.team = te.name" + "'"
                                             + "   AND te.name = ut.team" + "'"
                                             + "   AND ut.user = u.username" + "'"
-                                            + "   AND username = '" + username +"'");
+                                            + "   AND username = '" + username +"'"
+                                            + " ORDER BY to.name, to.start_date, to.end_date");
             resultSet.first();
             
             

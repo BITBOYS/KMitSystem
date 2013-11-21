@@ -53,7 +53,8 @@ public class DBTeamTournamentQueries {
                                                      + "nr_of_matchdays, venue, term_of_application" +
                                               " FROM tournament, team_tournament" +
                                               " WHERE team =  '" + name + "'" +
-                                              " AND tournament = name");
+                                              " AND tournament = name" +
+                                              " ORDER BY name");
             resultSet.first();
             
             while(!resultSet.isAfterLast()) {
@@ -112,7 +113,8 @@ public class DBTeamTournamentQueries {
                                                     + "team.goals, team.goals_conceded, team.tournament_wins, team.tournament_participations" +
                                               " FROM team, team_tournament" +
                                               " WHERE tournament =  '" + name + "'" +
-                                              " AND team = name");
+                                              " AND team = name" +
+                                              " ORDER BY name, team.wins");
             resultSet.first();
             
             while(!resultSet.isAfterLast()) {

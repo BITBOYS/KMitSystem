@@ -44,7 +44,7 @@ public class DBTournamentQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("select * from tournament where name=\"" + name + "\"");
+            resultSet = statement.executeQuery("select * from tournament where name=\"" + name + "\" ORDER BY name, start_date, end_date");
             resultSet.first();
 
             String tournamentname = resultSet.getString("name");
