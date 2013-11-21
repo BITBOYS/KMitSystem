@@ -86,7 +86,7 @@ public class DBTeamTournamentQueries {
             resultSet = statement.executeQuery("SELECT COUNT(*) as count "
                                     + " FROM team_tournament "
                                     + " WHERE team = '" + teamname + "'"
-                                    + "   AND tournamentname = '" + tournamentname + "'");
+                                    + "   AND tournament = '" + tournamentname + "'");
             
             resultSet.first();
             

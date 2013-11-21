@@ -78,5 +78,29 @@ public class DBTournamentQueries {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " + ex.getMessage());
         }
     }
+    
+    public static boolean editTournament(String tournamentname, String new_name, String new_password, String new_leader, String new_venue, int new_nr_matchdays, Date new_start_date, Date new_end_date, Date new_term_of_application) {
+        boolean result = false;
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            // create the tournament
+            result = statement.execute("UPDATE tournament"
+                                     + "SET name = '" + new_name + "',"
+                                         + "leader = '" + new_leader + "',"
+                                         + "start_date = '" + new_start_date + "',"
+                                         + "end_date = '" + new_end_date + "',"
+                                         + "password = '" + new_password + "',"
+                                         + "nr_of_matchdays = '" + new_nr_matchdays + "',"
+                                         + "venue = '" + new_venue + "',"
+                                         + "term_of_application = '" + new_term_of_application + "'"
+                                     + "WHERE name = '" + tournamentname + "'" );
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+        return result;
+    }
 
 }
