@@ -50,7 +50,7 @@
 
             </div><!-- /.row -->
 
-            <div class="row well col-sm-12">
+            <div class="well col-sm-12">
                 <h3>Betreiber dieser Webseite</h3>
                 <p><b>KmS</b><br>Hamburg<br>Germany</p>
                 <p>E-Mail: <a href="mailto:dede@kms.de">malte@kms.de</a></p>
