@@ -11,9 +11,9 @@ package com.kmitsystem.tools.errorhandling;
  */
 public class Error {
     
-    public static final String INFO = "info";
-    public static final String ERROR = "error";
-    public static final String SUCCESS = "success";
+    public static final String INFO = "INFO";
+    public static final String ERROR = "ERROR";
+    public static final String SUCCESS = "SUCCESS";
     
     private int errorCode;
     private String errorMessage;
