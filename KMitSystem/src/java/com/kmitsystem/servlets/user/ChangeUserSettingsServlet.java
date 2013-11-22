@@ -4,6 +4,9 @@
  */
 package com.kmitsystem.servlets.user;
 
+import com.kmitsystem.services.team.TeamServiceProvider;
+import com.kmitsystem.services.team.input.CreateTeamInput;
+import com.kmitsystem.services.user.UserServiceProvider;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.BaseResult;
@@ -18,12 +21,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.kmitsystem.tools.errorhandling.Error;
 import com.kmitsystem.tools.errorhandling.Errors;
+import com.kmitsystem.services.user.input.ChangeUserEMailInput;
+import com.kmitsystem.services.user.input.ChangeUserNameInput;
+import com.kmitsystem.services.user.input.ChangeUserPasswordInput;
 
 /**
  *
  * @author Oerlex
  */
-public class ChangeUserSettings extends HttpServlet {
+public class ChangeUserSettingsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -44,29 +50,14 @@ public class ChangeUserSettings extends HttpServlet {
         ////////////////////////
         
         if (request.getParameter("form_email") != null) {
-            String input_email_alt = request.getParameter("input_email_alt");
-            String input_email_neu1 = request.getParameter("input_email_neu1");
-            String input_email_neu2 = request.getParameter("input_email_neu2");
+            String input_email_old = request.getParameter("input_email_old");
+            String input_email_new1 = request.getParameter("input_email_new1");
+            String input_email_new2 = request.getParameter("input_email_new2");
             BaseResult result = new BaseResult();
 
-            if (DBUserQueries.isEMailExisting(input_email_alt) == true) {
-                if (input_email_neu1.equals(input_email_neu2)) {
-                    DBUserQueries.changeEmail(input_email_alt, input_email_neu1);
-                } else {
-                    List<Error> errorList = new ArrayList<Error>();
-                    errorList.add(Errors.EMAILS_NOT_EQUAL);
-                    result.setErrorList(errorList);
-                    rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                    rd.include(request, response);
-                }
-            } else {
-                List<Error> errorList = new ArrayList<Error>();
-                errorList.add(Errors.UNKNOWN_EMAIL_ERROR);
-                result.setErrorList(errorList);
-
-                rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                rd.include(request, response);
-            }
+            UserServiceProvider provider = new UserServiceProvider();
+            ChangeUserEMailInput input = new ChangeUserEMailInput(input_email_old,input_email_new1,input_email_new2);
+            result = provider.changeUserEmail(input);
 
             if (result.getErrorList().size() > 0) {
                 request.setAttribute("errors", result.getErrorList());
@@ -82,36 +73,26 @@ public class ChangeUserSettings extends HttpServlet {
         ///////////////////////
 
         if (request.getParameter("form_name") != null) {
-            String input_name_alt = request.getParameter("input_name_alt");
-            String input_name_neu1 = request.getParameter("input_name_neu1");
-            String input_name_neu2 = request.getParameter("input_name_neu2");
-            
+            String input_name_old = request.getParameter("input_name_old");
+            String input_name_new1 = request.getParameter("input_name_new1");
+            String input_name_new2 = request.getParameter("input_name_new2");
             BaseResult result = new BaseResult();
-
-            if (DBUserQueries.isUsernameExisting(input_name_alt) == true) {
-                if (input_name_neu1.equals(input_name_neu2)) {
-                    DBUserQueries.changeName(input_name_alt, input_name_neu1);
-                } else {
-                    List<Error> errorList = new ArrayList<Error>();
-                    errorList.add(Errors.NAMES_NOT_EQUAL);
-                    result.setErrorList(errorList);
-                    rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                    rd.include(request, response);
-                }
-            } else {
-                List<Error> errorList = new ArrayList<Error>();
-                errorList.add(Errors.USER_DOES_NOT_EXIST);
-                result.setErrorList(errorList);
-
-                rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                rd.include(request, response);
-            }
+            
+            UserServiceProvider provider = new UserServiceProvider();
+            ChangeUserNameInput input = new ChangeUserNameInput(input_name_old,input_name_new1,input_name_new2);
+            result = provider.changeUserName(input);
 
             if (result.getErrorList().size() > 0) {
                 request.setAttribute("errors", result.getErrorList());
             }
         }
-
+        else {
+            rd = request.getRequestDispatcher("/user/dashboard/index.jsp");
+            rd.include(request, response);
+        }
+        
+        
+        
          ///////////////////////////
          //CHANGE PASSWORD SECTION//
          ///////////////////////////
@@ -120,35 +101,24 @@ public class ChangeUserSettings extends HttpServlet {
             
             //Wie komme ich an die EMail Adresse aus der Session ?
             
-            String input_password_alt = request.getParameter("input_password_alt");
-            String input_password_neu1 = request.getParameter("input_password_neu1");
-            String input_password_neu2 = request.getParameter("input_password_neu2");
-            
+            String input_password_old = request.getParameter("input_password_old");
+            String input_password_new1 = request.getParameter("input_password_new1");
+            String input_password_new2 = request.getParameter("input_password_new2");            
             BaseResult result = new BaseResult();
-
-            if (DBUserQueries.userPasswordOk("PLATZHALTER",input_password_alt) == true) {
-                if (input_password_neu1.equals(input_password_neu2)) {
-                    DBUserQueries.changePassword(input_password_alt, input_password_neu1);
-                } else {
-                    List<Error> errorList = new ArrayList<Error>();
-                    errorList.add(Errors.PASSWORDS_NOT_EQUAL);
-                    result.setErrorList(errorList);
-                    rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                    rd.include(request, response);
-                }
-            } else {
-                List<Error> errorList = new ArrayList<Error>();
-                errorList.add(Errors.USER_DOES_NOT_EXIST);
-                result.setErrorList(errorList);
-
-                rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                rd.include(request, response);
-            }
+            
+            UserServiceProvider provider = new UserServiceProvider();
+            ChangeUserPasswordInput input = new ChangeUserPasswordInput(input_password_old,input_password_new1,input_password_new2);
+            
+            result = provider.changeUserPassword(input);
+            
 
             if (result.getErrorList().size() > 0) {
                 request.setAttribute("errors", result.getErrorList());
             }
 
+        }   else {
+            rd = request.getRequestDispatcher("/user/dashboard/index.jsp");
+            rd.include(request, response);
         }
     }
 

@@ -34,6 +34,7 @@ public class Errors {
     public static final Error NAME_IS_FALSE = new Error(21, "Der eingegebene Name ist falsch", Error.ERROR); 
     public static final Error EDIT_SUCCESS = new Error(22, "Die Daten wurden erfolgreich geändert", Error.SUCCESS);
     public static final Error PASSWORD_FALSE = new Error(23, "Das eingegebene Passwort ist inkorrekt", Error.ERROR);
+    public static final Error PASSWORD_NOT_VALID = new Error(24, "Das gewählte Password entspricht nicht den Richtlinen", Error.ERROR);
     
     
     
