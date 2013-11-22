@@ -23,7 +23,7 @@
 
     <body>
 
-        <%@include file="../../snipplets/header_private.jspf" %>
+        <%@include file="../../snipplets/header.jspf" %>
         
 
         <!-- Page Content -->

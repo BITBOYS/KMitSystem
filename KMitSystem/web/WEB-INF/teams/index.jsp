@@ -33,48 +33,7 @@
 
     <body>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-                    <a class="navbar-brand" href="<%=link%>/">KmS</a>
-                </div>
-
-                <!-- Collect the nav links, forms, and other content for toggling -->
-                <div class="collapse navbar-collapse navbar-ex1-collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="<%=link%>/teams">Teams</a></li>
-                        <li><a href="<%=link%>/tournaments">Turniere</a></li> 
-                        <li><a href="<%=link%>/statistics">Statistiken</a></li> 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li role="presentation" class="dropdown-header">For your Interest</li>
-                                <li role="presentation" class="divider"></li>
-                                <li><a href="<%=link%>/about">About</a></li>
-                                <li><a href="<%=link%>/faq">FAQ</a></li>
-                                <li><a href="<%=link%>/contact">Kontakt</a></li>
-                                <li><a href="<%=link%>/service">Info</a></li>
-                                <li><a href="<%=link%>/sidebar">Sidebar Page</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">User <b class="caret"></b></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="<%=link%>/user/profil">Profil</a></li> 
-                                <li><a href="<%=link%>/user/dashboard">Dashboard</a></li> 
-                                <li><a href="<%=link%>">Logout</a></li> 
-                            </ul>
-                        </li>
-                </div><!-- /.navbar-collapse -->
-            </div><!-- /.container -->
-        </nav>
+        <%@include file="../snipplets/header.jspf" %>
 
         <!-- Page Content -->
 
@@ -179,13 +138,7 @@
 
             <div class="container">
 
-                <footer>
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <p>Copyright &copy; KmS 2013</p>
-                        </div>
-                    </div>
-                </footer>
+                <%@include file="../../snipplets/footer.jspf" %>
 
             </div><!-- /.container -->
 

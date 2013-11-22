@@ -23,16 +23,7 @@
 
     <body>
 
-        <%
-            // Including Header
-            if (!loged_in.equals("true") || loged_in == null) {
-        %>
-        <%@include file="../snipplets/header_public.jspf" %>
-        <%
-        } else {
-        %>
-        <%@include file="../snipplets/header_private.jspf" %>
-        <% }%>
+        <%@include file="../snipplets/header.jspf" %>
 
         <div class="container">
 

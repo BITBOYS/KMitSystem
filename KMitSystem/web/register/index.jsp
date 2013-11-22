@@ -32,7 +32,7 @@
 
     <body>
 
-        <%@include file="../snipplets/header_public.jspf" %>
+        <%@include file="../snipplets/header.jspf" %>
 
         <!-- Page Content -->
 
