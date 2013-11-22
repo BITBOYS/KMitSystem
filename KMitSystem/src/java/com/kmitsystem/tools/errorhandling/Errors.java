@@ -14,7 +14,7 @@ public class Errors {
     public static final Error NAME_ALREADY_TAKEN_ERROR = new Error(1, "Der Name wird bereits verwendet", Error.INFO);
     public static final Error DB_ERROR = new Error(2, "Auf der Datenbank ist ein Fehler aufgetreten", Error.ERROR);
     public static final Error TEAM_DOES_NOT_EXIST = new Error(3, "Das Team existiert nicht", Error.INFO);
-    public static final Error USER_DOES_NOT_EXIST = new Error(4, "Der Benutzer existiert nicht", Error.INFO);
+    public static final Error USER_DOES_NOT_EXIST = new Error(4, "Der Benutzer existiert nicht", Error.ERROR);
     public static final Error USER_ALREADY_IN_TEAM = new Error(5, "Der Benutzer ist bereit Mitglied des Teams", Error.INFO); 
     public static final Error EMAIL_ALREADY_TAKEN_ERROR = new Error(6, "Die E-Mail wird bereits verwendet", Error.ERROR);
     public static final Error UNKNOWN_EMAIL_ERROR = new Error(7, "Die E-Mail Adresse wurde nicht gefunden", Error.ERROR);
@@ -32,7 +32,8 @@ public class Errors {
     public static final Error EMAIL_CHANGE_OK = new Error(19, "Deine E-Mail wurde erfolgreich geändert", Error.INFO);
     public static final Error PASSWORD_CHANGE_REQUEST = new Error(20, "Ein neues Passwort wurde an deine Mailadresse versendet", Error.INFO); 
     public static final Error NAME_IS_FALSE = new Error(21, "Der eingegebene Name ist falsch", Error.ERROR); 
-    public static final Error EDIT_SUCCESS = new Error(21, "Die Daten wurden erfolgreich geändert", Error.SUCCESS);
+    public static final Error EDIT_SUCCESS = new Error(22, "Die Daten wurden erfolgreich geändert", Error.SUCCESS);
+    public static final Error PASSWORD_FALSE = new Error(23, "Das eingegebene Passwort ist inkorrekt", Error.ERROR);
     
     
     
