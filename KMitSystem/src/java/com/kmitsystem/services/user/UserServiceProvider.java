@@ -14,6 +14,7 @@ import com.kmitsystem.services.user.validator.ChangeUserPasswordValidator;
 import com.kmitsystem.services.user.validator.ChangeUserNameValidator;
 import com.kmitsystem.services.user.input.ChangeUserNameInput;
 import com.kmitsystem.services.user.input.ChangeUserPasswordInput;
+import com.kmitsystem.services.user.result.SignInResult;
 
 /**
  * @author Alex, Malte
@@ -48,23 +49,22 @@ public class UserServiceProvider {
         return result;
      }
     
-    public BaseResult signInUser(SignInInput input) {
-        BaseResult result = new BaseResult();
+    public SignInResult signInUser(SignInInput input) {
+        SignInResult result = new SignInResult();
 
-        if(signInValidator.validate(input)) {
-            // prepare the input
-            String email = input.getEmail();
-            String password = input.getPassword();
-            
-            // call the database
-            DBUserQueries.userPasswordOk(email, password);
-        }
+        // prepare the input
+        String email = input.getEmail();
+        String password = input.getPassword();
+
+        // call the database
+        result.setUser(DBUserQueries.loginUser(email, password));
         
         // write the errors into the result object and empty the ErrorHandler
         if(ErrorHandler.getErrors().size() > 0) {
             result.setErrorList(ErrorHandler.getErrors());                        
             ErrorHandler.clear();
-        }        
+        }
+        
         return result;
      }
     
