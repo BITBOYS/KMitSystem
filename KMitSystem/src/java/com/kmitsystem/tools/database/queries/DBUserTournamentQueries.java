@@ -61,7 +61,7 @@ public class DBUserTournamentQueries {
             statement = con.createStatement();
             
             
-            resultSet = statement.executeQuery("SELECT to.name, to.leader, to.start_date, to.end_date, to.nr_of_matchdays, to.venue, to.term_of_application, to.password"
+            resultSet = statement.executeQuery("SELECT to.name, to.description, to.leader, to.start_date, to.end_date, to.nr_of_matchdays, to.venue, to.term_of_application, to.password"
                                             + " FROM  tournament as to, team_tournament as teto, team as te, user_team as ut, user as u"
                                             + " WHERE to.name = teto.tournament"
                                             + "   AND teto.team = te.name" + "'"
@@ -73,7 +73,7 @@ public class DBUserTournamentQueries {
             
             
             while(!resultSet.isAfterLast()) {
-                tournaments.add(new Tournament(resultSet.getString("to.name"), resultSet.getString("to.password"), new User(resultSet.getString("to.leader")), resultSet.getDate("to.start_date"), resultSet.getDate("to.end_date"), resultSet.getInt("to.nr_of_matchdays"), resultSet.getString("to.venue"),resultSet.getDate("to.term_of_application")));
+                tournaments.add(new Tournament(resultSet.getString("to.name"), resultSet.getString("to.password"), resultSet.getString("description"), new User(resultSet.getString("to.leader")), resultSet.getDate("to.start_date"), resultSet.getDate("to.end_date"), resultSet.getInt("to.nr_of_matchdays"), resultSet.getString("to.venue"),resultSet.getDate("to.term_of_application")));
                 resultSet.next();
             }
         } catch (SQLException ex) {

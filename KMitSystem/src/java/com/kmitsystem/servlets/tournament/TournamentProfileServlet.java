@@ -1,11 +1,8 @@
-
 package com.kmitsystem.servlets.tournament;
 
-import com.kmitsystem.servlets.team.*;
-import com.kmitsystem.services.team.TeamServiceProvider;
-import com.kmitsystem.services.team.input.GetEverythingInput;
-import com.kmitsystem.services.team.result.GetEverythingResult;
-import com.kmitsystem.tools.objects.Statistics;
+import com.kmitsystem.services.tournament.input.GetEverythingInput;
+import com.kmitsystem.services.tournament.result.GetEverythingResult;
+import com.kmitsystem.services.tournament.TournamentServiceProvider;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
@@ -19,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Smadback
+ * @author Malte
  */
 public class TournamentProfileServlet extends HttpServlet {
 
@@ -35,20 +32,20 @@ public class TournamentProfileServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        String name = request.getParameter("team");
+        String name = request.getParameter("tournament");
         
-        TeamServiceProvider provider = new TeamServiceProvider();
+        TournamentServiceProvider provider = new TournamentServiceProvider();
         GetEverythingInput input = new GetEverythingInput(name);
         GetEverythingResult result = provider.getEverything(input);
         
         // prepare the output and write it into the session
-        Team team = result.getTeam();
+        Tournament tournament = result.getTuornament();
+        List<Team> teams = result.getTeams();
         List<User> member = result.getMember();
-        List<Tournament> tournaments = result.getTournaments();
         
-        request.setAttribute("team", team);
+        request.setAttribute("tournaments", tournament);
+        request.setAttribute("team", teams);
         request.setAttribute("member", member);
-        request.setAttribute("tournaments", tournaments);
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {

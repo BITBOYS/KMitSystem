@@ -13,7 +13,7 @@
         <title>Turniere - KmS</title>
 
         <%            String link = request.getContextPath();
-            String loged_in = String.valueOf(session.getAttribute("loged_in"));
+            String loged_in = "true"; //String.valueOf(session.getAttribute("loged_in"));
 
             List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
             if (errors == null) {
@@ -49,11 +49,13 @@
                     </ol>
                 </div>
 
-                <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
-
-                    <a class="btn btn-success" href="<%=link%>/tournaments/create"><span class="fa fa-pencil"> Turnier erstellen <i class="fa fa-angle-right"></i></a>
-
+                <%if (loged_in.equals("true")) {%>
+                <div class="row">
+                    <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
+                        <a class="btn btn-success" href="<%=link%>/tournaments/create"><span class="fa fa-pencil"> Turnier erstellen <i class="fa fa-angle-right"></i></span></a>
+                    </div>
                 </div><!-- .row -->
+                <%}%>
 
                 <div class="row">  
                     <div class="col-lg-12">
@@ -85,9 +87,9 @@
                                 <div class="col-lg-6 col-lg-offset-1">
 
                                     <div class="form-group">
-                                        <label for="inputDate" class="col-sm-2 control-label">Erstelldatum</label>
+                                        <label for="inputDate" class="col-sm-2 control-label">Erstellmonat</label>
                                         <div class="col-lg-6  col-offset-2">
-                                            <input type="date" name="create_date_search">
+                                            <input type="month" name="createMonth_search">
                                         </div>
                                     </div>
                                     <div class="checkbox">
@@ -106,61 +108,46 @@
                                             <button type="submit" class="btn btn-primary"><span class="fa fa-search"> Suche <i class="fa fa-angle-right"></i></button>
                                         </div>
                                     </div>
+                                </div>
                             </form>
                         </div>
+                    </div> <!-- row --> 
+
+                    <hr>
+
+                    <% if (tournaments != null) { %>
+
+                    <% if (errors.size() > 0) { %>
+                    <div class="alert alert-info">Es wurden keine Turniere geunden</div>
+                    <% } else { %>
+                    <% if (tournaments.size() == 1) {%>
+                    <div class="alert alert-success">Es wurde <%=tournaments.size()%> Turniere gefunden gefunden</div>
+                    <% } else {%>
+                    <div class="alert alert-success">Es wurden <%=tournaments.size()%> Turniere gefunden</div>
+                    <% } %>
+                    <% } %>
+
+                    <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
+
+                    <hr>
+
+                    <div class="row">
+
+                        <div class="col-md-7">
+                            <a href="<%=link%>/tournaments/profil?tournament=<%=tournaments.get(idx).getName()%>"><img class="img-responsive" src="http://placehold.it/750x350"></a>
+                        </div>
+
+                        <div class="col-md-5">
+                            <h3><%=tournaments.get(idx).getName()%></h3>
+                            <h4>Leader: <a href="<%=link%>/user/profil?user=<%=tournaments.get(idx).getLeader()%>"></a></h4>
+                            <p><%= tournaments.get(idx).getDescription()%></p>
+                            <a class="btn btn-success" href="<%=link%>/tournaments/profil?tournament=<%=tournaments.get(idx).getName()%>">Zum Turnier <i class="fa fa-angle-right"></i></a>
+                        </div>
+
                     </div>
-                </div> <!-- row --> 
 
-                <hr>
-
-                <% if (tournaments != null) { %>
-
-                <% if (errors.size() > 0) { %>
-                <div class="alert alert-info">Es wurden keine Turniere geunden</div>
-                <% } else { %>
-                <% if (tournaments.size() == 1) {%>
-                <div class="alert alert-success">Es wurde <%=tournaments.size()%> Turniere gefunden gefunden</div>
-                <% } else {%>
-                <div class="alert alert-success">Es wurden <%=tournaments.size()%> Turniere gefunden</div>
-                <% } %>
-                <% } %>
-
-                <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
-
-                <hr>
-
-                <div class="row">
-
-                    <div class="col-md-7">
-                        <a href="<%=link%>/tournaments/profil?tournament=<%=tournaments.get(idx).getName()%>"><img class="img-responsive" src="http://placehold.it/750x350"></a>
-                    </div>
-
-                    <div class="col-md-5">
-                        <h3><%=tournaments.get(idx).getName()%></h3>
-                        <h4>Leader: <a href="<%=link%>/user/profil?user=<%=tournaments.get(idx).getLeader()%>"></a></h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae. Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. Mauris ultricies, justo eu convallis placerat, felis enim.</p>
-                        <a class="btn btn-success" href="<%=link%>/tournaments/profil?tournament=<%=tournaments.get(idx).getName()%>">Zum Turnier <i class="fa fa-angle-right"></i></a>
-                    </div>
-
-                </div>
-
-                <% } } %>
-
-                <hr>
-
-                <div class="row text-center">
-
-                    <div class="col-lg-12">
-                        <ul class="pagination">
-                            <li><a href="#">&laquo;</a></li>
-                            <li class="active"><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>        
-                    </div>
+                    <% }
+                    }%>
 
                 </div>
 

@@ -50,6 +50,7 @@ public class DBTournamentQueries {
             String tournamentname = resultSet.getString("name");
             int nr_matchdays = resultSet.getInt("nr_matchdays");
             String password = resultSet.getString("password");
+            String description = resultSet.getString("description");
             String venue = resultSet.getString("venue");
             Date start_date = resultSet.getDate("start_date");
             Date end_date = resultSet.getDate("end_date");
@@ -57,7 +58,7 @@ public class DBTournamentQueries {
             User leader = new User();
 //            Statistics statistics = new Statistics
 
-            tournament = new Tournament(tournamentname, password, leader, start_date, end_date, nr_matchdays, venue, term_of_application);
+            tournament = new Tournament(tournamentname, password, description, leader, start_date, end_date, nr_matchdays, venue, term_of_application);
 
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.NO_ENTRYS_FOUND, ex.getSQLState() + " " + ex.getMessage());

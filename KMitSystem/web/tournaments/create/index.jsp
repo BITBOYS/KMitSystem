@@ -13,21 +13,22 @@
 
         <title>Turnier Erstellen - KmS</title>
 
-        <%
-            String link = request.getContextPath();
+        <%            String link = request.getContextPath();
             String loged_in = String.valueOf(session.getAttribute("loged_in"));
-            
+
             List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
             if (errors == null) {
                 errors = new ArrayList<Error>();
             }
-            
+
             List<Team> teams = (ArrayList<Team>) request.getAttribute("teams");
             if (teams == null) {
                 teams = new ArrayList<Team>();
             }
+
+            List<Team> teamsAdded = new ArrayList<Team>();
         %>
-        
+
         <!-- Bootstrap core CSS -->
         <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
 
@@ -42,14 +43,14 @@
 
         <!-- Page Content -->
 
-         <!-- Page Content -->
+        <!-- Page Content -->
 
         <div class="container">
 
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Turniere Eestellen <small>Erstelle Turniere und lade Teams ein!</small></h1>
+                    <h1 class="page-header">Turniere Erstellen <small>Erstelle Turniere und lade Teams ein!</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="<%=link%>/">Home</a></li>
                         <li><a href="<%=link%>/tournaments">Turniere</a></li>
@@ -58,78 +59,115 @@
                 </div>
             </div><!-- /.row -->
 
-            <div class="row">
-                   <div class="col-lg-12">
-                       <div class="row">
-                           <form class="form-horizontal" role="form" action="<%=link%>/teams/create" method="post">
+            <div class="row">  
+                <div class="col-lg-12">
+                    <div class="row well">
+                        <form class="form-horizontal" role="form" action="<%=path%>/tournaments/dashboard" method="post">
 
-                               <div class="col-lg-4 col-lg-offset-1">
-                                   <div class="form-group">
-                                       <label for="inputTournamentname" class="col-sm-2 control-label">Name</label>
-                                       <div class="col-lg-8">
-                                           <input type="text" class="form-control" name="name" placeholder="Teamname" required>
-                                       </div>
-                                   </div>
-                                   
-                                   <div class="form-group">
-                                       <label for="inputTournamentname" class="col-sm-2 control-label">dede</label>
-                                       <div class="col-lg-8">
-                                           <input type="text" class="form-control" name="dede" placeholder="dede" required>
-                                       </div>
-                                   </div>
-                               </div>
-                               
-                               <div class="col-lg-6 col-lg-offset-1">
-                                    <div class="form-group">
-                                        <label for="inputTournamentname" class="col-sm-2 control-label">Passwort</label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control" name="password" placeholder="Passwort">
-                                        </div>
-                                    </div>
+                            <div class="col-lg-4 col-lg-offset-1">
 
-                                    <div class="form-group">
-                                        <label for="inputTournamentname" class="col-sm-2 control-label">Passwort wiederholen</label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control" name="reenter_password" placeholder="Passwort wiederholen">
-                                        </div>
-                                    </div>
-                               </div>
-                               
-                               <div class="form-group">
-                                    <div class="col-lg-4 col-lg-offset-1">
-                                       <label for="userAuswahl" class="col-sm-2 control-label">Team</label>
-                                       <div class="col-lg-8">
-                                           <input list="userAuswahl" name="user" autocomplete="off" class="form-control" >
-                                            <datalist id="userAuswahl">
-                                                <% for(int idx = 0; idx < teams.size(); idx++) {%>
-                                                    <option value="<%= teams.get(idx).getName()%>"> 
-                                                <% } %>
-                                            </datalist>
-                                            <a href="#">Team hinzuf&uuml;gen</a>
-                                       </div>
-                                    </div>
-                               </div>
-
-                                <div class="form-group col-lg-4 col-lg-offset-1">
-                                    <div class="col-md-offset-6">
-                                        <button type="submit" class="btn btn-primary"><span class="fa fa-search"> Erstellen <i class="fa fa-angle-right"></i></button>
+                                <div class="form-group">
+                                    <label for="inputTurniername" class="col-sm-2 control-label">Turnier</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="tournament_name_create" placeholder="Name" required>
                                     </div>
                                 </div>
-                           </form>
-                        </div>
-                           
-                        <div class="row">
-                            <% for(int idx = 0; idx < errors.size(); idx++) { %>
-                                <% if(errors.get(idx).getStatus().equals(Error.ERROR)) { %>
-                                <div class="alert alert-danger"><%= errors.get(idx).getErrorMessage() %></div>
-                                <% } else if(errors.get(idx).getStatus().equals(Error.INFO)) { %>
-                                <div class="alert alert-info"><%= errors.get(idx).getErrorMessage() %></div>
-                            <% } } %>
-                        </div>
-                           
-                   </div>
-               </div>
-           </div> <!-- row --> 
+
+                                <div class="form-group">
+                                    <label for="inputMatchdays" class="col-sm-2 control-label">Runden</label>
+                                    <div class="col-lg-8">
+                                        <input type="number" min="1" class="form-control" name="tournament_matchdays_create" placeholder="Spieltage">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputVenue" class="col-sm-2 control-label">Location</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="tournament_venue_create" placeholder="Austragungsort">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputPassword" class="col-sm-2 control-label">Passwort</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="tournament_password_create" placeholder="Passwort">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputPasswordReenter" class="col-sm-2 control-label">Passwort</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="tournament_password_reenter_create" placeholder="Passwort wiederholen">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-lg-offset-1">
+
+                                <div class="form-group">
+                                    <label for="inputStartDate" class="col-sm-2 control-label">Startdatum</label>
+                                    <div class="col-lg-6  col-offset-2">
+                                        <input type="date" name="tournamen_start_date_create">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputEndDate" class="col-sm-2 control-label">Enddatum</label>
+                                    <div class="col-lg-6  col-offset-2">
+                                        <input type="date" name="tournamen_end_date_create">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputTerm" class="col-sm-2 control-label">Anmeldefrist</label>
+                                    <div class="col-lg-6  col-offset-2">
+                                        <input type="number" min="0" name="tournamen_term_create" placeholder="Tage vorher">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputTerm" class="col-sm-2 control-label">Beschreibung</label>
+                                    <div class="col-lg-6  col-offset-2">
+                                        <textarea name="tournamen_description_create" maxlength="500" placeholder="Beschreibe dein Turnier, maximal 500 Zeichen..." rows="4" cols="40"></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputTeam" class="col-sm-2 control-label">Teams</label>
+                                    <div class="col-lg-8">
+                                        <input type="text" class="form-control" name="tournament_teamAdd_create" placeholder="Teamname">
+                                        <datalist id="userAuswahl">
+                                            <% for (int idx = 0; idx < teams.size(); idx++) {%>
+                                            <option value="<%= teams.get(idx).getName()%>"> 
+                                                <% } %>
+                                        </datalist>
+                                        <a href="#">Team hinzuf&uuml;gen</a>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <small>Nur der Turniername ist Pflicht. Alles andere kannst du auf dem Turnierdashboard bearbeiten.</small>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-offset-8">
+                                        <button type="submit" class="btn btn-primary"><span class="fa fa-pencil"> Erstellen <i class="fa fa-angle-right"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="row">
+                        <% for (int idx = 0; idx < errors.size(); idx++) { %>
+                        <% if (errors.get(idx).getStatus().equals(Error.ERROR)) {%>
+                        <div class="alert alert-danger"><%= errors.get(idx).getErrorMessage()%></div>
+                        <% } else if (errors.get(idx).getStatus().equals(Error.INFO)) {%>
+                        <div class="alert alert-info"><%= errors.get(idx).getErrorMessage()%></div>
+                        <% }
+                            }%>
+                    </div>
+
+                </div>
+            </div> <!-- row --> 
 
         </div><!-- /.container -->
 

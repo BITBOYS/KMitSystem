@@ -32,6 +32,22 @@
         <servlet-name>TeamDashboardServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.team.TeamDashboardServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddTeamServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.tournament.AddTeamServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TournamentCreateServle</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.tournament.TournamentCreateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TournamentProfileServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.tournament.TournamentProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TournamentsServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.tournament.TournamentsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>TeamsCreateServlet</servlet-name>
         <url-pattern>/teams/create</url-pattern>
@@ -63,6 +79,22 @@
     <servlet-mapping>
         <servlet-name>TeamDashboardServlet</servlet-name>
         <url-pattern>/team/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTeamServlet</servlet-name>
+        <url-pattern>/AddTeamServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TournamentCreateServle</servlet-name>
+        <url-pattern>/TournamentCreateServle</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TournamentProfileServlet</servlet-name>
+        <url-pattern>/TournamentProfileServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TournamentsServlet</servlet-name>
+        <url-pattern>/TournamentsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

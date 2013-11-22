@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Malte
  */
-public class SearchTournamentServlet extends HttpServlet {
+public class TournamentsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -45,7 +45,7 @@ public class SearchTournamentServlet extends HttpServlet {
         String user = request.getParameter("user_name_search");
         String running = request.getParameter("running_search");
         String finished = request.getParameter("finished_search");
-        String create_date = request.getParameter("create_date_search");
+        String createMonth = request.getParameter("createMonth_search");
         
 //        was mache ich mit Boolean und Datum?
         
@@ -66,7 +66,7 @@ public class SearchTournamentServlet extends HttpServlet {
         }
         
         // redirect to the page www.kmitsystem.de/teams
-        RequestDispatcher rd = request.getRequestDispatcher("/tournament/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/tournaments/index.jsp");
         rd.include(request, response);
     }
 
