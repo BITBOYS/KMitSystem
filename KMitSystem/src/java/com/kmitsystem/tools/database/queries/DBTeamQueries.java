@@ -85,7 +85,7 @@ public class DBTeamQueries {
             
             // create the team
             result = statement.executeUpdate("UPDATE team SET name = '" + new_name + "' WHERE name = '" + teamname + "'");
-            System.out.println(result);
+            
             if(result > 0)
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, TeamServiceProvider.class.getName() + ":editName");
             
