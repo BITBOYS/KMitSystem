@@ -16,6 +16,7 @@ public class Tournament {
     
     private String name;
     private String password;
+    private String description;
     private User leader;
     private Date start_date;
     private Date end_date;
@@ -27,10 +28,11 @@ public class Tournament {
         super();
     }
 
-    public Tournament(String name, String password, User leader, Date start_date, Date end_date, 
+    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, 
                     int nr_matchdays, String venue, Date term_of_application) {
         this.name = name;
         this.password = password;
+        this.description = description;
         this.leader = leader;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -53,6 +55,14 @@ public class Tournament {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
     public User getLeader() {
@@ -105,9 +115,7 @@ public class Tournament {
 
     @Override
     public String toString() {
-        return "Tournament{" + "name=" + name + ", password=" + password + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + '}';
+        return "Tournament{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + '}';
     }
-    
-    
 }
 

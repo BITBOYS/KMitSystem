@@ -10,6 +10,10 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * @author Maik
@@ -90,5 +94,26 @@ public class DBTeamQueries {
         }
         return result;
     }
+    
+    public static List<Team> getAllTeams() {
+        List<Team> teams = new ArrayList<Team>();
+        
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("SELECT username FROM user");
+            resultSet.first();
+            
+            while(!resultSet.isAfterLast()) {
+                teams.add(new Team(resultSet.getString("name"), resultSet.getString("tag"), new User(resultSet.getString("leader"))));
+                resultSet.next();
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DBUserQueries.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return teams;
+     }
     
 }

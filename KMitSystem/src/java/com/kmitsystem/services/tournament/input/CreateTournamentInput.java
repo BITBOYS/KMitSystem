@@ -1,8 +1,10 @@
 package com.kmitsystem.services.tournament.input;
 
 import com.kmitsystem.tools.DateKonverter;
+import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Date;
+import java.util.List;
 
 
 /**
@@ -12,27 +14,31 @@ public class CreateTournamentInput {
     
     private String name;
     private String password;
+    private String description;
     private User leader;
     private Date start_date;
     private Date end_date;
     private int nr_matchdays;
     private String venue;
     private Date term_of_application;
+    private List<Team> teams;
     
     public CreateTournamentInput() {
         super();
     }
 
-    public CreateTournamentInput(String name, String password, User leader, Date start_date, Date end_date, 
-                    int nr_matchdays, String venue, Date term_of_application) {
+    public CreateTournamentInput(String name, String password, String description, User leader, Date start_date, Date end_date, 
+                    int nr_matchdays, String venue, Date term_of_application, List<Team> teams) {
         this.name = name;
         this.password = password;
+        this.description = description;
         this.leader = leader;
         this.start_date = start_date;
         this.end_date = end_date;
         this.nr_matchdays = nr_matchdays;
         this.venue = venue;
         this.term_of_application = term_of_application;
+        this.teams = teams;
     }
     
     public String getName() {
@@ -49,6 +55,14 @@ public class CreateTournamentInput {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
     
     public User getLeader() {
@@ -99,9 +113,17 @@ public class CreateTournamentInput {
         this.term_of_application = term_of_application;
     }
 
+    public List<Team> getTeams() {
+        return teams;
+    }
+
+    public void setTeams(List<Team> teams) {
+        this.teams = teams;
+    }
+
     @Override
     public String toString() {
-        return "Tournament{" + "name=" + name + ", password=" + password + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + '}';
+        return "CreateTournamentInput{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + ", teams=" + teams + '}';
     }
     
 }
