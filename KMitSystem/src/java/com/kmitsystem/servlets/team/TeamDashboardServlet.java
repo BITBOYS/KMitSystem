@@ -36,35 +36,44 @@ public class TeamDashboardServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         RequestDispatcher rd;
         String teamname = request.getParameter("team");
-
+        String name_old  = request.getParameter("name_old");
+        String tag_new = request.getParameter("tag_new");
+        String password_old = request.getParameter("password_old");
+        String leader_new = request.getParameter("leader_new");
+        String name_new = null;
+        
+        // prepare the output
+        BaseResult result = new BaseResult();
+        
         // get the team and write it into the session
         Team team = DBTeamQueries.getTeam(teamname);
-        request.setAttribute("team", team);
         
         // get all users and write them into an attribute 
         List<User> users = DBUserQueries.getAllUser();
         request.setAttribute("users", users);
         
-        // check if the user filled the form or if he came from another page
-        if(request.getParameter("name_old") != null) {
+        ///////////////////////////
+        //CHANGE TEAMNAME SECTION//
+        ///////////////////////////
+        
+        // check if the user filled the "change_name" form
+        if(name_old != null) {
             
             // prepare the input
-            String name_old  = request.getParameter("name_old");
-            String name_new  = request.getParameter("name_new");
+            name_new  = request.getParameter("name_new");
             String name_new2 = request.getParameter("name_new2");
             
-            // prepare the output
-            BaseResult result = new BaseResult();
-            
             // check if the name of the team is correct
-            if(name_old.equals(team.getName())) {
+            if(name_old.equals(teamname)) {
                 // check if both names are equal, if true change the teamname
                 if(name_new.equals(name_new2)) {
                     TeamServiceProvider provider = new TeamServiceProvider();
-                    EditTeamInput input = new EditTeamInput(name_old, name_new, null, null, null);
+                    EditTeamInput input = new EditTeamInput(teamname, null, name_new, null, null, null);
                     result = provider.editTeam(input);
+                    team = DBTeamQueries.getTeam(name_new);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.NAMES_NOT_EQUAL);
@@ -84,6 +93,71 @@ public class TeamDashboardServlet extends HttpServlet {
                 
         }
         
+        //////////////////////////
+        //CHANGE TEAMTAG SECTION//
+        //////////////////////////
+        
+        // check if the user filled the "change_tag" form
+        if(tag_new != null) {
+            
+            TeamServiceProvider provider = new TeamServiceProvider();
+            EditTeamInput input = new EditTeamInput(teamname, null, null, tag_new, null, null);
+            result = provider.editTeam(input);
+
+            // write the errorlist into the session-attribute "errors"
+            if(result.getErrorList().size() > 0) 
+                request.setAttribute("errors", result.getErrorList());
+                
+        }
+        
+        ///////////////////////////
+        //CHANGE PASSWORD SECTION//
+        ///////////////////////////
+        
+        // check if the user filled the "change_password" form
+        if(password_old != null) {
+            
+            String password_new = request.getParameter("password_new");
+            String password_new2 = request.getParameter("password_new2");
+            
+            // check if both passwords are equal, if true change the password
+            if(password_new.equals(password_new2)) {
+                TeamServiceProvider provider = new TeamServiceProvider();
+                EditTeamInput input = new EditTeamInput(teamname, password_old, null, null, password_new, null);
+                result = provider.editTeam(input);
+            } else {
+                List<Error> errorList = new ArrayList<Error>();
+                errorList.add(Errors.PASSWORDS_NOT_EQUAL);
+                result.setErrorList(errorList);
+                request.setAttribute("errors", result.getErrorList());
+            }
+
+            // write the errorlist into the session-attribute "errors"
+            if(result.getErrorList().size() > 0) 
+                request.setAttribute("errors", result.getErrorList());
+                
+        }
+        
+        ///////////////////////////
+        //CHANGE LEADER SECTION//
+        ///////////////////////////
+        
+        // check if the user filled the "change_leader" form
+        if(leader_new != null) {
+            
+            password_old = (request.getParameter("password") == null) ? "" : ""; 
+            
+            TeamServiceProvider provider = new TeamServiceProvider();
+            EditTeamInput input = new EditTeamInput(teamname, password_old, null, null, null, leader_new);
+            result = provider.editTeam(input);
+
+            // write the errorlist into the session-attribute "errors"
+            if(result.getErrorList().size() > 0) 
+                request.setAttribute("errors", result.getErrorList());
+                
+        }
+        
+        request.setAttribute("team", team);
         // redirect to the dashboard page of the team
         rd = request.getRequestDispatcher("/WEB-INF/teams/dashboard/index.jsp");
         rd.include(request, response);

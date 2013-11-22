@@ -9,11 +9,13 @@ import com.kmitsystem.services.team.result.GetEverythingResult;
 import com.kmitsystem.services.team.result.SearchTeamResult;
 import com.kmitsystem.services.team.validator.AddPlayerValidator;
 import com.kmitsystem.services.team.validator.CreateTeamValidator;
+import com.kmitsystem.services.team.validator.EditTeamValidator;
 import com.kmitsystem.services.team.validator.GetEverythingValidator;
 import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.database.queries.DBTeamTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
+import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.BaseResult;
 
 /**
@@ -24,6 +26,7 @@ public class TeamServiceProvider {
     CreateTeamValidator createTeamValidator = new CreateTeamValidator();
     AddPlayerValidator addPlayerValidator = new AddPlayerValidator();
     GetEverythingValidator getEverythingValidator = new GetEverythingValidator();
+    EditTeamValidator editTeamValidator = new EditTeamValidator();
     
     public BaseResult createTeam(CreateTeamInput input) {
         BaseResult result = new BaseResult();
@@ -125,13 +128,26 @@ public class TeamServiceProvider {
      
         // prepare the input
         String teamname = input.getTeamname();
-        String new_name = input.getNew_name();
         
-//        // call the database
-        if(new_name != null) 
-            DBTeamQueries.editName(teamname, new_name);
-       
-//        // write the errors into the result object and empty the ErrorHandler
+        if(editTeamValidator.validate(input)) {
+            String new_name = input.getNew_name();
+            String new_tag = input.getNew_tag();
+            String new_password = input.getNew_password();
+            String new_leader = input.getNew_leader();
+            
+            // call the database
+            if(new_name != null) 
+                DBTeamQueries.editName(teamname, new_name);
+            if(new_tag != null)
+                DBTeamQueries.editTag(teamname, new_tag);
+            if(new_password != null)
+                DBTeamQueries.editPassword(teamname, new_password);
+            if(new_leader != null)
+                DBTeamQueries.editLeader(teamname, new_leader);
+            
+        }
+        
+        // write the errors into the result object and empty the ErrorHandler
         if(ErrorHandler.getErrors().size() > 0) {
             result.setErrorList(ErrorHandler.getErrors());                        
             ErrorHandler.clear();

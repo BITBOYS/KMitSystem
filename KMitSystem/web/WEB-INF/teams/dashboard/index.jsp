@@ -3,6 +3,7 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kmitsystem.tools.objects.User"%>
+<%@page import="com.kmitsystem.tools.errorhandling.Error"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -12,6 +13,9 @@
             
             List<User> users = (ArrayList<User>) request.getAttribute("users");
             if (users == null) users = new ArrayList<User>();
+            
+            List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
+            if (errors == null) errors = new ArrayList<Error>();
             
             Team team = (Team) request.getAttribute("team");
         %>
@@ -50,13 +54,25 @@
                     </ol>
                 </div>
             </div>
+                        
+            <% for(int idx = 0; idx < errors.size(); idx++) { %>
+                <% if(errors.get(idx).getStatus() == Error.ERROR) { %>
+                    <div class="alert alert-danger"><%=errors.get(idx).getErrorMessage()%></div>
+                <% } %>
+                <% if(errors.get(idx).getStatus() == Error.INFO) { %>
+                    <div class="alert alert-info"><%=errors.get(idx).getErrorMessage()%></div>
+                <% } %>
+                <% if(errors.get(idx).getStatus() == Error.SUCCESS) { %>
+                    <div class="alert alert-success"><%=errors.get(idx).getErrorMessage()%></div>
+                <% } %>
+            <% } %>
 
             <!-- Service Tabs -->
 
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h2 class="page-header"><%=team.getName()%>s Teamoptionen</h2>
+                    <h2 class="page-header"><%=team.getName()%> Teamoptionen</h2>
                     <ul id="myTab" class="nav nav-tabs">
                         <li class="active"><a href="#infos" data-toggle="tab">Infos</a></li>
                         <li><a href="#user" data-toggle="tab">Mitglieder</a></li>
@@ -94,11 +110,11 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Tag &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="change_tag" action="#">
+                                    <form class="form-horizontal" role="form" name="change_tag" action="<%=path%>/team/dashboard?team=<%=team.getName()%>" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Tag</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" name="tag_new" placeholder="neuer Tag">
+                                                <input type="text" class="form-control" name="tag_new" placeholder="neuer Tag" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -114,15 +130,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Passwort &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="change_password" action="#">
+                                    <form class="form-horizontal" role="form" name="change_password" action="<%=path%>/team/dashboard?team=<%=team.getName()%>" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Passwort</label>
                                             <div class="col-sm-6">
                                                 <input type="password" class="form-control" name="password_old" placeholder="altes Passwort">
                                             </div>
                                             <div class="col-sm-6 col-md-offset-2">
-                                                <input type="password" class="form-control" name="password_new" placeholder="neues Passwort">
-                                                <input type="password" class="form-control" name="password_new2" placeholder="neuer Passwort">
+                                                <input type="password" class="form-control" name="password_new" placeholder="neues Passwort" required>
+                                                <input type="password" class="form-control" name="password_new2" placeholder="neuer Passwort" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -138,14 +154,14 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Teamleiter &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="change_leader" action="#">
+                                    <form class="form-horizontal" role="form" name="change_leader" action="<%=path%>/team/dashboard?team=<%=team.getName()%>" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Teamleiter</label>
                                             <div class="col-sm-6">
                                                 <input type="password" class="form-control" name="password" placeholder="Passwort">
                                             </div>
                                             <div class="col-lg-6 col-md-offset-2">
-                                                <input list="userAuswahl" name="leader_new" class="form-control" autocomplete="off" placeholder="User" >
+                                                <input list="userAuswahl" name="leader_new" class="form-control" autocomplete="off" placeholder="User" required>
                                                  <datalist id="userAuswahl">
                                                      <% for(int idx = 0; idx < users.size(); idx++) {%>
                                                          <option value="<%= users.get(idx).getUsername() %>"> 
