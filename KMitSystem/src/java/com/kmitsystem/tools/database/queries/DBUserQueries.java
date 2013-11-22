@@ -162,7 +162,7 @@ public class DBUserQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            statement.execute("update user set email="+ newEmail+" where email ="+ oldEmail);            
+            statement.execute("update user set email='"+ newEmail+"' where email = '"+ oldEmail+"'");            
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }        

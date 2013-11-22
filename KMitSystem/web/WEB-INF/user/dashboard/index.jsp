@@ -24,7 +24,6 @@
     <body>
 
         <%@include file="../../snipplets/header.jspf" %>
-        
 
         <!-- Page Content -->
 
@@ -41,6 +40,9 @@
                     </ol>
                 </div>
             </div>
+                     
+            <!-- Alerts -->
+            <%@include file="../../snipplets/error.jspf" %>
 
             <!-- Service Tabs -->
 
@@ -61,23 +63,13 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
                                 <div class="col-lg-12">
                                     <h2 class="page-header">E-Mail &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="form_email" action="#">
+                                    <form class="form-horizontal" role="form" name="form_email" action="<%=link%>/user/dashboard" method="POST">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">E-Mail</label>
                                             <div class="col-sm-6">
-                                                <input type="email" class="form-control" id="input_email_alt" placeholder="alte E-Mail">
-                                                <input type="email" class="form-control" id="input_email_neu1" placeholder="neue E-Mail">
-                                                <input type="email" class="form-control" id="input_email_neu2" placeholder="neue E-Mail">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-6 col-md-offset-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox" id="sure">
-                                                    </span>
-                                                    <p type="text" class="form-control">Bist du sicher?</p>
-                                                </div><!-- /input-group -->
+                                                <input type="email" class="form-control" name="input_email_old" placeholder="alte E-Mail" required>
+                                                <input type="email" class="form-control" name="input_email_new1" placeholder="neue E-Mail" required>
+                                                <input type="email" class="form-control" name="input_email_new2" placeholder="neue E-Mail" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -105,16 +97,6 @@
                                             </div>
                                         </div>
                                         <div class="form-group">
-                                            <div class="col-sm-6 col-md-offset-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox" id="sure">
-                                                    </span>
-                                                    <p type="text" class="form-control">Bist du sicher?</p>
-                                                </div><!-- /input-group -->
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <div class="col-sm-offset-2 col-sm-10">
                                                 <button class="btn btn-primary btn-default" type="submit">
                                                     &Auml;ndern <i class="fa fa-angle-right"></i></button>
@@ -136,16 +118,6 @@
                                             <div class="col-sm-6 col-md-offset-2">
                                                 <input type="password" class="form-control" id="input_pasword_neu1" placeholder="neues Passwort">
                                                 <input type="password" class="form-control" id="input_pasword_neu2" placeholder="neues Passwort">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-6 col-md-offset-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox" id="sure">
-                                                    </span>
-                                                    <p type="text" class="form-control">Bist du sicher?</p>
-                                                </div><!-- /input-group -->
                                             </div>
                                         </div>
                                         <div class="form-group">

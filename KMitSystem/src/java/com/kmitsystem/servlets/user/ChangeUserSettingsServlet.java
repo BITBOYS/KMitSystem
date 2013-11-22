@@ -4,23 +4,14 @@
  */
 package com.kmitsystem.servlets.user;
 
-import com.kmitsystem.services.team.TeamServiceProvider;
-import com.kmitsystem.services.team.input.CreateTeamInput;
 import com.kmitsystem.services.user.UserServiceProvider;
-import com.kmitsystem.tools.database.queries.DBUserQueries;
-import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.BaseResult;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.kmitsystem.tools.errorhandling.Error;
-import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.services.user.input.ChangeUserEMailInput;
 import com.kmitsystem.services.user.input.ChangeUserNameInput;
 import com.kmitsystem.services.user.input.ChangeUserPasswordInput;
@@ -49,7 +40,7 @@ public class ChangeUserSettingsServlet extends HttpServlet {
         //CHANGE EMAIL SECTION//
         ////////////////////////
         
-        if (request.getParameter("form_email") != null) {
+        if (request.getParameter("input_email_old") != null) {
             String input_email_old = request.getParameter("input_email_old");
             String input_email_new1 = request.getParameter("input_email_new1");
             String input_email_new2 = request.getParameter("input_email_new2");
@@ -63,10 +54,8 @@ public class ChangeUserSettingsServlet extends HttpServlet {
                 request.setAttribute("errors", result.getErrorList());
             }
 
-        } else {
-            rd = request.getRequestDispatcher("/user/dashboard/index.jsp");
-            rd.include(request, response);
-        }
+        } 
+        
         
         ///////////////////////
         //CHANGE NAME SECTION//
@@ -86,11 +75,6 @@ public class ChangeUserSettingsServlet extends HttpServlet {
                 request.setAttribute("errors", result.getErrorList());
             }
         }
-        else {
-            rd = request.getRequestDispatcher("/user/dashboard/index.jsp");
-            rd.include(request, response);
-        }
-        
         
         
          ///////////////////////////
@@ -116,10 +100,10 @@ public class ChangeUserSettingsServlet extends HttpServlet {
                 request.setAttribute("errors", result.getErrorList());
             }
 
-        }   else {
-            rd = request.getRequestDispatcher("/user/dashboard/index.jsp");
-            rd.include(request, response);
         }
+        
+        rd = request.getRequestDispatcher("/WEB-INF/user/dashboard/index.jsp");
+        rd.include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
