@@ -147,6 +147,7 @@
                                                     <thead>  
                                                         <tr>  
                                                             <th><span title="Turniersiege" class="label label-success">TS</span></th>  
+                                                            <th><a href data-toggle="tooltip" title="Turniersiege" class="label label-success">TS</a></th>  
                                                             <th><span title="Gesamtsiege" class="label label-success">GS</span></th>  
                                                             <th><span title="Niederlagen" class="label label-danger">N</span></th>  
                                                             <th><span title="Tore" class="label label-info">T</span></th>  

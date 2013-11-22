@@ -145,7 +145,7 @@
                                                 <table class="table">  
                                                     <thead>  
                                                         <tr>  
-                                                            <th><span title="Turniersiege" class="label label-success">TS</span></th>  
+                                                            <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Turniersiege" class="label label-success">TS</a></th>  
                                                             <th><span title="Gesamtsiege" class="label label-success">GS</span></th>  
                                                             <th><span title="Niederlagen" class="label label-danger">N</span></th>  
                                                             <th><span title="Tore" class="label label-info">T</span></th>  
