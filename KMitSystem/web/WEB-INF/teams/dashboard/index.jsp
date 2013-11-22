@@ -14,9 +14,6 @@
             List<User> users = (ArrayList<User>) request.getAttribute("users");
             if (users == null) users = new ArrayList<User>();
             
-            List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
-            if (errors == null) errors = new ArrayList<Error>();
-            
             Team team = (Team) request.getAttribute("team");
         %>
         
@@ -54,18 +51,9 @@
                     </ol>
                 </div>
             </div>
-                        
-            <% for(int idx = 0; idx < errors.size(); idx++) { %>
-                <% if(errors.get(idx).getStatus() == Error.ERROR) { %>
-                    <div class="alert alert-danger"><%=errors.get(idx).getErrorMessage()%></div>
-                <% } %>
-                <% if(errors.get(idx).getStatus() == Error.INFO) { %>
-                    <div class="alert alert-info"><%=errors.get(idx).getErrorMessage()%></div>
-                <% } %>
-                <% if(errors.get(idx).getStatus() == Error.SUCCESS) { %>
-                    <div class="alert alert-success"><%=errors.get(idx).getErrorMessage()%></div>
-                <% } %>
-            <% } %>
+                
+            <!-- Errors & Alerts -->
+            <%@include file="../../snipplets/error.jspf" %>
 
             <!-- Service Tabs -->
 

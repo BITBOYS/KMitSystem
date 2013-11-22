@@ -2,6 +2,7 @@ package com.kmitsystem.services.user;
 
 import com.kmitsystem.services.user.input.CreateUserInput;
 import com.kmitsystem.services.user.input.SignInInput;
+import com.kmitsystem.services.user.result.SignInResult;
 import com.kmitsystem.services.user.validator.CreateUserValidator;
 import com.kmitsystem.services.user.validator.SignInValidator;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
@@ -39,17 +40,15 @@ public class UserServiceProvider {
         return result;
      }
     
-    public BaseResult signInUser(SignInInput input) {
-        BaseResult result = new BaseResult();
+    public SignInResult signInUser(SignInInput input) {
+        SignInResult result = new SignInResult();
 
-        if(signInValidator.validate(input)) {
-            // prepare the input
-            String email = input.getEmail();
-            String password = input.getPassword();
-            
-            // call the database
-            DBUserQueries.userPasswordOk(email, password);
-        }
+        // prepare the input
+        String email = input.getEmail();
+        String password = input.getPassword();
+
+        // call the database
+        result.setUser(DBUserQueries.loginUser(email, password));
         
         // write the errors into the result object and empty the ErrorHandler
         if(ErrorHandler.getErrors().size() > 0) {

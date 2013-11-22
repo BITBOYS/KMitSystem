@@ -128,6 +128,36 @@ public class DBUserQueries {
          return result;
     }
     
+    public static User loginUser(String email, String password) {
+        
+        User user = null;
+        
+         try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            resultSet = statement.executeQuery("select * "
+                                        + "FROM user "
+                                        + "WHERE email='" + email + "'"
+                                        + "AND password='" + password + "'");
+            
+            resultSet.first();
+           
+            String username = resultSet.getString("username");
+            Statistics statistics = new Statistics(resultSet.getInt("goals"), 
+                                                   resultSet.getInt("goals_conceded"), 
+                                                   resultSet.getInt("wins"), 
+                                                   resultSet.getInt("defeats"), 
+                                                   resultSet.getInt("tournament_wins"), 
+                                                   resultSet.getInt("tournament_participations"));
+            user = new User(username, password, email, statistics);
+                       
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.FALSE_LOGIN_INPUT, ex.getSQLState() + " " +ex.getMessage());
+        }
+        
+         return user;
+    }
+    
     public static void changeEmail(String oldEmail, String newEmail) {
         try {
             con = DatabaseHandler.connect();

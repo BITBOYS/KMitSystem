@@ -8,9 +8,11 @@ package com.kmitsystem.servlets.user;
 
 import com.kmitsystem.services.user.input.SignInInput;
 import com.kmitsystem.services.user.UserServiceProvider;
+import com.kmitsystem.services.user.result.SignInResult;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -34,26 +36,37 @@ public class SignInServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        RequestDispatcher rd;
         
         //User Object with Input-Form-Data to validate
-        String email = String.valueOf(request.getParameter("email"));
-        String password = String.valueOf(request.getParameter("password"));
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
         
-        UserServiceProvider provider = new UserServiceProvider();
-        SignInInput input = new SignInInput(email, password);
+        // check if the user filled the form
+        if(email != null && password != null) {
         
-        //Loged_in Session variable 
-        request.getSession().setAttribute("loged_in", "true");
+            UserServiceProvider provider = new UserServiceProvider();
+            SignInInput input = new SignInInput(email, password);
+
+            SignInResult result = provider.signInUser(input);
         
-        BaseResult result = provider.signInUser(input);
-        
-        // write the errorlist into the session-attribute "errors"
-        if(result.getErrorList().size() > 0) {
-            request.getSession().setAttribute("errors", result.getErrorList());
-            response.sendRedirect("login");
-        }else{
-            // redirect to the page www.kmitsystem.de/teams
-            response.sendRedirect("user/dashboard");
+            // write the errorlist into the session-attribute "errors"
+            if(result.getErrorList().size() > 0) {
+                request.setAttribute("errors", result.getErrorList());
+                // redirect to the page www.kmitsystem.de/login
+                rd = request.getRequestDispatcher("/WEB-INF/login/index.jsp");
+                rd.include(request, response);
+            } else {
+                // write the user into the session
+                request.getSession().setAttribute("user", result.getUser());
+                System.out.println(result.getUser());
+                // redirect to the page www.kmitsystem.de/user/dashboard
+                response.sendRedirect(request.getContextPath() + "/user/dashboard");
+            }
+            
+        } else {
+            rd = request.getRequestDispatcher("/WEB-INF/login/index.jsp");
+            rd.include(request, response);
         }
     }
 

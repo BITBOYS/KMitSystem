@@ -1,0 +1,22 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmitsystem.tools.errorhandling.Error"%> 
+
+<%      
+        List<Error> errorList = (ArrayList<Error>) request.getAttribute("errors");
+            if (errorList == null) errorList = new ArrayList<Error>();
+            
+%>
+<div class="col-lg-12">
+    <% for(int idx = 0; idx < errorList.size(); idx++) { %>
+        <% if(errorList.get(idx).getStatus() == Error.ERROR) { %>
+            <div class="alert alert-danger"><%=errorList.get(idx).getErrorMessage()%></div>
+        <% } %>
+        <% if(errorList.get(idx).getStatus() == Error.INFO) { %>
+            <div class="alert alert-info"><%=errorList.get(idx).getErrorMessage()%></div>
+        <% } %>
+        <% if(errorList.get(idx).getStatus() == Error.SUCCESS) { %>
+            <div class="alert alert-success"><%=errorList.get(idx).getErrorMessage()%></div>
+        <% } %>
+    <% } %>
+</div>
