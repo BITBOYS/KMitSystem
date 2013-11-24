@@ -4,6 +4,7 @@
  */
 package com.kmitsystem.tools.database.queries;
 
+import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
@@ -75,17 +76,23 @@ public class DBUserQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("select * from user where name=\"" + name + "\"");
+            resultSet = statement.executeQuery("select * from user where username='" + name + "'");
+            resultSet.first();
             
-            if(resultSet.getFetchSize() != 0) {
-                String username = resultSet.getString("name");
-                String email = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                Statistics statistics = new Statistics();
+            String username = resultSet.getString("username");
+            String email = resultSet.getString("email");
+            String password = resultSet.getString("password");
+            Statistics statistics = new Statistics(resultSet.getInt("goals"), 
+                                                   resultSet.getInt("goals_conceded"), 
+                                                   resultSet.getInt("wins"), 
+                                                   resultSet.getInt("defeats"), 
+                                                   resultSet.getInt("tournament_wins"), 
+                                                   resultSet.getInt("tournament_participations"));
 
-                user = new User(username, password, email, statistics);
-            }
+            user = new User(username, email, password, statistics);
+                
         } catch (SQLException ex) {
+            System.out.println(ex.getSQLState() + " " +ex.getMessage());
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         return user;
@@ -149,7 +156,7 @@ public class DBUserQueries {
                                                    resultSet.getInt("defeats"), 
                                                    resultSet.getInt("tournament_wins"), 
                                                    resultSet.getInt("tournament_participations"));
-            user = new User(username, password, email, statistics);
+            user = new User(username, email, password, statistics);
                        
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.FALSE_LOGIN_INPUT, ex.getSQLState() + " " +ex.getMessage());
@@ -159,20 +166,30 @@ public class DBUserQueries {
     }
     
     public static void changeEmail(String oldEmail, String newEmail) {
+        int result;
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            statement.execute("update user set email='"+ newEmail+"' where email = '"+ oldEmail+"'");            
+            result = statement.executeUpdate("update user set email='"+ newEmail+"' where email = '"+ oldEmail+"'"); 
+            
+            if(result > 0)
+                ErrorHandler.handle(Errors.EDIT_SUCCESS, DBUserQueries.class.getName() + ":changeEmail");
+            
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }        
     }
    
      public static void changeName(String oldName, String newName) {
+        int result;
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            statement.execute("update user set name="+ newName+" where name ="+ oldName);            
+            result = statement.executeUpdate("update user set username= '"+ newName+"' where username = '"+ oldName + "'");            
+         
+            if(result > 0)
+                ErrorHandler.handle(Errors.EDIT_SUCCESS, DBUserQueries.class.getName() + ":changeName");
+            
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }        
@@ -180,11 +197,16 @@ public class DBUserQueries {
     
      //BIn mir nicht sicher mit den SPaltennamen, kann die DB im MOment nicht öffnen
      
-     public static void changePassword(String oldPassword, String newPassword) {
+     public static void changePassword(String username, String newPassword) {
+        int result;
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            statement.execute("update user set password="+ newPassword+" where password ="+ oldPassword);            
+            result = statement.executeUpdate("update user set password= '"+ newPassword+"' where username = '"+ username + "'");         
+         
+            if(result > 0)
+                ErrorHandler.handle(Errors.EDIT_SUCCESS, DBUserQueries.class.getName() + ":changePassword");
+            
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }        

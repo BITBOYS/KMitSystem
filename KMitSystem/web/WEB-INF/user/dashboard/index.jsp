@@ -85,15 +85,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Name &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="form_name" action="#">
+                                    <form class="form-horizontal" role="form" name="form_name" action="<%=link%>/user/dashboard" method="POST">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Name</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" id="input_name_alt" placeholder="alter Name">
+                                                <input type="text" class="form-control" name="input_name_old" placeholder="alter Name">
                                             </div>
                                             <div class="col-sm-6 col-md-offset-2">
-                                                <input type="text" class="form-control" id="input_name_neu1" placeholder="neuer Name">
-                                                <input type="text" class="form-control" id="input_name_neu2" placeholder="neuer Name">
+                                                <input type="text" class="form-control" name="input_name_new1" placeholder="neuer Name">
+                                                <input type="text" class="form-control" name="input_name_new2" placeholder="neuer Name">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -109,15 +109,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Passwort &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="form_pasword" action="#">
+                                    <form class="form-horizontal" role="form" name="form_pasword" action="<%=link%>/user/dashboard" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Passwort</label>
                                             <div class="col-sm-6">
-                                                <input type="email" class="form-control" id="input_pasword_alt" placeholder="altes Passwort">
+                                                <input type="password" class="form-control" name="input_password_old" placeholder="altes Passwort">
                                             </div>
                                             <div class="col-sm-6 col-md-offset-2">
-                                                <input type="password" class="form-control" id="input_pasword_neu1" placeholder="neues Passwort">
-                                                <input type="password" class="form-control" id="input_pasword_neu2" placeholder="neues Passwort">
+                                                <input type="password" class="form-control" name="input_password_new1" placeholder="neues Passwort">
+                                                <input type="password" class="form-control" name="input_password_new2" placeholder="neues Passwort">
                                             </div>
                                         </div>
                                         <div class="form-group">

@@ -78,13 +78,11 @@ public class TeamDashboardServlet extends HttpServlet {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.NAMES_NOT_EQUAL);
                     result.setErrorList(errorList);
-                    request.setAttribute("errors", result.getErrorList());
                 }
             } else {
                 List<Error> errorList = new ArrayList<Error>();
                 errorList.add(Errors.NAME_IS_FALSE);
                 result.setErrorList(errorList);
-                request.setAttribute("errors", result.getErrorList());
             }
 
             // write the errorlist into the session-attribute "errors"
@@ -129,7 +127,6 @@ public class TeamDashboardServlet extends HttpServlet {
                 List<Error> errorList = new ArrayList<Error>();
                 errorList.add(Errors.PASSWORDS_NOT_EQUAL);
                 result.setErrorList(errorList);
-                request.setAttribute("errors", result.getErrorList());
             }
 
             // write the errorlist into the session-attribute "errors"

@@ -29,4 +29,8 @@ public class BaseResult {
             return errorList;
     }
     
+    public void addError(Error error) {
+        getErrorList().add(error);
+    }
+    
 }

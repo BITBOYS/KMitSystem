@@ -14,6 +14,7 @@ import com.kmitsystem.services.user.validator.ChangeUserPasswordValidator;
 import com.kmitsystem.services.user.validator.ChangeUserNameValidator;
 import com.kmitsystem.services.user.input.ChangeUserNameInput;
 import com.kmitsystem.services.user.input.ChangeUserPasswordInput;
+import com.kmitsystem.services.user.result.ChangeUserSettingsResult;
 import com.kmitsystem.services.user.result.SignInResult;
 
 /**
@@ -68,8 +69,8 @@ public class UserServiceProvider {
         return result;
      }
     
-      public BaseResult changeUserEmail(ChangeUserEMailInput input) {
-        BaseResult result = new BaseResult();
+      public ChangeUserSettingsResult changeUserEmail(ChangeUserEMailInput input) {
+        ChangeUserSettingsResult result = new ChangeUserSettingsResult();
 
         if(changeUserEMailValidator.validate(input)) {
             // prepare the input
@@ -88,14 +89,13 @@ public class UserServiceProvider {
         return result;
      }
         
-      public BaseResult changeUserName(ChangeUserNameInput input) {
-        BaseResult result = new BaseResult();
+      public ChangeUserSettingsResult changeUserName(ChangeUserNameInput input) {
+        ChangeUserSettingsResult result = new ChangeUserSettingsResult();
 
         if(changeUserNameValidator.validate(input)) {
             // prepare the input
             String oldName = input.getOldName();
             String newName1 = input.getNewName1();
-            String newname2 = input.getNewName2();
             
             // call the database
             DBUserQueries.changeName(oldName, newName1);
@@ -109,17 +109,15 @@ public class UserServiceProvider {
         return result;
      } 
       
-      public BaseResult changeUserPassword(ChangeUserPasswordInput input) {
-        BaseResult result = new BaseResult();
+      public ChangeUserSettingsResult changeUserPassword(ChangeUserPasswordInput input) {
+        ChangeUserSettingsResult result = new ChangeUserSettingsResult();
 
         if(changeUserPasswordValidator.validate(input)) {
             // prepare the input
-            String oldPassword = input.getOldPassword();
             String newPassword1 = input.getNewPassword1();
-            String newPassword2 = input.getNewPassword2();
             
             // call the database
-            DBUserQueries.changePassword(oldPassword, newPassword1);
+            DBUserQueries.changePassword(input.getUsername(), newPassword1);
         }
         
         // write the errors into the result object and empty the ErrorHandler
