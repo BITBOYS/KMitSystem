@@ -5,6 +5,7 @@ import com.kmitsystem.services.team.input.CreateTeamInput;
 import com.kmitsystem.services.team.input.EditTeamInput;
 import com.kmitsystem.services.team.input.GetEverythingInput;
 import com.kmitsystem.services.team.input.SearchTeamInput;
+import com.kmitsystem.services.team.result.EditTeamResult;
 import com.kmitsystem.services.team.result.GetEverythingResult;
 import com.kmitsystem.services.team.result.SearchTeamResult;
 import com.kmitsystem.services.team.validator.AddPlayerValidator;
@@ -123,11 +124,12 @@ public class TeamServiceProvider {
         return result;
     }
     
-    public BaseResult editTeam(EditTeamInput input) {
-        BaseResult result = new BaseResult();
+    public EditTeamResult editTeam(EditTeamInput input) {
+        EditTeamResult result = new EditTeamResult();
      
         // prepare the input
         String teamname = input.getTeamname();
+        boolean query = false;
         
         if(editTeamValidator.validate(input)) {
             String new_name = input.getNew_name();
@@ -137,14 +139,15 @@ public class TeamServiceProvider {
             
             // call the database
             if(new_name != null) 
-                DBTeamQueries.editName(teamname, new_name);
+                query = DBTeamQueries.editName(teamname, new_name);
             if(new_tag != null)
-                DBTeamQueries.editTag(teamname, new_tag);
+                query = DBTeamQueries.editTag(teamname, new_tag);
             if(new_password != null)
-                DBTeamQueries.editPassword(teamname, new_password);
+                query = DBTeamQueries.editPassword(teamname, new_password);
             if(new_leader != null)
-                DBTeamQueries.editLeader(teamname, new_leader);
+                query = DBTeamQueries.editLeader(teamname, new_leader);
             
+            result.setQuerySuccessful(query);
         }
         
         // write the errors into the result object and empty the ErrorHandler
