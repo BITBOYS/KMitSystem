@@ -4,26 +4,28 @@
  */
 package com.kmitsystem.servlets.user;
 
-import com.kmitsystem.tools.database.queries.DBUserQueries;
-import com.kmitsystem.tools.errorhandling.Errors;
-import com.kmitsystem.tools.objects.BaseResult;
+import com.kmitsystem.services.user.UserServiceProvider;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.kmitsystem.tools.errorhandling.Error;
+import com.kmitsystem.services.user.input.ChangeUserEMailInput;
+import com.kmitsystem.services.user.input.ChangeUserNameInput;
+import com.kmitsystem.services.user.input.ChangeUserPasswordInput;
+import com.kmitsystem.services.user.result.ChangeUserSettingsResult;
 import com.kmitsystem.tools.errorhandling.Errors;
+import com.kmitsystem.tools.errorhandling.Error;
+import com.kmitsystem.tools.objects.User;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author Oerlex
  */
-public class ChangeUserSettings extends HttpServlet {
+public class ChangeUserSettingsServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -38,118 +40,125 @@ public class ChangeUserSettings extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         RequestDispatcher rd;
+        ChangeUserSettingsResult result = new ChangeUserSettingsResult();
+        User user = (User)request.getSession().getAttribute("user");
         
         ////////////////////////
         //CHANGE EMAIL SECTION//
         ////////////////////////
         
-        if (request.getParameter("form_email") != null) {
-            String input_email_alt = request.getParameter("input_email_alt");
-            String input_email_neu1 = request.getParameter("input_email_neu1");
-            String input_email_neu2 = request.getParameter("input_email_neu2");
-            BaseResult result = new BaseResult();
+        if (request.getParameter("input_email_old") != null) {
+            String input_email_old = request.getParameter("input_email_old");
+            String input_email_new1 = request.getParameter("input_email_new1");
+            String input_email_new2 = request.getParameter("input_email_new2");
 
-            if (DBUserQueries.isEMailExisting(input_email_alt) == true) {
-                if (input_email_neu1.equals(input_email_neu2)) {
-                    DBUserQueries.changeEmail(input_email_alt, input_email_neu1);
+            // check if the email of the user is correct
+            if(input_email_old.equals(user.getEmail())) {
+                // check if both emails are equal, if true change the email
+                if(input_email_new1.equals(input_email_new2)) {
+                    UserServiceProvider provider = new UserServiceProvider();
+                    ChangeUserEMailInput input = new ChangeUserEMailInput(input_email_old,input_email_new1,input_email_new2);
+                    result = provider.changeUserEmail(input);
+                    // if the query was successful, write the new email into the user object
+                    if(result.isQuerySuccess()) user.setEmail(input_email_new1);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.EMAILS_NOT_EQUAL);
                     result.setErrorList(errorList);
-                    rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                    rd.include(request, response);
                 }
             } else {
                 List<Error> errorList = new ArrayList<Error>();
-                errorList.add(Errors.UNKNOWN_EMAIL_ERROR);
+                errorList.add(Errors.EMAIL_IS_FALSE);
                 result.setErrorList(errorList);
-
-                rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                rd.include(request, response);
             }
-
+            
             if (result.getErrorList().size() > 0) {
                 request.setAttribute("errors", result.getErrorList());
             }
 
-        } else {
-            rd = request.getRequestDispatcher("/user/dashboard/index.jsp");
-            rd.include(request, response);
-        }
+        } 
+        
         
         ///////////////////////
         //CHANGE NAME SECTION//
         ///////////////////////
 
-        if (request.getParameter("form_name") != null) {
-            String input_name_alt = request.getParameter("input_name_alt");
-            String input_name_neu1 = request.getParameter("input_name_neu1");
-            String input_name_neu2 = request.getParameter("input_name_neu2");
+        if (request.getParameter("input_name_old") != null) {
+            String input_name_old = request.getParameter("input_name_old");
+            String input_name_new1 = request.getParameter("input_name_new1");
+            String input_name_new2 = request.getParameter("input_name_new2");
             
-            BaseResult result = new BaseResult();
-
-            if (DBUserQueries.isUsernameExisting(input_name_alt) == true) {
-                if (input_name_neu1.equals(input_name_neu2)) {
-                    DBUserQueries.changeName(input_name_alt, input_name_neu1);
+            // check if the email of the user is correct
+            if(input_name_old.equals(user.getUsername())) {
+                // check if both names are equal, if true change the name
+                if(input_name_new1.equals(input_name_new2)) {
+                    UserServiceProvider provider = new UserServiceProvider();
+                    ChangeUserNameInput input = new ChangeUserNameInput(input_name_old,input_name_new1,input_name_new2);
+                    result = provider.changeUserName(input);
+                    // if the query was successful, write the new username into the user object
+                    if(result.isQuerySuccess()) user.setUsername(input_name_new1);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.NAMES_NOT_EQUAL);
                     result.setErrorList(errorList);
-                    rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                    rd.include(request, response);
                 }
             } else {
                 List<Error> errorList = new ArrayList<Error>();
-                errorList.add(Errors.USER_DOES_NOT_EXIST);
+                errorList.add(Errors.NAME_IS_FALSE);
                 result.setErrorList(errorList);
-
-                rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                rd.include(request, response);
             }
-
+            
             if (result.getErrorList().size() > 0) {
                 request.setAttribute("errors", result.getErrorList());
             }
         }
-
+        
+        
          ///////////////////////////
          //CHANGE PASSWORD SECTION//
          ///////////////////////////
         
-        if (request.getParameter("form_pasword") != null) {
+        if (request.getParameter("input_password_old") != null) {
             
             //Wie komme ich an die EMail Adresse aus der Session ?
             
-            String input_password_alt = request.getParameter("input_password_alt");
-            String input_password_neu1 = request.getParameter("input_password_neu1");
-            String input_password_neu2 = request.getParameter("input_password_neu2");
+            String input_password_old = request.getParameter("input_password_old");
+            String input_password_new1 = request.getParameter("input_password_new1");
+            String input_password_new2 = request.getParameter("input_password_new2"); 
             
-            BaseResult result = new BaseResult();
-
-            if (DBUserQueries.userPasswordOk("PLATZHALTER",input_password_alt) == true) {
-                if (input_password_neu1.equals(input_password_neu2)) {
-                    DBUserQueries.changePassword(input_password_alt, input_password_neu1);
+            // check if the email of the user is correct
+            if(input_password_old.equals(user.getPassword())) {
+                // check if both names are equal, if true change the name
+                if(input_password_new1.equals(input_password_new2)) {
+                    UserServiceProvider provider = new UserServiceProvider();
+                    ChangeUserPasswordInput input = new ChangeUserPasswordInput(user.getUsername(),input_password_old,input_password_new1,input_password_new2);
+                    result = provider.changeUserPassword(input);
+                    // if the query was successful, write the new password into the user object
+                    if(result.isQuerySuccess()) user.setPassword(input_password_new1);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.PASSWORDS_NOT_EQUAL);
                     result.setErrorList(errorList);
-                    rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                    rd.include(request, response);
                 }
             } else {
                 List<Error> errorList = new ArrayList<Error>();
-                errorList.add(Errors.USER_DOES_NOT_EXIST);
+                errorList.add(Errors.PASSWORD_FALSE);
                 result.setErrorList(errorList);
-
-                rd = request.getRequestDispatcher("/user/dahsboard/index.jsp");
-                rd.include(request, response);
             }
 
             if (result.getErrorList().size() > 0) {
                 request.setAttribute("errors", result.getErrorList());
+            } else {
+                result.getUser().setPassword(input_password_new1);
             }
 
         }
+        
+        // write the user object into the session
+        request.getSession().setAttribute("user", user);
+        
+        rd = request.getRequestDispatcher("/WEB-INF/user/dashboard/index.jsp");
+        rd.include(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

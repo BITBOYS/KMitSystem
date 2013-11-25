@@ -24,7 +24,7 @@
 
     <body>
 
-        <%@include file="../snipplets/header_public.jspf" %>
+        <%@include file="../snipplets/header.jspf" %>
 
         <!-- Page Content -->
 
@@ -73,7 +73,7 @@
 
         <div class="container">
 
-            <%@include file="../snipplets/footer.jspf" %
+            <%@include file="../snipplets/footer.jspf" %>
 
         </div><!-- /.container -->
 

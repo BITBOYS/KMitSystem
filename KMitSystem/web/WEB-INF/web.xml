@@ -25,8 +25,8 @@
         <servlet-class>com.kmitsystem.servlets.team.TeamsServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ChangeUserSettings</servlet-name>
-        <servlet-class>com.kmitsystem.servlets.user.ChangeUserSettings</servlet-class>
+        <servlet-name>ChangeUserSettingsServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.user.ChangeUserSettingsServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TeamDashboardServlet</servlet-name>
@@ -47,6 +47,10 @@
     <servlet>
         <servlet-name>TournamentsServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.tournament.TournamentsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.user.LogoutServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TeamsCreateServlet</servlet-name>
@@ -73,8 +77,8 @@
         <url-pattern>/teams</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ChangeUserSettings</servlet-name>
-        <url-pattern>/ChangeUserSettings</url-pattern>
+        <servlet-name>ChangeUserSettingsServlet</servlet-name>
+        <url-pattern>/user/dashboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TeamDashboardServlet</servlet-name>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>TournamentsServlet</servlet-name>
         <url-pattern>/TournamentsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

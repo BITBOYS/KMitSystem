@@ -1,23 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.kmitsystem.servlets.user;
 
 import com.kmitsystem.services.user.input.SignInInput;
 import com.kmitsystem.services.user.UserServiceProvider;
 import com.kmitsystem.services.user.result.SignInResult;
-import com.kmitsystem.tools.objects.BaseResult;
-import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,7 +29,6 @@ public class SignInServlet extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher rd;
         
-        //User Object with Input-Form-Data to validate
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         
@@ -59,7 +49,6 @@ public class SignInServlet extends HttpServlet {
             } else {
                 // write the user into the session
                 request.getSession().setAttribute("user", result.getUser());
-                System.out.println(result.getUser());
                 // redirect to the page www.kmitsystem.de/user/dashboard
                 response.sendRedirect(request.getContextPath() + "/user/dashboard");
             }

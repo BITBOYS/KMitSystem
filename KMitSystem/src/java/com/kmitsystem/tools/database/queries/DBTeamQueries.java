@@ -81,7 +81,7 @@ public class DBTeamQueries {
         }
     }
     
-    public static void editName(String teamname, String new_name) {
+    public static boolean editName(String teamname, String new_name) {
         int result;
         try {
             con = DatabaseHandler.connect();
@@ -90,15 +90,18 @@ public class DBTeamQueries {
             // create the team
             result = statement.executeUpdate("UPDATE team SET name = '" + new_name + "' WHERE name = '" + teamname + "'");
             
-            if(result > 0)
-                ErrorHandler.handle(Errors.EDIT_SUCCESS, TeamServiceProvider.class.getName() + ":editName");
+            if(result > 0) {
+                ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTeamQueries.class.getName() + ":editName");
+                return true;
+            }
             
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, "editTeamname: " + ex.getSQLState() + " " +ex.getMessage());
         }
+        return false;
     }
     
-    public static void editTag(String teamname, String new_tag) {
+    public static boolean editTag(String teamname, String new_tag) {
         int result;
         try {
             con = DatabaseHandler.connect();
@@ -107,15 +110,18 @@ public class DBTeamQueries {
             // create the team
             result = statement.executeUpdate("UPDATE team SET tag = '" + new_tag + "' WHERE name = '" + teamname + "'");
             
-            if(result > 0)
-                ErrorHandler.handle(Errors.EDIT_SUCCESS, TeamServiceProvider.class.getName() + ":editTag");
+            if(result > 0) {
+                ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTeamQueries.class.getName() + ":editTag");
+                return true;
+            }
             
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, "editTeamTag: " + ex.getSQLState() + " " +ex.getMessage());
         }
+        return false;
     }
     
-    public static void editPassword(String teamname, String new_password) {
+    public static boolean editPassword(String teamname, String new_password) {
         int result;
         try {
             con = DatabaseHandler.connect();
@@ -124,15 +130,18 @@ public class DBTeamQueries {
             // create the team
             result = statement.executeUpdate("UPDATE team SET password = '" + new_password + "' WHERE name = '" + teamname + "'");
             
-            if(result > 0)
-                ErrorHandler.handle(Errors.EDIT_SUCCESS, TeamServiceProvider.class.getName() + ":editPassword");
+            if(result > 0) {
+                ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTeamQueries.class.getName() + ":editPassword");
+                return true;
+            }
             
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, "editTeamPassword: " + ex.getSQLState() + " " +ex.getMessage());
         }
+        return false;
     }
     
-    public static void editLeader(String teamname, String new_leader) {
+    public static boolean editLeader(String teamname, String new_leader) {
         int result;
         try {
             con = DatabaseHandler.connect();
@@ -141,12 +150,15 @@ public class DBTeamQueries {
             // create the team
             result = statement.executeUpdate("UPDATE team SET leader = '" + new_leader + "' WHERE name = '" + teamname + "'");
             
-            if(result > 0)
-                ErrorHandler.handle(Errors.EDIT_SUCCESS, TeamServiceProvider.class.getName() + ":editLeader");
+            if(result > 0) {
+                ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTeamQueries.class.getName() + ":editLeader");
+                return true;
+            }
             
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, "editLeader: " + ex.getSQLState() + " " +ex.getMessage());
         }
+        return false;
     }
     
     public static Boolean isTeamPasswordOK(String teamname, String password) {

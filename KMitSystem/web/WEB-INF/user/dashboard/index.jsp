@@ -23,8 +23,7 @@
 
     <body>
 
-        <%@include file="../../snipplets/header_private.jspf" %>
-        
+        <%@include file="../../snipplets/header.jspf" %>
 
         <!-- Page Content -->
 
@@ -41,6 +40,9 @@
                     </ol>
                 </div>
             </div>
+                     
+            <!-- Alerts -->
+            <%@include file="../../snipplets/error.jspf" %>
 
             <!-- Service Tabs -->
 
@@ -61,23 +63,13 @@
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
                                 <div class="col-lg-12">
                                     <h2 class="page-header">E-Mail &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="form_email" action="#">
+                                    <form class="form-horizontal" role="form" name="form_email" action="<%=link%>/user/dashboard" method="POST">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">E-Mail</label>
                                             <div class="col-sm-6">
-                                                <input type="email" class="form-control" id="input_email_alt" placeholder="alte E-Mail">
-                                                <input type="email" class="form-control" id="input_email_neu1" placeholder="neue E-Mail">
-                                                <input type="email" class="form-control" id="input_email_neu2" placeholder="neue E-Mail">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-6 col-md-offset-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox" id="sure">
-                                                    </span>
-                                                    <p type="text" class="form-control">Bist du sicher?</p>
-                                                </div><!-- /input-group -->
+                                                <input type="email" class="form-control" name="input_email_old" placeholder="alte E-Mail" required>
+                                                <input type="email" class="form-control" name="input_email_new1" placeholder="neue E-Mail" required>
+                                                <input type="email" class="form-control" name="input_email_new2" placeholder="neue E-Mail" required>
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -93,25 +85,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Name &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="form_name" action="#">
+                                    <form class="form-horizontal" role="form" name="form_name" action="<%=link%>/user/dashboard" method="POST">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Name</label>
                                             <div class="col-sm-6">
-                                                <input type="text" class="form-control" id="input_name_alt" placeholder="alter Name">
+                                                <input type="text" class="form-control" name="input_name_old" placeholder="alter Name">
                                             </div>
                                             <div class="col-sm-6 col-md-offset-2">
-                                                <input type="text" class="form-control" id="input_name_neu1" placeholder="neuer Name">
-                                                <input type="text" class="form-control" id="input_name_neu2" placeholder="neuer Name">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-6 col-md-offset-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox" id="sure">
-                                                    </span>
-                                                    <p type="text" class="form-control">Bist du sicher?</p>
-                                                </div><!-- /input-group -->
+                                                <input type="text" class="form-control" name="input_name_new1" placeholder="neuer Name">
+                                                <input type="text" class="form-control" name="input_name_new2" placeholder="neuer Name">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -127,25 +109,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Passwort &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="form_pasword" action="#">
+                                    <form class="form-horizontal" role="form" name="form_pasword" action="<%=link%>/user/dashboard" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Passwort</label>
                                             <div class="col-sm-6">
-                                                <input type="email" class="form-control" id="input_pasword_alt" placeholder="altes Passwort">
+                                                <input type="password" class="form-control" name="input_password_old" placeholder="altes Passwort">
                                             </div>
                                             <div class="col-sm-6 col-md-offset-2">
-                                                <input type="password" class="form-control" id="input_pasword_neu1" placeholder="neues Passwort">
-                                                <input type="password" class="form-control" id="input_pasword_neu2" placeholder="neues Passwort">
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="col-sm-6 col-md-offset-2">
-                                                <div class="input-group">
-                                                    <span class="input-group-addon">
-                                                        <input type="checkbox" id="sure">
-                                                    </span>
-                                                    <p type="text" class="form-control">Bist du sicher?</p>
-                                                </div><!-- /input-group -->
+                                                <input type="password" class="form-control" name="input_password_new1" placeholder="neues Passwort">
+                                                <input type="password" class="form-control" name="input_password_new2" placeholder="neues Passwort">
                                             </div>
                                         </div>
                                         <div class="form-group">

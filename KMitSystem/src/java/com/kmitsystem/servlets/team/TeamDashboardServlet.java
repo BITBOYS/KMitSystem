@@ -3,6 +3,7 @@ package com.kmitsystem.servlets.team;
 
 import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.services.team.input.EditTeamInput;
+import com.kmitsystem.services.team.result.EditTeamResult;
 import com.kmitsystem.tools.database.queries.DBTeamQueries;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.errorhandling.Errors;
@@ -43,10 +44,9 @@ public class TeamDashboardServlet extends HttpServlet {
         String tag_new = request.getParameter("tag_new");
         String password_old = request.getParameter("password_old");
         String leader_new = request.getParameter("leader_new");
-        String name_new = null;
         
         // prepare the output
-        BaseResult result = new BaseResult();
+        EditTeamResult result = new EditTeamResult();
         
         // get the team and write it into the session
         Team team = DBTeamQueries.getTeam(teamname);
@@ -63,7 +63,7 @@ public class TeamDashboardServlet extends HttpServlet {
         if(name_old != null) {
             
             // prepare the input
-            name_new  = request.getParameter("name_new");
+            String name_new  = request.getParameter("name_new");
             String name_new2 = request.getParameter("name_new2");
             
             // check if the name of the team is correct
@@ -73,18 +73,16 @@ public class TeamDashboardServlet extends HttpServlet {
                     TeamServiceProvider provider = new TeamServiceProvider();
                     EditTeamInput input = new EditTeamInput(teamname, null, name_new, null, null, null);
                     result = provider.editTeam(input);
-                    team = DBTeamQueries.getTeam(name_new);
+                    if(result.isQuerySuccessful()) team.setName(name_new);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.NAMES_NOT_EQUAL);
                     result.setErrorList(errorList);
-                    request.setAttribute("errors", result.getErrorList());
                 }
             } else {
                 List<Error> errorList = new ArrayList<Error>();
                 errorList.add(Errors.NAME_IS_FALSE);
                 result.setErrorList(errorList);
-                request.setAttribute("errors", result.getErrorList());
             }
 
             // write the errorlist into the session-attribute "errors"
@@ -103,6 +101,7 @@ public class TeamDashboardServlet extends HttpServlet {
             TeamServiceProvider provider = new TeamServiceProvider();
             EditTeamInput input = new EditTeamInput(teamname, null, null, tag_new, null, null);
             result = provider.editTeam(input);
+            if(result.isQuerySuccessful()) team.setTag(tag_new);
 
             // write the errorlist into the session-attribute "errors"
             if(result.getErrorList().size() > 0) 
@@ -120,16 +119,23 @@ public class TeamDashboardServlet extends HttpServlet {
             String password_new = request.getParameter("password_new");
             String password_new2 = request.getParameter("password_new2");
             
-            // check if both passwords are equal, if true change the password
-            if(password_new.equals(password_new2)) {
-                TeamServiceProvider provider = new TeamServiceProvider();
-                EditTeamInput input = new EditTeamInput(teamname, password_old, null, null, password_new, null);
-                result = provider.editTeam(input);
+            // check if the name of the team is correct
+            if(password_old.equals(password_new)) {
+                // check if both passwords are equal, if true change the password
+                if(password_new.equals(password_new2)) {
+                    TeamServiceProvider provider = new TeamServiceProvider();
+                    EditTeamInput input = new EditTeamInput(teamname, password_old, null, null, password_new, null);
+                    result = provider.editTeam(input);
+                    if(result.isQuerySuccessful()) team.setPassword(password_new);
+                } else {
+                    List<Error> errorList = new ArrayList<Error>();
+                    errorList.add(Errors.PASSWORDS_NOT_EQUAL);
+                    result.setErrorList(errorList);
+                }
             } else {
                 List<Error> errorList = new ArrayList<Error>();
-                errorList.add(Errors.PASSWORDS_NOT_EQUAL);
+                errorList.add(Errors.PASSWORD_FALSE);
                 result.setErrorList(errorList);
-                request.setAttribute("errors", result.getErrorList());
             }
 
             // write the errorlist into the session-attribute "errors"
@@ -150,7 +156,8 @@ public class TeamDashboardServlet extends HttpServlet {
             TeamServiceProvider provider = new TeamServiceProvider();
             EditTeamInput input = new EditTeamInput(teamname, password_old, null, null, null, leader_new);
             result = provider.editTeam(input);
-
+            if(result.isQuerySuccessful()) team.setLeader(new User(leader_new));
+                    
             // write the errorlist into the session-attribute "errors"
             if(result.getErrorList().size() > 0) 
                 request.setAttribute("errors", result.getErrorList());
