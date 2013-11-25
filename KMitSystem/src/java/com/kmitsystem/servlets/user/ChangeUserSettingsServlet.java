@@ -91,14 +91,14 @@ public class ChangeUserSettingsServlet extends HttpServlet {
             String input_name_new2 = request.getParameter("input_name_new2");
             
             // check if the email of the user is correct
-            if(input_name_old.equals(result.getUser().getUsername())) {
+            if(input_name_old.equals(user.getUsername())) {
                 // check if both names are equal, if true change the name
                 if(input_name_new1.equals(input_name_new2)) {
                     UserServiceProvider provider = new UserServiceProvider();
                     ChangeUserNameInput input = new ChangeUserNameInput(input_name_old,input_name_new1,input_name_new2);
                     result = provider.changeUserName(input);
                     // if the query was successful, write the new username into the user object
-                    if(result.isQuerySuccess()) result.getUser().setUsername(input_name_new1);
+                    if(result.isQuerySuccess()) user.setUsername(input_name_new1);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.NAMES_NOT_EQUAL);
@@ -129,14 +129,14 @@ public class ChangeUserSettingsServlet extends HttpServlet {
             String input_password_new2 = request.getParameter("input_password_new2"); 
             
             // check if the email of the user is correct
-            if(input_password_old.equals(result.getUser().getPassword())) {
+            if(input_password_old.equals(user.getPassword())) {
                 // check if both names are equal, if true change the name
                 if(input_password_new1.equals(input_password_new2)) {
                     UserServiceProvider provider = new UserServiceProvider();
-                    ChangeUserPasswordInput input = new ChangeUserPasswordInput(result.getUser().getUsername(),input_password_old,input_password_new1,input_password_new2);
+                    ChangeUserPasswordInput input = new ChangeUserPasswordInput(user.getUsername(),input_password_old,input_password_new1,input_password_new2);
                     result = provider.changeUserPassword(input);
                     // if the query was successful, write the new password into the user object
-                    if(result.isQuerySuccess()) result.getUser().setPassword(input_password_new1);
+                    if(result.isQuerySuccess()) user.setPassword(input_password_new1);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.PASSWORDS_NOT_EQUAL);

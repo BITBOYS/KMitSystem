@@ -15,12 +15,6 @@ import com.kmitsystem.tools.errorhandling.Errors;
  */
 public class ChangeUserNameValidator {
    public boolean validate(ChangeUserNameInput input) {
-       
-        if(input.getNewName1().equals(input.getNewName2()) == false)
-        {
-            ErrorHandler.handle(Errors.NAMES_NOT_EQUAL);
-            return false;
-        }
         
         // check if the username is already taken
         if(DBUserQueries.isUsernameExisting(input.getNewName1())) {
