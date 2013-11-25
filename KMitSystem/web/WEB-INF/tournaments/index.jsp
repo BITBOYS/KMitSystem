@@ -12,8 +12,9 @@
 
         <title>Turniere - KmS</title>
 
-        <%            String link = request.getContextPath();
-            String loged_in = "true"; //String.valueOf(session.getAttribute("loged_in"));
+        <%            
+            String link = request.getContextPath();
+            User user = (User)request.getSession().getAttribute("user");
 
             List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
             if (errors == null) {
@@ -49,7 +50,7 @@
                     </ol>
                 </div>
 
-                <%if (loged_in.equals("true")) {%>
+                <%if (user != null) {%>
                 <div class="row">
                     <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
                         <a class="btn btn-success" href="<%=link%>/tournaments/create"><span class="fa fa-pencil"> Turnier erstellen <i class="fa fa-angle-right"></i></span></a>

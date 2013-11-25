@@ -42,7 +42,7 @@
 
                 <div class="col-lg-12">
                     <!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! -->
-                    <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=hamburg&hl=en&ll=53.564783,10.042877&spn=0.47469,1.352692&sll=37.0625,-95.677068&sspn=40.409448,86.572266&hnear=Hamburg,+Germany&t=m&z=10;ll=37.0625,-95.677068&amp;spn=56.506174,79.013672&amp;t=m&amp;z=4&amp;output=embed"></iframe>
+                    <iframe width="100%" height="400px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.de/maps?hl=de&q=hamburg+(Hamburg City Bitch)&ie=UTF8&t=&z=12&iwloc=B&output=embed"></iframe>
                 </div>
 
             </div><!-- /.row -->
@@ -78,7 +78,7 @@
                             </div>
                             <div class="form-group col-lg-12">
                                 <input type="hidden" name="save" value="contact">
-                                <button type="submit" class="fa fa-mail btn btn-primary"> Senden</button>
+                                <button type="submit" class="fa fa-mail btn btn-primary">Senden <i class="fa fa-angle-right"></i></button>
                             </div>
                         </div>
                     </form>
@@ -88,16 +88,16 @@
                     <h3>Kickern mit System</h3>
                     <h4>Dein Kicker-Tool</h4>
                     <p>
-                        5555 44th Street N.<br>
-                        Dedeville, CA 32323<br>
+                        Hamburg City No1<br>
+                        Hamburg, D 20097<br>
                     </p>
                     <p><i class="fa fa-phone"></i> <abbr title="Phone">P</abbr>: (555) 984-3600</p>
-                    <p><i class="fa fa-envelope-o"></i> <abbr title="Email">E</abbr>: <a href="mailto:maik.schmaddebeck@generali.de">maik.smadback@dede.de</a></p>
+                    <p><i class="fa fa-envelope-o"></i> <abbr title="Email">E</abbr>: <a href="mailto:maik.schmaddebeck@generali.de">info@kms.de</a></p>
                     <p><i class="fa fa-clock-o"></i> <abbr title="Hours">H</abbr>: Samstag - Sonntag: 10:00 bis 15:00 Uhr</p>
                     <ul class="list-unstyled list-inline list-social-icons">
-                        <li class="tooltip-social facebook-link"><a href="#facebook-page" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-                        <li class="tooltip-social linkedin-link"><a href="#linkedin-company-page" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-                        <li class="tooltip-social google-plus-link"><a href="#google-plus-page" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+                        <li class="tooltip-social facebook-link"><a href="#facebook-page" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                        <li class="tooltip-social linkedin-link"><a href="#linkedin-company-page" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                        <li class="tooltip-social google-plus-link"><a href="#google-plus-page" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
                     </ul>
                 </div>
 

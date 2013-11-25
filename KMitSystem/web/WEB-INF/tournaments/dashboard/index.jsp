@@ -20,7 +20,7 @@
             Tournament tournament = (Tournament) request.getAttribute("tournament");
             if (tournament == null) tournament = new ArrayList<Tournament>
         %>
-        
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Turnier Dshboard">
@@ -55,6 +55,9 @@
                     </ol>
                 </div>
             </div>
+
+            <!-- Errors & Alerts -->
+            <%@include file="../../snipplets/error.jspf" %>
 
             <!-- Service Tabs -->
 
@@ -150,11 +153,11 @@
                                             </div>
                                             <div class="col-lg-6 col-md-offset-2">
                                                 <input list="userAuswahl" name="leader_new" class="form-control" autocomplete="off" placeholder="User" >
-                                                 <datalist id="userAuswahl">
-                                                     <% for(int idx = 0; idx < teams.size(); idx++) {%>
-                                                         <option value="<%= teams.get(idx).getLeader()%>"> 
-                                                     <% } %>
-                                                 </datalist>
+                                                <datalist id="userAuswahl">
+                                                    <% for(int idx = 0; idx < teams.size(); idx++) {%>
+                                                    <option value="<%= teams.get(idx).getLeader()%>"> 
+                                                        <% } %>
+                                                </datalist>
                                             </div>
                                         </div>
                                         <div class="form-group">
