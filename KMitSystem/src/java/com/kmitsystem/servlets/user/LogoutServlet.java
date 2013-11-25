@@ -29,12 +29,18 @@ public class LogoutServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().invalidate();
-        
-        // create the LOGOUT_SUCCESSFUL message
-        List<Error> errorList = new ArrayList<Error>();
-        errorList.add(Errors.LOGOUT_SUCCESSFUL);
-        request.setAttribute("errors", errorList);
+        try {
+            request.getSession().invalidate();
+
+            // create the LOGOUT_SUCCESSFUL message
+            List<Error> errorList = new ArrayList<Error>();
+            errorList.add(Errors.LOGOUT_SUCCESSFUL);
+            request.setAttribute("errors", errorList);
+        } catch (IllegalStateException exc) {
+            List<Error> errorList = new ArrayList<Error>();
+            errorList.add(Errors.LOGOUT_FAILED);
+            request.setAttribute("errors", errorList);
+        }
         
         // redirect to the start page
         RequestDispatcher rd = request.getRequestDispatcher("/index.jsp");
