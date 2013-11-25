@@ -43,8 +43,6 @@ public class ChangeUserSettingsServlet extends HttpServlet {
         ChangeUserSettingsResult result = new ChangeUserSettingsResult();
         User user = (User)request.getSession().getAttribute("user");
         
-        System.out.println(result.getUser());
-        
         ////////////////////////
         //CHANGE EMAIL SECTION//
         ////////////////////////
