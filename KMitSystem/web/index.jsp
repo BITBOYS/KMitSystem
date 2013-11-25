@@ -12,12 +12,12 @@
 
         <title>Kickern mit System - Welcome</title>
 
-        <%            String link = request.getContextPath();
-            String loged_in = String.valueOf(request.getSession().getAttribute("loged_in"));
+        <%            
+            String link = request.getContextPath();
 
-            List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
+            List<com.kmitsystem.tools.errorhandling.Error> errors = (ArrayList<com.kmitsystem.tools.errorhandling.Error>) request.getAttribute("errors");
             if (errors == null) {
-                errors = new ArrayList<Error>();
+                errors = new ArrayList<com.kmitsystem.tools.errorhandling.Error>();
             }
         %>
 
@@ -75,20 +75,7 @@
 
             <div class="container">
                 
-                <%System.out.print("dededed "+errors);
-                if (errors.size() > 0) {
-                        for (int idx = 0; idx < errors.size(); idx++) {
-                            if (errors.get(idx).getStatus().equals("INFO")) {
-                %>
-
-                      <div class="alert alert-info"> <%= errors.get(idx).getErrorMessage()%> </div>
-
-                <% } else {%>
-                      <div class="alert alert-danger"> <%= errors.get(idx).getErrorMessage()%> </div>  
-                <%   }
-                        }
-                        request.getSession().setAttribute("errors", null);
-                    }%>
+                <%@include file="snipplets/error.jspf" %>
 
                 <div class="row">
                     <div class="col-lg-4 col-md-4">

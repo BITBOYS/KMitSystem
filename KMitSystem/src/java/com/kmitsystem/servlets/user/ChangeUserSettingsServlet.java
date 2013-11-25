@@ -41,7 +41,7 @@ public class ChangeUserSettingsServlet extends HttpServlet {
             throws ServletException, IOException {
         RequestDispatcher rd;
         ChangeUserSettingsResult result = new ChangeUserSettingsResult();
-        result.setUser((User)request.getSession().getAttribute("user"));
+        User user = (User)request.getSession().getAttribute("user");
         
         System.out.println(result.getUser());
         
@@ -55,13 +55,14 @@ public class ChangeUserSettingsServlet extends HttpServlet {
             String input_email_new2 = request.getParameter("input_email_new2");
 
             // check if the email of the user is correct
-            if(input_email_old.equals(result.getUser().getEmail())) {
+            if(input_email_old.equals(user.getEmail())) {
                 // check if both emails are equal, if true change the email
                 if(input_email_new1.equals(input_email_new2)) {
                     UserServiceProvider provider = new UserServiceProvider();
                     ChangeUserEMailInput input = new ChangeUserEMailInput(input_email_old,input_email_new1,input_email_new2);
                     result = provider.changeUserEmail(input);
-                    result.getUser().setEmail(input_email_new1);
+                    // if the query was successful, write the new email into the user object
+                    if(result.isQuerySuccess()) user.setEmail(input_email_new1);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.EMAILS_NOT_EQUAL);
@@ -96,7 +97,8 @@ public class ChangeUserSettingsServlet extends HttpServlet {
                     UserServiceProvider provider = new UserServiceProvider();
                     ChangeUserNameInput input = new ChangeUserNameInput(input_name_old,input_name_new1,input_name_new2);
                     result = provider.changeUserName(input);
-                    result.getUser().setUsername(input_name_new1);
+                    // if the query was successful, write the new username into the user object
+                    if(result.isQuerySuccess()) result.getUser().setUsername(input_name_new1);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.NAMES_NOT_EQUAL);
@@ -133,7 +135,8 @@ public class ChangeUserSettingsServlet extends HttpServlet {
                     UserServiceProvider provider = new UserServiceProvider();
                     ChangeUserPasswordInput input = new ChangeUserPasswordInput(result.getUser().getUsername(),input_password_old,input_password_new1,input_password_new2);
                     result = provider.changeUserPassword(input);
-                    result.getUser().setPassword(input_password_new1);
+                    // if the query was successful, write the new password into the user object
+                    if(result.isQuerySuccess()) result.getUser().setPassword(input_password_new1);
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.PASSWORDS_NOT_EQUAL);
@@ -153,7 +156,8 @@ public class ChangeUserSettingsServlet extends HttpServlet {
 
         }
         
-        request.getSession().setAttribute("user", result.getUser());
+        // write the user object into the session
+        request.getSession().setAttribute("user", user);
         
         rd = request.getRequestDispatcher("/WEB-INF/user/dashboard/index.jsp");
         rd.include(request, response);

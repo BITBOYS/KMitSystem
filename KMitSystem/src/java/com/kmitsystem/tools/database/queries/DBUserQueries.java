@@ -165,51 +165,60 @@ public class DBUserQueries {
          return user;
     }
     
-    public static void changeEmail(String oldEmail, String newEmail) {
+    public static boolean changeEmail(String oldEmail, String newEmail) {
         int result;
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             result = statement.executeUpdate("update user set email='"+ newEmail+"' where email = '"+ oldEmail+"'"); 
             
-            if(result > 0)
+            if(result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBUserQueries.class.getName() + ":changeEmail");
+                return true;
+            }
             
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
-        }        
+        }   
+        return false;
     }
    
-     public static void changeName(String oldName, String newName) {
+     public static boolean changeName(String oldName, String newName) {
         int result;
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             result = statement.executeUpdate("update user set username= '"+ newName+"' where username = '"+ oldName + "'");            
          
-            if(result > 0)
+            if(result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBUserQueries.class.getName() + ":changeName");
+                return true;
+            }
             
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }        
+        return false;
     }
     
      //BIn mir nicht sicher mit den SPaltennamen, kann die DB im MOment nicht öffnen
      
-     public static void changePassword(String username, String newPassword) {
+     public static boolean changePassword(String username, String newPassword) {
         int result;
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             result = statement.executeUpdate("update user set password= '"+ newPassword+"' where username = '"+ username + "'");         
          
-            if(result > 0)
+            if(result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBUserQueries.class.getName() + ":changePassword");
+                return true;
+            }
             
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }        
+        return false;
     }
      
      public static List<User> getAllUser() {

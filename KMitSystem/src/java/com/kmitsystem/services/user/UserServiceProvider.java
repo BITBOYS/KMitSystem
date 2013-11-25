@@ -78,7 +78,10 @@ public class UserServiceProvider {
             String newEmail1 = input.getNewEmail1();
             
             // call the database
-            DBUserQueries.changeEmail(oldEmail, newEmail1);
+            if(DBUserQueries.changeEmail(oldEmail, newEmail1))
+                result.setQuerySuccess(true);
+            else
+                result.setQuerySuccess(false);
         }
         
         // write the errors into the result object and empty the ErrorHandler
@@ -98,7 +101,10 @@ public class UserServiceProvider {
             String newName1 = input.getNewName1();
             
             // call the database
-            DBUserQueries.changeName(oldName, newName1);
+            if(DBUserQueries.changeName(oldName, newName1)) 
+                result.setQuerySuccess(true);
+            else
+                result.setQuerySuccess(false);
         }
         
         // write the errors into the result object and empty the ErrorHandler
@@ -117,7 +123,10 @@ public class UserServiceProvider {
             String newPassword1 = input.getNewPassword1();
             
             // call the database
-            DBUserQueries.changePassword(input.getUsername(), newPassword1);
+            if(DBUserQueries.changePassword(input.getUsername(), newPassword1))
+                result.setQuerySuccess(true);
+            else
+                result.setQuerySuccess(false);
         }
         
         // write the errors into the result object and empty the ErrorHandler

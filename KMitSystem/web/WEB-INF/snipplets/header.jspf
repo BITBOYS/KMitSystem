@@ -41,7 +41,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="<%=path%>/user/profile?user=<%=user.getUsername()%>"><i class="fa fa-user-md"></i> Profil</a></li> 
                             <li><a href="<%=path%>/user/dashboard"><i class="fa fa-move"></i> Dashboard</a></li> 
-                            <li><a href="<%=path%>/"><i class="fa fa-sign-out"></i> Logout</a></li> 
+                            <li><a href="<%=path%>/logout"><i class="fa fa-sign-out"></i> Logout</a></li> 
                         </ul>
                     </li>
             </div><!-- /.navbar-collapse -->

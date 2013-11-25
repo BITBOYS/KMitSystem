@@ -11,14 +11,16 @@ import com.kmitsystem.tools.objects.User;
 public class ChangeUserSettingsResult extends BaseResult {
     
     User user;
+    boolean querySuccess;
 
     public ChangeUserSettingsResult() {
         super();
     }
 
-    public ChangeUserSettingsResult(User user) {
+    public ChangeUserSettingsResult(User user, boolean querySuccess) {
         super();
         this.user = user;
+        this.querySuccess = querySuccess;
     }
 
     public User getUser() {
@@ -27,6 +29,14 @@ public class ChangeUserSettingsResult extends BaseResult {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public boolean isQuerySuccess() {
+        return querySuccess;
+    }
+
+    public void setQuerySuccess(boolean querySuccess) {
+        this.querySuccess = querySuccess;
     }
     
 }

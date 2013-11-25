@@ -36,6 +36,7 @@ public class Errors {
     public static final Error PASSWORD_FALSE = new Error(23, "Das eingegebene Passwort ist inkorrekt", Error.ERROR);
     public static final Error PASSWORD_NOT_VALID = new Error(24, "Das gewählte Password entspricht nicht den Richtlinen", Error.ERROR);
     public static final Error EMAIL_IS_FALSE = new Error(24, "Die eingegebene E-Mail Adresse ist falsch", Error.ERROR);
+    public static final Error LOGOUT_SUCCESSFUL = new Error(25, "Erfolgreich abgemeldet", Error.SUCCESS);
     
     
     
