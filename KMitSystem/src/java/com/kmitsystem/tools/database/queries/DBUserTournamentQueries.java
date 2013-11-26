@@ -62,12 +62,12 @@ public class DBUserTournamentQueries {
             
             
             resultSet = statement.executeQuery("SELECT to.name, to.description, to.leader, to.start_date, to.end_date, to.nr_of_matchdays, to.venue, to.term_of_application, to.password"
-                                            + " FROM  tournament as to, team_tournament as teto, team as te, user_team as ut, user as u"
+                                            + " FROM  tournament to, team_tournament teto, team te, user_team ut, user u"
                                             + " WHERE to.name = teto.tournament"
-                                            + "   AND teto.team = te.name" + "'"
-                                            + "   AND te.name = ut.team" + "'"
-                                            + "   AND ut.user = u.username" + "'"
-                                            + "   AND username = '" + username +"'"
+                                            + "   AND teto.team = te.name" 
+                                            + "   AND te.name = ut.team" 
+                                            + "   AND ut.user = u.username" 
+                                            + "   AND username = '" + username 
                                             + " ORDER BY to.name, to.start_date, to.end_date");
             resultSet.first();
             

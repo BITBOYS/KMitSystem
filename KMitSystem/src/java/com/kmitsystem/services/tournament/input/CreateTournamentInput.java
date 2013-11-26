@@ -21,14 +21,14 @@ public class CreateTournamentInput {
     private int nr_matchdays;
     private String venue;
     private Date term_of_application;
-    private List<Team> teams;
+//    private List<Team> teams;
     
     public CreateTournamentInput() {
         super();
     }
 
     public CreateTournamentInput(String name, String password, String description, User leader, Date start_date, Date end_date, 
-                    int nr_matchdays, String venue, Date term_of_application, List<Team> teams) {
+                    int nr_matchdays, String venue, Date term_of_application) {
         this.name = name;
         this.password = password;
         this.description = description;
@@ -38,7 +38,7 @@ public class CreateTournamentInput {
         this.nr_matchdays = nr_matchdays;
         this.venue = venue;
         this.term_of_application = term_of_application;
-        this.teams = teams;
+//        this.teams = teams;
     }
     
     public String getName() {
@@ -113,17 +113,17 @@ public class CreateTournamentInput {
         this.term_of_application = term_of_application;
     }
 
-    public List<Team> getTeams() {
-        return teams;
-    }
-
-    public void setTeams(List<Team> teams) {
-        this.teams = teams;
-    }
+//    public List<Team> getTeams() {
+//        return teams;
+//    }
+//
+//    public void setTeams(List<Team> teams) {
+//        this.teams = teams;
+//    }
 
     @Override
     public String toString() {
-        return "CreateTournamentInput{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + ", teams=" + teams + '}';
+        return "CreateTournamentInput{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application ;
     }
     
 }

@@ -39,10 +39,13 @@ public class TournamentsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String team =  request.getParameter("team_name_search");
-        String tournament = request.getParameter("tournament_name_search");
+                
+        String team =  (String)request.getParameter("team_name_search");
+        System.out.println("Team: "+team);
+        String tournament = (String)request.getParameter("tournament_name_search");
+        System.out.println("Turnier: "+tournament);
         String user = request.getParameter("user_name_search");
+        System.out.println("User: "+user);
         String running = request.getParameter("running_search");
         String finished = request.getParameter("finished_search");
         String createMonth = request.getParameter("createMonth_search");
@@ -65,8 +68,8 @@ public class TournamentsServlet extends HttpServlet {
             request.setAttribute("errors", result.getErrorList());
         }
         
-        // redirect to the page www.kmitsystem.de/teams
-        RequestDispatcher rd = request.getRequestDispatcher("/tournaments/index.jsp");
+        // redirect to the page www.kmitsystem.de/touranemnts
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/tournaments/index.jsp");
         rd.include(request, response);
     }
 

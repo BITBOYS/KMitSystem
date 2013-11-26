@@ -50,24 +50,25 @@ public class TournamentCreateServlet extends HttpServlet {
             int nrMatchdays = Integer.parseInt(request.getParameter("tournament_matchdays_create"));
             String venue = request.getParameter("tournament_venue_create");;
             String password = request.getParameter("tournament_password_creat");
-            String reenter_password = request.getParameter("tournament_password_reenter_creat");
+            String reenter_password = (String)request.getParameter("tournament_password_reenter_creat");
             Date startDate = Date.valueOf(request.getParameter("tournamen_start_date_create"));
             Date endDate = Date.valueOf(request.getParameter("tournamen_end_date_create"));
             Date termOfApp = Date.valueOf(request.getParameter("tournamen_term_create"));
-            List<Team> teamsAdded = null; //(request.getParameter("tournament_teamAdd_create"));
+            //BETA
+            //List<Team> teamsAdded = null; //(request.getParameter("tournament_teamAdd_create"));
 
-//        User leader = GET USER FROM SESSION
-            String leader = "Malte";
+//          User from Session
+            User leader = (User)request.getSession().getAttribute("user");
             
             BaseResult result = new BaseResult();
 
             if (password.equals(reenter_password)) {
                 TournamentServiceProvider provider = new TournamentServiceProvider();
-                CreateTournamentInput input = new CreateTournamentInput(name, password, description, new User(leader), startDate, endDate, nrMatchdays, venue, termOfApp, teamsAdded);
+                CreateTournamentInput input = new CreateTournamentInput(name, password, description, leader, startDate, endDate, nrMatchdays, venue, termOfApp);
 
                 result = provider.createTournament(input);
                 
-                // redirect to the profile of the new team
+                // redirect to the profile of the new tournament
                 response.sendRedirect(request.getContextPath() + "/tournament/profile?tournament="+name);
                 
             } else {
@@ -77,7 +78,7 @@ public class TournamentCreateServlet extends HttpServlet {
                 request.setAttribute("errors", result.getErrorList());
 
                 // redirect to the teamcreation page and show the error
-                rd = request.getRequestDispatcher("/tournaments/create/index.jsp");
+                rd = request.getRequestDispatcher("/WEB-INF/tournaments/create/index.jsp");
                 rd.include(request, response);
             }
 
@@ -87,15 +88,15 @@ public class TournamentCreateServlet extends HttpServlet {
             }
 
         } else {
-            // redirect to the page www.kmitsystem.de/teams
-            rd = request.getRequestDispatcher("/tournaments/create/index.jsp");
+            // redirect to the page www.kmitsystem.de/tournaments
+            rd = request.getRequestDispatcher("/WEB-INF/tournaments/create/index.jsp");
             rd.include(request, response);
         }
     }
-
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
-     * Handles the HTTP <code>GET</code> method.
+     * Handles the HTTP
+     * <code>GET</code> method.
      *
      * @param request servlet request
      * @param response servlet response
@@ -109,7 +110,8 @@ public class TournamentCreateServlet extends HttpServlet {
     }
 
     /**
-     * Handles the HTTP <code>POST</code> method.
+     * Handles the HTTP
+     * <code>POST</code> method.
      *
      * @param request servlet request
      * @param response servlet response

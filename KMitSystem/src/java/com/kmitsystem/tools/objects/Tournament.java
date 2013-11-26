@@ -89,7 +89,7 @@ public class Tournament {
         this.end_date = end_date;
     }
 
-    public int nr_matchdays() {
+    public int getNr_matchdays() {
         return nr_matchdays;
     }
 

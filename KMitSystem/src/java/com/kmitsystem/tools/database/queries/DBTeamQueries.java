@@ -191,7 +191,7 @@ public class DBTeamQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("SELECT username FROM user");
+            resultSet = statement.executeQuery("SELECT name, tag, leader FROM team");
             resultSet.first();
             
             while(!resultSet.isAfterLast()) {

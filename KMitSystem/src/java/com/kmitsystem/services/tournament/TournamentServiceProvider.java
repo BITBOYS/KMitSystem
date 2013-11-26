@@ -116,16 +116,19 @@ public class TournamentServiceProvider {
         // search tournament
         if (tournament_name != null && !tournament_name.equals("")) {
             result.addTournament(DBTournamentQueries.getTournament(tournament_name));
+            System.out.println("Search Tournament");
         }
 
         // search team
         if (team_name != null && !team_name.equals("")) {
             result.addTournaments(DBTeamTournamentQueries.getAllTournamentsFromTeam(team_name));
+            System.out.println("Search Team");
         }
 
         // search user
         if (user_name != null && !user_name.equals("")) {
             result.addTournaments(DBUserTournamentQueries.getAllTournamentFromUser(user_name));
+            System.out.println("Search User");
         }
 
         // write the errors into the result object and empty the ErrorHandler
