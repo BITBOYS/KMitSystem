@@ -90,7 +90,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TournamentCreateServle</servlet-name>
-        <url-pattern>/TournamentCreateServle</url-pattern>
+        <url-pattern>/tournaments/create</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TournamentProfileServlet</servlet-name>
@@ -98,7 +98,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TournamentsServlet</servlet-name>
-        <url-pattern>/TournamentsServlet</url-pattern>
+        <url-pattern>/tournaments</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>

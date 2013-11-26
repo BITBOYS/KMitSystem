@@ -138,6 +138,8 @@
         </div><!-- /.section -->
 
         <div class="container">
+            
+            <%if(user == null){%>
 
             <div class="row well">
                 <div class="col-lg-8 col-md-8">
@@ -149,6 +151,7 @@
                     <a class="btn btn-lg btn-success pull-right" href="<%=link%>/register">Jetzt registrieren <i class="fa fa-angle-right"></i></a>
                 </div>
             </div><!-- /.row -->
+            <%}%>
 
         </div><!-- /.container -->
 

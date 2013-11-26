@@ -8,7 +8,6 @@
 <html lang="en">
     <head>
         <%
-            User logged_user = (User)request.getSession().getAttribute("logged_user");
             String link = request.getContextPath();
             
             List<Team> teams = (ArrayList<Team>) request.getAttribute("teams");
@@ -18,7 +17,6 @@
             if (member == null) member = new ArrayList<User>();
             
             Tournament tournament = (Tournament) request.getAttribute("tournament");
-            if (tournament == null) tournament = new ArrayList<Tournament>
         %>
 
         <meta charset="utf-8">
@@ -38,7 +36,7 @@
 
     <body>
 
-        <%@include file="../../snipplets/header_private.jspf" %>
+        <%@include file="../../snipplets/header.jspf" %>
 
         <!-- Page Content -->
 
@@ -77,7 +75,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Name &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="change_name" action="<%=path%>/tournament/dashboard?team=<%=tournament.getName()%>" method="post">
+                                    <form class="form-horizontal" role="form" name="change_name" action="<%=link%>/tournament/dashboard?team=<%=tournament.getName()%>" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Name</label>
                                             <div class="col-sm-6">

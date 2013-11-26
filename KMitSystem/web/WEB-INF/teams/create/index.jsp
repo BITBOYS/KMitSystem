@@ -36,7 +36,7 @@
 
     <body>
 
-        <%@include file="../snipplets/header.jspf" %>
+        <%@include file="../../snipplets/header.jspf" %>
 
         <!-- Page Content -->
 

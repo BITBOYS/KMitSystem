@@ -16,7 +16,7 @@
         
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="User Profil">
+        <meta name="description" content="Team Profil">
         <meta name="author" content="Malte Dammann">
 
         <title>Team Profil - KmS</title>
@@ -31,7 +31,7 @@
 
     <body>
 
-        <%@include file="../snipplets/header.jspf" %>
+        <%@include file="../../snipplets/header.jspf" %>
 
         <!-- Page Content -->
 

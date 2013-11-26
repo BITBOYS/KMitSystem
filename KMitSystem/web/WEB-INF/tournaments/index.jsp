@@ -12,10 +12,7 @@
 
         <title>Turniere - KmS</title>
 
-        <%            
-            String link = request.getContextPath();
-            User user = (User)request.getSession().getAttribute("user");
-
+        <%            String link = request.getContextPath();
             List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
             if (errors == null) {
                 errors = new ArrayList<Error>();
@@ -33,7 +30,7 @@
 
     <body>
 
-        <%@include file="../snipplets/header_private.jspf" %>
+        <%@include file="../snipplets/header.jspf" %>
 
 
         <!-- Page Content -->
@@ -62,14 +59,14 @@
                     <div class="col-lg-12">
                         <h2 class="page-header">Turniersuche</h2>
                         <div class="row well">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" action="<%=link%>/tournaments">
 
                                 <div class="col-lg-4 col-lg-offset-1">
 
                                     <div class="form-group">
                                         <label for="inputTurniername" class="col-sm-2 control-label">Turnier</label>
                                         <div class="col-lg-8">
-                                            <input type="text" class="form-control" name="turnier_name_search" placeholder="Name">
+                                            <input type="text" class="form-control" name="tournament_name_search" placeholder="Name">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -148,21 +145,22 @@
                     </div>
 
                     <% }
-                    }%>
-
+                        }%>
                 </div>
+            </div>
+        </div>
 
-                <div class="container">
+        <div class="container">
 
-                    <%@include file="../snipplets/footer.jspf" %>
+            <%@include file="../snipplets/footer.jspf" %>
 
-                </div><!-- /.container -->
+        </div><!-- /.container -->
 
-                <!-- Bootstrap core JavaScript -->
-                <!-- Placed at the end of the document so the pages load faster -->
-                <script src="<%=link%>/public/js/jquery.js"></script>
-                <script src="<%=link%>/public/js/bootstrap.js"></script>
-                <script src="<%=link%>/public/js/modern-business.js"></script>
+        <!-- Bootstrap core JavaScript -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="<%=link%>/public/js/jquery.js"></script>
+        <script src="<%=link%>/public/js/bootstrap.js"></script>
+        <script src="<%=link%>/public/js/modern-business.js"></script>
 
-                </body>
-                </html>
+    </body>
+</html>

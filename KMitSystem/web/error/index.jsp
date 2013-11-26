@@ -23,7 +23,7 @@
 
     <body>
         
-        <%@include file="../snipplets/header.jspf" %>
+        <%@include file="../WEB-INF/snipplets/header.jspf" %>
 
         <div class="container">
 
@@ -43,8 +43,8 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <p class="error-404">404</p>
-                    <p class="lead">Die von dir gesuchte Seite wurde nicht gefunden.</p>
+                    <p class="error-404">WHAT?! - <%=pageContext.getErrorData().getStatusCode()%></p>
+                    <p class="lead">Es ist ein Fehler aufgetreten.</p>
                     <p>Das tut uns leid! Hier ein paar hilfreiche Links:</p>
                     <ul>
                         <li><a href="<%=link%>">Home</a></li>

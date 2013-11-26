@@ -14,7 +14,6 @@
         <title>Turnier Erstellen - KmS</title>
 
         <%            String link = request.getContextPath();
-            String loged_in = String.valueOf(session.getAttribute("loged_in"));
 
             List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
             if (errors == null) {
@@ -39,7 +38,7 @@
 
     <body>
 
-        <%@include file="../../snipplets/header_private.jspf" %>
+        <%@include file="../../snipplets/header.jspf" %>
 
         <!-- Page Content -->
 
@@ -62,7 +61,7 @@
             <div class="row">  
                 <div class="col-lg-12">
                     <div class="row well">
-                        <form class="form-horizontal" role="form" action="<%=path%>/tournaments/dashboard" method="post">
+                        <form class="form-horizontal" role="form" action="<%=link%>/tournaments/create" method="post">
 
                             <div class="col-lg-4 col-lg-offset-1">
 
