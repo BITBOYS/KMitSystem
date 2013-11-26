@@ -24,6 +24,7 @@ CREATE TABLE tournament (
         start_date DATETIME,
         end_date DATETIME,
         password CHAR(32),
+        description CHAR(500),
         nr_of_matchdays INT,
         venue CHAR(30),
         term_of_application DATETIME,
