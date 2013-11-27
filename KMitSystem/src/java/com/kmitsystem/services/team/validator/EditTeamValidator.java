@@ -23,9 +23,11 @@ public class EditTeamValidator {
             }
         }
         
-        if(passwordPolicy.CheckPassword(input.getNew_password()) == false){
-            ErrorHandler.handle(Errors.PASSWORD_NOT_VALID);
-            return false;
+        if(input.getNew_password() != null) {
+            if(passwordPolicy.CheckPassword(input.getNew_password()) == false){
+                ErrorHandler.handle(Errors.PASSWORD_NOT_VALID);
+                return false;
+            }
         }
         
         if(input.getNew_leader() != null) {
