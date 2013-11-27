@@ -6,7 +6,6 @@ import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
-import static com.sun.jersey.core.header.FormDataContentDisposition.name;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
