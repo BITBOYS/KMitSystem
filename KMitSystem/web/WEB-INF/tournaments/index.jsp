@@ -50,7 +50,7 @@
                 <%if (user != null) {%>
                 <div class="row">
                     <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
-                        <a class="btn btn-success" href="<%=link%>/tournaments/create"><span class="fa fa-pencil"> Turnier erstellen <i class="fa fa-angle-right"></i></span></a>
+                        <a class="btn btn-success" href="<%=link%>/tournament/create"><span class="fa fa-pencil"> Turnier erstellen <i class="fa fa-angle-right"></i></span></a>
                     </div>
                 </div><!-- .row -->
                 <%}%>
@@ -132,14 +132,14 @@
                     <div class="row">
 
                         <div class="col-md-7">
-                            <a href="<%=link%>/tournaments/profil?tournament=<%=tournaments.get(idx).getName()%>"><img class="img-responsive" src="http://placehold.it/750x350"></a>
+                            <a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>"><img class="img-responsive" src="http://placehold.it/750x350"></a>
                         </div>
 
                         <div class="col-md-5">
                             <h3><%=tournaments.get(idx).getName()%></h3>
                             <h4>Leader: <a href="<%=link%>/user/profil?user=<%=tournaments.get(idx).getLeader()%>"></a></h4>
                             <p><%= tournaments.get(idx).getDescription()%></p>
-                            <a class="btn btn-success" href="<%=link%>/tournaments/profil?tournament=<%=tournaments.get(idx).getName()%>">Zum Turnier <i class="fa fa-angle-right"></i></a>
+                            <a class="btn btn-success" href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>">Zum Turnier <i class="fa fa-angle-right"></i></a>
                         </div>
 
                     </div>

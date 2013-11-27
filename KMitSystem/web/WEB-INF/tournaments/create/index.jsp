@@ -42,8 +42,6 @@
 
         <!-- Page Content -->
 
-        <!-- Page Content -->
-
         <div class="container">
 
             <div class="row">
@@ -61,7 +59,7 @@
             <div class="row">  
                 <div class="col-lg-12">
                     <div class="row well">
-                        <form class="form-horizontal" role="form" action="<%=link%>/tournaments/create" method="post">
+                        <form class="form-horizontal" role="form" action="<%=link%>/tournament/create" method="post">
 
                             <div class="col-lg-4 col-lg-offset-1">
 

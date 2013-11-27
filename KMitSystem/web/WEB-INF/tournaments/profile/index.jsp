@@ -44,11 +44,11 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Turnier Profil - <%=name%> <small>Hier siehst du alles &uuml;ber das Turnier!</small></h1>
+                    <h1 class="page-header">Turnier Profil <small>Hier siehst du alles &uuml;ber <%=name%>!</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="<%=link%>/">Home</a></li>
                         <li><a href="<%=link%>/tournaments">Turniere</a></li>
-                        <li class="active">Turnier-Dashboard</li>
+                        <li class="active">Profil</li>
                     </ol>
                 </div>
             </div><!-- /.row -->
@@ -68,7 +68,7 @@
 
                         <div class="tab-pane fade in active" id="news">
                             <i class="fa fa-gear pull-left fa-4x"></i>
-                            <p><%=tournament.getDescription(%></p>
+                            <p><%=tournament.getDescription()%></p>
                             <p>Leader: <a href="<%=link%>/user/profil?user=<%=tournament.getLeader().getUsername()%>"> <%=tournament.getLeader().getUsername()%> </a></p>
                             <p>Zeitraum: <%=tournament.getStart_date()%> bis <%=tournament.getEnd_date()%></p>
                             <p>Anmeldefrist: <%=tournament.getTerm_of_application()%></p>
@@ -156,7 +156,7 @@
                             </div><!-- /.row -->
                         </div>
 
-                        <div class="tab-pane fade" id="team">
+                        <div class="tab-pane fade" id="user">
                             <i class="fa fa-gamepad pull-left fa-4x"></i>
                             <p>User-Statistik f&uuml;r dieses Turnier</p>
                             <div class="row">
