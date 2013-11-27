@@ -21,7 +21,7 @@ public class AddTeamValidator {
         }
         
         // check if the tournament exists
-        if(!DBTournamentQueries.isTournamentExisiting(input.getTeamname())) {
+        if(!DBTournamentQueries.isTournamentExisting(input.getTeamname())) {
             ErrorHandler.handle(Errors.TOURNAMENT_DOES_NOT_EXIST, AddTeamValidator.class.getSimpleName() + ":isTournamentExisting");
             return false;
         }

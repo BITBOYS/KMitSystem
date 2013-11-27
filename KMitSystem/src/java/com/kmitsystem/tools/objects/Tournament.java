@@ -20,6 +20,7 @@ public class Tournament {
     private User leader;
     private Date start_date;
     private Date end_date;
+    private Date create_date;
     private int nr_matchdays;
     private String venue;
     private Date term_of_application;
@@ -27,8 +28,12 @@ public class Tournament {
     public Tournament() {
         super();
     }
+    
+    public Tournament(String name) {
+        this.name = name;
+    }
 
-    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, 
+    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, Date create_date, 
                     int nr_matchdays, String venue, Date term_of_application) {
         this.name = name;
         this.password = password;
@@ -36,6 +41,7 @@ public class Tournament {
         this.leader = leader;
         this.start_date = start_date;
         this.end_date = end_date;
+        this.create_date = create_date;
         this.nr_matchdays = nr_matchdays;
         this.venue = venue;
         this.term_of_application = term_of_application;
@@ -89,6 +95,14 @@ public class Tournament {
         this.end_date = end_date;
     }
 
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
+
     public int getNr_matchdays() {
         return nr_matchdays;
     }
@@ -115,7 +129,7 @@ public class Tournament {
 
     @Override
     public String toString() {
-        return "Tournament{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + '}';
+        return "Tournament{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", create_date=" + create_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + '}';
     }
 }
 

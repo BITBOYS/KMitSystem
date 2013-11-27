@@ -18,7 +18,7 @@ public class CreateTournamentInput {
     private User leader;
     private Date start_date;
     private Date end_date;
-    private int nr_matchdays;
+    private String nr_matchdays;
     private String venue;
     private Date term_of_application;
 //    private List<Team> teams;
@@ -28,7 +28,7 @@ public class CreateTournamentInput {
     }
 
     public CreateTournamentInput(String name, String password, String description, User leader, Date start_date, Date end_date, 
-                    int nr_matchdays, String venue, Date term_of_application) {
+                    String nr_matchdays, String venue, Date term_of_application) {
         this.name = name;
         this.password = password;
         this.description = description;
@@ -89,11 +89,11 @@ public class CreateTournamentInput {
         this.end_date = end_date;
     }
 
-    public int getNr_matchdays() {
+    public String getNr_matchdays() {
         return nr_matchdays;
     }
 
-    public void setNr_matchdays(int nr_matchdays) {
+    public void setNr_matchdays(String nr_matchdays) {
         this.nr_matchdays = nr_matchdays;
     }
 

@@ -46,15 +46,16 @@ public class TournamentsServlet extends HttpServlet {
         System.out.println("Turnier: "+tournament);
         String user = request.getParameter("user_name_search");
         System.out.println("User: "+user);
+        String createMonth = request.getParameter("createMonth_search");
+        System.out.println("Month: "+createMonth);
+        
         String running = request.getParameter("running_search");
         String finished = request.getParameter("finished_search");
-        String createMonth = request.getParameter("createMonth_search");
         
 //        was mache ich mit Boolean und Datum?
-        
         TournamentServiceProvider provider = new TournamentServiceProvider();
 //        Datum; boolean nicht übergeben
-        SearchTournamentInput input = new SearchTournamentInput(team, tournament, user);
+        SearchTournamentInput input = new SearchTournamentInput(team, tournament, user, createMonth);
         SearchTournamentResult result = provider.searchTournament(input);
         
         // prepare the output and write it into the session

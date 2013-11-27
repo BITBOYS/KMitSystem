@@ -40,7 +40,7 @@ public class TournamentServiceProvider {
             User leader = input.getLeader();
             String start_date = input.getStart_date();
             String end_date = input.getEnd_date();
-            int nr_matchdays = input.getNr_matchdays();
+            String nr_matchdays = input.getNr_matchdays();
             String venue = input.getVenue();
             String term_of_application = input.getTerm_of_application();
 
@@ -110,26 +110,40 @@ public class TournamentServiceProvider {
         String team_name = input.getTeam();
         String tournament_name = input.getTournament();
         String user_name = input.getUser();
-        //TODO: runing, finished, Date
+        String month = input.getCreateMonth();
+        Boolean running = input.getTournamentIsRunning();
+        Boolean finished = input.getTournamentIsFinished();
 
         // call the database
         // search tournament
         if (tournament_name != null && !tournament_name.equals("")) {
             result.addTournament(DBTournamentQueries.getTournament(tournament_name));
-            System.out.println("Search Tournament");
         }
 
         // search team
         if (team_name != null && !team_name.equals("")) {
             result.addTournaments(DBTeamTournamentQueries.getAllTournamentsFromTeam(team_name));
-            System.out.println("Search Team");
         }
 
         // search user
         if (user_name != null && !user_name.equals("")) {
             result.addTournaments(DBUserTournamentQueries.getAllTournamentFromUser(user_name));
-            System.out.println("Search User");
         }
+        
+        // search month
+        if (month != null && !month.equals("")) {
+            result.addTournaments(DBTournamentQueries.getTournamentsByMonth(month));
+        }
+        
+        // search running
+//        if (running) {
+//            //TODO
+//        }
+//        
+//        // search month
+//        if (finished) {
+//            //TODO
+//        }
 
         // write the errors into the result object and empty the ErrorHandler
         if (ErrorHandler.getErrors().size() > 0) {
@@ -155,11 +169,31 @@ public class TournamentServiceProvider {
             Date new_start_date = input.getNew_start_date();
             Date new_end_date = input.getNew_end_date();
 
-            // call the database   TODO
+            // call the database
             if (new_name != null) {
-                DBTournamentQueries.editTournament(tournamentname, new_name, new_password, new_leader, new_venue, new_nr_matchdays, new_start_date, new_end_date, new_term_of_application);
+                DBTournamentQueries.editTournamentName(tournamentname, new_name);
             }
-
+            if (new_password != null) {
+                DBTournamentQueries.editTournamentPassword(tournamentname, new_password);
+            }
+            if (new_leader != null) {
+                DBTournamentQueries.editTournamentLeader(tournamentname, new_leader);
+            }
+            if (new_venue != null) {
+                DBTournamentQueries.editTournamentVenue(tournamentname, new_venue);
+            }
+            if (new_nr_matchdays <= 0) {
+                DBTournamentQueries.editTournamentMatchdays(tournamentname, new_nr_matchdays);
+            }
+            if (new_term_of_application != null) {
+                DBTournamentQueries.editTournamentTerm(tournamentname, new_term_of_application);
+            }
+            if (new_start_date != null) {
+                DBTournamentQueries.editTournamentStart(tournamentname, new_start_date);
+            }
+            if (new_end_date != null) {
+                DBTournamentQueries.editTournamentEnd(tournamentname, new_end_date);
+            }
         }
         // write the errors into the result object and empty the ErrorHandler
         if (ErrorHandler.getErrors().size() > 0) {

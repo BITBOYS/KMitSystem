@@ -47,7 +47,7 @@ public class TournamentCreateServlet extends HttpServlet {
 
             String name = request.getParameter("tournament_name_create");
             String description = request.getParameter("tournament_description_create");
-            int nrMatchdays = Integer.parseInt(request.getParameter("tournament_matchdays_create"));
+            String nrMatchdays = request.getParameter("tournament_matchdays_create");
             String venue = request.getParameter("tournament_venue_create");;
             String password = request.getParameter("tournament_password_creat");
             String reenter_password = (String)request.getParameter("tournament_password_reenter_creat");
@@ -59,6 +59,7 @@ public class TournamentCreateServlet extends HttpServlet {
 
 //          User from Session
             User leader = (User)request.getSession().getAttribute("user");
+            System.out.println("Leader ist: " + leader);
             
             BaseResult result = new BaseResult();
 

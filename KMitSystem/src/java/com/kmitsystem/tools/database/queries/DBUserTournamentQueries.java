@@ -33,10 +33,10 @@ public class DBUserTournamentQueries {
             resultSet = statement.executeQuery("SELECT username, u.email, u.password, u.wins, u.losses, u.goals, u.goals_conceded"
                                             + " FROM  user as u, user_team as ut, team as te, team_tournament as teto, tournament as to"
                                             + " WHERE to.name = teto.tournament"
-                                            + "   AND teto.team = te.name" + "'"
-                                            + "   AND te.name = ut.team" + "'"
-                                            + "   AND ut.user = u.username" + "'"
-                                            + "   AND to.name = '" + tournamentname + "'"
+                                            + "   AND teto.team = te.name"
+                                            + "   AND te.name = ut.team"
+                                            + "   AND ut.user = u.username"
+                                            + "   AND to.name = '" + tournamentname
                                             + " ORDER BY u.username, u.wins");
             resultSet.first();
             
@@ -61,7 +61,7 @@ public class DBUserTournamentQueries {
             statement = con.createStatement();
             
             
-            resultSet = statement.executeQuery("SELECT to.name, to.description, to.leader, to.start_date, to.end_date, to.nr_of_matchdays, to.venue, to.term_of_application, to.password"
+            resultSet = statement.executeQuery("SELECT to.name, to.description, to.create_day, to.leader, to.start_date, to.end_date, to.nr_of_matchdays, to.venue, to.term_of_application, to.password"
                                             + " FROM  tournament to, team_tournament teto, team te, user_team ut, user u"
                                             + " WHERE to.name = teto.tournament"
                                             + "   AND teto.team = te.name" 
@@ -73,7 +73,7 @@ public class DBUserTournamentQueries {
             
             
             while(!resultSet.isAfterLast()) {
-                tournaments.add(new Tournament(resultSet.getString("to.name"), resultSet.getString("to.password"), resultSet.getString("description"), new User(resultSet.getString("to.leader")), resultSet.getDate("to.start_date"), resultSet.getDate("to.end_date"), resultSet.getInt("to.nr_of_matchdays"), resultSet.getString("to.venue"),resultSet.getDate("to.term_of_application")));
+                tournaments.add(new Tournament(resultSet.getString("to.name"), resultSet.getString("to.password"), resultSet.getString("description"), new User(resultSet.getString("to.leader")), resultSet.getDate("to.start_date"), resultSet.getDate("to.end_date"), resultSet.getDate("to.create_date"), resultSet.getInt("to.nr_of_matchdays"), resultSet.getString("to.venue"),resultSet.getDate("to.term_of_application")));
                 resultSet.next();
             }
         } catch (SQLException ex) {

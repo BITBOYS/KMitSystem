@@ -8,7 +8,7 @@
     <head>
         
         <%
-            String path = request.getContextPath();
+            String link = request.getContextPath();
             Team team = (Team)request.getAttribute("team");
             List<User> member = (List<User>)request.getAttribute("member");
             List<Tournament> tournaments = (List<Tournament>)request.getAttribute("tournaments");
@@ -22,11 +22,11 @@
         <title>Team Profil - KmS</title>
 
         <!-- Bootstrap core CSS -->
-        <link href="<%=path%>/public/css/css/bootstrap.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
 
         <!-- Add custom CSS here -->
-        <link href="<%=path%>/public/css/css/modern-business.css" rel="stylesheet">
-        <link href="<%=path%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/css/modern-business.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     </head>
 
     <body>
@@ -42,8 +42,8 @@
                 <div class="col-lg-12">
                     <h1 class="page-header">Team-Profil <small>Alles &uuml;ber <%=team.getName()%>!</small></h1>
                     <ol class="breadcrumb">
-                        <li><a href="<%=path%>">Home</a></li>
-                        <li><a href="<%=path%>\teams">Teams</a></li>
+                        <li><a href="<%=link%>">Home</a></li>
+                        <li><a href="<%=link%>\teams">Teams</a></li>
                         <li class="active">Profil</li>
                     </ol>
                 </div>
@@ -72,7 +72,7 @@
                                         <div class="panel-heading">Teammitglieder</div>
                                         <div class="list-group">
                                             <% for(int idx = 0; idx < member.size(); idx++) { %>
-                                            <a href="<%=path%>/user/profile?user=<%=member.get(idx).getUsername()%>" class="list-group-item"><%= member.get(idx).getUsername() %></a>
+                                            <a href="<%=link%>/user/profile?user=<%=member.get(idx).getUsername()%>" class="list-group-item"><%= member.get(idx).getUsername() %></a>
                                             <% } %>
                                         </div>
                                     </div>
@@ -193,9 +193,9 @@
 
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="<%=path%>/public/js/jquery.js"></script>
-        <script src="<%=path%>/public/js/bootstrap.js"></script>
-        <script src="<%=path%>/public/js/modern-business.js"></script>
+        <script src="<%=link%>/public/js/jquery.js"></script>
+        <script src="<%=link%>/public/js/bootstrap.js"></script>
+        <script src="<%=link%>/public/js/modern-business.js"></script>
 
     </body>
 </html>
