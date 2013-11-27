@@ -5,11 +5,14 @@ import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.services.team.input.EditTeamInput;
 import com.kmitsystem.services.team.result.EditTeamResult;
 import com.kmitsystem.tools.database.queries.DBTeamQueries;
+import com.kmitsystem.tools.database.queries.DBTeamTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBUserQueries;
+import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.errorhandling.Error;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Team;
+import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,22 +41,25 @@ public class TeamDashboardServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        RequestDispatcher rd;
         String teamname = request.getParameter("team");
         String name_old  = request.getParameter("name_old");
         String tag_new = request.getParameter("tag_new");
         String password_old = request.getParameter("password_old");
         String leader_new = request.getParameter("leader_new");
+        RequestDispatcher rd;
+        TeamServiceProvider provider;
+        EditTeamInput input;
+        List<Tournament> tournaments;
         
         // prepare the output
         EditTeamResult result = new EditTeamResult();
         
-        // get the team and write it into the session
-        Team team = DBTeamQueries.getTeam(teamname);
+        ///////////////////////////
+        //FILL ATTRIBUTES SECTION//
+        ///////////////////////////
         
-        // get all users and write them into an attribute 
-        List<User> users = DBUserQueries.getAllUser();
-        request.setAttribute("users", users);
+        // get the team
+        Team team = DBTeamQueries.getTeam(teamname);
         
         ///////////////////////////
         //CHANGE TEAMNAME SECTION//
@@ -70,8 +76,8 @@ public class TeamDashboardServlet extends HttpServlet {
             if(name_old.equals(teamname)) {
                 // check if both names are equal, if true change the teamname
                 if(name_new.equals(name_new2)) {
-                    TeamServiceProvider provider = new TeamServiceProvider();
-                    EditTeamInput input = new EditTeamInput(teamname, null, name_new, null, null, null);
+                    provider = new TeamServiceProvider();
+                    input = new EditTeamInput(teamname, null, name_new, null, null, null, null, null, null);
                     result = provider.editTeam(input);
                     if(result.isQuerySuccessful()) team.setName(name_new);
                 } else {
@@ -98,8 +104,8 @@ public class TeamDashboardServlet extends HttpServlet {
         // check if the user filled the "change_tag" form
         if(tag_new != null) {
             
-            TeamServiceProvider provider = new TeamServiceProvider();
-            EditTeamInput input = new EditTeamInput(teamname, null, null, tag_new, null, null);
+            provider = new TeamServiceProvider();
+            input = new EditTeamInput(teamname, null, null, tag_new, null, null, null, null, null);
             result = provider.editTeam(input);
             if(result.isQuerySuccessful()) team.setTag(tag_new);
 
@@ -123,8 +129,8 @@ public class TeamDashboardServlet extends HttpServlet {
             if(password_old.equals(password_new)) {
                 // check if both passwords are equal, if true change the password
                 if(password_new.equals(password_new2)) {
-                    TeamServiceProvider provider = new TeamServiceProvider();
-                    EditTeamInput input = new EditTeamInput(teamname, password_old, null, null, password_new, null);
+                    provider = new TeamServiceProvider();
+                    input = new EditTeamInput(teamname, password_old, null, null, password_new, null, null, null, null);
                     result = provider.editTeam(input);
                     if(result.isQuerySuccessful()) team.setPassword(password_new);
                 } else {
@@ -153,8 +159,8 @@ public class TeamDashboardServlet extends HttpServlet {
             
             password_old = (request.getParameter("password") == null) ? "" : ""; 
             
-            TeamServiceProvider provider = new TeamServiceProvider();
-            EditTeamInput input = new EditTeamInput(teamname, password_old, null, null, null, leader_new);
+            provider = new TeamServiceProvider();
+            input = new EditTeamInput(teamname, password_old, null, null, null, leader_new, null, null, null);
             result = provider.editTeam(input);
             if(result.isQuerySuccessful()) team.setLeader(new User(leader_new));
                     
@@ -163,6 +169,34 @@ public class TeamDashboardServlet extends HttpServlet {
                 request.setAttribute("errors", result.getErrorList());
                 
         }
+        
+        ////////////////////////////
+        //LEAVE TOURNAMENT SECTION//
+        ////////////////////////////
+        
+        if(String.valueOf(request.getParameter("action")).equals("leaveTournament")) {
+            String leave_tournament = request.getParameter("leave_tournament");
+            
+            provider = new TeamServiceProvider();
+            input = new EditTeamInput(teamname, null, null, null, null, null, leave_tournament, null, null);
+            result = provider.editTeam(input);
+                    
+            // write the errorlist into the session-attribute "errors"
+            if(result.getErrorList().size() > 0) 
+                request.setAttribute("errors", result.getErrorList());
+        }
+        
+        // get all users and write them into an attribute 
+        List<User> users = DBUserQueries.getAllUser();
+        request.setAttribute("users", users);
+        
+        // get all members of the team and write them ino an attribute
+        List<User> member = DBUserTeamQueries.getAllUserFromTeam(teamname);
+        request.setAttribute("member", member);
+        
+        // get all the tournaments from the team and write them into an attribute 
+        tournaments = DBTeamTournamentQueries.getAllTournamentsFromTeam(teamname);
+        request.setAttribute("tournaments", tournaments);
         
         request.setAttribute("team", team);
         // redirect to the dashboard page of the team

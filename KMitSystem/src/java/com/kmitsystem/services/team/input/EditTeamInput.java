@@ -11,14 +11,22 @@ public class EditTeamInput {
     private String new_tag;
     private String new_password;
     private String new_leader;
+    private String leave_tournament;
+    private String kick_user;
+    private String invite_user;
 
-    public EditTeamInput(String teamname, String old_password, String new_name, String new_tag, String new_password, String new_leader) {
+    public EditTeamInput(String teamname, String old_password, String new_name, 
+                         String new_tag, String new_password, String new_leader, 
+                         String leave_tournament, String kick_user, String invite_user) {
         this.teamname = teamname;
         this.old_password = old_password;
         this.new_name = new_name;
         this.new_tag = new_tag;
         this.new_password = new_password;
         this.new_leader = new_leader;
+        this.leave_tournament = leave_tournament;
+        this.kick_user = kick_user;
+        this.invite_user = invite_user;
     }
 
     public String getTeamname() {
@@ -67,6 +75,30 @@ public class EditTeamInput {
 
     public void setNew_leader(String new_leader) {
         this.new_leader = new_leader;
+    }
+
+    public String getLeave_tournament() {
+        return leave_tournament;
+    }
+
+    public void setLeave_tournament(String leave_tournament) {
+        this.leave_tournament = leave_tournament;
+    }
+
+    public String getKick_user() {
+        return kick_user;
+    }
+
+    public void setKick_user(String kick_user) {
+        this.kick_user = kick_user;
+    }
+
+    public String getInvite_user() {
+        return invite_user;
+    }
+
+    public void setInvite_user(String invite_user) {
+        this.invite_user = invite_user;
     }
     
             
