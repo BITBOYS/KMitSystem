@@ -52,9 +52,9 @@ public class TournamentProfileServlet extends HttpServlet {
             request.getSession().setAttribute("errors", result.getErrorList());
         }
         
-        // redirect to the page www.kmitsystem.de/teams
-//        response.sendRedirect("/KMitSystem/teams/profil");
-        RequestDispatcher rd = request.getRequestDispatcher("/teams/profil/index.jsp");
+        // redirect to the page www.kmitsystem.de/tournaments
+//        response.sendRedirect("/KMitSystem/tournaments/profil");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/tournaments/profile/index.jsp");
         rd.include(request, response);
     }
 

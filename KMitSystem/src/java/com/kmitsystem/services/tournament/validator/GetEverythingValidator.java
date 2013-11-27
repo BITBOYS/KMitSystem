@@ -13,7 +13,7 @@ public class GetEverythingValidator {
     public boolean validate(GetEverythingInput input) {
         
         // checks if the tournament is existing
-        if(!DBTournamentQueries.isTournamentExisiting(input.getTournamentname())) {
+        if(!DBTournamentQueries.isTournamentExisting(input.getTournamentname())) {
             ErrorHandler.handle(Errors.TOURNAMENT_DOES_NOT_EXIST, GetEverythingValidator.class.getName() + ":isTournamentExisting");
             return false;
         }

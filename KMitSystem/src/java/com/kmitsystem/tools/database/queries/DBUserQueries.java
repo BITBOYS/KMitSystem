@@ -4,13 +4,13 @@
  */
 package com.kmitsystem.tools.database.queries;
 
-import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.Statistics;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -81,6 +81,7 @@ public class DBUserQueries {
             
             String username = resultSet.getString("username");
             String email = resultSet.getString("email");
+            Date create_date = resultSet.getDate("create_date");
             String password = resultSet.getString("password");
             Statistics statistics = new Statistics(resultSet.getInt("goals"), 
                                                    resultSet.getInt("goals_conceded"), 

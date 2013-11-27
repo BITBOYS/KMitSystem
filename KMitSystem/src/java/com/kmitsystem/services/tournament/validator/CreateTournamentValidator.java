@@ -14,7 +14,7 @@ public class CreateTournamentValidator {
     public boolean validate(CreateTournamentInput input) {
         
         // check if a team with that name already exists
-        if(DBTournamentQueries.isTournamentExisiting(input.getName())) {
+        if(DBTournamentQueries.isTournamentExisting(input.getName())) {
             ErrorHandler.handle(Errors.NAME_ALREADY_TAKEN_ERROR, DBTournamentQueries.class.getName() + ":isValidName");
             return false;
         }

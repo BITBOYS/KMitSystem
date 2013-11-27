@@ -1,5 +1,7 @@
 package com.kmitsystem.tools.objects;
 
+import java.sql.Date;
+
 /**
  * @author Maik
  */
@@ -7,6 +9,7 @@ public class User {
     
     private String username;
     private String email;
+    private Date create_date;
     private String password;
     private Statistics statistics;
 
@@ -34,6 +37,14 @@ public class User {
         this.email = email;
         this.password = password;
         this.statistics = statistics;
+    }
+    
+    public User(String username, String email, String password, Statistics statistics, Date create_date) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.statistics = statistics;
+        this.create_date = create_date;
     }
 
     public String getUsername() {
@@ -68,9 +79,17 @@ public class User {
         this.statistics = statistics;
     }
 
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
+
     @Override
     public String toString() {
-        return "User{" + "username=" + username + ", email=" + email + ", password=" + password + ", statistics=" + statistics + '}';
+        return "User{" + "username=" + username + ", email=" + email + ", create_date=" + create_date + ", password=" + password + ", statistics=" + statistics + '}';
     }
     
 }
