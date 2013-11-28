@@ -42,6 +42,28 @@ public class DBTeamTournamentQueries {
         }
     }
     
+    // TODO: löschen jeglicher statistiken, die das team während des turniers aufgestellt hat
+    public static boolean removeTeam(String tournamentname, String teamname) {
+        int result;
+        try {        
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            result = statement.executeUpdate("DELETE FROM team_tournament "
+                                            + "WHERE tournament = '" + tournamentname + "'"
+                                            + "  AND team = '" + teamname + "'");
+            
+            if(result > 0) {
+                ErrorHandler.handle(Errors.LEAVE_TOURNAMENT_SUCCESSFUL, DBTeamTournamentQueries.class.getName() + ":removeTeam");
+                return true;
+            }
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, DBTeamTournamentQueries.class.getName() + ":removeTeam; " + ex.getSQLState() + " " +ex.getMessage());
+        }
+        return false;
+    }
+    
     public static List<Tournament> getAllTournamentsFromTeam(String name) {
         List<Tournament> tournaments = new ArrayList<Tournament>();
             
@@ -64,6 +86,7 @@ public class DBTeamTournamentQueries {
                 resultSet.next();
             }
         } catch (SQLException ex) {
+            System.out.println(ex.getSQLState() + " " +ex.getMessage());
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         

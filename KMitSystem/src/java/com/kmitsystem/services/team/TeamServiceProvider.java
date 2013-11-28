@@ -136,6 +136,7 @@ public class TeamServiceProvider {
             String new_tag = input.getNew_tag();
             String new_password = input.getNew_password();
             String new_leader = input.getNew_leader();
+            String leave_tournament = input.getLeave_tournament();
             
             // call the database
             if(new_name != null) 
@@ -146,6 +147,8 @@ public class TeamServiceProvider {
                 query = DBTeamQueries.editPassword(teamname, new_password);
             if(new_leader != null)
                 query = DBTeamQueries.editLeader(teamname, new_leader);
+            if(leave_tournament != null)
+                query = DBTeamTournamentQueries.removeTeam(leave_tournament, teamname);
             
             result.setQuerySuccessful(query);
         }
