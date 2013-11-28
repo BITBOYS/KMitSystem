@@ -4,6 +4,7 @@ import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.Statistics;
+import com.kmitsystem.tools.objects.Table;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
@@ -157,5 +158,37 @@ public class DBTeamTournamentQueries {
         
         return teams;
     }
+    
+    public static List<Table> getTableFromTournament(String name) {
+        List<Table> table = new ArrayList<Table>();
+            
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            resultSet = statement.executeQuery("SELECT * " +
+                                               "  FROM team_tournament " +
+                                               " WHERE tournament = '" + name + "'" +
+                                               " ORDER BY (wins/(wins+defeats)) DESC");
+            resultSet.first();
+            
+            while(!resultSet.isAfterLast()) {
+                table.add(new Table(resultSet.getInt("wins"),  resultSet.getInt("defeats"), 
+                                  resultSet.getInt("goals"), resultSet.getInt("goals_conceded")));
+                resultSet.next();
+            }
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.NO_ENTRYS_FOUND, ex.getSQLState() + " " +ex.getMessage());
+        }
+        
+        return table;
+    }
+    
+    /*
+     
+     
+      
+      
+     */
     
 }

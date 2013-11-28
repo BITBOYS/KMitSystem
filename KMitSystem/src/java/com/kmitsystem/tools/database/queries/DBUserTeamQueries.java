@@ -116,7 +116,7 @@ public class DBUserTeamQueries {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             
-            resultSet = statement.executeQuery("SELECT name, tag, team.password, leader, team.wins, team.defeats, "
+            resultSet = statement.executeQuery("SELECT name, tag, password, create_date, leader, team.wins, team.defeats, "
                                                     + "team.goals, team.goals_conceded, team.tournament_wins, team.tournament_participations"
                                             + " FROM  team, user_team"
                                             + " WHERE user = '" + username + "'"
@@ -130,7 +130,8 @@ public class DBUserTeamQueries {
                                    new User(resultSet.getString("leader")), 
                                    new Statistics(resultSet.getInt("goals"), resultSet.getInt("goals_conceded"), 
                                                   resultSet.getInt("wins"), resultSet.getInt("defeats"), resultSet.getInt("tournament_wins"), 
-                                                  resultSet.getInt("tournament_participations")), resultSet.getDate("create_date")));
+                                                  resultSet.getInt("tournament_participations")), 
+                                   resultSet.getDate("create_date")));
                 resultSet.next();
             }
         } catch (SQLException ex) {

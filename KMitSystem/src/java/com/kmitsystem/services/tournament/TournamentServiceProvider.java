@@ -16,6 +16,7 @@ import com.kmitsystem.tools.database.queries.DBTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBUserTournamentQueries;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.objects.BaseResult;
+import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Date;
 
@@ -85,9 +86,11 @@ public class TournamentServiceProvider {
         if (getEverythingValidator.validate(input)) {
             // prepare the input
             String tournamentname = input.getTournamentname();
-
+            
             // call the database
-            result.setTournament(DBTournamentQueries.getTournament(tournamentname));
+            Tournament tournament = DBTournamentQueries.getTournament(tournamentname);
+            tournament.setTable(DBTeamTournamentQueries.getTableFromTournament(tournamentname));
+            result.setTournament(tournament);
             result.setTeams(DBTeamTournamentQueries.getAllTeamsFromTournament(tournamentname));
             result.setMember(DBUserTournamentQueries.getAllUserFromTournament(tournamentname));
         }

@@ -30,13 +30,13 @@ public class DBUserTournamentQueries {
             statement = con.createStatement();
             
             //TODO
-            resultSet = statement.executeQuery("SELECT username, u.password, u.email, u.create_date, u.goals,  u.goals_conceded, u.wins, u.losses, u.goals_conceded"
-                                            + " FROM  user as u, user_team as ut, team as te, team_tournament as teto, tournament as to"
-                                            + " WHERE to.name = teto.tournament"
+            resultSet = statement.executeQuery("SELECT username, u.password, u.email, u.create_date, u.goals,  u.goals_conceded, u.wins, u.defeats, u.goals_conceded"
+                                            + " FROM  user as u, user_team as ut, team as te, team_tournament as teto, tournament as tou"
+                                            + " WHERE tou.name = teto.tournament"
                                             + "   AND teto.team = te.name"
                                             + "   AND te.name = ut.team"
                                             + "   AND ut.user = u.username"
-                                            + "   AND to.name = '" + tournamentname + "'"
+                                            + "   AND tou.name = '" + tournamentname + "'"
                                             + " ORDER BY u.username, u.wins");
             resultSet.first();
             

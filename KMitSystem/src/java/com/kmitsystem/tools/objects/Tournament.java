@@ -2,6 +2,7 @@ package com.kmitsystem.tools.objects;
 
 import com.kmitsystem.tools.DateKonverter;
 import java.sql.Date;
+import java.util.List;
 
 /**
  * @author Malte
@@ -24,7 +25,7 @@ public class Tournament {
     private int nr_matchdays;
     private String venue;
     private Date term_of_application;
-    private Table table;
+    private List<Table> table;
     
     public Tournament() {
         super();
@@ -47,7 +48,7 @@ public class Tournament {
         this.term_of_application = term_of_application;
     }
 
-    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, Date create_date, int nr_matchdays, String venue, Date term_of_application, Table table) {
+    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, Date create_date, int nr_matchdays, String venue, Date term_of_application, List<Table> table) {
         this.name = name;
         this.password = password;
         this.description = description;
@@ -141,11 +142,11 @@ public class Tournament {
         this.term_of_application = term_of_application;
     }
 
-    public Table getTable() {
+    public List<Table> getTable() {
         return table;
     }
 
-    public void setTable(Table table) {
+    public void setTable(List<Table> table) {
         this.table = table;
     }
 
