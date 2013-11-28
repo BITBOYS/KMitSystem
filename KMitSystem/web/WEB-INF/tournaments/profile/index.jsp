@@ -132,8 +132,7 @@
                                             <tr>   
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Spiele" class="label label-default">SP</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Punkte" class="label label-default">P</a></th> 
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Siege" class="label label-success">S</a></th>  
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Unentschieden" class="label label-info">U</a></th>  
+                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Siege" class="label label-success">S</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-danger">N</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-success">T</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Gegentore" class="label label-warning">GT</a></th> 
@@ -141,16 +140,15 @@
                                             </tr>  
                                         </thead>  
                                         <tbody>  
-                                            <%for (int idx = 0; idx < teams.size(); idx++) {%>
+                                            <%for (int idx = 0; idx < tournament.getTable().size(); idx++) {%>
                                             <tr>  
-                                                <td><%=tournament.getTable().getTournament_team_matches()%></td>  
-                                                <td><%=tournament.getTable().getTournament_team_points()%></td>  
-                                                <td><%=tournament.getTable().getTournament_team_wins()%></td>  
-                                                <td><%=tournament.getTable().getTournament_team_draws()%></td>  
-                                                <td><%=tournament.getTable().getTournament_team_defeats()%></td>  
-                                                <td><%=tournament.getTable().getTournament_team_goals()%></td> 
-                                                <td><%=tournament.getTable().getTournament_team_goals_conceded()%></td> 
-                                                <td><%= (tournament.getTable().getTournament_team_goals())-(tournament.getTable().getTournament_team_goals_conceded())%></td>                                         
+                                                <td><%=tournament.getTable().get(idx).getTournament_team_matches()%></td>  
+                                                <td><%=tournament.getTable().get(idx).getTournament_team_winrate()%></td>  
+                                                <td><%=tournament.getTable().get(idx).getTournament_team_wins()%></td>  
+                                                <td><%=tournament.getTable().get(idx).getTournament_team_defeats()%></td>  
+                                                <td><%=tournament.getTable().get(idx).getTournament_team_goals()%></td> 
+                                                <td><%=tournament.getTable().get(idx).getTournament_team_goals_conceded()%></td> 
+                                                <td><%=tournament.getTable().get(idx).getTournament_team_goal_difference()%></td>                                         
                                             </tr>  
                                             <%}%>
                                         </tbody>  
