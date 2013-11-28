@@ -1,6 +1,7 @@
-<%@page import="com.kmitsystem.tools.objects.Team"%>
+
 <%@page import="java.util.List"%>
 <%@page import="com.kmitsystem.tools.objects.Tournament"%>
+<%@page import="com.kmitsystem.tools.objects.Team"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -11,7 +12,8 @@
 
         <title>Turnier Profil - KmS</title>
 
-        <%            String link = request.getContextPath();
+        <%            
+            String link = request.getContextPath();
             Tournament tournament = (Tournament) request.getAttribute("tournament");
             List<Team> teams = (List<Team>) request.getAttribute("teams");
             List<User> member = (List<User>) request.getAttribute("member");
@@ -40,7 +42,8 @@
                         <a class="btn btn-success" href="#"><span class="fa fa-plus"> Turnier beitreten <i class="fa fa-angle-right"></i></span></a>
                     </div>
                 </div><!-- .row -->
-
+            <%}%>
+            
             <div class="row">
 
                 <div class="col-lg-12">
@@ -147,9 +150,9 @@
                                                 <td><%=tournament.getTable().getTournament_team_defeats()%></td>  
                                                 <td><%=tournament.getTable().getTournament_team_goals()%></td> 
                                                 <td><%=tournament.getTable().getTournament_team_goals_conceded()%></td> 
-                                                <td><%= (tournament.getTable().getTournament_team_goals())-(tournament.getTable().getTournament_team_goals_conceded())%></td> 
-                                                <%}%>
+                                                <td><%= (tournament.getTable().getTournament_team_goals())-(tournament.getTable().getTournament_team_goals_conceded())%></td>                                         
                                             </tr>  
+                                            <%}%>
                                         </tbody>  
                                     </table>  
                                 </div>  
