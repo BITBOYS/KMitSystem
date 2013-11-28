@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
     <servlet>
-        <servlet-name>CreateTeamServlet</servlet-name>
-        <servlet-class>com.kmitsystem.servlets.team.CreateTeamServlet</servlet-class>
+        <servlet-name>TeamsCreateServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.team.TeamsCreateServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddPlayerServlet</servlet-name>
@@ -20,9 +20,41 @@
         <servlet-name>TeamProfileServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.team.TeamProfileServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TeamsServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.team.TeamsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeUserSettingsServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.user.ChangeUserSettingsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TeamDashboardServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.team.TeamDashboardServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddTeamServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.tournament.AddTeamServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TournamentCreateServle</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.tournament.TournamentCreateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TournamentProfileServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.tournament.TournamentProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TournamentsServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.tournament.TournamentsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.user.LogoutServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
-        <servlet-name>CreateTeamServlet</servlet-name>
-        <url-pattern>/CreateTeamServlet</url-pattern>
+        <servlet-name>TeamsCreateServlet</servlet-name>
+        <url-pattern>/teams/create</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddPlayerServlet</servlet-name>
@@ -30,7 +62,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>SignInServlet</servlet-name>
-        <url-pattern>/SignInServlet</url-pattern>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CreateUserServlet</servlet-name>
@@ -38,7 +70,39 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>TeamProfileServlet</servlet-name>
-        <url-pattern>/teams/profile</url-pattern>
+        <url-pattern>/team/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamsServlet</servlet-name>
+        <url-pattern>/teams</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeUserSettingsServlet</servlet-name>
+        <url-pattern>/user/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeamDashboardServlet</servlet-name>
+        <url-pattern>/team/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddTeamServlet</servlet-name>
+        <url-pattern>/AddTeamServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TournamentCreateServle</servlet-name>
+        <url-pattern>/tournament/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TournamentProfileServlet</servlet-name>
+        <url-pattern>/tournament/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TournamentsServlet</servlet-name>
+        <url-pattern>/tournaments</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
