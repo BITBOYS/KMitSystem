@@ -110,7 +110,7 @@ public class DBTeamTournamentQueries {
             statement = con.createStatement();
             
             resultSet = statement.executeQuery("SELECT name, tag, password, leader, team.wins, team.defeats, "
-                                                    + "team.goals, team.goals_conceded, team.tournament_wins, team.tournament_participations" +
+                                                    + "team.goals, team.goals_conceded, team.tournament_wins, team.tournament_participations, team.create_date" +
                                               " FROM team, team_tournament" +
                                               " WHERE tournament =  '" + name + "'" +
                                               " AND team = name" +
@@ -124,7 +124,8 @@ public class DBTeamTournamentQueries {
                                    new User(resultSet.getString("leader")), 
                                    new Statistics(resultSet.getInt("team.goals"), resultSet.getInt("team.goals_conceded"), 
                                                   resultSet.getInt("team.wins"), resultSet.getInt("team.defeats"), resultSet.getInt("team.tournament_wins"), 
-                                                  resultSet.getInt("team.tournament_participations"))));
+                                                  resultSet.getInt("team.tournament_participations")), 
+                                   resultSet.getDate("team.create_date")));
                 resultSet.next();
             }
         } catch (SQLException ex) {

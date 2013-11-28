@@ -1,5 +1,7 @@
 package com.kmitsystem.tools.objects;
 
+import java.sql.Date;
+
 /**
  * @author Maik
  */
@@ -7,6 +9,7 @@ public class Team {
     
     private String name;
     private String tag;
+    private Date create_date;
     private User leader;
     private String password;
     private Statistics statistics;
@@ -15,25 +18,28 @@ public class Team {
         super();
     }
 
-    public Team(String name, String tag, User leader) {
+    public Team(String name, String tag, User leader, Date create_date) {
         this.name = name;
         this.tag = tag;
         this.leader = leader;
+        this.create_date = create_date;
     }
     
-    public Team(String name, String tag, String password, User leader) {
+    public Team(String name, String tag, String password, User leader, Date create_date) {
         this.name = name;
         this.tag = tag;
         this.password = password;
         this.leader = leader;
+        this.create_date = create_date;
     }
 
-    public Team(String name, String tag, String password, User leader, Statistics statistics) {
+    public Team(String name, String tag, String password, User leader, Statistics statistics, Date create_date) {
         this.name = name;
         this.tag = tag;
         this.password = password;
         this.leader = leader;
         this.statistics = statistics;
+        this.create_date = create_date;
     }
 
     public String getName() {
@@ -76,9 +82,17 @@ public class Team {
         this.statistics = statistics;
     }
 
+    public Date getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(Date create_date) {
+        this.create_date = create_date;
+    }
+
     @Override
     public String toString() {
-        return "Team{" + "name=" + name + ", tag=" + tag + ", leader=" + leader + ", password=" + password + ", statistics=" + statistics + '}';
+        return "Team{" + "name=" + name + ", tag=" + tag + ", create_date=" + create_date + ", leader=" + leader + ", password=" + password + ", statistics=" + statistics + '}';
     }
     
 }

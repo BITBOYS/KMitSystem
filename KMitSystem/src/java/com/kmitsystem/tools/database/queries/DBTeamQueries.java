@@ -1,6 +1,5 @@
 package com.kmitsystem.tools.database.queries;
 
-import com.kmitsystem.services.team.TeamServiceProvider;
 import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
@@ -8,6 +7,7 @@ import com.kmitsystem.tools.objects.Statistics;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -55,10 +55,11 @@ public class DBTeamQueries {
             String tag = resultSet.getString("tag");
             User leader = new User(resultSet.getString("leader"));
             String password = resultSet.getString("password");
+            Date create_date = resultSet.getDate("create_date");
             Statistics statistics = new Statistics(resultSet.getInt("goals"), resultSet.getInt("goals_conceded"), resultSet.getInt("wins"), 
                     resultSet.getInt("defeats"), resultSet.getInt("tournament_wins"), resultSet.getInt("tournament_participations"));
 
-            team = new Team(teamname, tag, password, leader, statistics);
+            team = new Team(teamname, tag, password, leader, statistics, create_date);
             
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.NO_ENTRYS_FOUND, ex.getSQLState() + " " +ex.getMessage());
@@ -191,11 +192,11 @@ public class DBTeamQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("SELECT name, tag, leader FROM team");
+            resultSet = statement.executeQuery("SELECT name, tag, leader, create_date FROM team");
             resultSet.first();
             
             while(!resultSet.isAfterLast()) {
-                teams.add(new Team(resultSet.getString("name"), resultSet.getString("tag"), new User(resultSet.getString("leader"))));
+                teams.add(new Team(resultSet.getString("name"), resultSet.getString("tag"), new User(resultSet.getString("leader")), resultSet.getDate("create_date")));
                 resultSet.next();
             }
             

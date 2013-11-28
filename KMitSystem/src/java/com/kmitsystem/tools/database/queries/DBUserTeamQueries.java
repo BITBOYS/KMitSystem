@@ -130,7 +130,7 @@ public class DBUserTeamQueries {
                                    new User(resultSet.getString("leader")), 
                                    new Statistics(resultSet.getInt("goals"), resultSet.getInt("goals_conceded"), 
                                                   resultSet.getInt("wins"), resultSet.getInt("defeats"), resultSet.getInt("tournament_wins"), 
-                                                  resultSet.getInt("tournament_participations"))));
+                                                  resultSet.getInt("tournament_participations")), resultSet.getDate("create_date")));
                 resultSet.next();
             }
         } catch (SQLException ex) {
