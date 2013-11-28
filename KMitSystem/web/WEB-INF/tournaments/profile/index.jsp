@@ -140,13 +140,14 @@
                                         <tbody>  
                                             <%for (int idx = 0; idx < teams.size(); idx++) {%>
                                             <tr>  
-                                                <td>1</td>  
-                                                <td>1</td>  
-                                                <td>10</td>  
-                                                <td>2</td>  
-                                                <td>2</td>  
-                                                <td>2</td> 
-                                                <td>2</td> 
+                                                <td><%=tournament.getTable().getTournament_team_matches()%></td>  
+                                                <td><%=tournament.getTable().getTournament_team_points()%></td>  
+                                                <td><%=tournament.getTable().getTournament_team_wins()%></td>  
+                                                <td><%=tournament.getTable().getTournament_team_draws()%></td>  
+                                                <td><%=tournament.getTable().getTournament_team_defeats()%></td>  
+                                                <td><%=tournament.getTable().getTournament_team_goals()%></td> 
+                                                <td><%=tournament.getTable().getTournament_team_goals_conceded()%></td> 
+                                                <td><%= (tournament.getTable().getTournament_team_goals())-(tournament.getTable().getTournament_team_goals_conceded())%></td> 
                                                 <%}%>
                                             </tr>  
                                         </tbody>  

@@ -30,19 +30,19 @@ public class DBUserTournamentQueries {
             statement = con.createStatement();
             
             //TODO
-            resultSet = statement.executeQuery("SELECT username, u.email, u.password, u.wins, u.losses, u.goals, u.goals_conceded"
+            resultSet = statement.executeQuery("SELECT username, u.password, u.email, u.create_date, u.goals,  u.goals_conceded, u.wins, u.losses, u.goals_conceded"
                                             + " FROM  user as u, user_team as ut, team as te, team_tournament as teto, tournament as to"
                                             + " WHERE to.name = teto.tournament"
                                             + "   AND teto.team = te.name"
                                             + "   AND te.name = ut.team"
                                             + "   AND ut.user = u.username"
-                                            + "   AND to.name = '" + tournamentname
+                                            + "   AND to.name = '" + tournamentname + "'"
                                             + " ORDER BY u.username, u.wins");
             resultSet.first();
             
             
             while(!resultSet.isAfterLast()) {
-                member.add(new User(resultSet.getString("u.username"), resultSet.getString("u.password")));
+                member.add(new User(resultSet.getString("u.username"), resultSet.getString("u.email"), resultSet.getString("u.password"), resultSet.getDate("u.create_date")));
                 resultSet.next();
             }
         } catch (SQLException ex) {
@@ -61,13 +61,13 @@ public class DBUserTournamentQueries {
             statement = con.createStatement();
             
             
-            resultSet = statement.executeQuery("SELECT to.name, to.description, to.create_day, to.leader, to.start_date, to.end_date, to.nr_of_matchdays, to.venue, to.term_of_application, to.password"
+            resultSet = statement.executeQuery("SELECT to.name, to.description, to.create_date, to.leader, to.start_date, to.end_date, to.nr_of_matchdays, to.venue, to.term_of_application, to.password"
                                             + " FROM  tournament to, team_tournament teto, team te, user_team ut, user u"
                                             + " WHERE to.name = teto.tournament"
                                             + "   AND teto.team = te.name" 
                                             + "   AND te.name = ut.team" 
                                             + "   AND ut.user = u.username" 
-                                            + "   AND username = '" + username 
+                                            + "   AND username = '" + username + "'"
                                             + " ORDER BY to.name, to.start_date, to.end_date");
             resultSet.first();
             

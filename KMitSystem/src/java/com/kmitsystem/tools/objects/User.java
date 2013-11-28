@@ -26,10 +26,11 @@ public class User {
         this.password = password;
     }
 
-    public User(String username, String email, String password) {
+    public User(String username, String email, String password, Date create_date) {
         this.username = username;
         this.email = email;
         this.password = password;
+        this.create_date = create_date;
     }
 
     public User(String username, String email, String password, Statistics statistics) {

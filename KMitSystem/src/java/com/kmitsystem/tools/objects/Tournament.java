@@ -24,6 +24,7 @@ public class Tournament {
     private int nr_matchdays;
     private String venue;
     private Date term_of_application;
+    private Table table;
     
     public Tournament() {
         super();
@@ -33,8 +34,7 @@ public class Tournament {
         this.name = name;
     }
 
-    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, Date create_date, 
-                    int nr_matchdays, String venue, Date term_of_application) {
+    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, Date create_date, int nr_matchdays, String venue, Date term_of_application) {
         this.name = name;
         this.password = password;
         this.description = description;
@@ -45,6 +45,20 @@ public class Tournament {
         this.nr_matchdays = nr_matchdays;
         this.venue = venue;
         this.term_of_application = term_of_application;
+    }
+
+    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, Date create_date, int nr_matchdays, String venue, Date term_of_application, Table table) {
+        this.name = name;
+        this.password = password;
+        this.description = description;
+        this.leader = leader;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.create_date = create_date;
+        this.nr_matchdays = nr_matchdays;
+        this.venue = venue;
+        this.term_of_application = term_of_application;
+        this.table = table;
     }
     
     public String getName() {
@@ -127,9 +141,18 @@ public class Tournament {
         this.term_of_application = term_of_application;
     }
 
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
     @Override
     public String toString() {
-        return "Tournament{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", create_date=" + create_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + '}';
+        return "Tournament{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", create_date=" + create_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + ", table=" + table + '}';
     }
 }
+
 
