@@ -47,12 +47,11 @@
         <div class="container">
 
             <div class="row">
-
                 <div class="col-lg-12">
                     <h1 class="page-header">Team-Dashboard <small>Dein Kontrollzentrum</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="<%=link%>/">Home</a></li>
-                        <li><a href="<%=link%>/user/profil">Profil</a></li>
+                        <li><a href="<%=link%>/team/profile?team=<%=team.getName()%>">Profil</a></li>
                         <li class="active">User-Dashboard</li>
                     </ol>
                 </div>

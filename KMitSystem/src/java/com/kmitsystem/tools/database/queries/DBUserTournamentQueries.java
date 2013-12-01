@@ -61,19 +61,19 @@ public class DBUserTournamentQueries {
             statement = con.createStatement();
             
             
-            resultSet = statement.executeQuery("SELECT to.name, to.description, to.create_date, to.leader, to.start_date, to.end_date, to.nr_of_matchdays, to.venue, to.term_of_application, to.password"
-                                            + " FROM  tournament to, team_tournament teto, team te, user_team ut, user u"
-                                            + " WHERE to.name = teto.tournament"
+            resultSet = statement.executeQuery("SELECT tou.name, tou.description, tou.create_date, tou.leader, tou.start_date, tou.end_date, tou.nr_of_matchdays, tou.venue, tou.term_of_application, tou.password"
+                                            + " FROM  tournament tou, team_tournament teto, team te, user_team ut, user u"
+                                            + " WHERE tou.name = teto.tournament"
                                             + "   AND teto.team = te.name" 
                                             + "   AND te.name = ut.team" 
                                             + "   AND ut.user = u.username" 
                                             + "   AND username = '" + username + "'"
-                                            + " ORDER BY to.name, to.start_date, to.end_date");
+                                            + " ORDER BY tou.name, tou.start_date, tou.end_date");
             resultSet.first();
             
             
             while(!resultSet.isAfterLast()) {
-                tournaments.add(new Tournament(resultSet.getString("to.name"), resultSet.getString("to.password"), resultSet.getString("description"), new User(resultSet.getString("to.leader")), resultSet.getDate("to.start_date"), resultSet.getDate("to.end_date"), resultSet.getDate("to.create_date"), resultSet.getInt("to.nr_of_matchdays"), resultSet.getString("to.venue"),resultSet.getDate("to.term_of_application")));
+                tournaments.add(new Tournament(resultSet.getString("tou.name"), resultSet.getString("tou.password"), resultSet.getString("description"), new User(resultSet.getString("tou.leader")), resultSet.getDate("tou.start_date"), resultSet.getDate("tou.end_date"), resultSet.getDate("tou.create_date"), resultSet.getInt("tou.nr_of_matchdays"), resultSet.getString("tou.venue"),resultSet.getDate("tou.term_of_application")));
                 resultSet.next();
             }
         } catch (SQLException ex) {

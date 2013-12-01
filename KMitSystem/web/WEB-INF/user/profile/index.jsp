@@ -1,3 +1,6 @@
+<%@page import="com.kmitsystem.tools.objects.Tournament"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kmitsystem.tools.objects.Team"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,6 +13,9 @@
 
         <%
             String link = request.getContextPath();
+            User user_profile = (User)request.getAttribute("user");
+            List<Team> teams = (List<Team>)request.getAttribute("teams");
+            List<Tournament> tournaments = (List<Tournament>)request.getAttribute("tournaments");
         %>
 
         <!-- Bootstrap core CSS -->
@@ -31,7 +37,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">User-Profil <small>Alles über "Name"!</small></h1>
+                    <h1 class="page-header">User-Profil <small>Alles &uuml;ber <%=user_profile.getUsername()%></small></h1>
                     <ol class="breadcrumb">
                         <li><a href="<%=link%>">Home</a></li>
                         <li class="active">Profil</li>
@@ -55,7 +61,7 @@
                             <div class="row">
 
                                 <div class="col-lg-12">
-                                    <h2 class="page-header">"Name" persönliche Statistik</h2>
+                                    <h2 class="page-header"><%=user_profile.getUsername()%>s pers&ouml;nliche Statistik</h2>
 
                                     <div class="panel panel-default">
                                         <!-- Default panel contents -->
@@ -65,26 +71,26 @@
                                         <table class="table">  
                                             <thead>  
                                                 <tr>  
+                                                    <th><span class="label label-primary">Turnierteilnahmen</span></th> 
                                                     <th><span class="label label-success">Turniersiege</span></th>  
+                                                    <th><span class="label label-primary">Matches</span></th>  
                                                     <th><span class="label label-success">Gesmatsiege</span></th>  
                                                     <th><span class="label label-danger">Niederlagen</span></th>  
-                                                    <th><span class="label label-info">Tore</span></th>  
-                                                    <th><span class="label label-warning">Gegentore</span></th> 
-                                                    <th><span class="label label-default">Tordifferenz</span></th> 
-                                                    <th><span class="label label-primary">Turnierteilnahmen</span></th> 
-                                                    <th><span class="label label-primary">Matches</span></th>  
+                                                    <th><span class="label label-primary">Tordifferenz</span></th> 
+                                                    <th><span class="label label-success">Tore</span></th>  
+                                                    <th><span class="label label-danger">Gegentore</span></th> 
                                                 </tr>  
                                             </thead>  
                                             <tbody>  
                                                 <tr>  
-                                                    <td>1</td>  
-                                                    <td>1</td>  
-                                                    <td>10</td>  
-                                                    <td>2</td>  
-                                                    <td>2</td> 
-                                                    <td>2</td>  
-                                                    <td>2</td> 
-                                                    <td>2</td> 
+                                                    <td><%=user_profile.getStatistics().getTournament_participations()%></td> 
+                                                    <td><%=user_profile.getStatistics().getTournament_wins()%></td> 
+                                                    <td><%=user_profile.getStatistics().getMatches()%></td>   
+                                                    <td><%=user_profile.getStatistics().getWins()%></td>  
+                                                    <td><%=user_profile.getStatistics().getDefeats()%></td>  
+                                                    <td><%=user_profile.getStatistics().getGoal_difference()%></td>  
+                                                    <td><%=user_profile.getStatistics().getGoals()%></td>  
+                                                    <td><%=user_profile.getStatistics().getGoals_conceded()%></td> 
                                                 </tr>  
                                             </tbody>  
                                         </table>  
@@ -104,29 +110,16 @@
                             <div class="row">  
 
                                 <div class="col-lg-12">
-                                    <h2 class="page-header">"Name" Teams</h2>
+                                    <h2 class="page-header"><%=user_profile.getUsername()%>s Teams</h2>
                                 </div>
 
                                 <!-- Schleife zum Anzeigen aller Teams in denen man sich befindet -->
-                                <%
-                                    //              for(int i = 0; i < teams.length(); i++){
-                                    //                  
-                                    //              }
-%>
-
+                                <% for(int idx = 0; idx < teams.size(); idx++) { %>
                                 <div class="col-lg-4 col-md-4 hero-feature">
                                     <div class="thumbnail">
-                                        <h3>Teamname <small> Leader: <a href="#">User2</a></small></h3>
-                                        <img src="http://placehold.it/800x500" alt="">
+                                        <h3><%=teams.get(idx).getName()%> <small> Leader: 
+                                                <a href="<%=link%>/user/profile?user=<%=teams.get(idx).getLeader().getUsername()%>"><%=teams.get(idx).getLeader().getUsername()%></a></small></h3>
                                         <div class="caption">
-                                            <div class="panel panel-default">
-                                                <!-- Default panel contents -->
-                                                <div class="panel-heading">Teammitglieder</div>
-                                                <div class="list-group">
-                                                    <a href="#" class="list-group-item">User2</a>
-                                                    <a href="#" class="list-group-item">...</a>
-                                                </div>
-                                            </div>
                                             <div class="panel panel-default">
                                                 <!-- Default panel contents -->
                                                 <div class="panel-heading">Stats</div>
@@ -138,29 +131,28 @@
                                                             <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Turniersiege" class="label label-success">TS</a></th>  
                                                             <th><span title="Gesamtsiege" class="label label-success">GS</span></th>  
                                                             <th><span title="Niederlagen" class="label label-danger">N</span></th>  
-                                                            <th><span title="Tore" class="label label-info">T</span></th>  
-                                                            <th><span title="Gegentore" class="label label-warning">GT</span></th>  
-                                                            <th><span title="Tordifferenz" class="label label-default">TD</span></th> 
-                                                            <th><span title="aktive Turnierteilnahmen" class="label label-primary">AT</span></th> 
+                                                            <th><span title="Tore" class="label label-success">T</span></th>  
+                                                            <th><span title="Gegentore" class="label label-danger">GT</span></th>  
+                                                            <th><span title="Tordifferenz" class="label label-primary">TD</span></th> 
                                                         </tr>  
                                                     </thead>  
                                                     <tbody>  
                                                         <tr>  
-                                                            <td>1</td>  
-                                                            <td>1</td>  
-                                                            <td>10</td>  
-                                                            <td>2</td>  
-                                                            <td>2</td>  
-                                                            <td>2</td> 
-                                                            <td>2</td> 
+                                                            <td><%=teams.get(idx).getStatistics().getTournament_wins() %></td>  
+                                                            <td><%=teams.get(idx).getStatistics().getWins() %></td>  
+                                                            <td><%=teams.get(idx).getStatistics().getDefeats() %></td>  
+                                                            <td><%=teams.get(idx).getStatistics().getGoals() %></td>  
+                                                            <td><%=teams.get(idx).getStatistics().getGoals_conceded() %></td>  
+                                                            <td><%=teams.get(idx).getStatistics().getGoal_difference()%></td> 
                                                         </tr>  
                                                     </tbody>  
                                                 </table>  
                                             </div>  
-                                            <p><a href="<%=link%>/team/profile?team=Team Dede" class="btn btn-success">Zum Teamprofil <i class="fa fa-angle-right"></i></a></p>
+                                            <p><a href="<%=link%>/team/profile?team=<%=teams.get(idx).getName()%>" class="btn btn-primary">Zum Teamprofil <i class="fa fa-angle-right"></i></a></p>
                                         </div>
                                     </div>
                                 </div>
+                                <% } %>
 
                             </div><!-- /.row -->
                         </div>
@@ -171,23 +163,15 @@
                             <div class="row">
 
                                 <div class="col-lg-12">
-                                    <h2 class="page-header">"Name" aktuellen Turniere</h2>
+                                    <h2 class="page-header"><%=user_profile.getUsername()%>s Turniere</h2>
                                 </div>
 
+                                <% for(int idx = 0; idx < tournaments.size(); idx++) { %>
                                 <div class="col-lg-4 col-md-4 hero-feature">
                                     <div class="thumbnail">
-                                        <h3>Turniername <small> Leader: <a href="#">User2</a></small></h3>
-                                        <img src="http://placehold.it/800x500" alt="">
+                                        <h3><%= tournaments.get(idx).getName() %> <small> Leader: <a href="#"><%= tournaments.get(idx).getLeader().getUsername() %></a></small></h3>
                                         <div class="caption">
                                             <p>Beschreibung Beschreibung Beschreibung Beschreibung </p>
-                                            <div class="panel panel-default">
-                                                <!-- Default panel contents -->
-                                                <div class="panel-heading">Teams</div>
-                                                <div class="list-group">
-                                                    <a href="#" class="list-group-item">Team1</a>
-                                                    <a href="#" class="list-group-item">Team2</a>
-                                                </div>
-                                            </div>
                                             <div class="panel panel-default">
                                                 <!-- Default panel contents -->
                                                 <div class="panel-heading">Daten</div>
@@ -196,26 +180,28 @@
                                                 <table class="table">  
                                                     <thead>  
                                                         <tr>  
-                                                            <th><span title="Startdatum" class="label label-default">SD</span></th>  
-                                                            <th><span title="Enddatum" class="label label-default">ED</span></th>  
-                                                            <th><span title="Turnierstatus" class="label label-default">TS</span></th>  
-                                                            <th><span title="Tabellenführer" class="label label-primary">TF</span></th>
+                                                            <th>Startdatum</th>  
+                                                            <th>Enddatum</th>  
+                                                            <th>Status</th>   
                                                         </tr>  
                                                     </thead>  
                                                     <tbody>  
                                                         <tr>  
-                                                            <td>1.1.1.1</td>  
-                                                            <td>1.1.1.1</td>  
-                                                            <td>privat</td> 
-                                                            <td><a href="<%=link%>/teams/profil/">Team1</a></td> 
+                                                            <td><%= tournaments.get(idx).getStart_date() %></td>  
+                                                            <td><%= tournaments.get(idx).getEnd_date() %></td>  
+                                                            <td><% if(tournaments.get(idx).getPassword() == null) 
+                                                                    out.print("&Ouml;ffentlich"); 
+                                                                    else out.print("Privat");%>
+                                                            </td> 
                                                         </tr>  
                                                     </tbody>  
                                                 </table>  
                                             </div>  
-                                            <p><a href="#" class="btn btn-success">Zum Turnierprofil <i class="fa fa-angle-right"></i></a></p>
+                                            <p><a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>" class="btn btn-primary">Zum Turnierprofil <i class="fa fa-angle-right"></i></a></p>
                                         </div>
                                     </div>
                                 </div> 
+                                <% } %>
 
                             </div><!-- /.row -->
 

@@ -48,12 +48,12 @@
                     </ol>
                 </div>
             </div>
-
                             
-            <% if(user != null && user.getUsername().equals(team.getLeader().getUsername())) {%>            
-                <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
-                    <a class="btn btn-success" href="<%=link%>/team/dashboard"><span class="fa fa-pencil"> Team Dashboard <i class="fa fa-angle-right"></i></a>
-                </div><!-- .row -->
+            <% if(user != null && user.getUsername().equals(team.getLeader().getUsername())) {%>    
+                <form method="post" action="<%=link%>/team/dashboard" id="<%=team.getName()%>">
+                    <input type="text" value="<%=team.getName()%>" name="team" style="display:none">
+                    <a onclick="document.getElementById('<%=team.getName()%>').submit();" class="btn btn-primary"><span class="fa fa-pencil"> Team Dashboard <i class="fa fa-angle-right"></i></a>
+                </form>
             <% } %>
 
             <div class="row">
@@ -129,7 +129,7 @@
                                                     </tbody>  
                                                 </table>  
                                             </div>  
-                                            <p><a href="#" class="btn btn-success">Zum Turnierprofil <i class="fa fa-angle-right"></i></a></p>
+                                            <p><a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>" class="btn btn-success">Zum Turnierprofil <i class="fa fa-angle-right"></i></a></p>
                                         </div>
                                     </div>
                                 </div> 
@@ -191,8 +191,6 @@
         </div><!-- /.container -->
 
         <div class="container">
-
-            <hr>
 
             <%@include file="../../snipplets/footer.jspf" %>
 

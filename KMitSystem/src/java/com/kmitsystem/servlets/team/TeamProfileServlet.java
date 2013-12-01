@@ -53,10 +53,10 @@ public class TeamProfileServlet extends HttpServlet {
             request.getSession().setAttribute("errors", result.getErrorList());
         }
         
-        User user = ((User)request.getSession().getAttribute("user") == null) ? 
-                new User("") : (User)request.getSession().getAttribute("user");
-        if(user.getUsername().equals(team.getLeader().getUsername()))
-            request.getSession().setAttribute("team", team);
+//        User user = ((User)request.getSession().getAttribute("user") == null) ? 
+//                new User("") : (User)request.getSession().getAttribute("user");
+//        if(user.getUsername().equals(team.getLeader().getUsername()))
+//            request.getSession().setAttribute("team", team);
         
         // redirect to the page www.kmitsystem.de/teams
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/teams/profile/index.jsp");

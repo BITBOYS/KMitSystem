@@ -39,13 +39,12 @@ public class TeamDashboardServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
-         String teamname = ((Team)request.getSession().getAttribute("team")).getName();
+        RequestDispatcher rd;
+        String teamname = request.getParameter("team");
         String name_old  = request.getParameter("name_old");
         String tag_new = request.getParameter("tag_new");
         String password_old = request.getParameter("password_old");
         String leader_new = request.getParameter("leader_new");
-        RequestDispatcher rd;
         TeamServiceProvider provider;
         EditTeamInput input;
         List<Tournament> tournaments;
@@ -55,6 +54,11 @@ public class TeamDashboardServlet extends HttpServlet {
         
         // get the team
         Team team = DBTeamQueries.getTeam(teamname);
+        
+        
+        if(!((User) request.getSession().getAttribute("user")).getUsername().equals(team.getLeader().getUsername())) {
+            response.sendRedirect(request.getContextPath() + "/teams");
+        }
         
         ///////////////////////////
         //CHANGE TEAMNAME SECTION//

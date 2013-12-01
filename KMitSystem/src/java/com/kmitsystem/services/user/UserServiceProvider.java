@@ -14,8 +14,13 @@ import com.kmitsystem.services.user.validator.ChangeUserPasswordValidator;
 import com.kmitsystem.services.user.validator.ChangeUserNameValidator;
 import com.kmitsystem.services.user.input.ChangeUserNameInput;
 import com.kmitsystem.services.user.input.ChangeUserPasswordInput;
+import com.kmitsystem.services.user.input.GetEverythingInput;
 import com.kmitsystem.services.user.result.ChangeUserSettingsResult;
+import com.kmitsystem.services.user.result.GetEverythingResult;
 import com.kmitsystem.services.user.result.SignInResult;
+import com.kmitsystem.services.user.validator.GetEverythingValidator;
+import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
+import com.kmitsystem.tools.database.queries.DBUserTournamentQueries;
 
 /**
  * @author Alex, Malte
@@ -27,6 +32,7 @@ public class UserServiceProvider {
     ChangeUserEMailValidator changeUserEMailValidator = new ChangeUserEMailValidator();
     ChangeUserNameValidator changeUserNameValidator = new ChangeUserNameValidator();
     ChangeUserPasswordValidator changeUserPasswordValidator = new ChangeUserPasswordValidator();
+    GetEverythingValidator getEverythingValidator = new GetEverythingValidator();
     
     public BaseResult createUser(CreateUserInput input) {
         BaseResult result = new BaseResult();
@@ -136,6 +142,28 @@ public class UserServiceProvider {
         }        
         return result;
      } 
+      
+    public GetEverythingResult getEverything(GetEverythingInput input) {
+        GetEverythingResult result = new GetEverythingResult();
+        
+        if(getEverythingValidator.validate(input)) {
+            // prepare the input
+            String username = input.getUsername();
+            
+            // call the database
+            result.setUser(DBUserQueries.getUser(username));
+            result.setTeams(DBUserTeamQueries.getAllTeamsFromUser(username));
+            result.setTournaments(DBUserTournamentQueries.getAllTournamentFromUser(username));
+        }
+        
+        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
+        }     
+        
+        return result;
+    } 
       
 }
 

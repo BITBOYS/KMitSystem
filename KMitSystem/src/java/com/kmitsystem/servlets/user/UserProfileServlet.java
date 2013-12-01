@@ -1,7 +1,14 @@
 
 package com.kmitsystem.servlets.user;
 
+import com.kmitsystem.services.user.UserServiceProvider;
+import com.kmitsystem.services.user.input.GetEverythingInput;
+import com.kmitsystem.services.user.result.GetEverythingResult;
+import com.kmitsystem.tools.objects.Team;
+import com.kmitsystem.tools.objects.Tournament;
+import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -28,23 +35,23 @@ public class UserProfileServlet extends HttpServlet {
         
         String name = request.getParameter("user");
         
-//        UserServiceProvider provider = new UserServiceProvider());
-//        GetEverythingInput input = new GetEverythingInput(name);
-//        GetEverythingResult result = provider.getEverything(input);
+        UserServiceProvider provider = new UserServiceProvider();
+        GetEverythingInput input = new GetEverythingInput(name);
+        GetEverythingResult result = provider.getEverything(input);
         
-        // prepare the output and write it into the session
-//        User user = result.getUser();
-//        List<Team> teams = result.getTeams();
-//        List<Tournament> tournaments = result.getTournaments();
+//         prepare the output and write it into the session
+        User user = result.getUser();
+        List<Team> teams = result.getTeams();
+        List<Tournament> tournaments = result.getTournaments();
         
-//        request.setAttribute("user", user);
-//        request.setAttribute("teams", team);
-//        request.setAttribute("tournaments", tournaments);
+        request.setAttribute("user", user);
+        request.setAttribute("teams", teams);
+        request.setAttribute("tournaments", tournaments);
         
         // write the errorlist into the session-attribute "errors"
-//        if(result.getErrorList().size() > 0) {
-//            request.getSession().setAttribute("errors", result.getErrorList());
-//        }
+        if(result.getErrorList().size() > 0) {
+            request.getSession().setAttribute("errors", result.getErrorList());
+        }
         
         // redirect to the page www.kmitsystem.de/teams
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/user/profile/index.jsp");
