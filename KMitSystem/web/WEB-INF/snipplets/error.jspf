@@ -7,7 +7,7 @@
             if (errorList == null) errorList = new ArrayList<Error>();
             
 %>
-<div class="col-lg-12">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <% for(int idx = 0; idx < errorList.size(); idx++) { %>
         <% if(errorList.get(idx).getStatus().equals(Error.ERROR)) { %>
             <div class="alert alert-danger"><%=errorList.get(idx).getErrorMessage()%></div>

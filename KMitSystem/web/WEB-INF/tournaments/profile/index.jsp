@@ -130,6 +130,7 @@
                                     <table class="table">  
                                         <thead>  
                                             <tr>   
+                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Teamname" class="label label-default">TN</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Spiele" class="label label-default">SP</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Punkte" class="label label-default">P</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Siege" class="label label-success">S</a></th> 
@@ -142,6 +143,7 @@
                                         <tbody>  
                                             <%for (int idx = 0; idx < tournament.getTable().size(); idx++) {%>
                                             <tr>  
+                                                <td><%=tournament.getTable().get(idx).getTeam()%></td>  
                                                 <td><%=tournament.getTable().get(idx).getTournament_team_matches()%></td>  
                                                 <td><%=tournament.getTable().get(idx).getTournament_team_winrate()%></td>  
                                                 <td><%=tournament.getTable().get(idx).getTournament_team_wins()%></td>  

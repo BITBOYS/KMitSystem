@@ -49,6 +49,13 @@
                 </div>
             </div>
 
+                            
+            <% if(user != null && user.getUsername().equals(team.getLeader().getUsername())) {%>            
+                <div class="row col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
+                    <a class="btn btn-success" href="<%=link%>/team/dashboard"><span class="fa fa-pencil"> Team Dashboard <i class="fa fa-angle-right"></i></a>
+                </div><!-- .row -->
+            <% } %>
+
             <div class="row">
 
                 <div class="col-lg-12">

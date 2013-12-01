@@ -80,7 +80,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Name &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="change_name" action="<%=link%>/team/dashboard?team=<%=team.getName()%>" method="post">
+                                    <form class="form-horizontal" role="form" name="change_name" action="<%=link%>/team/dashboard" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Name</label>
                                             <div class="col-sm-6">
@@ -104,7 +104,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Tag &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="change_tag" action="<%=link%>/team/dashboard?team=<%=team.getName()%>" method="post">
+                                    <form class="form-horizontal" role="form" name="change_tag" action="<%=link%>/team/dashboard" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Tag</label>
                                             <div class="col-sm-6">
@@ -124,15 +124,15 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Passwort &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="change_password" action="<%=link%>/team/dashboard?team=<%=team.getName()%>" method="post">
+                                    <form class="form-horizontal" role="form" name="change_password" action="<%=link%>/team/dashboard" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Passwort</label>
                                             <div class="col-sm-6">
                                                 <input type="password" class="form-control" name="password_old" placeholder="altes Passwort">
                                             </div>
                                             <div class="col-sm-6 col-md-offset-2">
-                                                <input type="password" class="form-control" name="password_new" placeholder="neues Passwort" required>
-                                                <input type="password" class="form-control" name="password_new2" placeholder="neuer Passwort" required>
+                                                <input type="password" class="form-control" name="password_new" placeholder="neues Passwort">
+                                                <input type="password" class="form-control" name="password_new2" placeholder="neuer Passwort">
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -148,7 +148,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Teamleiter &auml;ndern</h2>
-                                    <form class="form-horizontal" role="form" name="change_leader" action="<%=link%>/team/dashboard?team=<%=team.getName()%>" method="post">
+                                    <form class="form-horizontal" role="form" name="change_leader" action="<%=link%>/team/dashboard" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Teamleiter</label>
                                             <div class="col-sm-6">
@@ -195,8 +195,8 @@
                                                     <tr>
                                                         <td><%=member.get(idx).getUsername()%></td>
                                                         <td><p><a href="<%=link%>/user/profile?user=<%=member.get(idx).getUsername()%>" class="btn btn-success">Userprofil <i class="fa fa-angle-right"></i></a> 
-                                                            <form method="post" action="<%=link%>/team/dashboard?action=leaveTournament&team=<%=team.getName()%>" id="<%=member.get(idx).getUsername()%>">
-                                                                <input type="text" value="<%=member.get(idx).getUsername()%>" name="leave_tournament" style="display:none">
+                                                            <form method="post" action="<%=link%>/team/dashboard?action=kick" id="<%=member.get(idx).getUsername()%>">
+                                                                <input type="text" value="<%=member.get(idx).getUsername()%>" name="kick_user" style="display:none">
                                                                 <a onclick="document.getElementById('<%=member.get(idx).getUsername()%>').submit();" class="btn btn-danger">Entfernen <i class="fa fa-angle-right"></i></a>
                                                             </form></p></td> 
                                                     </tr>  
@@ -234,7 +234,7 @@
                                                     <tr>
                                                         <td><%=tournaments.get(idx).getName()%></td> 
                                                         <td><p><a href="<%=link%>/tournament/profile?team=<%=tournaments.get(idx).getName()%>" class="btn btn-success">Turnierprofil <i class="fa fa-angle-right"></i></a> 
-                                                            <form method="post" action="<%=link%>/team/dashboard?action=leaveTournament&team=<%=team.getName()%>" id="<%=tournaments.get(idx).getName()%>">
+                                                            <form method="post" action="<%=link%>/team/dashboard?action=leave" id="<%=tournaments.get(idx).getName()%>">
                                                                 <input type="text" value="<%=tournaments.get(idx).getName()%>" name="leave_tournament" style="display:none">
                                                                 <a onclick="document.getElementById('<%=tournaments.get(idx).getName()%>').submit();" class="btn btn-danger">Verlassen <i class="fa fa-angle-right"></i></a>
                                                             </form></p></td> 

@@ -10,7 +10,6 @@
 
         <%
             String link = request.getContextPath();
-            String loged_in = String.valueOf(request.getSession().getAttribute("loged_in"));
         %>
 
         <!-- Bootstrap core CSS -->
