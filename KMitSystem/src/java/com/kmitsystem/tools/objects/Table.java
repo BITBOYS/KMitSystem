@@ -7,6 +7,7 @@ package com.kmitsystem.tools.objects;
  */
 public class Table {
     
+    private String team;
     private int tournament_team_matches;
     private int tournament_team_wins;
     private int tournament_team_defeats;
@@ -19,13 +20,18 @@ public class Table {
         super();
     }
 
-    public Table(int tournament_team_wins, int tournament_team_defeats, int tournament_team_goals, int tournament_team_goals_conceded) {
+    public Table(String team, int tournament_team_wins, int tournament_team_defeats, int tournament_team_goals, int tournament_team_goals_conceded) {
+        this.team = team;
         this.tournament_team_wins = tournament_team_wins;
         this.tournament_team_defeats = tournament_team_defeats;
         this.tournament_team_goals = tournament_team_goals;
         this.tournament_team_goals_conceded = tournament_team_goals_conceded;
         this.tournament_team_matches = tournament_team_wins + tournament_team_defeats;
         this.tournament_team_winrate = (double)tournament_team_wins / (double)tournament_team_matches;
+    }
+    
+    public String getTeam() {
+        return team;
     }
 
     public int getTournament_team_matches() {
@@ -57,6 +63,10 @@ public class Table {
 
     public int getTournament_team_goals_conceded() {
         return tournament_team_goals_conceded;
+    }
+    
+    public void setTeam(String team) {
+        this.team = team;
     }
 
     public void setTournament_team_matches(int tournament_team_matches) {

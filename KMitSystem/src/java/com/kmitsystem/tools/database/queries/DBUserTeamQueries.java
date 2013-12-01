@@ -48,10 +48,30 @@ public class DBUserTeamQueries {
         }
     }
     
-    /**
-     * Checks if the user is a member of a specific team
-     * returns: true if he is a member, false if he's not
-     */
+    public static boolean kickUser(String teamname, String username) {
+        try {        
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            int result = 0;
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date quit_date = new Date();
+            
+            result = statement.executeUpdate("UPDATE user_team "
+                            + "SET quit_dat = '" + formatter.format(quit_date) + "' "
+                            + "WHERE user = '" + username + "'");
+            
+            if(result > 0) {
+                ErrorHandler.handle(Errors.KICK_USER_SUCCESSFUL, DBUserTeamQueries.class.getName() + ":kickUser");
+                return true;
+            }
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+        return false;
+    }
+    
     public static boolean checkTeamMembership(String username, String teamname) {
         boolean result = false;
         
@@ -87,6 +107,40 @@ public class DBUserTeamQueries {
                                             + " goals_conceded, wins, defeats, tournament_wins, tournament_participations"
                                             + " FROM  user, user_team"
                                             + " WHERE team = '" + teamname + "'"
+                                            + "   AND username = user" );
+            resultSet.first();
+            
+            while(!resultSet.isAfterLast()) {
+                teammember.add(new User(resultSet.getString("username"), 
+                                        resultSet.getString("email"),
+                                        resultSet.getString("password"),
+                                        new Statistics(resultSet.getInt("goals"), 
+                                                       resultSet.getInt("goals_conceded"), 
+                                                       resultSet.getInt("wins"),
+                                                       resultSet.getInt("defeats"),
+                                                       resultSet.getInt("tournament_wins"),
+                                                       resultSet.getInt("tournament_participations"))));
+                resultSet.next();
+            }
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+        }
+        
+        return teammember;
+    }
+    
+    public static List<User> getActiveUserFromTeam(String teamname) {
+        List<User> teammember = new ArrayList<User>();
+        
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            resultSet = statement.executeQuery("SELECT username, email, password, goals,"
+                                            + " goals_conceded, wins, defeats, tournament_wins, tournament_participations"
+                                            + " FROM  user, user_team"
+                                            + " WHERE team = '" + teamname + "'"
+                                            + " AND (quit_dat is NULL OR quit_dat = '')"
                                             + "   AND username = user" );
             resultSet.first();
             

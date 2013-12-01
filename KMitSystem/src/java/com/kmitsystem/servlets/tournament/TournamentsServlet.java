@@ -41,13 +41,9 @@ public class TournamentsServlet extends HttpServlet {
             throws ServletException, IOException {
                 
         String team =  (String)request.getParameter("team_name_search");
-        System.out.println("Team: "+team);
         String tournament = (String)request.getParameter("tournament_name_search");
-        System.out.println("Turnier: "+tournament);
         String user = request.getParameter("user_name_search");
-        System.out.println("User: "+user);
         String createMonth = request.getParameter("createMonth_search");
-        System.out.println("Month: "+createMonth);
         
         String running = request.getParameter("running_search");
         String finished = request.getParameter("finished_search");

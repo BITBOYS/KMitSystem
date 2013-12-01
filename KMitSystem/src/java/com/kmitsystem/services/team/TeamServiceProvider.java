@@ -83,7 +83,7 @@ public class TeamServiceProvider {
             
             // call the database
             result.setTeam(DBTeamQueries.getTeam(teamname));
-            result.setMember(DBUserTeamQueries.getAllUserFromTeam(teamname));
+            result.setMember(DBUserTeamQueries.getActiveUserFromTeam(teamname));
             result.setTournaments(DBTeamTournamentQueries.getAllTournamentsFromTeam(teamname));
         }
         
@@ -115,6 +115,12 @@ public class TeamServiceProvider {
         if(user != null && !user.equals(""))
             result.addTeams(DBUserTeamQueries.getAllTeamsFromUser(user));
         
+        // search after every team, if the user gives no input
+        if(user != null && tournament != null && team != null) {
+            if(user.equals("") && team.equals("") && tournament.equals(""))
+                result.addTeams(DBTeamQueries.getAllTeams());
+        }
+        
         // write the errors into the result object and empty the ErrorHandler
         if(ErrorHandler.getErrors().size() > 0) {
             result.setErrorList(ErrorHandler.getErrors());                        
@@ -128,27 +134,23 @@ public class TeamServiceProvider {
         EditTeamResult result = new EditTeamResult();
      
         // prepare the input
-        String teamname = input.getTeamname();
         boolean query = false;
         
         if(editTeamValidator.validate(input)) {
-            String new_name = input.getNew_name();
-            String new_tag = input.getNew_tag();
-            String new_password = input.getNew_password();
-            String new_leader = input.getNew_leader();
-            String leave_tournament = input.getLeave_tournament();
             
             // call the database
-            if(new_name != null) 
-                query = DBTeamQueries.editName(teamname, new_name);
-            if(new_tag != null)
-                query = DBTeamQueries.editTag(teamname, new_tag);
-            if(new_password != null)
-                query = DBTeamQueries.editPassword(teamname, new_password);
-            if(new_leader != null)
-                query = DBTeamQueries.editLeader(teamname, new_leader);
-            if(leave_tournament != null)
-                query = DBTeamTournamentQueries.removeTeam(leave_tournament, teamname);
+            if(input.getNew_name() != null) 
+                query = DBTeamQueries.editName(input.getTeamname(), input.getNew_name());
+            if(input.getNew_tag() != null)
+                query = DBTeamQueries.editTag(input.getTeamname(), input.getNew_tag());
+            if(input.getNew_password() != null)
+                query = DBTeamQueries.editPassword(input.getTeamname(), input.getNew_password());
+            if(input.getNew_leader() != null)
+                query = DBTeamQueries.editLeader(input.getTeamname(), input.getNew_leader());
+            if(input.getLeave_tournament() != null)
+                query = DBTeamTournamentQueries.removeTeam(input.getLeave_tournament(), input.getTeamname());
+            if(input.getKick_user() != null)
+                query = DBUserTeamQueries.kickUser(input.getTeamname(), input.getKick_user());
             
             result.setQuerySuccessful(query);
         }

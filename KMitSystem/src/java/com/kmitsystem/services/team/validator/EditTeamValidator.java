@@ -23,7 +23,7 @@ public class EditTeamValidator {
             }
         }
         
-        if(input.getNew_password() != null) {
+        if(input.getNew_password() != null && input.getNew_password().length() > 0) {
             if(passwordPolicy.CheckPassword(input.getNew_password()) == false){
                 ErrorHandler.handle(Errors.PASSWORD_NOT_VALID);
                 return false;
@@ -33,6 +33,13 @@ public class EditTeamValidator {
         if(input.getNew_leader() != null) {
             if(!DBUserQueries.isUsernameExisting(input.getNew_leader())) {
                 ErrorHandler.handle(Errors.USER_DOES_NOT_EXIST, EditTeamValidator.class.getName() + ":isUserExisting");
+                return false;
+            }
+        }
+        
+        if(input.getKick_user() != null) {
+            if(DBTeamQueries.getTeam(input.getTeamname()).getLeader().getUsername().equals(input.getKick_user())) {
+                ErrorHandler.handle(Errors.USER_IS_TEAMLEADER, EditTeamValidator.class.getName() + ":checkTeamMembership");
                 return false;
             }
         }

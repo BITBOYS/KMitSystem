@@ -173,7 +173,7 @@ public class DBTeamTournamentQueries {
             resultSet.first();
             
             while(!resultSet.isAfterLast()) {
-                table.add(new Table(resultSet.getInt("wins"),  resultSet.getInt("defeats"), 
+                table.add(new Table(resultSet.getString("team"), resultSet.getInt("wins"),  resultSet.getInt("defeats"), 
                                   resultSet.getInt("goals"), resultSet.getInt("goals_conceded")));
                 resultSet.next();
             }

@@ -12,7 +12,7 @@ package com.kmitsystem.tools.errorhandling;
 public class Errors {
     
     public static final Error NAME_ALREADY_TAKEN_ERROR = new Error(1, "Der Name wird bereits verwendet", Error.INFO);
-    public static final Error DB_ERROR = new Error(2, "Auf der Datenbank ist ein Fehler aufgetreten", Error.ERROR);
+    public static final Error DB_ERROR = new Error(2, "Es ist ein unbekannter Fehler aufgetreten", Error.ERROR);
     public static final Error TEAM_DOES_NOT_EXIST = new Error(3, "Das Team existiert nicht", Error.INFO);
     public static final Error USER_DOES_NOT_EXIST = new Error(4, "Der Benutzer existiert nicht", Error.ERROR);
     public static final Error USER_ALREADY_IN_TEAM = new Error(5, "Der Benutzer ist bereit Mitglied des Teams", Error.INFO); 
@@ -39,6 +39,8 @@ public class Errors {
     public static final Error LOGOUT_SUCCESSFUL = new Error(25, "Erfolgreich abgemeldet", Error.SUCCESS);
     public static final Error LOGOUT_FAILED = new Error(26, "Abmelden ist fehlgeschlagen", Error.ERROR);
     public static final Error LEAVE_TOURNAMENT_SUCCESSFUL = new Error(27, "Abmelden ist fehlgeschlagen", Error.SUCCESS);
+    public static final Error USER_IS_TEAMLEADER = new Error(28, "Der Teamleiter kann nicht entfernt werden", Error.ERROR);
+    public static final Error KICK_USER_SUCCESSFUL = new Error(29, "Spieler erfolgreich entfernt", Error.SUCCESS);
     
     
     

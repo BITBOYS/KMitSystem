@@ -10,7 +10,6 @@ import com.kmitsystem.tools.database.queries.DBUserQueries;
 import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.errorhandling.Error;
-import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
@@ -40,8 +39,8 @@ public class TeamDashboardServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String teamname = request.getParameter("team");
+       
+         String teamname = ((Team)request.getSession().getAttribute("team")).getName();
         String name_old  = request.getParameter("name_old");
         String tag_new = request.getParameter("tag_new");
         String password_old = request.getParameter("password_old");
@@ -53,10 +52,6 @@ public class TeamDashboardServlet extends HttpServlet {
         
         // prepare the output
         EditTeamResult result = new EditTeamResult();
-        
-        ///////////////////////////
-        //FILL ATTRIBUTES SECTION//
-        ///////////////////////////
         
         // get the team
         Team team = DBTeamQueries.getTeam(teamname);
@@ -80,6 +75,7 @@ public class TeamDashboardServlet extends HttpServlet {
                     input = new EditTeamInput(teamname, null, name_new, null, null, null, null, null, null);
                     result = provider.editTeam(input);
                     if(result.isQuerySuccessful()) team.setName(name_new);
+                    
                 } else {
                     List<Error> errorList = new ArrayList<Error>();
                     errorList.add(Errors.NAMES_NOT_EQUAL);
@@ -122,11 +118,12 @@ public class TeamDashboardServlet extends HttpServlet {
         // check if the user filled the "change_password" form
         if(password_old != null) {
             
+            if(team.getPassword() == null) team.setPassword("");
             String password_new = request.getParameter("password_new");
             String password_new2 = request.getParameter("password_new2");
-            
-            // check if the name of the team is correct
-            if(password_old.equals(password_new)) {
+                    
+            // check if the password of the team is correct
+            if(password_old.equals(team.getPassword())) {
                 // check if both passwords are equal, if true change the password
                 if(password_new.equals(password_new2)) {
                     provider = new TeamServiceProvider();
@@ -174,11 +171,27 @@ public class TeamDashboardServlet extends HttpServlet {
         //LEAVE TOURNAMENT SECTION//
         ////////////////////////////
         
-        if(String.valueOf(request.getParameter("action")).equals("leaveTournament")) {
+        if(String.valueOf(request.getParameter("action")).equals("leave")) {
             String leave_tournament = request.getParameter("leave_tournament");
             
             provider = new TeamServiceProvider();
             input = new EditTeamInput(teamname, null, null, null, null, null, leave_tournament, null, null);
+            result = provider.editTeam(input);
+                    
+            // write the errorlist into the session-attribute "errors"
+            if(result.getErrorList().size() > 0) 
+                request.setAttribute("errors", result.getErrorList());
+        }
+        
+        /////////////////////
+        //KICK USER SECTION//
+        /////////////////////
+        
+        if(String.valueOf(request.getParameter("action")).equals("kick")) {
+            String kick_user = request.getParameter("kick_user");
+            
+            provider = new TeamServiceProvider();
+            input = new EditTeamInput(teamname, null, null, null, null, null, null, kick_user, null);
             result = provider.editTeam(input);
                     
             // write the errorlist into the session-attribute "errors"
@@ -191,11 +204,11 @@ public class TeamDashboardServlet extends HttpServlet {
         request.setAttribute("users", users);
         
         // get all members of the team and write them ino an attribute
-        List<User> member = DBUserTeamQueries.getAllUserFromTeam(teamname);
+        List<User> member = DBUserTeamQueries.getActiveUserFromTeam(team.getName());
         request.setAttribute("member", member);
         
         // get all the tournaments from the team and write them into an attribute 
-        tournaments = DBTeamTournamentQueries.getAllTournamentsFromTeam(teamname);
+        tournaments = DBTeamTournamentQueries.getAllTournamentsFromTeam(team.getName());
         request.setAttribute("tournaments", tournaments);
         
         request.setAttribute("team", team);

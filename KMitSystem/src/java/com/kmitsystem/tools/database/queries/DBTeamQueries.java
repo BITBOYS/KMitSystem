@@ -31,13 +31,16 @@ public class DBTeamQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("select COUNT(*) as count from team where name=\"" + name + "\"");
+            resultSet = statement.executeQuery("select COUNT(*) as count from team where name='" + name + "'");
             resultSet.first();
             
-            if(resultSet.getInt("count") > 0) 
-                result = true;
+            if(resultSet.getInt("count") > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (SQLException ex) {
-            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
+            ErrorHandler.handle(Errors.DB_ERROR, "[" + DBTeamQueries.class.getName() + ":isTeamExisting] " + ex.getSQLState() + " " +ex.getMessage());
         }
         
         return result;
