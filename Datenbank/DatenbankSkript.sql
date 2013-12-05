@@ -3,19 +3,19 @@ DROP TABLE team_tournament;
 DROP TABLE game;
 DROP TABLE team;
 DROP TABLE tournament;
-DROP TABLE user;
+drop TABLE user;
 
 CREATE TABLE user (
         username char(30) NOT NULL,
         password char(32) NOT NULL,
         email char(40) UNIQUE NOT NULL,
-        create_date DATE,
+        create_date DATETIME,
         goals INT,
         goals_conceded INT,
         wins INT,
         defeats INT,
-		tournament_wins INT,
-		tournament_participations INT,
+                tournament_wins INT,
+                tournament_participations INT,
         PRIMARY KEY (username)
 );
 
@@ -24,7 +24,7 @@ CREATE TABLE tournament (
         leader CHAR(30) NOT NULL,
         start_date DATETIME,
         end_date DATETIME,
-        create_date DATE NOT NULL DEFAULT CURDATE(),
+        create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         password CHAR(32),
         description CHAR(255),
         nr_of_matchdays INT,
@@ -44,8 +44,8 @@ CREATE TABLE team (
         goals_conceded INT,
         wins INT,
         defeats INT,
-		tournament_wins INT,
-		tournament_participations INT,
+                tournament_wins INT,
+                tournament_participations INT,
         PRIMARY KEY (name),
         FOREIGN KEY (leader) REFERENCES user(username) ON DELETE RESTRICT ON UPDATE CASCADE
 );
