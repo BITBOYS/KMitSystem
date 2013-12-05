@@ -24,7 +24,7 @@ CREATE TABLE tournament (
         leader CHAR(30) NOT NULL,
         start_date DATETIME,
         end_date DATETIME,
-        create_date DATE,
+        create_date DATE NOT NULL DEFAULT CURDATE(),
         password CHAR(32),
         description CHAR(255),
         nr_of_matchdays INT,
