@@ -125,4 +125,10 @@
         <error-code>500</error-code>
         <location>/error/index.jsp</location>
     </error-page>
+    <resource-ref>
+        <res-ref-name>de</res-ref-name>
+        <res-type>javax.mail.Session</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
 </web-app>

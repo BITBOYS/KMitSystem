@@ -12,8 +12,7 @@
 
         <title>Turnier Profil - KmS</title>
 
-        <%            
-            String link = request.getContextPath();
+        <%            String link = request.getContextPath();
             Tournament tournament = (Tournament) request.getAttribute("tournament");
             List<Team> teams = (List<Team>) request.getAttribute("teams");
             List<User> member = (List<User>) request.getAttribute("member");
@@ -35,15 +34,7 @@
         <!-- Page Content -->
 
         <div class="container">
-            
-            <%if (user != null) {%>
-                <div class="row">
-                    <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
-                        <a class="btn btn-success" href="#"><span class="fa fa-plus"> Turnier beitreten <i class="fa fa-angle-right"></i></span></a>
-                    </div>
-                </div><!-- .row -->
-            <%}%>
-            
+
             <div class="row">
 
                 <div class="col-lg-12">
@@ -55,7 +46,7 @@
                     </ol>
                 </div>
             </div><!-- /.row -->
-            
+
             <!-- Errors & Alerts -->
             <%@include file="../../snipplets/error.jspf" %>
 
@@ -66,21 +57,28 @@
                         <li class="active"><a href="#news" data-toggle="tab">Aktuelles</a></li>
                         <li><a href="#table" data-toggle="tab">Tabelle</a></li>
                         <li><a href="#user" data-toggle="tab">Spielerstatistiken</a></li>
+                            <%if (user != null && tournament.getLeader().getUsername().equals(user.getUsername())) {%>
+                        <li><a href="#dashboard" data-toggle="tab">Dashboard</a></li>
+                            <%}%>
                     </ul>
                     <div id="myTabContent" class="tab-content">
 
                         <div class="tab-pane fade in active" id="news">
-                            <i class="fa fa-gear pull-left fa-4x"></i>
+                            <i class="fa fa-paperclip pull-left fa-4x"></i>
                             <p><%=tournament.getDescription()%></p>
-                            <p>Leader: <a href="<%=link%>/user/profil?user=<%=tournament.getLeader().getUsername()%>"> <%=tournament.getLeader().getUsername()%> </a></p>
+                            <br><br>
+                            <p>Leader: <a href="<%=link%>/user/profile?user=<%=tournament.getLeader().getUsername()%>"> <%=tournament.getLeader().getUsername()%> </a></p>
                             <p>Zeitraum: <%=tournament.getStart_date()%> bis <%=tournament.getEnd_date()%></p>
                             <p>Anmeldefrist: <%=tournament.getTerm_of_application()%></p>
                             <p>Spieltage: <%=tournament.getNr_matchdays()%></p>
-                            <p>Austragungsort: <a href="https://maps.google.com/maps?q=<%=tournament.getVenue()%>&hl=de&sll=28.149503,-71.71875&sspn=88.855059,173.144531&hnear=<%=tournament.getVenue()%>&t=m&z=10"><%=tournament.getVenue()%></a></p>
+                            <p>Austragungsort: <a href="https://maps.google.com/maps?q=<%=tournament.getVenue()%>&hl=de&sll=28.149503,-71.71875&sspn=88.855059,173.144531&hnear=<%=tournament.getVenue()%>&t=m&z=10" target="_blank"><%=tournament.getVenue()%></a></p>
+
+                            <iframe width="50%" height="300dpx" frameborder="2" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.de/maps?hl=de&q=<%=tournament.getVenue()%>+(<%=tournament.getVenue()%>)&ie=UTF8&t=&z=12&iwloc=B&output=embed"></iframe>
+
                             <div class="row">
 
                                 <div class="col-lg-12">
-                                    <h2 class="page-header">Spielplan f&uml;r "<%=name%>"</h2>
+                                    <h2 class="page-header">Spielplan f&uuml;r "<%=name%>"</h2>
 
                                     <div class="panel panel-default">
                                         <!-- Default panel contents -->
@@ -119,17 +117,18 @@
                             <div class="row">  
 
                                 <div class="col-lg-12">
-                                    <h2 class="page-header">Tabelle f&uml; <%=tournament.getName()%></h2>
+                                    <h2 class="page-header">Tabelle f&uuml;r "<%=tournament.getName()%>"</h2>
                                 </div>
 
                                 <div class="panel panel-default">
                                     <!-- Default panel contents -->
-                                    <div class="panel-heading">Stats</div>
+                                    <div class="panel-heading">Tabelle</div>
 
                                     <!-- Table -->
                                     <table class="table">  
                                         <thead>  
                                             <tr>   
+                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Platz" class="label label-default">Platz</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Teamname" class="label label-default">TN</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Spiele" class="label label-default">SP</a></th> 
                                                 <th><a href="#" data-toggle="tooltip" data-placement="top" title="Punkte" class="label label-default">P</a></th> 
@@ -143,6 +142,7 @@
                                         <tbody>  
                                             <%for (int idx = 0; idx < tournament.getTable().size(); idx++) {%>
                                             <tr>  
+                                                <td><%=idx + 1%>.</td> 
                                                 <td><%=tournament.getTable().get(idx).getTeam()%></td>  
                                                 <td><%=tournament.getTable().get(idx).getTournament_team_matches()%></td>  
                                                 <td><%=tournament.getTable().get(idx).getTournament_team_winrate()%></td>  
@@ -187,7 +187,7 @@
                                         <tbody>  
                                             <%for (int idx = 0; idx < 10; idx++) {%>
                                             <tr>  
-                                                <td><%=idx%>.</td>  
+                                                <td><%=idx + 1%>.</td>  
                                                 <td>1</td>  
                                                 <td>10</td>  
                                                 <td>2</td> 
@@ -197,10 +197,23 @@
                                         </tbody>  
                                     </table>  
                                 </div> 
+                            </div><!-- /.row -->
+                        </div>
+
+                        <div class="tab-pane fade" id="dashboard">
+                            <i class="fa fa-gamepad pull-left fa-4x"></i>
+                            <p>dede de de de dededed ed ed ed ed ed  dedededed</p>
+                            <div class="row">
+
+                                <div class="col-lg-12">
+                                    <h2 class="page-header">Turnier Dashboard f&uuml;r dein Turnier '<%=name%>'</h2>
+                                </div>
+
+
 
                             </div><!-- /.row -->
-
                         </div>
+
                     </div>
                 </div>
 

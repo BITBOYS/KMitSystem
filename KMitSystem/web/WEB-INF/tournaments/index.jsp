@@ -137,7 +137,7 @@
 
                         <div class="col-md-5">
                             <h3><%=tournaments.get(idx).getName()%></h3>
-                            <h4>Leader: <a href="<%=link%>/user/profil?user=<%=tournaments.get(idx).getLeader()%>"></a></h4>
+                            <h4>Leader: <a href="<%=link%>/user/profile?user=<%=tournaments.get(idx).getLeader().getUsername()%>"><%=tournaments.get(idx).getLeader().getUsername()%></a></h4>
                             <p><%= tournaments.get(idx).getDescription()%></p>
                             <a class="btn btn-success" href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>">Zum Turnier <i class="fa fa-angle-right"></i></a>
                         </div>
