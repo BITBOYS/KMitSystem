@@ -7,13 +7,7 @@ import java.util.List;
 /**
  * @author Malte
  */
-public class Tournament {
-    
-//    @TODO
-    
-//    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-//    Date start_date = new Date();
-//    Date end_date = new Date();    
+public class Tournament { 
     
     private String name;
     private String password;

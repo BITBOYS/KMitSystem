@@ -11,6 +11,7 @@ import com.kmitsystem.services.team.result.SearchTeamResult;
 import com.kmitsystem.services.tournament.TournamentServiceProvider;
 import com.kmitsystem.services.tournament.input.SearchTournamentInput;
 import com.kmitsystem.services.tournament.result.SearchTournamentResult;
+import com.kmitsystem.tools.Email;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class TournamentsServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                
+        
         String team =  (String)request.getParameter("team_name_search");
         String tournament = (String)request.getParameter("tournament_name_search");
         String user = request.getParameter("user_name_search");
@@ -50,7 +51,6 @@ public class TournamentsServlet extends HttpServlet {
         
 //        was mache ich mit Boolean und Datum?
         TournamentServiceProvider provider = new TournamentServiceProvider();
-//        Datum; boolean nicht übergeben
         SearchTournamentInput input = new SearchTournamentInput(team, tournament, user, createMonth);
         SearchTournamentResult result = provider.searchTournament(input);
         

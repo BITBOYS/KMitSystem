@@ -39,15 +39,16 @@ public class TournamentServiceProvider {
             String name = input.getName();
             String password = input.getPassword();
             User leader = input.getLeader();
-            String start_date = input.getStart_date();
-            String end_date = input.getEnd_date();
-            String nr_matchdays = input.getNr_matchdays();
+            String description = input.getDescription();
+            Date start_date = input.getStart_date();
+            Date end_date = input.getEnd_date();
+            int nr_matchdays = input.getNr_matchdays();
             String venue = input.getVenue();
-            String term_of_application = input.getTerm_of_application();
+            Date term_of_application = input.getTerm_of_application();
 
             // call the database
             //TODO:Date
-            DBTournamentQueries.createTournament(name, password, leader, null, null, nr_matchdays, venue, null);
+            DBTournamentQueries.createTournament(name, password, description, leader, start_date, end_date, nr_matchdays, venue, term_of_application);
         }
 
         // write the errors into the result object and empty the ErrorHandler

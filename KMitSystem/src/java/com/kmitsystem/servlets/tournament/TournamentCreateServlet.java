@@ -50,20 +50,17 @@ public class TournamentCreateServlet extends HttpServlet {
             String nrMatchdays = request.getParameter("tournament_matchdays_create");
             String venue = request.getParameter("tournament_venue_create");;
             String password = request.getParameter("tournament_password_creat");
-            String reenter_password = (String)request.getParameter("tournament_password_reenter_creat");
-            Date startDate = Date.valueOf(request.getParameter("tournamen_start_date_create"));
-            Date endDate = Date.valueOf(request.getParameter("tournamen_end_date_create"));
-            Date termOfApp = Date.valueOf(request.getParameter("tournamen_term_create"));
+            String reenter_password = request.getParameter("tournament_password_reenter_creat");
+            String startDate = request.getParameter("tournamen_start_date_create");
+            String endDate = request.getParameter("tournamen_end_date_create");
+            String termOfApp = request.getParameter("tournamen_term_create");
+            User leader = (User)request.getSession().getAttribute("user");
             //BETA
             //List<Team> teamsAdded = null; //(request.getParameter("tournament_teamAdd_create"));
 
-//          User from Session
-            User leader = (User)request.getSession().getAttribute("user");
-            System.out.println("Leader ist: " + leader);
             
             BaseResult result = new BaseResult();
 
-            if (password.equals(reenter_password)) {
                 TournamentServiceProvider provider = new TournamentServiceProvider();
                 CreateTournamentInput input = new CreateTournamentInput(name, password, description, leader, startDate, endDate, nrMatchdays, venue, termOfApp);
 
@@ -72,16 +69,16 @@ public class TournamentCreateServlet extends HttpServlet {
                 // redirect to the profile of the new tournament
                 response.sendRedirect(request.getContextPath() + "/tournament/profile?tournament="+name);
                 
-            } else {
-                List<Error> errorList = new ArrayList<Error>();
-                errorList.add(Errors.PASSWORDS_NOT_EQUAL);
-                result.setErrorList(errorList);
-                request.setAttribute("errors", result.getErrorList());
-
-                // redirect to the teamcreation page and show the error
-                rd = request.getRequestDispatcher("/WEB-INF/tournaments/create/index.jsp");
-                rd.include(request, response);
-            }
+//            } else {
+//                List<Error> errorList = new ArrayList<Error>();
+//                errorList.add(Errors.PASSWORDS_NOT_EQUAL);
+//                result.setErrorList(errorList);
+//                request.setAttribute("errors", result.getErrorList());
+//
+//                // redirect to the teamcreation page and show the error
+//                rd = request.getRequestDispatcher("/WEB-INF/tournaments/create/index.jsp");
+//                rd.include(request, response);
+//            }
 
             // write the errorlist into the session-attribute "errors"
             if (result.getErrorList().size() > 0) {

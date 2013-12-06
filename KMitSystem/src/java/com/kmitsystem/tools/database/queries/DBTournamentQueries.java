@@ -47,7 +47,7 @@ public class DBTournamentQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("select * from tournament where name=\"" + name + "\" ORDER BY name, start_date, end_date");
+            resultSet = statement.executeQuery("select * from tournament where name= '" + name + "' ORDER BY name, start_date, end_date");
             resultSet.first();
 
             String tournamentname = resultSet.getString("name");
@@ -59,9 +59,8 @@ public class DBTournamentQueries {
             Date end_date = resultSet.getDate("end_date");
             Date create_date = resultSet.getDate("create_date");
             Date term_of_application = resultSet.getDate("term_of_application");
-            User leader = new User();
-//            Statistics statistics = new Statistics
-
+            User leader = new User(resultSet.getString("leader"));
+            
             tournament = new Tournament(tournamentname, password, description, leader, start_date, end_date, create_date, nr_matchdays, venue, term_of_application);
 
         } catch (SQLException ex) {
@@ -70,6 +69,7 @@ public class DBTournamentQueries {
         return tournament;
     }
     
+    //TODO
     public static List<Tournament> getTournamentsByMonth(String create_month) {
         List<Tournament> tournaments = new ArrayList<Tournament>();
         try {
@@ -79,13 +79,13 @@ public class DBTournamentQueries {
             
             resultSet = statement.executeQuery("SELECT name, create_date"
                                             + " FROM  tournament "
-                                            + " WHERE MONTH(create_date) = '" + create_month + "'" 
+                                            + " WHERE MONTHNAME(create_date) = '" + create_month + "'" 
                                             + " ORDER BY create_date");
             resultSet.first();
             
             
             while(!resultSet.isAfterLast()) {
-                tournaments.add(new Tournament(resultSet.getString("name")));//create_date
+                tournaments.add(new Tournament(resultSet.getString("name")));
                         resultSet.next();
             }
         } catch (SQLException ex) {
@@ -94,14 +94,15 @@ public class DBTournamentQueries {
         return tournaments;
     }
 
-    public static void createTournament(String name, String password, User leader, Date end_date, Date start_date, String nr_matchdays, String venue, Date term_of_application) {
+    public static void createTournament(String name, String password, String description, User leader, Date end_date, Date start_date, int nr_matchdays, String venue, Date term_of_application) {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
 
             statement.execute("insert into tournament"
-                        + "(name, leader, start_date, end_date, password, nr_of_matchdays, venue, term_of_matchday)"
-                        + "VALUES (\"" + name + "\",\"" + leader.getUsername() + "\",\"" + start_date + "\",\""  + start_date + "\",\"" + password + "\",\"" + nr_matchdays + "\",\"" + venue + "\",\"" + term_of_application + "\")");
+                        + "(name, leader, start_date, end_date, password, description, nr_of_matchdays, venue, term_of_application)"
+                        + "VALUES ('" + name + "','" + leader.getUsername() + "','" + start_date + "','" + end_date + "','" + password + "','" + description + "','" + nr_matchdays + "','" + venue + "','" + term_of_application + "')");
+            
             
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " + ex.getMessage());
@@ -183,6 +184,27 @@ public class DBTournamentQueries {
             
             if(result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editVenue");
+                return true;
+            }
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, "editVenue: " + ex.getSQLState() + " " +ex.getMessage());
+        }
+        return false;
+    }
+    
+    public static boolean editTournamentDescription(String tournamentname, String description) {
+        int result;
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            result = statement.executeUpdate("UPDATE tournament"
+                                           + "SET description = '" + description + "' "
+                                           + "WHERE name = '" + tournamentname + "'");
+            
+            if(result > 0) {
+                ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editDescription");
                 return true;
             }
             
