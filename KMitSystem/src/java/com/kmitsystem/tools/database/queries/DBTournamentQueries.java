@@ -93,7 +93,8 @@ public class DBTournamentQueries {
         }
         return tournaments;
     }
-
+    
+    
     public static void createTournament(String name, String password, String description, User leader, Date end_date, Date start_date, int nr_matchdays, String venue, Date term_of_application) {
         try {
             con = DatabaseHandler.connect();

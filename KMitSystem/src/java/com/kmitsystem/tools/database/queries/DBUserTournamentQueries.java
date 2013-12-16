@@ -3,6 +3,7 @@ package com.kmitsystem.tools.database.queries;
 import com.kmitsystem.tools.database.DatabaseHandler;
 import com.kmitsystem.tools.errorhandling.ErrorHandler;
 import com.kmitsystem.tools.errorhandling.Errors;
+import com.kmitsystem.tools.objects.Statistics;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Connection;
@@ -42,11 +43,58 @@ public class DBUserTournamentQueries {
             
             
             while(!resultSet.isAfterLast()) {
-                member.add(new User(resultSet.getString("u.username"), resultSet.getString("u.email"), resultSet.getString("u.password"), resultSet.getDate("u.create_date")));
+                member.add(new User(resultSet.getString("u.username"), 
+                                    resultSet.getString("u.email"), 
+                                    resultSet.getString("u.password"), 
+                                    new Statistics(resultSet.getInt("goals"), 
+                                                   resultSet.getInt("goals_conceded"), 
+                                                   resultSet.getInt("wins"),
+                                                   resultSet.getInt("defeats"),
+                                                   resultSet.getInt("tournament_wins"),
+                                                   resultSet.getInt("tournament_participations")),
+                                    resultSet.getDate("u.create_date")));
                 resultSet.next();
             }
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.NO_ENTRYS_FOUND, ex.getSQLState() + " " +ex.getMessage());
+        }
+        
+        return member;
+    }
+    
+    public static List<User> getActiveUserFromTournament(String tournamentname) {
+        List<User> member = new ArrayList<User>();
+        
+        try {
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            resultSet = statement.executeQuery("SELECT username, u.password, u.email, u.create_date, u.goals,  u.goals_conceded, u.wins, u.defeats, u.goals_conceded"
+                                            + " FROM  user as u, user_team as ut, team as te, team_tournament as teto, tournament as tou"
+                                            + " WHERE tou.name = teto.tournament"
+                                            + "   AND teto.team = te.name"
+                                            + "   AND te.name = ut.team"
+                                            + "   AND ut.user = u.username"
+                                            + "   AND tou.name = '" + tournamentname + "'"
+                                            + "   AND (quit_dat is NULL OR quit_dat = '')"
+                                            + " ORDER BY u.username, u.wins");
+            resultSet.first();
+            
+            while(!resultSet.isAfterLast()) {
+                member.add(new User(resultSet.getString("u.username"), 
+                                    resultSet.getString("u.email"), 
+                                    resultSet.getString("u.password"), 
+                                    new Statistics(resultSet.getInt("goals"), 
+                                                   resultSet.getInt("goals_conceded"), 
+                                                   resultSet.getInt("wins"),
+                                                   resultSet.getInt("defeats"),
+                                                   resultSet.getInt("tournament_wins"),
+                                                   resultSet.getInt("tournament_participations")),
+                                    resultSet.getDate("u.create_date")));
+                resultSet.next();
+            }
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " +ex.getMessage());
         }
         
         return member;

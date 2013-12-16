@@ -57,99 +57,98 @@
             </div><!-- /.row -->
 
             <div class="row">  
-                <div class="col-lg-12">
-                    <div class="row well">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <div class="row">
                         <form class="form-horizontal" role="form" action="<%=link%>/tournament/create" method="post">
 
-                            <div class="col-lg-4 col-lg-offset-1">
+                            <h3 class="page-header">Turnierdatenblatt</h3>
 
-                                <div class="form-group">
-                                    <label for="inputTurniername" class="col-sm-2 control-label">Turnier</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" name="tournament_name_create" placeholder="Name" required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="inputMatchdays" class="col-sm-2 control-label">Runden</label>
-                                    <div class="col-lg-8">
-                                        <input type="number" min="1" class="form-control" name="tournament_matchdays_create" placeholder="Spieltage">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="inputVenue" class="col-sm-2 control-label">Location</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" name="tournament_venue_create" placeholder="Austragungsort">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="inputPassword" class="col-sm-2 control-label">Passwort</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" name="tournament_password_create" placeholder="Passwort">
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="inputPasswordReenter" class="col-sm-2 control-label">Passwort</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" name="tournament_password_reenter_create" placeholder="Passwort wiederholen">
-                                    </div>
+                            <div class="form-group">
+                                <label for="inputTurniername" class="col-sm-2 control-label">Turnier*</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" name="tournament_name_create" placeholder="Name" required>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-lg-offset-1">
-
-                                <div class="form-group">
-                                    <label for="inputStartDate" class="col-sm-2 control-label">Startdatum</label>
-                                    <div class="col-lg-6  col-offset-2">
-                                        <input type="date" name="tournamen_start_date_create">
-                                    </div>
+                            <div class="form-group">
+                                <label for="inputMatchdays" class="col-sm-2 control-label">Runden</label>
+                                <div class="col-lg-8">
+                                    <input type="number" min="1" class="form-control" name="tournament_matchdays_create" placeholder="Spieltage">
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="inputEndDate" class="col-sm-2 control-label">Enddatum</label>
-                                    <div class="col-lg-6  col-offset-2">
-                                        <input type="date" name="tournamen_end_date_create">
-                                    </div>
+                            <div class="form-group">
+                                <label for="inputVenue" class="col-sm-2 control-label">Location</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" name="tournament_venue_create" placeholder="Austragungsort">
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="inputTerm" class="col-sm-2 control-label">Anmeldefrist</label>
-                                    <div class="col-lg-6  col-offset-2">
-                                        <input type="number" min="0" name="tournamen_term_create" placeholder="Tage vorher">
-                                    </div>
+                            <div class="form-group">
+                                <label for="inputPassword" class="col-sm-2 control-label">Passwort</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" name="tournament_password_create" placeholder="Passwort">
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="inputTerm" class="col-sm-2 control-label">Beschreibung</label>
-                                    <div class="col-lg-6  col-offset-2">
-                                        <textarea name="tournamen_description_create" maxlength="500" placeholder="Beschreibe dein Turnier, maximal 500 Zeichen..." rows="4" cols="40"></textarea>
-                                    </div>
+                            <div class="form-group">
+                                <label for="inputPasswordReenter" class="col-sm-2 control-label">Passwort</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" name="tournament_password_reenter_create" placeholder="Passwort wiederholen">
                                 </div>
+                            </div>
 
-                                <div class="form-group">
-                                    <label for="inputTeam" class="col-sm-2 control-label">Teams</label>
-                                    <div class="col-lg-8">
-                                        <input type="text" class="form-control" name="tournament_teamAdd_create" placeholder="Teamname">
-                                        <datalist id="userAuswahl">
-                                            <% for (int idx = 0; idx < teams.size(); idx++) {%>
-                                            <option value="<%= teams.get(idx).getName()%>"> 
-                                                <% } %>
-                                        </datalist>
-                                        <a href="#">Team hinzuf&uuml;gen</a>
-                                    </div>
+                            <div class="form-group">
+                                <label for="inputStartDate" class="col-sm-2 control-label">Startdatum</label>
+                                <div class="col-lg-6  col-offset-2">
+                                    <input type="date" name="tournamen_start_date_create">
                                 </div>
-                                <div class="form-group">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputEndDate" class="col-sm-2 control-label">Enddatum</label>
+                                <div class="col-lg-6  col-offset-2">
+                                    <input type="date" name="tournamen_end_date_create">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputTerm" class="col-sm-2 control-label">Anmeldefrist</label>
+                                <div class="col-lg-6  col-offset-2">
+                                    <input type="DATE"  name="tournamen_term_create">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputTerm" class="col-sm-2 control-label">Beschreibung</label>
+                                <div class="col-lg-8 col-offset-2">
+                                    <textarea style="width:100%" name="tournamen_description_create" maxlength="255" placeholder="Beschreibe dein Turnier, maximal 255 Zeichen..." rows="5"></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputTeam" class="col-sm-2 control-label">Teams</label>
+                                <div class="col-lg-8">
+                                    <input type="text" class="form-control" name="tournament_teamAdd_create" placeholder="Teamname">
+                                    <datalist id="userAuswahl">
+                                        <% for (int idx = 0; idx < teams.size(); idx++) {%>
+                                        <option value="<%= teams.get(idx).getName()%>"> 
+                                            <% } %>
+                                    </datalist>
+                                    <a href="#">Team hinzuf&uuml;gen</a>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-8">
                                     <small>Nur der Turniername ist Pflicht. Alles andere kannst du auf dem Turnierdashboard bearbeiten.</small>
                                 </div>
-                                <div class="form-group">
-                                    <div class="col-md-offset-8">
-                                        <button type="submit" class="btn btn-primary"><span class="fa fa-pencil"> Erstellen <i class="fa fa-angle-right"></i></button>
-                                    </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-8">
+                                    <button type="submit" class="btn btn-primary"><span class="fa fa-pencil"> Erstellen <i class="fa fa-angle-right"></i></button>
                                 </div>
                             </div>
+
                         </form>
                     </div>
 

@@ -119,7 +119,7 @@
                     <div class="alert alert-info">Es wurden keine Turniere geunden</div>
                     <% } else { %>
                     <% if (tournaments.size() == 1) {%>
-                    <div class="alert alert-success">Es wurde <%=tournaments.size()%> Turniere gefunden gefunden</div>
+                    <div class="alert alert-success">Es wurde <%=tournaments.size()%> Turnier gefunden</div>
                     <% } else {%>
                     <div class="alert alert-success">Es wurden <%=tournaments.size()%> Turniere gefunden</div>
                     <% } %>

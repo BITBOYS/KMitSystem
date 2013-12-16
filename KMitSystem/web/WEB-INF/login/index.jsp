@@ -54,7 +54,7 @@
                             <form class="form-signin" action="<%=link%>/login" method="post" role="form">
                                 <input type="email" class="form-control" placeholder="Email" name="email" required autofocus>
                                 <input type="password" class="form-control" placeholder="Password" name="password" required>
-                                <a href="forgotten" class="pull-right need-help">Passwort vergessen? </a><span class="clearfix"></span>
+                                <a href="<%=link%>/login/forgotten" class="pull-right need-help">Passwort vergessen? </a><span class="clearfix"></span>
                                 <br>
                                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
                             </form>

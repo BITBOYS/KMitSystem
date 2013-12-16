@@ -16,8 +16,9 @@ public class EditTournamentInput {
     private Date new_start_date;
     private Date new_end_date;
     private Date new_term_of_application;
+    
 
-    public EditTournamentInput(String tournamentname, String new_name, String new_password, String new_leader, String new_venue, int new_nr_matchdays, Date new_start_date, Date new_end_date, Date new_term_of_application) {
+    public EditTournamentInput(String tournamentname, String new_name, String new_password, String new_leader, String new_venue, Integer new_nr_matchdays, Date new_start_date, Date new_end_date, Date new_term_of_application) {
         this.tournamentname = tournamentname;
         this.new_name = new_name;
         this.new_password = new_password;

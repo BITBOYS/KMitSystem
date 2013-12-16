@@ -69,16 +69,6 @@ public class TournamentCreateServlet extends HttpServlet {
                 // redirect to the profile of the new tournament
                 response.sendRedirect(request.getContextPath() + "/tournament/profile?tournament="+name);
                 
-//            } else {
-//                List<Error> errorList = new ArrayList<Error>();
-//                errorList.add(Errors.PASSWORDS_NOT_EQUAL);
-//                result.setErrorList(errorList);
-//                request.setAttribute("errors", result.getErrorList());
-//
-//                // redirect to the teamcreation page and show the error
-//                rd = request.getRequestDispatcher("/WEB-INF/tournaments/create/index.jsp");
-//                rd.include(request, response);
-//            }
 
             // write the errorlist into the session-attribute "errors"
             if (result.getErrorList().size() > 0) {

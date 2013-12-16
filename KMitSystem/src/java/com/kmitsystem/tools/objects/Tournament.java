@@ -2,13 +2,16 @@ package com.kmitsystem.tools.objects;
 
 import com.kmitsystem.tools.DateKonverter;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Malte
  */
-public class Tournament { 
-    
+public class Tournament {
+
     private String name;
     private String password;
     private String description;
@@ -20,11 +23,12 @@ public class Tournament {
     private String venue;
     private Date term_of_application;
     private List<Table> table;
-    
+    private String countdown;
+
     public Tournament() {
         super();
     }
-    
+
     public Tournament(String name) {
         this.name = name;
     }
@@ -55,7 +59,7 @@ public class Tournament {
         this.term_of_application = term_of_application;
         this.table = table;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -79,7 +83,7 @@ public class Tournament {
     public void setDescription(String description) {
         this.description = description;
     }
-    
+
     public User getLeader() {
         return leader;
     }
@@ -87,11 +91,11 @@ public class Tournament {
     public void setLeader(User leader) {
         this.leader = leader;
     }
-    
+
     public String getStart_date() {
         return DateKonverter.getWebDateString(start_date);
     }
-    
+
     public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
@@ -144,10 +148,21 @@ public class Tournament {
         this.table = table;
     }
 
+    public String getCountdown() {
+        java.util.Date today = new java.util.Date();
+        long diff = term_of_application.getTime() - today.getTime();
+
+        long diffSeconds = diff / 1000 % 60;
+        long diffMinutes = diff / (60 * 1000) % 60;
+        long diffHours = diff / (60 * 60 * 1000) % 24;
+        long diffDays = diff / (24 * 60 * 60 * 1000);
+
+        return (String.valueOf(diffDays)) + " Tage, " + (String.valueOf(diffHours)) + " Stunden, " + (String.valueOf(diffMinutes)) + " Minuten ";
+    }
+
+
     @Override
     public String toString() {
         return "Tournament{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", create_date=" + create_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + ", table=" + table + '}';
     }
 }
-
-

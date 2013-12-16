@@ -5,6 +5,7 @@ import com.kmitsystem.services.tournament.input.CreateTournamentInput;
 import com.kmitsystem.services.tournament.input.EditTournamentInput;
 import com.kmitsystem.services.tournament.input.GetEverythingInput;
 import com.kmitsystem.services.tournament.input.SearchTournamentInput;
+import com.kmitsystem.services.tournament.result.EditTournamentResult;
 import com.kmitsystem.services.tournament.result.GetEverythingResult;
 import com.kmitsystem.services.tournament.result.SearchTournamentResult;
 import com.kmitsystem.services.tournament.validator.AddTeamValidator;
@@ -158,8 +159,8 @@ public class TournamentServiceProvider {
         return result;
     }
 
-    public BaseResult editTournament(EditTournamentInput input) {
-        BaseResult result = new BaseResult();
+    public EditTournamentResult editTournament(EditTournamentInput input) {
+        EditTournamentResult result = new EditTournamentResult();
 
         if (editTournamentValidator.validate(input)) {
             // prepare the input
@@ -172,32 +173,36 @@ public class TournamentServiceProvider {
             Date new_term_of_application = input.getNew_term_of_application();
             Date new_start_date = input.getNew_start_date();
             Date new_end_date = input.getNew_end_date();
+            
+            boolean query = false;
 
             // call the database
             if (new_name != null) {
-                DBTournamentQueries.editTournamentName(tournamentname, new_name);
+                query = DBTournamentQueries.editTournamentName(tournamentname, new_name);
             }
             if (new_password != null) {
-                DBTournamentQueries.editTournamentPassword(tournamentname, new_password);
+                query = DBTournamentQueries.editTournamentPassword(tournamentname, new_password);
             }
             if (new_leader != null) {
-                DBTournamentQueries.editTournamentLeader(tournamentname, new_leader);
+                query = DBTournamentQueries.editTournamentLeader(tournamentname, new_leader);
             }
             if (new_venue != null) {
-                DBTournamentQueries.editTournamentVenue(tournamentname, new_venue);
+                query = DBTournamentQueries.editTournamentVenue(tournamentname, new_venue);
             }
             if (new_nr_matchdays <= 0) {
                 DBTournamentQueries.editTournamentMatchdays(tournamentname, new_nr_matchdays);
             }
             if (new_term_of_application != null) {
-                DBTournamentQueries.editTournamentTerm(tournamentname, new_term_of_application);
+                query = DBTournamentQueries.editTournamentTerm(tournamentname, new_term_of_application);
             }
             if (new_start_date != null) {
-                DBTournamentQueries.editTournamentStart(tournamentname, new_start_date);
+                query = DBTournamentQueries.editTournamentStart(tournamentname, new_start_date);
             }
             if (new_end_date != null) {
-                DBTournamentQueries.editTournamentEnd(tournamentname, new_end_date);
+                query = DBTournamentQueries.editTournamentEnd(tournamentname, new_end_date);
             }
+            
+            result.setQuerySuccessful(query);
         }
         // write the errors into the result object and empty the ErrorHandler
         if (ErrorHandler.getErrors().size() > 0) {
