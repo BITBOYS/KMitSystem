@@ -71,6 +71,8 @@ CREATE TABLE team_tournament (
         goals_conceded INT,
         wins INT,
         defeats INT,
+        enter_dat DATE,
+        quit_dat DATE,
         PRIMARY KEY (team, tournament),
         FOREIGN KEY (team) REFERENCES team(name) ON DELETE CASCADE ON UPDATE CASCADE,
         FOREIGN KEY (tournament) REFERENCES tournament(name) ON DELETE CASCADE ON UPDATE CASCADE
