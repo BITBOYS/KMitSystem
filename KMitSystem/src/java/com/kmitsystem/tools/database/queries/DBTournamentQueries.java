@@ -298,4 +298,24 @@ public class DBTournamentQueries {
         }
         return false;
     }
+    
+    public static boolean deleteTournament(String tournamentname) {
+        int result;
+        try {            
+            con = DatabaseHandler.connect();
+            statement = con.createStatement();
+            
+            result = statement.executeUpdate("DELETE FROM tournament "
+                                           + "WHERE name = '" + tournamentname + "'");
+            
+            if(result > 0) {
+                ErrorHandler.handle(Errors.TOURNAMENT_DELETE_SUCCESSFUL, DBTournamentQueries.class.getName() + ":deleteTournament");
+                return true;
+            }
+            
+        } catch (SQLException ex) {
+            ErrorHandler.handle(Errors.DB_ERROR, "editEnd: " + ex.getSQLState() + " " +ex.getMessage());
+        }
+        return false;
+    }
 }

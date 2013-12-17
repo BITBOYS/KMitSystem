@@ -70,7 +70,9 @@
                                 <div class="col-lg-5">
                                     <p>Leader: <b><a href="<%=link%>/user/profile?user=<%=tournament.getLeader().getUsername()%>"> <%=tournament.getLeader().getUsername()%> </a></b></p>
                                     <p>Zeitraum: <b><%=tournament.getStart_date()%></b> bis <b><%=tournament.getEnd_date()%></b></p>
-                                    <p>Anmeldefrist: <b><%=tournament.getTerm_of_application()%></b>, noch <b><%=tournament.getCountdown()%></b></p>
+                                    <p>Anmeldefrist: <%if (tournament.getTerm_of_application() != null) {%>
+                                        <b><%=tournament.getTerm_of_application()%></b>, <b><%=tournament.getCountdown()%></b></p>
+                                    <%} else%> Keine Anmeldefrist
                                     <p>Spieltage: <b><%=tournament.getNr_matchdays()%></b></p>
                                     <p>Austragungsort: <b><a href="https://maps.google.com/maps?q=<%=tournament.getVenue()%>&hl=de&sll=28.149503,-71.71875&sspn=88.855059,173.144531&hnear=<%=tournament.getVenue()%>&t=m&z=10" target="_blank"><%=tournament.getVenue()%></a></b></p>
                                 </div>
@@ -206,9 +208,12 @@
                         <div class="tab-pane fade" id="dashboard">
                             <i class="fa fa-gears pull-left fa-4x"></i>
                             <p>&Auml;ndere dein Turnier</p>
+
                             <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
-                                <a class="btn btn-danger" href="<%=link%>/tournament/create"><span class="fa fa-warning"> Turnier l&ouml;schen <i class="fa fa-angle-right"></i></span></a>
+                                <!-- modal caller -->
+                                <a href="#modal-dialog-tournament" class="modal-toggle btn btn-danger" data-toggle="modal" data-modal-type="confirm" data-modal-title="Delete Property" data-modal-text="Are you sure you want to delete the tournament?" data-modal-confirm-url="#"><span class="fa fa-warning"> Turnier l&ouml;schen <i class="fa fa-angle-right"></i></span></a>
                             </div>
+
 
                             <div class="row">
                                 <div class="col-lg-12">
@@ -439,11 +444,35 @@
 
             </div><!-- /.container -->
 
+            <!-- Alert to confirm the delet -->
+            <div id="modal-dialog-tournament" class="modal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h3>L&ouml;schen best&auml;tigen</h3>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bilst du sicher, dass du das Turnier <b>'<%=name%>'</b> l&ouml;schen willst?</p>
+                            <p>Alle Statistiken werden gel&ouml;scht. Du kannst das Turnier nicht wieder herstellen.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <form method="post" action="<%=link%>/tournament/dashboard?action=delete" id="<%=tournament.getName()%>">
+                                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Abbrechen</a>
+                                <input type="text" value="<%=tournament.getName()%>" name="delete_tournament" style="display:none">
+                                <a href="#" id="btnYes" class="btn btn-primary">L&ouml;schen</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Bootstrap core JavaScript -->
             <!-- Placed at the end of the document so the pages load faster -->
             <script src="<%=link%>/public/js/jquery.js"></script>
             <script src="<%=link%>/public/js/bootstrap.js"></script>
             <script src="<%=link%>/public/js/modern-business.js"></script>
+            <script src="<%=link%>/public/js/modal.js"></script>
 
     </body>
 </html>

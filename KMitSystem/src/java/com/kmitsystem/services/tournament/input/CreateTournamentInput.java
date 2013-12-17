@@ -1,10 +1,8 @@
 package com.kmitsystem.services.tournament.input;
 
-import com.kmitsystem.tools.DateKonverter;
-import com.kmitsystem.tools.objects.Team;
+
 import com.kmitsystem.tools.objects.User;
 import java.sql.Date;
-import java.util.List;
 
 
 /**

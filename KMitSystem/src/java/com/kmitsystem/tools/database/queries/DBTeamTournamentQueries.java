@@ -183,12 +183,5 @@ public class DBTeamTournamentQueries {
         
         return table;
     }
-    
-    /*
-     
-     
-      
-      
-     */
-    
+        
 }

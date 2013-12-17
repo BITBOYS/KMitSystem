@@ -41,7 +41,8 @@ public class Errors {
     public static final Error LEAVE_TOURNAMENT_SUCCESSFUL = new Error(27, "Abmelden ist fehlgeschlagen", Error.SUCCESS);
     public static final Error USER_IS_TEAMLEADER = new Error(28, "Der Teamleiter kann nicht entfernt werden", Error.ERROR);
     public static final Error KICK_USER_SUCCESSFUL = new Error(29, "Spieler erfolgreich entfernt", Error.SUCCESS);
-    
+    public static final Error TOURNAMENT_DELETE_SUCCESSFUL = new Error(30, "Turnier erfolgreich gel&ouml;scht", Error.SUCCESS);
+    public static final Error TOURNAMENT_EXISTS = new Error(31, "Das Turnier existiert", Error.SUCCESS);
     
     
 }

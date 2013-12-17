@@ -16,9 +16,11 @@ public class EditTournamentInput {
     private Date new_start_date;
     private Date new_end_date;
     private Date new_term_of_application;
-    
+    private String kick_team;
+    private String invite_team;
 
-    public EditTournamentInput(String tournamentname, String new_name, String new_password, String new_leader, String new_venue, Integer new_nr_matchdays, Date new_start_date, Date new_end_date, Date new_term_of_application) {
+    
+    public EditTournamentInput(String tournamentname, String new_name, String new_password, String new_leader, String new_venue, Integer new_nr_matchdays, Date new_start_date, Date new_end_date, Date new_term_of_application, String kick_team, String invite_team) {
         this.tournamentname = tournamentname;
         this.new_name = new_name;
         this.new_password = new_password;
@@ -28,7 +30,10 @@ public class EditTournamentInput {
         this.new_start_date = new_start_date;
         this.new_end_date = new_end_date;
         this.new_term_of_application = new_term_of_application;
+        this.kick_team = kick_team;
+        this.invite_team = invite_team;
     }
+    
 
     public String getTournamentname() {
         return tournamentname;
@@ -102,9 +107,26 @@ public class EditTournamentInput {
         this.new_term_of_application = new_term_of_application;
     }
 
+    public String getKick_team() {
+        return kick_team;
+    }
+
+    public String getInvite_team() {
+        return invite_team;
+    }
+
+    public void setKick_team(String kick_team) {
+        this.kick_team = kick_team;
+    }
+
+    public void setInvite_team(String invite_team) {
+        this.invite_team = invite_team;
+    }
+
     @Override
     public String toString() {
-        return "EditTournamentInput{" + "tournamentname=" + tournamentname + ", new_name=" + new_name + ", new_password=" + new_password + ", new_leader=" + new_leader + ", new_venue=" + new_venue + ", new_nr_matchdays=" + new_nr_matchdays + ", new_start_date=" + new_start_date + ", new_end_date=" + new_end_date + ", new_term_of_application=" + new_term_of_application + '}';
+        return "EditTournamentInput{" + "tournamentname=" + tournamentname + ", new_name=" + new_name + ", new_password=" + new_password + ", new_leader=" + new_leader + ", new_venue=" + new_venue + ", new_nr_matchdays=" + new_nr_matchdays + ", new_start_date=" + new_start_date + ", new_end_date=" + new_end_date + ", new_term_of_application=" + new_term_of_application + ", kick_team=" + kick_team + ", invite_team=" + invite_team + '}';
     }
- 
+
+     
 }

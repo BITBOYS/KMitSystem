@@ -2,6 +2,7 @@ package com.kmitsystem.services.tournament;
 
 import com.kmitsystem.services.tournament.input.AddTeamInput;
 import com.kmitsystem.services.tournament.input.CreateTournamentInput;
+import com.kmitsystem.services.tournament.input.DeleteTournamentInput;
 import com.kmitsystem.services.tournament.input.EditTournamentInput;
 import com.kmitsystem.services.tournament.input.GetEverythingInput;
 import com.kmitsystem.services.tournament.input.SearchTournamentInput;
@@ -10,6 +11,7 @@ import com.kmitsystem.services.tournament.result.GetEverythingResult;
 import com.kmitsystem.services.tournament.result.SearchTournamentResult;
 import com.kmitsystem.services.tournament.validator.AddTeamValidator;
 import com.kmitsystem.services.tournament.validator.CreateTournamentValidator;
+import com.kmitsystem.services.tournament.validator.DeleteTournamentValidator;
 import com.kmitsystem.services.tournament.validator.EditTournamentValidator;
 import com.kmitsystem.services.tournament.validator.GetEverythingValidator;
 import com.kmitsystem.tools.database.queries.DBTeamTournamentQueries;
@@ -30,6 +32,7 @@ public class TournamentServiceProvider {
     AddTeamValidator addTeamValidator = new AddTeamValidator();
     GetEverythingValidator getEverythingValidator = new GetEverythingValidator();
     EditTournamentValidator editTournamentValidator = new EditTournamentValidator();
+    DeleteTournamentValidator deleteTournamentValidator = new DeleteTournamentValidator();
 
     public BaseResult createTournament(CreateTournamentInput input) {
         BaseResult result = new BaseResult();
@@ -50,6 +53,27 @@ public class TournamentServiceProvider {
             // call the database
             //TODO:Date
             DBTournamentQueries.createTournament(name, password, description, leader, start_date, end_date, nr_matchdays, venue, term_of_application);
+        }
+
+        // write the errors into the result object and empty the ErrorHandler
+        if (ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());
+            ErrorHandler.clear();
+        }
+
+        return result;
+    }
+    
+    public EditTournamentResult deleteTournament(DeleteTournamentInput input) {
+        EditTournamentResult result = new EditTournamentResult();
+
+        if (deleteTournamentValidator.validate(input)) {
+
+            // prepare the input
+            String tournamentname = input.getTournamentToDelete();
+
+            // call the database
+            DBTournamentQueries.deleteTournament(tournamentname);
         }
 
         // write the errors into the result object and empty the ErrorHandler
@@ -91,7 +115,9 @@ public class TournamentServiceProvider {
             
             // call the database
             Tournament tournament = DBTournamentQueries.getTournament(tournamentname);
+            
             tournament.setTable(DBTeamTournamentQueries.getTableFromTournament(tournamentname));
+            
             result.setTournament(tournament);
             result.setTeams(DBTeamTournamentQueries.getAllTeamsFromTournament(tournamentname));
             result.setMember(DBUserTournamentQueries.getAllUserFromTournament(tournamentname));
@@ -169,6 +195,8 @@ public class TournamentServiceProvider {
             String new_password = input.getNew_password();
             String new_leader = input.getNew_leader();
             String new_venue = input.getNew_venue();
+            String kickedTeam = input.getKick_team();
+            String inviteTeam = input.getInvite_team();
             int new_nr_matchdays = input.getNew_nr_matchdays();
             Date new_term_of_application = input.getNew_term_of_application();
             Date new_start_date = input.getNew_start_date();
@@ -200,6 +228,9 @@ public class TournamentServiceProvider {
             }
             if (new_end_date != null) {
                 query = DBTournamentQueries.editTournamentEnd(tournamentname, new_end_date);
+            }
+            if (input.getKick_team()!= null) {
+                query = DBTeamTournamentQueries.removeTeam(tournamentname, kickedTeam);
             }
             
             result.setQuerySuccessful(query);

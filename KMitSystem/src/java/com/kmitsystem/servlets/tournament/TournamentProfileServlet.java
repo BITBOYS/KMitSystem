@@ -39,13 +39,15 @@ public class TournamentProfileServlet extends HttpServlet {
         GetEverythingResult result = provider.getEverything(input);
         
         // prepare the output and write it into the session
-        Tournament tournament = result.getTuornament();
+        Tournament tournament = result.getTournament();
         List<Team> teams = result.getTeams();
         List<User> member = result.getMember();
         
         request.setAttribute("tournament", tournament);
         request.setAttribute("teams", teams);
         request.setAttribute("member", member);
+        
+        System.out.println("Member zu turnier " + name + ": " + member);
         
         // write the errorlist into the session-attribute "errors"
         if(result.getErrorList().size() > 0) {

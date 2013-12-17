@@ -151,15 +151,20 @@ public class Tournament {
     public String getCountdown() {
         java.util.Date today = new java.util.Date();
         long diff = term_of_application.getTime() - today.getTime();
+        System.out.println(diff);
+        if (diff > 0) {
 
-        long diffSeconds = diff / 1000 % 60;
-        long diffMinutes = diff / (60 * 1000) % 60;
-        long diffHours = diff / (60 * 60 * 1000) % 24;
-        long diffDays = diff / (24 * 60 * 60 * 1000);
+            long diffSeconds = diff / 1000 % 60;
+            long diffMinutes = diff / (60 * 1000) % 60;
+            long diffHours = diff / (60 * 60 * 1000) % 24;
+            long diffDays = diff / (24 * 60 * 60 * 1000);
 
-        return (String.valueOf(diffDays)) + " Tage, " + (String.valueOf(diffHours)) + " Stunden, " + (String.valueOf(diffMinutes)) + " Minuten ";
+            return (" noch " + String.valueOf(diffDays)) + " Tage, " + (String.valueOf(diffHours)) + " Stunden, " + (String.valueOf(diffMinutes)) + " Minuten ";
+        } else {
+            return "Anmeldefrist abgelaufen";
+        }
+
     }
-
 
     @Override
     public String toString() {

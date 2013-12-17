@@ -21,13 +21,13 @@ public class GetEverythingResult extends BaseResult {
         super();
     }    
 
-    public GetEverythingResult(Tournament tournament, List<Team> teams) {
-        super();
+    public GetEverythingResult(Tournament tournament, List<Team> teams, List<User> member) {
         this.tournament = tournament;
         this.teams = teams;
+        this.member = member;       
     }
     
-    public Tournament getTuornament() {
+    public Tournament getTournament() {
         return tournament;
     }
     
@@ -53,7 +53,7 @@ public class GetEverythingResult extends BaseResult {
 
     @Override
     public String toString() {
-        return "GetEverythingResult{" +"tournament=" + tournament + ", teams=" + teams + ", user=" + member + '}';
+        return "GetEverythingResult{" + "tournament=" + tournament + ", teams=" + teams + ", member=" + member + '}';
     }
-    
+
 }

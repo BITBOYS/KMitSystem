@@ -1,6 +1,8 @@
 package com.kmitsystem.servlets.tournament;
 
+import com.kmitsystem.services.team.input.EditTeamInput;
 import com.kmitsystem.services.tournament.TournamentServiceProvider;
+import com.kmitsystem.services.tournament.input.DeleteTournamentInput;
 import com.kmitsystem.services.tournament.input.EditTournamentInput;
 import com.kmitsystem.services.tournament.result.EditTournamentResult;
 import com.kmitsystem.tools.database.queries.DBTeamTournamentQueries;
@@ -59,9 +61,10 @@ public class TournamentDashboardServlet extends HttpServlet {
         Tournament tournament = DBTournamentQueries.getTournament(tournamentname);
 
 
-        if (!((User) request.getSession().getAttribute("user")).getUsername().equals(tournament.getLeader().getUsername())) {
-            response.sendRedirect(request.getContextPath() + "/tournaments");
-        }
+//        if (!((User) request.getSession().getAttribute("user")).getUsername().equals(tournament.getLeader().getUsername())) {
+//            response.sendRedirect(request.getContextPath() + "/tournaments");
+//        }
+        
         /////////////////////////////////
         //CHANGE TOURNAMENTNAME SECTION//
         ////////////////////////////////
@@ -69,7 +72,7 @@ public class TournamentDashboardServlet extends HttpServlet {
         if (name_new != null) {
 
             provider = new TournamentServiceProvider();
-            input = new EditTournamentInput(tournamentname, name_new, null, null, null, null, null, null, null);
+            input = new EditTournamentInput(tournamentname, name_new, null, null, null, null, null, null, null, null, null);
             result = provider.editTournament(input);
             if (result.isQuerySuccessful()) {
                 tournament.setName(name_new);
@@ -99,7 +102,7 @@ public class TournamentDashboardServlet extends HttpServlet {
                 // check if both passwords are equal, if true change the password
                 if (password_new.equals(password_new2)) {
                     provider = new TournamentServiceProvider();
-                    input = new EditTournamentInput(tournamentname, null, password_new, null, null, null, null, null, null);
+                    input = new EditTournamentInput(tournamentname, null, password_new, null, null, null, null, null, null, null, null);
                     result = provider.editTournament(input);
                     if (result.isQuerySuccessful()) {
                         tournament.setPassword(password_new);
@@ -129,7 +132,7 @@ public class TournamentDashboardServlet extends HttpServlet {
         if (leader_new != null) {
 
             provider = new TournamentServiceProvider();
-            input = new EditTournamentInput(tournamentname, null, null, leader_new, null, null, null, null, null);
+            input = new EditTournamentInput(tournamentname, null, null, leader_new, null, null, null, null, null, null, null);
             result = provider.editTournament(input);
             if (result.isQuerySuccessful()) {
                 tournament.setLeader(new User(leader_new));
@@ -149,7 +152,7 @@ public class TournamentDashboardServlet extends HttpServlet {
         if (venue_new != null) {
 
             provider = new TournamentServiceProvider();
-            input = new EditTournamentInput(tournamentname, null, null, null, venue_new, null, null, null, null);
+            input = new EditTournamentInput(tournamentname, null, null, null, venue_new, null, null, null, null, null, null);
             result = provider.editTournament(input);
             if (result.isQuerySuccessful()) {
                 tournament.setVenue(venue_new);
@@ -170,7 +173,7 @@ public class TournamentDashboardServlet extends HttpServlet {
             int matchdays_new = Integer.valueOf(request.getParameter("nr_matchdays_new"));
 
             provider = new TournamentServiceProvider();
-            input = new EditTournamentInput(tournamentname, null, null, null, null, matchdays_new, null, null, null);
+            input = new EditTournamentInput(tournamentname, null, null, null, null, matchdays_new, null, null, null, null, null);
             result = provider.editTournament(input);
             if (result.isQuerySuccessful()) {
                 tournament.setNr_matchdays(matchdays_new);
@@ -191,7 +194,7 @@ public class TournamentDashboardServlet extends HttpServlet {
             Date startdate_new = Date.valueOf(request.getParameter("start_date_new"));
 
             provider = new TournamentServiceProvider();
-            input = new EditTournamentInput(tournamentname, null, null, null, null, null, startdate_new, null, null);
+            input = new EditTournamentInput(tournamentname, null, null, null, null, null, startdate_new, null, null, null, null);
             result = provider.editTournament(input);
             if (result.isQuerySuccessful()) {
                 tournament.setStart_date(startdate_new);
@@ -212,7 +215,7 @@ public class TournamentDashboardServlet extends HttpServlet {
             Date enddate_new = Date.valueOf(request.getParameter("end_date_new"));
 
             provider = new TournamentServiceProvider();
-            input = new EditTournamentInput(tournamentname, null, null, null, null, null, null, enddate_new, null);
+            input = new EditTournamentInput(tournamentname, null, null, null, null, null, null, enddate_new, null, null, null);
             result = provider.editTournament(input);
             if (result.isQuerySuccessful()) {
                 tournament.setEnd_date(enddate_new);
@@ -233,7 +236,7 @@ public class TournamentDashboardServlet extends HttpServlet {
             Date termdate_new = Date.valueOf(request.getParameter("term_date_new"));
 
             provider = new TournamentServiceProvider();
-            input = new EditTournamentInput(tournamentname, null, null, null, null, null, null, null, termdate_new);
+            input = new EditTournamentInput(tournamentname, null, null, null, null, null, null, null, termdate_new, null, null);
             result = provider.editTournament(input);
             if (result.isQuerySuccessful()) {
                 tournament.setTerm_of_application(termdate_new);
@@ -245,7 +248,7 @@ public class TournamentDashboardServlet extends HttpServlet {
             }
         }
 
-        //TODO
+        
         //////////////////////////////
         //DELETE TOURNAMENT SECTION//
         ////////////////////////////
@@ -253,25 +256,25 @@ public class TournamentDashboardServlet extends HttpServlet {
             String delete_tournament = request.getParameter("delete_tournament");
 
             provider = new TournamentServiceProvider();
-//            input = new EditTeamInput(tournamentname, null, null, null, null, null, delete_tournament, null, null);
-//            result = provider.editTournament(input);
-
+            DeleteTournamentInput delete_input = new DeleteTournamentInput(delete_tournament);
+            result = provider.deleteTournament(delete_input);
+            
             // write the errorlist into the session-attribute "errors"
             if (result.getErrorList().size() > 0) {
                 request.setAttribute("errors", result.getErrorList());
             }
         }
 
-        //TODO
+        
         /////////////////////
         //KICK TEAM SECTION//
         /////////////////////
         if (String.valueOf(request.getParameter("action")).equals("kick")) {
-            String kick_team = request.getParameter("kick_user");
+            String kick_team = request.getParameter("kick_team");
 
             provider = new TournamentServiceProvider();
-//            input = new EditTournamentInput(tournamentname, null, null, null, null, null, null, kick_user, null);
-//            result = provider.editTournament(input);
+            input = new EditTournamentInput(tournamentname, null, null, null, null, null, null,null, null, kick_team, null);
+            result = provider.editTournament(input);
 
             // write the errorlist into the session-attribute "errors"
             if (result.getErrorList().size() > 0) {
