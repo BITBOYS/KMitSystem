@@ -6,7 +6,7 @@
         <meta name="description" content="Impressum">
         <meta name="author" content="Malte Dammann">
 
-        <title>Impressum - KmS</title>
+        <title>Impressum - leago</title>
 
         <%
             String link = request.getContextPath();
@@ -43,12 +43,12 @@
 
             <div class="well col-sm-12">
                 <h3>Betreiber dieser Webseite</h3>
-                <p><b>KmS</b><br>Hamburg<br>Germany</p>
-                <p>E-Mail: <a href="mailto:dede@kms.de">malte@kms.de</a></p>
+                <p><b>leago</b><br>Hamburg<br>Germany</p>
+                <p>E-Mail: <a href="mailto:dede@kms.de">team@leago.de</a></p>
                 <hr>
 
                 <h3>Nutzungsbedingungen</h3>
-                <p>dede de de d  ed ed ede d ededede d ed ed e de d eded<br>Euer KmS Team</p>
+                <p>dede de de d  ed ed ede d ededede d ed ed e de d eded<br>Euer leago Team</p>
                 <hr>
 
                 <h3>Datenschutzhinweis</h3>

@@ -8,7 +8,7 @@
         <div class="row">
             <ul class="list-unstyled">
                 <li class="col-md-3 col-sm-4 col-xs-6">
-                    <p>Copyright &copy; KmS 2013</p>
+                    <p>Copyright &copy; leago 2013</p>
                 </li>
                 <li class="col-md-3 col-sm-4 col-xs-6">
                     <a href="<%=footer_path%>/impressum/">Impressum</a>

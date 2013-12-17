@@ -65,6 +65,8 @@
                     <h3>Maik Schmaddebeck <small>Backend Developer und System Designer</small></h3>
                     <p>Maik weiﬂ alles und Maik kann alles.</p>
                     <ul class="list-unstyled list-inline list-social-icons">
+                        <li class="tooltip-social"><a href="#xing-profile" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                        <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
                         <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
                         <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
                     </ul>
@@ -75,6 +77,8 @@
                     <h3>Malte Dammann <small>Web Developer und System Designer</small></h3>
                     <p>Malte leitet das Frontend-Dev Teams. Au&szlig;erdem unterst&uuml;tzt er das Backend Team!</p>
                     <ul class="list-unstyled list-inline list-social-icons">
+                        <li class="tooltip-social"><a href="#xing-profile" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                        <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
                         <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
                         <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
                     </ul>
@@ -85,6 +89,8 @@
                     <h3>Alexander Spottka <small>G&ouml;nnnnnnnnnnnnnnnenenenene</small></h3>
                     <p>Backen! Backen! Backen! Backen! Backen! Backen! Backen! Backen! Brot! Backen! </p>
                     <ul class="list-unstyled list-inline list-social-icons">
+                        <li class="tooltip-social"><a href="#xing-profile" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                        <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
                         <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
                         <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
                     </ul>

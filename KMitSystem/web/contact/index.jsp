@@ -85,18 +85,17 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <h3>Kickern mit System</h3>
+                    <h3>leago</h3>
                     <h4>Dein Kicker-Tool</h4>
                     <p>
                         Hamburg City No1<br>
                         Hamburg, D 20097<br>
                     </p>
                     <p><i class="fa fa-phone"></i> <abbr title="Phone">P</abbr>: (555) 984-3600</p>
-                    <p><i class="fa fa-envelope-o"></i> <abbr title="Email">E</abbr>: <a href="mailto:maik.schmaddebeck@generali.de">info@kms.de</a></p>
+                    <p><i class="fa fa-envelope-o"></i> <abbr title="Email">E</abbr>: <a href="mailto:maik.schmaddebeck@generali.de">team@leago.de</a></p>
                     <p><i class="fa fa-clock-o"></i> <abbr title="Hours">H</abbr>: Samstag - Sonntag: 10:00 bis 15:00 Uhr</p>
                     <ul class="list-unstyled list-inline list-social-icons">
                         <li class="tooltip-social facebook-link"><a href="#facebook-page" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-                        <li class="tooltip-social linkedin-link"><a href="#linkedin-company-page" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
                         <li class="tooltip-social google-plus-link"><a href="#google-plus-page" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
                     </ul>
                 </div>

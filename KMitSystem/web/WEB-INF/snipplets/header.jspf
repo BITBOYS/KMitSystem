@@ -15,7 +15,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-                <a class="navbar-brand" href="<%=project_path%>"> <i class="fa fa-home"></i> KmS</a>
+                <a class="navbar-brand" href="<%=project_path%>"> <i class="fa fa-home"></i> leago</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -33,7 +33,6 @@
                             <li><a href="<%=project_path%>/about"><i class="fa fa-picture-o"></i> About Us</a></li>
                             <li><a href="<%=project_path%>/contact"><i class="fa fa-phone-square"></i> Kontakt</a></li>
                             <li><a href="<%=project_path%>/faq"><i class="fa fa-question"></i> FAQ</a></li>
-                            <li><a href="<%=project_path%>/sidebar"><i class="fa fa-info"></i> Index Page</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -60,7 +59,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-                <a class="navbar-brand" href="<%=project_path%>/"> <i class="fa fa-home"></i> KmS</a>
+                <a class="navbar-brand" href="<%=project_path%>/"> <i class="fa fa-home"></i> leago</a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -78,7 +77,6 @@
                             <li><a href="<%=project_path%>/about"><i class="fa fa-picture-o"></i> About Us</a></li>
                             <li><a href="<%=project_path%>/contact/"><i class="fa fa-phone-square"></i> Kontakt</a></li>
                             <li><a href="<%=project_path%>/faq"><i class="fa fa-question"></i> FAQ</a></li>
-                            <li><a href="<%=project_path%>/sidebar"><i class="fa fa-info"></i> Index Page</a></li>
                         </ul>
 
                     </li>
