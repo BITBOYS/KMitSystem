@@ -2,12 +2,18 @@
 package com.kmitsystem.servlets.user;
 
 import com.kmitsystem.services.user.UserServiceProvider;
+import com.kmitsystem.services.user.input.ChangeUserEMailInput;
+import com.kmitsystem.services.user.input.ChangeUserNameInput;
+import com.kmitsystem.services.user.input.ChangeUserPasswordInput;
 import com.kmitsystem.services.user.input.GetEverythingInput;
+import com.kmitsystem.services.user.result.ChangeUserSettingsResult;
 import com.kmitsystem.services.user.result.GetEverythingResult;
+import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -32,26 +38,146 @@ public class UserProfileServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        ChangeUserSettingsResult result = new ChangeUserSettingsResult();
+        User user = (User)request.getSession().getAttribute("user");
+        boolean edited = false;
+        
+        ////////////////////////
+        //CHANGE EMAIL SECTION//
+        ////////////////////////
+        
+        if (request.getParameter("input_email_old") != null) {
+            String input_email_old = request.getParameter("input_email_old");
+            String input_email_new1 = request.getParameter("input_email_new1");
+            String input_email_new2 = request.getParameter("input_email_new2");
+
+            // check if the email of the user is correct
+            if(input_email_old.equals(user.getEmail())) {
+                // check if both emails are equal, if true change the email
+                if(input_email_new1.equals(input_email_new2)) {
+                    UserServiceProvider provider = new UserServiceProvider();
+                    ChangeUserEMailInput input = new ChangeUserEMailInput(input_email_old,input_email_new1,input_email_new2);
+                    result = provider.changeUserEmail(input);
+                    // if the query was successful, write the new email into the user object
+                    if(result.isQuerySuccess()) user.setEmail(input_email_new1);
+                } else {
+                    List<com.kmitsystem.tools.errorhandling.Error> errorList = new ArrayList<com.kmitsystem.tools.errorhandling.Error>();
+                    errorList.add(Errors.EMAILS_NOT_EQUAL);
+                    result.setErrorList(errorList);
+                }
+            } else {
+                List<com.kmitsystem.tools.errorhandling.Error> errorList = new ArrayList<com.kmitsystem.tools.errorhandling.Error>();
+                errorList.add(Errors.EMAIL_IS_FALSE);
+                result.setErrorList(errorList);
+            }
+            
+            if (result.getErrorList().size() > 0) {
+                request.setAttribute("errors", result.getErrorList());
+            }
+            
+            edited = true;
+        } 
+        
+        
+        ///////////////////////
+        //CHANGE NAME SECTION//
+        ///////////////////////
+
+        if (request.getParameter("input_name_old") != null) {
+            String input_name_old = request.getParameter("input_name_old");
+            String input_name_new1 = request.getParameter("input_name_new1");
+            String input_name_new2 = request.getParameter("input_name_new2");
+            
+            // check if the email of the user is correct
+            if(input_name_old.equals(user.getUsername())) {
+                // check if both names are equal, if true change the name
+                if(input_name_new1.equals(input_name_new2)) {
+                    UserServiceProvider provider = new UserServiceProvider();
+                    ChangeUserNameInput input = new ChangeUserNameInput(input_name_old,input_name_new1,input_name_new2);
+                    result = provider.changeUserName(input);
+                    // if the query was successful, write the new username into the user object
+                    if(result.isQuerySuccess()) user.setUsername(input_name_new1);
+                } else {
+                    List<com.kmitsystem.tools.errorhandling.Error> errorList = new ArrayList<com.kmitsystem.tools.errorhandling.Error>();
+                    errorList.add(Errors.NAMES_NOT_EQUAL);
+                    result.setErrorList(errorList);
+                }
+            } else {
+                List<com.kmitsystem.tools.errorhandling.Error> errorList = new ArrayList<com.kmitsystem.tools.errorhandling.Error>();
+                errorList.add(Errors.NAME_IS_FALSE);
+                result.setErrorList(errorList);
+            }
+            
+            if (result.getErrorList().size() > 0) {
+                request.setAttribute("errors", result.getErrorList());
+            }
+            
+            edited = true;
+        }
+        
+        
+         ///////////////////////////
+         //CHANGE PASSWORD SECTION//
+         ///////////////////////////
+        
+        if (request.getParameter("input_password_old") != null) {
+            
+            //Wie komme ich an die EMail Adresse aus der Session ?
+            
+            String input_password_old = request.getParameter("input_password_old");
+            String input_password_new1 = request.getParameter("input_password_new1");
+            String input_password_new2 = request.getParameter("input_password_new2"); 
+            
+            // check if the email of the user is correct
+            if(input_password_old.equals(user.getPassword())) {
+                // check if both names are equal, if true change the name
+                if(input_password_new1.equals(input_password_new2)) {
+                    UserServiceProvider provider = new UserServiceProvider();
+                    ChangeUserPasswordInput input = new ChangeUserPasswordInput(user.getUsername(),input_password_old,input_password_new1,input_password_new2);
+                    result = provider.changeUserPassword(input);
+                    // if the query was successful, write the new password into the user object
+                    if(result.isQuerySuccess()) user.setPassword(input_password_new1);
+                } else {
+                    List<com.kmitsystem.tools.errorhandling.Error> errorList = new ArrayList<com.kmitsystem.tools.errorhandling.Error>();
+                    errorList.add(Errors.PASSWORDS_NOT_EQUAL);
+                    result.setErrorList(errorList);
+                }
+            } else {
+                List<com.kmitsystem.tools.errorhandling.Error> errorList = new ArrayList<com.kmitsystem.tools.errorhandling.Error>();
+                errorList.add(Errors.PASSWORD_FALSE);
+                result.setErrorList(errorList);
+            }
+
+            if (result.getErrorList().size() > 0) {
+                request.setAttribute("errors", result.getErrorList());
+            } else {
+                result.getUser().setPassword(input_password_new1);
+            }
+            
+            edited = true;
+
+        }
         
         String name = request.getParameter("user");
         
         UserServiceProvider provider = new UserServiceProvider();
         GetEverythingInput input = new GetEverythingInput(name);
-        GetEverythingResult result = provider.getEverything(input);
+        GetEverythingResult getEverythingResult = provider.getEverything(input);
         
 //         prepare the output and write it into the session
-        User user = result.getUser();
-        List<Team> teams = result.getTeams();
-        List<Tournament> tournaments = result.getTournaments();
+        User user_profile = getEverythingResult.getUser();
+        List<Team> teams = getEverythingResult.getTeams();
+        List<Tournament> tournaments = getEverythingResult.getTournaments();
         
-        request.setAttribute("user", user);
+        request.setAttribute("user_profile", user_profile);
         request.setAttribute("teams", teams);
         request.setAttribute("tournaments", tournaments);
+        request.setAttribute("edited", edited);
         
         // write the errorlist into the session-attribute "errors"
-        if(result.getErrorList().size() > 0) {
-            request.getSession().setAttribute("errors", result.getErrorList());
-        }
+//        if(result.getErrorList().size() > 0) {
+//            request.getSession().setAttribute("errors", result.getErrorList());
+//        }
         
         // redirect to the page www.kmitsystem.de/teams
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/user/profile/index.jsp");

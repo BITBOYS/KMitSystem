@@ -13,7 +13,10 @@
 
         <%
             String link = request.getContextPath();
-            User user_profile = (User)request.getAttribute("user");
+            User loggedIn_user = (User)request.getSession().getAttribute("user");
+            boolean edited = (Boolean)request.getAttribute("edited");
+            
+            User user_profile = (User)request.getAttribute("user_profile");
             List<Team> teams = (List<Team>)request.getAttribute("teams");
             List<Tournament> tournaments = (List<Tournament>)request.getAttribute("tournaments");
         %>
@@ -44,6 +47,9 @@
                     </ol>
                 </div>
             </div>
+                        
+            <!-- Alerts -->
+            <%@include file="../../snipplets/error.jspf" %>
 
             <div class="row">
 
@@ -52,10 +58,13 @@
                         <li class="active"><a href="#statistik" data-toggle="tab">Statistik</a></li>
                         <li><a href="#team" data-toggle="tab">Teams</a></li>
                         <li><a href="#turnier" data-toggle="tab">Turniere</a></li>
+                        <% if(loggedIn_user.getUsername().equals(user_profile.getUsername())) { %>
+                            <li><a href="#account" data-toggle="tab">Accounteinstellungen</a></li>
+                        <% } %>
                     </ul>
                     <div id="myTabContent" class="tab-content">
 
-                        <div class="tab-pane fade in active" id="statistik">
+                        <div class="tab-pane fade <%if(!edited){%>in active <%}%>" id="statistik">
                             <i class="fa fa-gear pull-left fa-4x"></i>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
                             <div class="row">
@@ -148,7 +157,13 @@
                                                     </tbody>  
                                                 </table>  
                                             </div>  
-                                            <p><a href="<%=link%>/team/profile?team=<%=teams.get(idx).getName()%>" class="btn btn-primary">Zum Teamprofil <i class="fa fa-angle-right"></i></a></p>
+                                            <p>
+                                                <a href="<%=link%>/team/profile?team=<%=teams.get(idx).getName()%>" class="btn btn-primary">Zum Teamprofil <i class="fa fa-angle-right"></i></a>
+                                                <form method="post" action="<%=link%>/user/profile?user=<%=user_profile.getUsername()%>&action=leave" id="<%=teams.get(idx).getName()%>">
+                                                    <input type="text" value="<%=teams.get(idx).getName()%>" name="leave_tournament" style="display:none">
+                                                    <a onclick="document.getElementById('<%=teams.get(idx).getName()%>').submit();" class="btn btn-danger">Team verlassen <i class="fa fa-angle-right"></i></a>
+                                                </form>
+                                            </p>
                                         </div>
                                     </div>
                                 </div>
@@ -204,6 +219,84 @@
                                 <% } %>
 
                             </div><!-- /.row -->
+                            </div>
+                            
+                            <% if(loggedIn_user.getUsername().equals(user_profile.getUsername())) { %>
+                                <div class="tab-pane fade <%if(edited){%>in active<%}%>" id="account">
+                                <i class="fa fa-gear pull-left fa-4x"></i>
+                                
+                                <div class="row">
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
+                                    <div class="col-lg-12">
+                                        <h2 class="page-header">E-Mail &auml;ndern</h2>
+                                        <form class="form-horizontal" role="form" name="form_email" action="<%=link%>/user/profile?user=<%=loggedIn_user.getUsername()%>" method="POST">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">E-Mail</label>
+                                                <div class="col-sm-6">
+                                                    <input type="email" class="form-control" name="input_email_old" placeholder="alte E-Mail" required>
+                                                    <input type="email" class="form-control" name="input_email_new1" placeholder="neue E-Mail" required>
+                                                    <input type="email" class="form-control" name="input_email_new2" placeholder="neue E-Mail" required>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button class="btn btn-primary btn-default" type="submit">
+                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>     
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h2 class="page-header">Name &auml;ndern</h2>
+                                        <form class="form-horizontal" role="form" name="form_name" action="<%=link%>/user/profile?user=<%=loggedIn_user.getUsername()%>" method="POST">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Name</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" name="input_name_old" placeholder="alter Name">
+                                                </div>
+                                                <div class="col-sm-6 col-md-offset-2">
+                                                    <input type="text" class="form-control" name="input_name_new1" placeholder="neuer Name">
+                                                    <input type="text" class="form-control" name="input_name_new2" placeholder="neuer Name">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button class="btn btn-primary btn-default" type="submit">
+                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>     
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <h2 class="page-header">Passwort &auml;ndern</h2>
+                                        <form class="form-horizontal" role="form" name="form_pasword" action="<%=link%>/user/profile?user=<%=loggedIn_user.getUsername()%>" method="post">
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Passwort</label>
+                                                <div class="col-sm-6">
+                                                    <input type="password" class="form-control" name="input_password_old" placeholder="altes Passwort">
+                                                </div>
+                                                <div class="col-sm-6 col-md-offset-2">
+                                                    <input type="password" class="form-control" name="input_password_new1" placeholder="neues Passwort">
+                                                    <input type="password" class="form-control" name="input_password_new2" placeholder="neues Passwort">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-2 col-sm-10">
+                                                    <button class="btn btn-primary btn-default" type="submit">
+                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                          <% } %>
 
                         </div>
                     </div>
