@@ -10,7 +10,7 @@
         <meta name="description" content="Landing Page">
         <meta name="author" content="Malte Dammann">
 
-        <title>Kickern mit System - Welcome</title>
+        <title>leago - Welcome</title>
 
         <%            
             String link = request.getContextPath();
@@ -43,21 +43,21 @@
             <!-- Wrapper for slides -->
             <div class="carousel-inner">
                 <div class="item active">
-                    <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide One');"></div>
+                    <div class="fill" style="background-image:url('public/images/slide1.JPG');"></div>
                     <div class="carousel-caption">
-                        <h1>Kickern Mit System - Dein Tool f&uuml;r Tischfussballmatches und Turniere!</h1>
+                        <h1>Kickern Mit System - Dein Tool f&uuml;rs Kickern und Turniere!</h1>
                     </div>
                 </div>
                 <div class="item">
-                    <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Two');"></div>
+                    <div class="fill" style="background-image:url('public/images/slide2.JPG');"></div>
                     <div class="carousel-caption">
                         <h1>Automatisiertre Statistiken</h1>
                     </div>
                 </div>
                 <div class="item">
-                    <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Slide Three');"></div>
+                    <div class="fill" style="background-image:url('public/images/slide3.JPG');"></div>
                     <div class="carousel-caption">
-                        <h1>Habt Spa&szlig;, werdet besser und viel Spa&szlig; beim Training!</h1>
+                        <h1>Viel Spa&szlig; beim Kickern!</h1>
                     </div>
                 </div>
             </div>
@@ -79,16 +79,16 @@
 
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
-                        <h3><i class="fa fa-check-circle"></i> Erstellt Turniere</h3>
-                        <p>The 'Modern Business' website template by <a href="http://startbootstrap.com">Start Bootstrap</a> is built with <a href="http://getbootstrap.com">Bootstrap 3</a>. Make sure you're up to date with latest Bootstrap documentation!</p>
+                        <h3><i class="fa fa-plus-circle"></i> Erstellt Teams und Turniere</h3>
+                        <p>Ladet Freunde in euer Team ein oder erstellt eure eigenen Turniere. Ihr bestimmt wer, wo und wann gespielt wird. Mit <strong>leago</strong> habt ihr die volle Kontrolle.</p>
                     </div>
                     <div class="col-lg-4 col-md-4">
-                        <h3><i class="fa fa-pencil"></i> Findet Freunde</h3>
-                        <p>You're ready to go with this pre-built page structure, now all you need to do is add your own custom stylings! You can see some free themes over at <a href="http://bootswatch.com">Bootswatch</a>, or come up with your own using <a href="http://getbootstrap.com/customize/">the Bootstrap customizer</a>!</p>
+                        <h3><i class="fa fa-mobile"></i> Mobil unterwegs</h3>
+                        <p>Kein PC in der Nähe? Kein Problem! Dank Responsive Design managst du deine Teams und Turniere vom Smartphone oder Tablet! Von überall!</p>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <h3><i class="fa fa-folder-open"></i> Ranking</h3>
-                        <p>This template features many common pages that you might see on a business website. Pages include: about, contact, portfolio variations, blog, pricing, FAQ, 404, services, and general multi-purpose pages.</p>
+                        <p>Dank der Statistikfunktion seht ihr immer eure persönliche Statisik. Ob allgemein im Vergleich zu anderen, oder immerhalb eines Turniers. Verfolgt eure Verbesserung.</p>
                     </div>
                 </div><!-- /.row -->
 
@@ -120,8 +120,8 @@
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <h2>Kickern mit System Features:</h2>
                         <ul>
-                            <li>Erstellt Turniere mit deinen Freunden</li>
                             <li>Erstellt Teams</li>
+                            <li>Erstellt Turniere mit deinen Freunden</li>
                             <li>Tragt eure Matches ein und behaltet den Überblick</li>
                             <li>Sieh deine Statistiken ein</li>
                             <li>100% <strong>Free</strong> to Use</li>

@@ -82,7 +82,7 @@
                             </div>
                             <div class="row">
 
-                                <div class="col-lg-12">
+                                <div class="col-sm-12">
                                     <h2 class="page-header">Spielplan f&uuml;r "<%=name%>"</h2>
 
                                     <div class="panel panel-default">
@@ -121,47 +121,46 @@
                             <p>Hier steht die aktuelle Tabelle</p>
                             <div class="row">  
 
-                                <div class="col-lg-12">
+                                <div class="col-sm-12">
                                     <h2 class="page-header">Tabelle f&uuml;r "<%=tournament.getName()%>"</h2>
+
+                                    <div class="panel panel-default">
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">Tabelle</div>
+
+                                        <!-- Table -->
+                                        <table class="table">  
+                                            <thead>  
+                                                <tr>   
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Platz" class="label label-default">Platz</a></th> 
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Teamname" class="label label-default">TN</a></th> 
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Spiele" class="label label-default">SP</a></th> 
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Punkte" class="label label-default">P</a></th> 
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Siege" class="label label-success">S</a></th> 
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-danger">N</a></th> 
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-success">T</a></th> 
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Gegentore" class="label label-warning">GT</a></th> 
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tordifferenz" class="label label-default">TD</a></th> 
+                                                </tr>  
+                                            </thead>  
+                                            <tbody>  
+                                                <%for (int idx = 0; idx < tournament.getTable().size(); idx++) {%>
+                                                <tr>  
+                                                    <td><%=idx + 1%>.</td> 
+                                                    <td><%=tournament.getTable().get(idx).getTeam()%></td>  
+                                                    <td><%=tournament.getTable().get(idx).getTournament_team_matches()%></td>  
+                                                    <td><%=tournament.getTable().get(idx).getTournament_team_winrate()%></td>  
+                                                    <td><%=tournament.getTable().get(idx).getTournament_team_wins()%></td>  
+                                                    <td><%=tournament.getTable().get(idx).getTournament_team_defeats()%></td>  
+                                                    <td><%=tournament.getTable().get(idx).getTournament_team_goals()%></td> 
+                                                    <td><%=tournament.getTable().get(idx).getTournament_team_goals_conceded()%></td> 
+                                                    <td><%=tournament.getTable().get(idx).getTournament_team_goal_difference()%></td>                                         
+                                                </tr>  
+                                                <%}%>
+                                            </tbody>  
+                                        </table>  
+                                    </div>  
                                 </div>
-
-                                <div class="panel panel-default">
-                                    <!-- Default panel contents -->
-                                    <div class="panel-heading">Tabelle</div>
-
-                                    <!-- Table -->
-                                    <table class="table">  
-                                        <thead>  
-                                            <tr>   
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Platz" class="label label-default">Platz</a></th> 
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Teamname" class="label label-default">TN</a></th> 
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Spiele" class="label label-default">SP</a></th> 
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Punkte" class="label label-default">P</a></th> 
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Siege" class="label label-success">S</a></th> 
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-danger">N</a></th> 
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-success">T</a></th> 
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Gegentore" class="label label-warning">GT</a></th> 
-                                                <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tordifferenz" class="label label-default">TD</a></th> 
-                                            </tr>  
-                                        </thead>  
-                                        <tbody>  
-                                            <%for (int idx = 0; idx < tournament.getTable().size(); idx++) {%>
-                                            <tr>  
-                                                <td><%=idx + 1%>.</td> 
-                                                <td><%=tournament.getTable().get(idx).getTeam()%></td>  
-                                                <td><%=tournament.getTable().get(idx).getTournament_team_matches()%></td>  
-                                                <td><%=tournament.getTable().get(idx).getTournament_team_winrate()%></td>  
-                                                <td><%=tournament.getTable().get(idx).getTournament_team_wins()%></td>  
-                                                <td><%=tournament.getTable().get(idx).getTournament_team_defeats()%></td>  
-                                                <td><%=tournament.getTable().get(idx).getTournament_team_goals()%></td> 
-                                                <td><%=tournament.getTable().get(idx).getTournament_team_goals_conceded()%></td> 
-                                                <td><%=tournament.getTable().get(idx).getTournament_team_goal_difference()%></td>                                         
-                                            </tr>  
-                                            <%}%>
-                                        </tbody>  
-                                    </table>  
-                                </div>  
-
                             </div><!-- /.row -->
                         </div>
 
@@ -172,36 +171,36 @@
 
                                 <div class="col-lg-12">
                                     <h2 class="page-header">Userstatistik f&uuml;r "<%=name%>"</h2>
+
+                                    <div class="panel panel-default">
+                                        <!-- Default panel contents -->
+                                        <div class="panel-heading">Userstatistik</div>
+
+                                        <!-- Table -->
+                                        <table class="table">  
+                                            <thead>  
+                                                <tr>  
+                                                    <th><span class="label label-default">Platz</span></th> 
+                                                    <th><span class="label label-default">Spieler</span></th> 
+                                                    <th><span class="label label-default">Siege</span></th>
+                                                    <th><span class="label label-default">Tore</span></th> 
+                                                    <th><span class="label label-default">Team</span></th> 
+                                                </tr>  
+                                            </thead>  
+                                            <tbody>  
+                                                <%for (int idx = 0; idx < member.size(); idx++) {%>
+                                                <tr>  
+                                                    <td><%=idx + 1%>.</td>  
+                                                    <td><%=member.get(idx).getUsername()%></td>  
+                                                    <td><%=member.get(idx).getStatistics().getWins()%></td> 
+                                                    <td><%=member.get(idx).getStatistics().getGoals()%></td>  
+                                                    <td>kp</td> 
+                                                </tr>  
+                                                <%}%>
+                                            </tbody>  
+                                        </table>  
+                                    </div>
                                 </div>
-
-                                <div class="panel panel-default">
-                                    <!-- Default panel contents -->
-                                    <div class="panel-heading">Userstatistik</div>
-
-                                    <!-- Table -->
-                                    <table class="table">  
-                                        <thead>  
-                                            <tr>  
-                                                <th><span class="label label-default">Platz</span></th> 
-                                                <th><span class="label label-default">Spieler</span></th> 
-                                                <th><span class="label label-default">Siege</span></th>
-                                                <th><span class="label label-default">Tore</span></th> 
-                                                <th><span class="label label-default">Team</span></th> 
-                                            </tr>  
-                                        </thead>  
-                                        <tbody>  
-                                            <%for (int idx = 0; idx < member.size(); idx++) {%>
-                                            <tr>  
-                                                <td><%=idx + 1%>.</td>  
-                                                <td><%=member.get(idx).getUsername()%></td>  
-                                                <td><%=member.get(idx).getStatistics().getWins()%></td> 
-                                                <td><%=member.get(idx).getStatistics().getGoals()%></td>  
-                                                <td>kp</td> 
-                                            </tr>  
-                                            <%}%>
-                                        </tbody>  
-                                    </table>  
-                                </div> 
                             </div><!-- /.row -->
                         </div>
 
@@ -267,212 +266,214 @@
                                             </div>
                                         </div>
                                     </form>
+                                </div> 
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Passwort &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_password" action="<%=link%>/tournament/dashboard">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Passwort</label>
+                                            <div class="col-sm-6">
+                                                <input type="password" class="form-control" name="password_old" placeholder="altes Passwort">
+                                            </div>
+                                            <div class="col-sm-6 col-md-offset-2">
+                                                <input type="password" class="form-control" name="password_new" placeholder="neues Passwort">
+                                                <input type="password" class="form-control" name="password_new2" placeholder="neues Passwort">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Turnierleiter &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_leader" action="<%=link%>/tournament/dashboard" method="post">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Turnierleiter</label>
+                                            <div class="col-sm-6">
+                                                <input type="password" class="form-control" name="password" placeholder="Turnier-Passwort">
+                                            </div>
+                                            <div class="col-lg-6 col-md-offset-2">
+                                                <input list="leaderAuswahl" name="leader_new" class="form-control" autocomplete="off" placeholder="Neuer Leader" required>
+                                                <datalist id="userAuswahl">
+                                                    <option value=""> 
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Beschreibung &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_description" action="<%=link%>/tournament/dashboard">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Neuer Turnierbeschreibung</label>
+                                            <div class="col-sm-6">
+                                                <textarea style="width:100%" rows="10" class="form-control" name="description_new" placeholder="'<%=tournament.getDescription()%>'" maxlength="255"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>     
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h3 class="page-header">Passwort &auml;ndern</h3>
-                                        <form class="form-horizontal" role="form" name="change_password" action="<%=link%>/tournament/dashboard">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Passwort</label>
-                                                <div class="col-sm-6">
-                                                    <input type="password" class="form-control" name="password_old" placeholder="altes Passwort">
-                                                </div>
-                                                <div class="col-sm-6 col-md-offset-2">
-                                                    <input type="password" class="form-control" name="password_new" placeholder="neues Passwort">
-                                                    <input type="password" class="form-control" name="password_new2" placeholder="neues Passwort">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button class="btn btn-primary btn-default" type="submit">
-                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h3 class="page-header">Turnierleiter &auml;ndern</h3>
-                                        <form class="form-horizontal" role="form" name="change_leader" action="<%=link%>/tournament/dashboard" method="post">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Turnierleiter</label>
-                                                <div class="col-sm-6">
-                                                    <input type="password" class="form-control" name="password" placeholder="Turnier-Passwort">
-                                                </div>
-                                                <div class="col-lg-6 col-md-offset-2">
-                                                    <input list="leaderAuswahl" name="leader_new" class="form-control" autocomplete="off" placeholder="Neuer Leader" required>
-                                                    <datalist id="userAuswahl">
-                                                        <option value=""> 
-                                                    </datalist>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button class="btn btn-primary btn-default" type="submit">
-                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h3 class="page-header">Beschreibung &auml;ndern</h3>
-                                        <form class="form-horizontal" role="form" name="change_description" action="<%=link%>/tournament/dashboard">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Neuer Ort</label>
-                                                <div class="col-sm-6">
-                                                    <textarea style="width:100%" rows="10" class="form-control" name="description_new" placeholder="'<%=tournament.getDescription()%>'" maxlength="255"></textarea>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button class="btn btn-primary btn-default" type="submit">
-                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
-                                                </div>
-                                            </div>
-                                        </form>
-                                    </div>     
-                                </div>
+                            </div>
 
 
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h3 class="page-header">Austragungsort &auml;ndern</h3>
-                                        <form class="form-horizontal" role="form" name="change_venue" action="<%=link%>/tournament/dashboard">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Neuer Ort</label>
-                                                <div class="col-sm-6">
-                                                    <input type="text" class="form-control" name="venue_new" placeholder="'<%=tournament.getVenue()%>'">
-                                                </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Austragungsort &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_venue" action="<%=link%>/tournament/dashboard">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Neuer Ort</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="venue_new" placeholder="'<%=tournament.getVenue()%>'">
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button class="btn btn-primary btn-default" type="submit">
-                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
                                             </div>
-                                        </form>
-                                    </div>     
-                                </div>
+                                        </div>
+                                    </form>
+                                </div>     
+                            </div>
 
 
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h3 class="page-header">Spieltage &auml;ndern</h3>
-                                        <form class="form-horizontal" role="form" name="change_matchdays" action="<%=link%>/tournament/dashboard">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Spieltage</label>
-                                                <div class="col-sm-6">
-                                                    <input type="number" min="0" class="form-control" name="nr_matchdays_new" placeholder="<%=tournament.getNr_matchdays()%> Spieltage">
-                                                </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Spieltage &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_matchdays" action="<%=link%>/tournament/dashboard">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Spieltage</label>
+                                            <div class="col-sm-6">
+                                                <input type="number" min="0" class="form-control" name="nr_matchdays_new" placeholder="<%=tournament.getNr_matchdays()%> Spieltage">
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button class="btn btn-primary btn-default" type="submit">
-                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
                                             </div>
-                                        </form>
-                                    </div>     
-                                </div>
+                                        </div>
+                                    </form>
+                                </div>     
+                            </div>
 
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <h3 class="page-header">Datum &auml;ndern</h3>
-                                        <form class="form-horizontal" role="form" name="change_start" action="<%=link%>/tournament/dashboard">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Startdatum</label>
-                                                <div class="col-sm-6">
-                                                    <input type="date" class="form-control" name="start_date_new">
-                                                </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Datum &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_start" action="<%=link%>/tournament/dashboard">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Startdatum</label>
+                                            <div class="col-sm-6">
+                                                <input type="date" class="form-control" name="start_date_new">
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button class="btn btn-primary btn-default" type="submit">
-                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
                                             </div>
-                                        </form>
-                                        <form class="form-horizontal" role="form" name="change_end" action="<%=link%>/tournament/dashboard">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Enddatum</label>
-                                                <div class="col-sm-6">
-                                                    <input type="date" class="form-control" name="end_date_new">
-                                                </div>
+                                        </div>
+                                    </form>
+                                    <form class="form-horizontal" role="form" name="change_end" action="<%=link%>/tournament/dashboard">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Enddatum</label>
+                                            <div class="col-sm-6">
+                                                <input type="date" class="form-control" name="end_date_new">
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button class="btn btn-primary btn-default" type="submit">
-                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
                                             </div>
-                                        </form>
-                                        <form class="form-horizontal" role="form" name="change_term" action="<%=link%>/tournament/dashboard">
-                                            <div class="form-group">
-                                                <label class="col-sm-2 control-label">Anmeldefrist</label>
-                                                <div class="col-sm-6">
-                                                    <input type="date" class="form-control" name="term_date_new">
-                                                </div>
+                                        </div>
+                                    </form>
+                                    <form class="form-horizontal" role="form" name="change_term" action="<%=link%>/tournament/dashboard">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Anmeldefrist</label>
+                                            <div class="col-sm-6">
+                                                <input type="date" class="form-control" name="term_date_new">
                                             </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <button class="btn btn-primary btn-default" type="submit">
-                                                        &Auml;ndern <i class="fa fa-angle-right"></i></button>
-                                                </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
                                             </div>
-                                        </form>
-                                    </div>     
-                                </div>
+                                        </div>
+                                    </form>
+                                </div>     
+                            </div>
 
-                            </div><!-- /.row -->
+                        </div><!-- /.row -->
 
-                        </div>
                     </div>
+                </div>
 
-                </div><!-- /.row -->
+            </div><!-- /.row -->
 
-            </div><!-- /.container -->
+        </div><!-- /.container -->
 
-            <div class="container">
+        <div class="container">
 
-                <%@include file="../../snipplets/footer.jspf" %>
+            <%@include file="../../snipplets/footer.jspf" %>
 
-            </div><!-- /.container -->
+        </div><!-- /.container -->
 
-            <!-- Alert to confirm the delet -->
-            <div id="modal-dialog-tournament" class="modal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h3>L&ouml;schen best&auml;tigen</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p>Bilst du sicher, dass du das Turnier <b>'<%=name%>'</b> l&ouml;schen willst?</p>
-                            <p>Alle Statistiken werden gel&ouml;scht. Du kannst das Turnier nicht wieder herstellen.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <form method="post" action="<%=link%>/tournament/dashboard?action=delete" id="<%=tournament.getName()%>">
-                                <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Abbrechen</a>
-                                <input type="text" value="<%=tournament.getName()%>" name="delete_tournament" style="display:none">
-                                <a href="#" id="btnYes" class="btn btn-primary">L&ouml;schen</a>
-                            </form>
-                        </div>
+        <!-- Alert to confirm the delet -->
+        <div id="modal-dialog-tournament" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3>L&ouml;schen best&auml;tigen</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bilst du sicher, dass du das Turnier <b>'<%=name%>'</b> l&ouml;schen willst?</p>
+                        <p>Alle Statistiken werden gel&ouml;scht. Du kannst das Turnier nicht wieder herstellen.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form method="post" action="<%=link%>/tournament/dashboard?action=delete" id="<%=tournament.getName()%>">
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Abbrechen</a>
+                            <input type="text" value="<%=tournament.getName()%>" name="delete_tournament" style="display:none">
+                            <a href="#" id="btnYes" class="btn btn-primary">L&ouml;schen</a>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Bootstrap core JavaScript -->
-            <!-- Placed at the end of the document so the pages load faster -->
-            <script src="<%=link%>/public/js/jquery.js"></script>
-            <script src="<%=link%>/public/js/bootstrap.js"></script>
-            <script src="<%=link%>/public/js/modern-business.js"></script>
-            <script src="<%=link%>/public/js/modal.js"></script>
-
+        <!-- Bootstrap core JavaScript -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="<%=link%>/public/js/jquery.js"></script>
+        <script src="<%=link%>/public/js/bootstrap.js"></script>
+        <script src="<%=link%>/public/js/modern-business.js"></script>
+        <script src="<%=link%>/public/js/modal.js"></script>
+        
     </body>
 </html>

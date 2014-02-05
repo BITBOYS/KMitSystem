@@ -11,7 +11,7 @@
         <meta name="description" content="Turnier Erstellen">
         <meta name="author" content="Malte Dammann">
 
-        <title>Turnier Erstellen - KmS</title>
+        <title>Turnier Erstellen - leago</title>
 
         <%            String link = request.getContextPath();
 
@@ -57,78 +57,79 @@
             </div><!-- /.row -->
 
             <div class="row">  
-                <div class="col-lg-6 col-lg-offset-3">
+                <div class="col-xs-1"></div>
+                <div class="col-sm-6 col-sm-offset-3 col-xs-10">
                     <div class="row">
                         <form class="form-horizontal" role="form" action="<%=link%>/tournament/create" method="post">
 
-                            <h3 class="page-header">Turnierdatenblatt</h3>
+                            <h2 class="page-header">Turnierdatenblatt</h2>
 
                             <div class="form-group">
                                 <label for="inputTurniername" class="col-sm-2 control-label">Turnier*</label>
-                                <div class="col-lg-8">
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="tournament_name_create" placeholder="Name" required>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputMatchdays" class="col-sm-2 control-label">Runden</label>
-                                <div class="col-lg-8">
+                                <div class="col-sm-8">
                                     <input type="number" min="1" class="form-control" name="tournament_matchdays_create" placeholder="Spieltage">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputVenue" class="col-sm-2 control-label">Location</label>
-                                <div class="col-lg-8">
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="tournament_venue_create" placeholder="Austragungsort">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputPassword" class="col-sm-2 control-label">Passwort</label>
-                                <div class="col-lg-8">
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="tournament_password_create" placeholder="Passwort">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputPasswordReenter" class="col-sm-2 control-label">Passwort</label>
-                                <div class="col-lg-8">
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="tournament_password_reenter_create" placeholder="Passwort wiederholen">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputStartDate" class="col-sm-2 control-label">Startdatum</label>
-                                <div class="col-lg-6  col-offset-2">
+                                <div class="col-sm-6">
                                     <input type="date" name="tournamen_start_date_create">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputEndDate" class="col-sm-2 control-label">Enddatum</label>
-                                <div class="col-lg-6  col-offset-2">
+                                <div class="col-sm-6">
                                     <input type="date" name="tournamen_end_date_create">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputTerm" class="col-sm-2 control-label">Anmeldefrist</label>
-                                <div class="col-lg-6  col-offset-2">
+                                <div class="col-sm-6">
                                     <input type="DATE"  name="tournamen_term_create">
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputTerm" class="col-sm-2 control-label">Beschreibung</label>
-                                <div class="col-lg-8 col-offset-2">
+                                <div class="col-sm-8">
                                     <textarea style="width:100%" name="tournamen_description_create" maxlength="255" placeholder="Beschreibe dein Turnier, maximal 255 Zeichen..." rows="5"></textarea>
                                 </div>
                             </div>
 
                             <div class="form-group">
                                 <label for="inputTeam" class="col-sm-2 control-label">Teams</label>
-                                <div class="col-lg-8">
+                                <div class="col-sm-8">
                                     <input type="text" class="form-control" name="tournament_teamAdd_create" placeholder="Teamname">
                                     <datalist id="userAuswahl">
                                         <% for (int idx = 0; idx < teams.size(); idx++) {%>
@@ -139,8 +140,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-lg-8">
-                                    <small>Nur der Turniername ist Pflicht. Alles andere kannst du auf dem Turnierdashboard bearbeiten.</small>
+                                <div class="col-sm-8">
+                                    <small>*Nur der Turniername ist Pflicht. Alles andere kannst du auf dem Turnierdashboard bearbeiten.</small>
                                 </div>
                             </div>
                             <div class="form-group">

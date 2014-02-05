@@ -6,7 +6,7 @@
         <meta name="description" content="Das sind wir.">
         <meta name="author" content="Malte Dammann">
 
-        <title>About Us- KmS</title>
+        <title>About Us - leago</title>
 
         <%            String link = request.getContextPath();
             String loged_in = String.valueOf(request.getSession().getAttribute("loged_in"));
@@ -42,12 +42,12 @@
             <div class="row">
 
                 <div class="col-md-6">
-                    <img class="img-responsive" src="http://placehold.it/500x250">
+                    <img class="img-responsive" src="<%=link%>/public/images/team.jpg">
                 </div>
                 <div class="col-md-6">
-                    <h2>Welcome to 'Kickern mit System'</h2>
-                    <p>Wir sind ein junges Developer Team und haben unglaublich viel SpaÃŸ am Kickern. Deshalb haben wir erkannt, dass die Welt ein Kicker-Tool braucht.</p>
-                    <p>Und genau hier kommt KmS ins Spiel.</p>
+                    <h2>Welcome to 'leago'</h2>
+                    <p>Wir sind ein junges Developer Team aus Hamburg und haben unglaublich viel Spa&szlig; am Kickern. Deshalb haben wir erkannt, dass die Welt ein Kicker-Tool braucht.</p>
+                    <p>Und genau hier kommt leago ins Spiel. Aus einer scherzhaften Idee wurde ein Konzept. Leago ist in unserer Freizeit entstanden und dient keinen kommerziellen Zwecken. Wer uns trotzdem etwas Gutes tun möchte, kann uns gerne mal einen Kaffee ausgeben.</p>
                 </div>
 
             </div>
@@ -56,47 +56,49 @@
 
             <div class="row">
 
-                <div class="col-lg-12">
+                <div class="col-sm-12">
                     <h2 class="page-header">Das Team</h2>
                 </div>
 
-                <div class="col-sm-4">
-                    <img class="img-circle img-responsive" src="http://placehold.it/200x200">
-                    <h3>Maik Schmaddebeck <small>Backend Developer und System Designer</small></h3>
-                    <p>Maik weiß alles und Maik kann alles.</p>
-                    <ul class="list-unstyled list-inline list-social-icons">
-                        <li class="tooltip-social"><a href="#xing-profile" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
-                        <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-                        <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-                        <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-                    </ul>
-                </div>
+                    <div class="col-sm-4">
+                        <img class="img-circle img-responsive" src="<%=link%>/public/images/maik.png" width="200px" height="200px">
+                        <h3>Maik Schmaddebeck <small>Backend Developer und System Designer</small></h3>
+                        <p>Maik mag Kappies.</p>
+                        <ul class="list-unstyled list-inline list-social-icons">
+                            <li class="tooltip-social"><a href="#xing-profile" data-toggle="tooltip" target="blank" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                            <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                            <li class="tooltip-social facebook-link"><a href="#facebook-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                            <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+                        </ul>
+                    </div>
 
-                <div class="col-sm-4">
-                    <img class="img-circle img-responsive" src="http://placehold.it/200x200">
-                    <h3>Malte Dammann <small>Web Developer und System Designer</small></h3>
-                    <p>Malte leitet das Frontend-Dev Teams. Au&szlig;erdem unterst&uuml;tzt er das Backend Team!</p>
-                    <ul class="list-unstyled list-inline list-social-icons">
-                        <li class="tooltip-social"><a href="#xing-profile" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
-                        <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-                        <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-                        <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-                    </ul>
-                </div>
+                    <div class="col-sm-4">
+                        <img class="img-circle img-responsive" src="<%=link%>/public/images/malte.png" width="200px" height="200px">
+                        <h3>Malte Dammann <small>Web/Backend Developer und System Designer</small></h3>
+                        <p>Malte mag Haxe.</p>
+                        <ul class="list-unstyled list-inline list-social-icons">
+                            <li class="tooltip-social"><a href="https://www.xing.com/profiles/Malte_Dammann2" target="blank" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                            <li class="tooltip-social linkedin-link"><a href="https://de.linkedin.com/in/mdammann" target="blank" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                            <li class="tooltip-social facebook-link"><a href="https://www.facebook.com/malte.da.3" target="blank" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                            <li class="tooltip-social google-plus-link"><a href="https://google.com/+MalteDa" target="blank" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+                        </ul>
+                    </div>
 
-                <div class="col-sm-4">
-                    <img class="img-circle img-responsive" src="http://placehold.it/200x200">
-                    <h3>Alexander Spottka <small>G&ouml;nnnnnnnnnnnnnnnenenenene</small></h3>
-                    <p>Backen! Backen! Backen! Backen! Backen! Backen! Backen! Backen! Brot! Backen! </p>
-                    <ul class="list-unstyled list-inline list-social-icons">
-                        <li class="tooltip-social"><a href="#xing-profile" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
-                        <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-                        <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-                        <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-                    </ul>
-                </div>
+                <div class="col-xs-3"></div>                
+                    <div class="col-sm-4 col-xs-10">
+                        <img class="img-circle img-responsive" src="<%=link%>/public/images/alex.png" width="200px" height="200px">
+                        <h3>Alexander Spottka <small>Backend Devoloper und System Designer</small></h3>
+                        <p>Alex mag Dota.</p>
+                        <ul class="list-unstyled list-inline list-social-icons">
+                            <li class="tooltip-social"><a href="#xing-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                            <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                            <li class="tooltip-social facebook-link"><a href="#facebook-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                            <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+                        </ul>
+                    </div>
+       
 
-            </div>
+            </div><!-- /.row -->
 
         </div><!-- /.container -->
 

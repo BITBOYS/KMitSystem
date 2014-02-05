@@ -12,7 +12,7 @@
 
         <%  String link = request.getContextPath(); %>
 
-        <title>Login - KmS</title>
+        <title>Login - leago</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">

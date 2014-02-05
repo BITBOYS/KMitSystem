@@ -1,6 +1,3 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="com.kmitsystem.tools.errorhandling.Error"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -8,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Passwort vergessen">
         <meta name="author" content="Malte Dammann">
+        
+        <%@page import="java.util.ArrayList"%>
+        <%@page import="java.util.List"%>
+        <%@page import="com.kmitsystem.tools.errorhandling.Error"%>
 
         <title>Password Forgotten - KmS</title>
         

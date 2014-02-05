@@ -6,7 +6,7 @@
         <meta name="description" content="Error Page">
         <meta name="author" content="Malte Dammann">
 
-        <title>Error Page - KmS</title>
+        <title>Error Page - leago</title>
 
         <%
                 String link = request.getContextPath();
@@ -45,13 +45,12 @@
                 <div class="col-lg-12">
                     <p class="error-404">WHAT?! - <%=pageContext.getErrorData().getStatusCode()%></p>
                     <p class="lead">Es ist ein Fehler aufgetreten.</p>
-                    <p>Das tut uns leid! Hier ein paar hilfreiche Links:</p>
+                    <p>Das tut uns leid! Hast du das hier gesucht:</p>
                     <ul>
                         <li><a href="<%=link%>">Home</a></li>
                         <li><a href="<%=link%>/login">Login</a></li>
                         <li><a href="<%=link%>/register">Sign Up</a></li>
                         <li><a href="<%=link%>/about">About Us</a></li>
-                        <li><a href="<%=link%>/service">Services</a></li>
                         <li><a href="<%=link%>/contact">Kontakt</a></li>
                         <li><a href="<%=link%>/faq">FAQ</a></li>
                     </ul>

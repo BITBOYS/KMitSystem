@@ -33,7 +33,6 @@
                             <li><a href="<%=path%>/about"><i class="fa fa-picture-o"></i> About Us</a></li>
                             <li><a href="<%=path%>/contact"><i class="fa fa-phone-square"></i> Kontakt</a></li>
                             <li><a href="<%=path%>/faq"><i class="fa fa-question"></i> FAQ</a></li>
-                            <li><a href="<%=path%>/sidebar"><i class="fa fa-info"></i> Index Page</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -78,7 +77,6 @@
                             <li><a href="<%=path%>/about"><i class="fa fa-picture-o"></i> About Us</a></li>
                             <li><a href="<%=path%>/contact/"><i class="fa fa-phone-square"></i> Kontakt</a></li>
                             <li><a href="<%=path%>/faq"><i class="fa fa-question"></i> FAQ</a></li>
-                            <li><a href="<%=path%>/sidebar"><i class="fa fa-info"></i> Index Page</a></li>
                         </ul>
 
                     </li>

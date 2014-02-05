@@ -6,7 +6,7 @@
         <meta name="description" content="Kontaktinformationen">
         <meta name="author" content="Malte Dammann">
 
-        <title>Kontakt - KmS</title>
+        <title>Kontakt - leago</title>
 
         <%
             String link = request.getContextPath();
@@ -51,8 +51,8 @@
 
                 <div class="col-sm-8">
                     <h3>Let's Get In Touch!</h3>
-                    <p>Lid est laborum dolo rumes fugats untras. Etharums ser quidem rerum facilis dolores nemis omnis fugats vitaes nemo minima rerums unsers sadips amets. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
-
+                    <p>Wenn du Fragen zum Tool oder uns hast, einfach mal 'Hallo' sagen willst oder dir was auf dem Herzen liegt, schreib uns! Das kannst du einfach über das Formaular machen. Wir w&uuml;rden uns sehr &uuml;ber Anregungen oder W&uuml;nsche freuen! Nat&uuml;rlich trefft ihr uns auch auf Facebook und Konsorten. Aber nicht auf Twiddrr! </p>
+                    <p>Euer leago-Team <strong> Malte, Maik und Alex</strong></p>
                     <form role="form" method="POST" action="#">
                         <div class="row">
                             <div class="form-group col-lg-4">

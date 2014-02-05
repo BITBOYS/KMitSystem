@@ -10,7 +10,7 @@
         <meta name="description" content="Turniere Page">
         <meta name="author" content="Malte Dammann">
 
-        <title>Turniere - KmS</title>
+        <title>Turniere - leago</title>
 
         <%            String link = request.getContextPath();
             List<Error> errors = (ArrayList<Error>) request.getAttribute("errors");
@@ -49,14 +49,17 @@
 
                 <%if (user != null) {%>
                 <div class="row">
-                    <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
+                    <div class="col-xs-3">
+                    </div>
+                    <div class="col-lg-offset-10 col-xs-6">
                         <a class="btn btn-success" href="<%=link%>/tournament/create"><span class="fa fa-pencil"> Turnier erstellen <i class="fa fa-angle-right"></i></span></a>
                     </div>
                 </div><!-- .row -->
                 <%}%>
 
                 <div class="row">  
-                    <div class="col-lg-12">
+                    <div class="col-xs-1"></div>
+                    <div class="col-md-12 col-xs-10">
                         <h2 class="page-header">Turniersuche</h2>
                         <div class="row well">
                             <form class="form-horizontal" role="form" action="<%=link%>/tournaments">
@@ -109,58 +112,65 @@
                                 </div>
                             </form>
                         </div>
-                    </div> <!-- row --> 
+                    </div>
+                </div> <!-- row --> 
 
-                    <hr>
+                <div class="row">
+                    <div class="col-xs-2"></div>
+                    <div class="col-md-12 col-xs-8">
 
-                    <% if (tournaments != null) { %>
+                        <% if (tournaments != null) { %>
 
-                    <% if (errors.size() > 0) { %>
-                    <div class="alert alert-info">Es wurden keine Turniere geunden</div>
-                    <% } else { %>
-                    <% if (tournaments.size() == 1) {%>
-                    <div class="alert alert-success">Es wurde <%=tournaments.size()%> Turnier gefunden</div>
-                    <% } else {%>
-                    <div class="alert alert-success">Es wurden <%=tournaments.size()%> Turniere gefunden</div>
-                    <% } %>
-                    <% } %>
+                        <% if (errors.size() > 0) { %>
+                        <div class="alert alert-info ">Es wurden keine Turniere geunden</div>
+                        <% } else { %>
+                        <% if (tournaments.size() == 1) {%>
+                        <hr>
+                        <div class="alert alert-success">Es wurde <%=tournaments.size()%> Turnier gefunden</div>
+                        <% } else {%>
+                        <hr>
+                        <div class="alert alert-success">Es wurden <%=tournaments.size()%> Turniere gefunden</div>
+                        <% } %>
+                        <% } %>
+                    </div>
 
-                    <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
+                </div> <!-- row --> 
 
-                    <hr>
+                <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
 
-                    <div class="row">
+                <hr>
 
-                        <div class="col-md-7">
-                            <a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>"><img class="img-responsive" src="http://placehold.it/750x350"></a>
-                        </div>
+                <div class="row">
+                    <div class="col-xs-1"></div>
 
-                        <div class="col-md-5">
-                            <h3><%=tournaments.get(idx).getName()%></h3>
-                            <h4>Leader: <a href="<%=link%>/user/profile?user=<%=tournaments.get(idx).getLeader().getUsername()%>"><%=tournaments.get(idx).getLeader().getUsername()%></a></h4>
-                            <p><%= tournaments.get(idx).getDescription()%></p>
+                    <div class="col-md-10 col-xs-10">
+                        <h3><%=tournaments.get(idx).getName()%></h3>
+                        <h4>Leader: <a href="<%=link%>/user/profile?user=<%=tournaments.get(idx).getLeader().getUsername()%>"><%=tournaments.get(idx).getLeader().getUsername()%></a></h4>
+                        <p><%= tournaments.get(idx).getDescription()%></p>
+                        <div class="col-xs-6"></div>
+                        <div class="col-sm-offset-10">
                             <a class="btn btn-success" href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>">Zum Turnier <i class="fa fa-angle-right"></i></a>
                         </div>
 
                     </div>
 
                     <% }
-                        }%>
-                </div>
-            </div>
-        </div>
+                    }%>
 
-        <div class="container">
+                </div><!-- /.row -->
+            </div><!-- /.container -->
 
-            <%@include file="../snipplets/footer.jspf" %>
+            <div class="container">
 
-        </div><!-- /.container -->
+                <%@include file="../snipplets/footer.jspf" %>
 
-        <!-- Bootstrap core JavaScript -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="<%=link%>/public/js/jquery.js"></script>
-        <script src="<%=link%>/public/js/bootstrap.js"></script>
-        <script src="<%=link%>/public/js/modern-business.js"></script>
+            </div><!-- /.container -->
+
+            <!-- Bootstrap core JavaScript -->
+            <!-- Placed at the end of the document so the pages load faster -->
+            <script src="<%=link%>/public/js/jquery.js"></script>
+            <script src="<%=link%>/public/js/bootstrap.js"></script>
+            <script src="<%=link%>/public/js/modern-business.js"></script>
 
     </body>
 </html>
