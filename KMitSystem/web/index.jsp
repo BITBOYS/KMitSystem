@@ -1,8 +1,5 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="com.kmitsystem.tools.errorhandling.Error"%>
 <!DOCTYPE html>
-<html>
+<html manifest="public/cache/cache.manifest">
     <head>
         <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
         <meta charset="utf-8">
@@ -10,7 +7,11 @@
         <meta name="description" content="Landing Page">
         <meta name="author" content="Malte Dammann">
 
-        <title>leago - Welcome</title>
+        <%@page import="java.util.ArrayList"%>
+        <%@page import="java.util.List"%>
+        <%@page import="com.kmitsystem.tools.errorhandling.Error"%>
+        
+        <title>Welcome - leago</title>
 
         <%            
             String link = request.getContextPath();

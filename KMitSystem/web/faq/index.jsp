@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="../public/cache/cache.manifest">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -152,8 +152,8 @@
 
         <!-- Bootstrap core JavaScript -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="<%=link%>//public/js/jquery.js"></script>
-        <script src="<%=link%>//public/js/bootstrap.js"></script>
-        <script src="<%=link%>//public/js/modern-business.js"></script>
+        <script src="<%=link%>/public/js/jquery.js"></script>
+        <script src="<%=link%>/public/js/bootstrap.js"></script>
+        <script src="<%=link%>/public/js/modern-business.js"></script>
     </body>
 </html>

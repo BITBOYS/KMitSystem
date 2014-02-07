@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" manifest="../public/cache/cache.manifest">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -77,10 +77,10 @@
                         <h3>Malte Dammann <small>Web/Backend Developer und System Designer</small></h3>
                         <p>Malte mag Haxe.</p>
                         <ul class="list-unstyled list-inline list-social-icons">
-                            <li class="tooltip-social"><a href="https://www.xing.com/profiles/Malte_Dammann2" target="blank" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
-                            <li class="tooltip-social linkedin-link"><a href="https://de.linkedin.com/in/mdammann" target="blank" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
-                            <li class="tooltip-social facebook-link"><a href="https://www.facebook.com/malte.da.3" target="blank" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-                            <li class="tooltip-social google-plus-link"><a href="https://google.com/+MalteDa" target="blank" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+                            <li class="tooltip-social"><a href="https://www.xing.com/profiles/Malte_Dammann2" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                            <li class="tooltip-social linkedin-link"><a href="https://de.linkedin.com/in/mdammann" target="_blank" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                            <li class="tooltip-social facebook-link"><a href="https://www.facebook.com/malte.da.3" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                            <li class="tooltip-social google-plus-link"><a href="https://google.com/+MalteDa" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
                         </ul>
                     </div>
 

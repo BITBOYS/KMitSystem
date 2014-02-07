@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" manifest="../public/cache/cache.manifest">
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Error Page">
+        <meta name="description" content="Offline Page">
         <meta name="author" content="Malte Dammann">
 
-        <title>Error Page - leago</title>
+        <title>Offline - leago</title>
 
         <%
                 String link = request.getContextPath();
@@ -30,7 +30,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Error <small>Page not found <%/*pageContext.getException().getMessage()*/%></small></h1>
+                    <h1 class="page-header">Offline <small>Schnell wieder eine Verbindng herstellen</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="../">Home</a></li>
                         <li class="disabled"><a href="#">Other Pages</a></li>
@@ -43,17 +43,9 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <p class="error-404">WHAT?! - <%=pageContext.getErrorData().getStatusCode()%></p>
-                    <p class="lead">Es ist ein Fehler aufgetreten.</p>
-                    <p>Das tut uns leid! Hast du das hier gesucht:</p>
-                    <ul>
-                        <li><a href="<%=link%>">Home</a></li>
-                        <li><a href="<%=link%>/login">Login</a></li>
-                        <li><a href="<%=link%>/register">Sign Up</a></li>
-                        <li><a href="<%=link%>/about">About Us</a></li>
-                        <li><a href="<%=link%>/contact">Kontakt</a></li>
-                        <li><a href="<%=link%>/faq">FAQ</a></li>
-                    </ul>
+                    <p class="error-404">You are Offline></p>
+                    <p class="lead">Du bist nicht online. F&uml;r diese Seite brauchst du eine Internetverbindung.</p>
+                    <p> Versuche es dann erneut!</p>
                 </div>
 
             </div>
