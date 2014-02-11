@@ -38,7 +38,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Turnier Profil <small>Hier siehst du alles &uuml;ber <%=name%>!</small></h1>
+                    <h1 class="page-header">Turnier Profil <small>Hier siehst du alles &uuml;ber '<%=name%>'!</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="<%=link%>/">Home</a></li>
                         <li><a href="<%=link%>/tournaments">Turniere</a></li>
@@ -69,7 +69,7 @@
                             <div class="row">
                                 <div class="col-lg-5">
                                     <p>Leader: <b><a href="<%=link%>/user/profile?user=<%=tournament.getLeader().getUsername()%>"> <%=tournament.getLeader().getUsername()%> </a></b></p>
-                                    <p>Zeitraum: <b><%=tournament.getStart_date()%></b> bis <b><%=tournament.getEnd_date()%></b></p>
+                                    <p>Zeitraum: <b><%=tournament.getStart_date()%> <%=tournament.getStart_time()%></b> bis <b><%=tournament.getEnd_date()%> <%=tournament.getEnd_time()%></b></p>
                                     <p>Anmeldefrist: <%if (tournament.getTerm_of_application() != null) {%>
                                         <b><%=tournament.getTerm_of_application()%></b>, <b><%=tournament.getCountdown()%></b></p>
                                     <%} else%> Keine Anmeldefrist

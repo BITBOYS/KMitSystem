@@ -9,8 +9,9 @@ public class SearchTournamentInput {
     private String tournament;
     private String user;
     private String create_month;
-    Boolean tournament_running;
-    Boolean tournament_finished;
+    String tournament_running;
+    String tournament_finished;
+    String tournament_outstanding;
 
     public SearchTournamentInput() {
         super();
@@ -31,7 +32,7 @@ public class SearchTournamentInput {
         this.create_month = create_month;
     }
 
-    public SearchTournamentInput(String team, String tournament, String user, String create_month, Boolean tournament_running, Boolean tournament_finished) {
+    public SearchTournamentInput(String team, String tournament, String user, String create_month, String tournament_running, String tournament_finished, String tournament_outstanding) {
         super();
         this.team = team;
         this.tournament = tournament;
@@ -39,6 +40,7 @@ public class SearchTournamentInput {
         this.create_month = create_month;
         this.tournament_running = tournament_running;
         this.tournament_finished = tournament_finished;
+        this.tournament_outstanding = tournament_outstanding;
     }
 
     public String getTeam() {
@@ -73,26 +75,33 @@ public class SearchTournamentInput {
         this.create_month = create_month;
     }
     
-    public Boolean getTournamentIsRunning() {
+    public String getTournamentIsRunning() {
         return tournament_running;
     }
 
-    public void setTournamentIsRunning(Boolean tournament_running) {
+    public void setTournamentIsRunning(String tournament_running) {
         this.tournament_running = tournament_running;
     }
         
-    public Boolean getTournamentIsFinished() {
+    public String getTournamentIsFinished() {
         return tournament_finished;
     }
 
-    public void setTournamentIsFinished(Boolean tournament_finished) {
+    public void setTournamentIsFinished(String tournament_finished) {
         this.tournament_finished = tournament_finished;
+    }
+
+    public String getTournamentIsoutstanding() {
+        return tournament_outstanding;
+    }
+
+    public void setTournamentIsoutstanding(String tournament_outstanding) {
+        this.tournament_outstanding = tournament_outstanding;
     }
 
     @Override
     public String toString() {
-        return "SearchTournamentInput{" + "team_name=" + team + ", tournament_name=" + tournament + ", user_name=" + user + ", create_month=" + create_month + ", tournament_running=" + tournament_running + ", tournament_finished=" + tournament_finished + '}';
-    }
-    
+        return "SearchTournamentInput{" + "team=" + team + ", tournament=" + tournament + ", user=" + user + ", create_month=" + create_month + ", tournament_running=" + tournament_running + ", tournament_finished=" + tournament_finished + ", tournament_outstanding=" + tournament_outstanding + '}';
+    } 
     
 }

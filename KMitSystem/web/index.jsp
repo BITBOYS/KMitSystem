@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Landing Page">
         <meta name="author" content="Malte Dammann">
+        <link rel="shortcut icon" href="public/images/favicon.ico">
 
         <%@page import="java.util.ArrayList"%>
         <%@page import="java.util.List"%>
@@ -85,11 +86,11 @@
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <h3><i class="fa fa-mobile"></i> Mobil unterwegs</h3>
-                        <p>Kein PC in der Nähe? Kein Problem! Dank Responsive Design managst du deine Teams und Turniere vom Smartphone oder Tablet! Von überall!</p>
+                        <p>Kein PC in der Nähe? Kein Problem! Dank Responsive Design managst du deine Teams und Turniere vom Smartphone oder Tablet! Von &uuml;berall!</p>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <h3><i class="fa fa-folder-open"></i> Ranking</h3>
-                        <p>Dank der Statistikfunktion seht ihr immer eure persönliche Statisik. Ob allgemein im Vergleich zu anderen, oder immerhalb eines Turniers. Verfolgt eure Verbesserung.</p>
+                        <p>Dank der Statistikfunktion seht ihr immer eure pers&ouml;nliche Statisik. Ob allgemein im Vergleich zu anderen, oder immerhalb eines Turniers. Verfolgt eure Verbesserung.</p>
                     </div>
                 </div><!-- /.row -->
 
@@ -123,7 +124,7 @@
                         <ul>
                             <li>Erstellt Teams</li>
                             <li>Erstellt Turniere mit deinen Freunden</li>
-                            <li>Tragt eure Matches ein und behaltet den Überblick</li>
+                            <li>Tragt eure Matches ein und behaltet den &Uuml;berblick</li>
                             <li>Sieh deine Statistiken ein</li>
                             <li>100% <strong>Free</strong> to Use</li>
                             <li>Mobile Responsive Design</li>

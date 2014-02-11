@@ -3,56 +3,61 @@ package com.kmitsystem.services.tournament.result;
 import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Tournament;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Malte
  */
-public class SearchTournamentResult extends BaseResult{
-    
-    private List<Tournament> tournament;
-    
+public class SearchTournamentResult extends BaseResult {
+
+    private ArrayList<Tournament> tournaments;
+
     public SearchTournamentResult() {
         super();
     }
 
-    public SearchTournamentResult(List<Tournament> tournament) {
+    public SearchTournamentResult(ArrayList<Tournament> tournament) {
         super();
-        this.tournament = tournament;
+        this.tournaments = tournament;
     }
 
-    public List<Tournament> getTournaments() {
-        return tournament;
+    public ArrayList<Tournament> getTournaments() {
+        return tournaments;
     }
 
-    public void setTournaments(List<Tournament> tournament) {
-        if(this.tournament == null)
-            this.tournament = new ArrayList<Tournament>();
-        
-        this.tournament = tournament;
-    }
-    
-    public void addTournaments(List<Tournament> tournament) {
-        if(this.tournament == null)
-            this.tournament = new ArrayList<Tournament>();
-            
-        for(int idx = 0; idx < tournament.size(); idx++) {
-            getTournaments().add(tournament.get(idx));
+    public void setTournaments(ArrayList<Tournament> tournament) {
+        if (this.tournaments == null) {
+            this.tournaments = new ArrayList<Tournament>();
         }
+
+        this.tournaments = tournament;
     }
-    
+
+    public void addTournaments(ArrayList<Tournament> tournament) {
+        if (this.tournaments == null) {
+            this.tournaments = new ArrayList<Tournament>();
+        }
+
+//        if (!tournaments.contains(tournament)) {
+            for (int idx = 0; idx < tournament.size(); idx++) {
+                getTournaments().add(tournament.get(idx));
+            }
+//        }
+    }
+
     public void addTournament(Tournament tournament) {
-        if(this.tournament == null)
-            this.tournament = new ArrayList<Tournament>();
-        
-        if(tournament != null)
-            this.tournament.add(tournament);
+        if (this.tournaments == null) {
+            this.tournaments = new ArrayList<Tournament>();
+        }
+//        if (!tournaments.contains(tournament)) {
+            if (tournament != null) {
+                this.tournaments.add(tournament);
+            }
+//        }
     }
 
     @Override
     public String toString() {
-        return "SearchTeamResult{" + "tournaments=" + tournament + '}';
+        return "SearchTeamResult{" + "tournaments=" + tournaments + '}';
     }
-    
-    
+
 }

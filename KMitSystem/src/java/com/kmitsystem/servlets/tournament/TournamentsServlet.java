@@ -4,14 +4,9 @@
  */
 package com.kmitsystem.servlets.tournament;
 
-import com.kmitsystem.servlets.tournament.*;
-import com.kmitsystem.services.team.TeamServiceProvider;
-import com.kmitsystem.services.team.input.SearchTeamInput;
-import com.kmitsystem.services.team.result.SearchTeamResult;
 import com.kmitsystem.services.tournament.TournamentServiceProvider;
 import com.kmitsystem.services.tournament.input.SearchTournamentInput;
 import com.kmitsystem.services.tournament.result.SearchTournamentResult;
-import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
 import java.io.IOException;
 import java.util.List;
@@ -43,16 +38,15 @@ public class TournamentsServlet extends HttpServlet {
         String team =  (String)request.getParameter("team_name_search");
         String tournament = (String)request.getParameter("tournament_name_search");
         String user = request.getParameter("user_name_search");
-        String createMonth = request.getParameter("createMonth_search");
-        
+        String createYearMonth = request.getParameter("createMonth_search");
         String running = request.getParameter("running_search");
         String finished = request.getParameter("finished_search");
-        
-//        was mache ich mit Boolean und Datum?
+        String outstanding = request.getParameter("outstanding_search");
+                
         TournamentServiceProvider provider = new TournamentServiceProvider();
-        SearchTournamentInput input = new SearchTournamentInput(team, tournament, user, createMonth);
+        SearchTournamentInput input = new SearchTournamentInput(team, tournament, user, createYearMonth, running, finished,outstanding);
         SearchTournamentResult result = provider.searchTournament(input);
-        
+                
         // prepare the output and write it into the session
         List<Tournament> tournaments = result.getTournaments();
         

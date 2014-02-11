@@ -17,7 +17,9 @@ public class Tournament {
     private String description;
     private User leader;
     private Date start_date;
+    private String start_time;
     private Date end_date;
+    private String end_time;
     private Date create_date;
     private int nr_matchdays;
     private String venue;
@@ -33,26 +35,30 @@ public class Tournament {
         this.name = name;
     }
 
-    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, Date create_date, int nr_matchdays, String venue, Date term_of_application) {
+    public Tournament(String name, String password, String description, User leader, Date start_date, String start_time, Date end_date, String end_time, Date create_date, int nr_matchdays, String venue, Date term_of_application) {
         this.name = name;
         this.password = password;
         this.description = description;
         this.leader = leader;
         this.start_date = start_date;
+        this.start_time = start_time;
         this.end_date = end_date;
+        this.end_time = end_time;
         this.create_date = create_date;
         this.nr_matchdays = nr_matchdays;
         this.venue = venue;
         this.term_of_application = term_of_application;
     }
 
-    public Tournament(String name, String password, String description, User leader, Date start_date, Date end_date, Date create_date, int nr_matchdays, String venue, Date term_of_application, List<Table> table) {
+    public Tournament(String name, String password, String description, User leader, Date start_date, String start_time, Date end_date, String end_time, Date create_date, int nr_matchdays, String venue, Date term_of_application, List<Table> table) {
         this.name = name;
         this.password = password;
         this.description = description;
         this.leader = leader;
         this.start_date = start_date;
+        this.start_time = start_time;
         this.end_date = end_date;
+        this.end_time = end_time;
         this.create_date = create_date;
         this.nr_matchdays = nr_matchdays;
         this.venue = venue;
@@ -148,10 +154,25 @@ public class Tournament {
         this.table = table;
     }
 
+    public String getStart_time() {
+        return start_time;
+    }
+
+    public String getEnd_time() {
+        return end_time;
+    }
+
+    public void setStart_time(String start_time) {
+        this.start_time = start_time;
+    }
+
+    public void setEnd_time(String end_time) {
+        this.end_time = end_time;
+    }
+
     public String getCountdown() {
         java.util.Date today = new java.util.Date();
         long diff = term_of_application.getTime() - today.getTime();
-        System.out.println(diff);
         if (diff > 0) {
 
             long diffSeconds = diff / 1000 % 60;
@@ -168,6 +189,7 @@ public class Tournament {
 
     @Override
     public String toString() {
-        return "Tournament{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", end_date=" + end_date + ", create_date=" + create_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + ", table=" + table + '}';
+        return "Tournament{" + "name=" + name + ", password=" + password + ", description=" + description + ", leader=" + leader + ", start_date=" + start_date + ", start_time=" + start_time + ", end_date=" + end_date + ", end_time=" + end_time + ", create_date=" + create_date + ", nr_matchdays=" + nr_matchdays + ", venue=" + venue + ", term_of_application=" + term_of_application + ", table=" + table + '}';
     }
+
 }

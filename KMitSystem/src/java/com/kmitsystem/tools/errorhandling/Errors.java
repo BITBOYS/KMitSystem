@@ -18,7 +18,7 @@ public class Errors {
     public static final Error USER_ALREADY_IN_TEAM = new Error(5, "Der Benutzer ist bereit Mitglied des Teams", Error.INFO); 
     public static final Error EMAIL_ALREADY_TAKEN_ERROR = new Error(6, "Die E-Mail wird bereits verwendet", Error.ERROR);
     public static final Error UNKNOWN_EMAIL_ERROR = new Error(7, "Die E-Mail Adresse wurde nicht gefunden", Error.ERROR);
-    public static final Error PASSWORDS_NOT_EQUAL = new Error(8, "Die beiden Passwörter stimmen nicht &uuml;berein", Error.ERROR);
+    public static final Error PASSWORDS_NOT_EQUAL = new Error(8, "Die beiden Passw&ouml;rter stimmen nicht &uuml;berein", Error.ERROR);
     public static final Error FALSE_LOGIN_INPUT = new Error(9, "Die E-Mail Adresse und das Passwort stimmen nicht &uuml;berein", Error.ERROR);
     public static final Error FORMATTING_DATA = new Error(10, "Beim Umwandeln des Datums ist ein Fehler aufgetreten", Error.ERROR);
     public static final Error EMAIL_REGISTER_INFO = new Error(11, "Eine E-Mail wurde zur Bestätigung an deine Mailadresse versendet", Error.INFO);

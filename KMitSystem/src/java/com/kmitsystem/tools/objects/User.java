@@ -48,6 +48,7 @@ public class User {
         this.create_date = create_date;
     }
 
+
     public String getUsername() {
         return username;
     }

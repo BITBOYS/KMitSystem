@@ -50,9 +50,9 @@ public class DBTeamTournamentQueries {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             
-            result = statement.executeUpdate("DELETE FROM team_tournament "
-                                            + "WHERE tournament = '" + tournamentname + "'"
-                                            + "  AND team = '" + teamname + "'");
+            result = statement.executeUpdate("DELETE FROM team_tournament"
+                                           + " WHERE tournament = '" + tournamentname + "'"
+                                           + " AND team = '" + teamname + "'");
             
             if(result > 0) {
                 ErrorHandler.handle(Errors.LEAVE_TOURNAMENT_SUCCESSFUL, DBTeamTournamentQueries.class.getName() + ":removeTeam");
@@ -65,14 +65,14 @@ public class DBTeamTournamentQueries {
         return false;
     }
     
-    public static List<Tournament> getAllTournamentsFromTeam(String name) {
-        List<Tournament> tournaments = new ArrayList<Tournament>();
+    public static ArrayList<Tournament> getAllTournamentsFromTeam(String name) {
+        ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
             
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             
-            resultSet = statement.executeQuery("SELECT name, description, leader, start_date, end_date, create_date, password , "
+            resultSet = statement.executeQuery("SELECT name, description, leader, start_date, start_time, end_date, end_time, create_date, password , "
                                                      + "nr_of_matchdays, venue, term_of_application" +
                                               " FROM tournament, team_tournament" +
                                               " WHERE team =  '" + name + "'" +
@@ -81,9 +81,9 @@ public class DBTeamTournamentQueries {
             resultSet.first();
             
             while(!resultSet.isAfterLast()) {
-                tournaments.add(new Tournament(resultSet.getString("name"),     resultSet.getString("password"), resultSet.getString("description"), new User(resultSet.getString("leader")), 
-                                               resultSet.getDate("start_date"), resultSet.getDate("end_date"),   resultSet.getDate("create_date"),               resultSet.getInt("nr_of_matchdays"), 
-                                               resultSet.getString("venue"),    resultSet.getDate("term_of_application")));
+                tournaments.add(new Tournament(resultSet.getString("name"),         resultSet.getString("password"),   resultSet.getString("description"), new User(resultSet.getString("leader")), 
+                                               resultSet.getDate("start_date"),     resultSet.getString("start_time"), resultSet.getDate("end_date"),               resultSet.getString("end_time"), resultSet.getDate("create_date"),            
+                                               resultSet.getInt("nr_of_matchdays"), resultSet.getString("venue"),      resultSet.getDate("term_of_application")));
                 resultSet.next();
             }
         } catch (SQLException ex) {

@@ -12,9 +12,9 @@ import com.kmitsystem.tools.errorhandling.Errors;
 public class CreateTournamentValidator {
     
     public boolean validate(CreateTournamentInput input) {
-        
+
         // check if a tournament with that name already exists
-        if(!DBTournamentQueries.isTournamentExisting(input.getName())) {
+        if(DBTournamentQueries.isTournamentExisting(input.getName())) {
             ErrorHandler.handle(Errors.NAME_ALREADY_TAKEN_ERROR, DBTournamentQueries.class.getName() + ":isInvalidName");
             return false;
         }

@@ -14,6 +14,7 @@ import com.kmitsystem.services.tournament.validator.CreateTournamentValidator;
 import com.kmitsystem.services.tournament.validator.DeleteTournamentValidator;
 import com.kmitsystem.services.tournament.validator.EditTournamentValidator;
 import com.kmitsystem.services.tournament.validator.GetEverythingValidator;
+import com.kmitsystem.tools.DateKonverter;
 import com.kmitsystem.tools.database.queries.DBTeamTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBUserTournamentQueries;
@@ -36,23 +37,53 @@ public class TournamentServiceProvider {
 
     public BaseResult createTournament(CreateTournamentInput input) {
         BaseResult result = new BaseResult();
-
+System.err.println("Drin");
         if (createTournamentValidator.validate(input)) {
 
+            System.err.println("1Name "+input.getName());
+            System.err.println("1Passwort "+input.getPassword());
+            System.err.println("1leader "+input.getLeader());
+            System.err.println("1desc "+input.getDescription());
+            System.err.println("1sdate "+input.getStart_date());
+            System.err.println("1stime "+input.getEnd_date());
+            System.err.println("1edate "+input.getStart_time());
+            System.err.println("1etime "+input.getEnd_date());
+            System.err.println("1matches "+input.getNr_matchdays());
+            System.err.println("1venue "+input.getVenue());
+            System.err.println("1term "+input.getTerm_of_application());
+            
             // prepare the input
             String name = input.getName();
             String password = input.getPassword();
             User leader = input.getLeader();
             String description = input.getDescription();
-            Date start_date = input.getStart_date();
-            Date end_date = input.getEnd_date();
-            int nr_matchdays = input.getNr_matchdays();
+            String start_date = input.getStart_date();
+            String start_time = input.getStart_time();
+            String end_date = input.getEnd_date();
+            String end_time = input.getEnd_time();
+            String nr_matchdays = input.getNr_matchdays();
             String venue = input.getVenue();
-            Date term_of_application = input.getTerm_of_application();
+            String term_of_application = input.getTerm_of_application();
+ 
+                
+            
+            System.err.println("Name "+name);
+            System.err.println("Passwort "+password);
+            System.err.println("leader "+leader.getUsername());
+            System.err.println("desc "+description);
+            System.err.println("sdate "+start_date);
+            System.err.println("stime "+start_time);
+            System.err.println("edate "+end_date);
+            System.err.println("etime "+end_time);
+            System.err.println("matches "+nr_matchdays);
+            System.err.println("venue "+venue);
+            System.err.println("term "+term_of_application);
+            
+            java.util.Date sql = DateKonverter.getSQLDate(start_date);
+            System.err.println("SQL: " + sql);
 
             // call the database
-            //TODO:Date
-            DBTournamentQueries.createTournament(name, password, description, leader, start_date, end_date, nr_matchdays, venue, term_of_application);
+            DBTournamentQueries.createTournament(name, password, description, leader, start_date, start_time, end_date, end_time, nr_matchdays, venue, term_of_application);
         }
 
         // write the errors into the result object and empty the ErrorHandler
@@ -63,7 +94,7 @@ public class TournamentServiceProvider {
 
         return result;
     }
-    
+
     public EditTournamentResult deleteTournament(DeleteTournamentInput input) {
         EditTournamentResult result = new EditTournamentResult();
 
@@ -112,12 +143,12 @@ public class TournamentServiceProvider {
         if (getEverythingValidator.validate(input)) {
             // prepare the input
             String tournamentname = input.getTournamentname();
-            
+
             // call the database
             Tournament tournament = DBTournamentQueries.getTournament(tournamentname);
-            
+
             tournament.setTable(DBTeamTournamentQueries.getTableFromTournament(tournamentname));
-            
+
             result.setTournament(tournament);
             result.setTeams(DBTeamTournamentQueries.getAllTeamsFromTournament(tournamentname));
             result.setMember(DBUserTournamentQueries.getAllUserFromTournament(tournamentname));
@@ -141,9 +172,10 @@ public class TournamentServiceProvider {
         String team_name = input.getTeam();
         String tournament_name = input.getTournament();
         String user_name = input.getUser();
-        String month = input.getCreateMonth();
-        Boolean running = input.getTournamentIsRunning();
-        Boolean finished = input.getTournamentIsFinished();
+        String date = input.getCreateMonth();
+        String running = input.getTournamentIsRunning();
+        String finished = input.getTournamentIsFinished();
+        String outstanding = input.getTournamentIsoutstanding();
 
         // call the database
         // search tournament
@@ -160,28 +192,33 @@ public class TournamentServiceProvider {
         if (user_name != null && !user_name.equals("")) {
             result.addTournaments(DBUserTournamentQueries.getAllTournamentFromUser(user_name));
         }
-        
+
         // search month
-        if (month != null && !month.equals("")) {
-            result.addTournaments(DBTournamentQueries.getTournamentsByMonth(month));
+        if (date != null && !date.equals("")) {
+            result.addTournaments(DBTournamentQueries.getTournamentsByMonth(date));
+        }
+
+        // search running
+        if ("on".equals(running)) {
+            result.addTournaments(DBTournamentQueries.getTournamentsRunningFinished('r'));
+        }
+
+        // search finished
+        if ("on".equals(finished)) {
+            result.addTournaments(DBTournamentQueries.getTournamentsRunningFinished('f'));
         }
         
-        // search running
-//        if (running) {
-//            //TODO
-//        }
-//        
-//        // search month
-//        if (finished) {
-//            //TODO
-//        }
+        // search outstanding
+        if ("on".equals(outstanding)) {
+            result.addTournaments(DBTournamentQueries.getTournamentsRunningFinished('o'));
+        }
 
         // write the errors into the result object and empty the ErrorHandler
         if (ErrorHandler.getErrors().size() > 0) {
             result.setErrorList(ErrorHandler.getErrors());
             ErrorHandler.clear();
         }
-
+        
         return result;
     }
 
@@ -201,7 +238,7 @@ public class TournamentServiceProvider {
             Date new_term_of_application = input.getNew_term_of_application();
             Date new_start_date = input.getNew_start_date();
             Date new_end_date = input.getNew_end_date();
-            
+
             boolean query = false;
 
             // call the database
@@ -229,10 +266,10 @@ public class TournamentServiceProvider {
             if (new_end_date != null) {
                 query = DBTournamentQueries.editTournamentEnd(tournamentname, new_end_date);
             }
-            if (input.getKick_team()!= null) {
+            if (input.getKick_team() != null) {
                 query = DBTeamTournamentQueries.removeTeam(tournamentname, kickedTeam);
             }
-            
+
             result.setQuerySuccessful(query);
         }
         // write the errors into the result object and empty the ErrorHandler

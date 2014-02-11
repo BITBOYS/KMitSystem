@@ -1,7 +1,3 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="com.kmitsystem.tools.objects.Tournament"%>
-<%@page import="java.util.List"%>
-<%@page import="com.kmitsystem.tools.errorhandling.Error"%> 
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,6 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="Turniere Page">
         <meta name="author" content="Malte Dammann">
+
+        <%@page import="java.util.ArrayList"%>
+        <%@page import="com.kmitsystem.tools.objects.Tournament"%>
+        <%@page import="java.util.List"%>
+        <%@page import="com.kmitsystem.tools.errorhandling.Error"%> 
 
         <title>Turniere - leago</title>
 
@@ -40,7 +41,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Turniere <small>Suche spezielle Turniere oder deine Freunde!</small></h1>
+                    <h1 class="page-header">Turniere <small>Suche speziell nach Turnieren oder Turnieren deiner Freunde!</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="<%=link%>/">Home</a></li>
                         <li class="active">Turniere</li>
@@ -95,12 +96,17 @@
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="running_search"> laufendes Turnier
+                                            <input type="checkbox" name="running_search"> laufende Turniere
                                         </label>
                                     </div>
                                     <div class="checkbox">
                                         <label>
-                                            <input type="checkbox" name="finished_search"> beendetes Turnier
+                                            <input type="checkbox" name="finished_search"> beendete Turnie
+                                        </label>
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="outstanding_search"> zuk&uuml;nftige Turnie
                                         </label>
                                     </div>
                                     <p class="help-block">Suche nach Turniernamen oder speziell nach Turnieren in denen Teams und User spielen.</p>
@@ -133,7 +139,6 @@
                         <% } %>
                         <% } %>
                     </div>
-
                 </div> <!-- row --> 
 
                 <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
@@ -154,10 +159,10 @@
 
                     </div>
 
-                    <% }
+                </div><!-- /.row -->
+                <% }
                     }%>
 
-                </div><!-- /.row -->
             </div><!-- /.container -->
 
             <div class="container">
