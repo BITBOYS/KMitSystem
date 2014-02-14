@@ -6,6 +6,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.sql.Time; 
 
 /**
  * @author Malte
@@ -17,15 +18,14 @@ public class Tournament {
     private String description;
     private User leader;
     private Date start_date;
-    private String start_time;
+    private Time start_time;
     private Date end_date;
-    private String end_time;
+    private Time end_time;
     private Date create_date;
     private int nr_matchdays;
     private String venue;
     private Date term_of_application;
     private List<Table> table;
-    private String countdown;
 
     public Tournament() {
         super();
@@ -35,7 +35,7 @@ public class Tournament {
         this.name = name;
     }
 
-    public Tournament(String name, String password, String description, User leader, Date start_date, String start_time, Date end_date, String end_time, Date create_date, int nr_matchdays, String venue, Date term_of_application) {
+    public Tournament(String name, String password, String description, User leader, Date start_date, Time start_time, Date end_date, Time end_time, Date create_date, int nr_matchdays, String venue, Date term_of_application) {
         this.name = name;
         this.password = password;
         this.description = description;
@@ -50,7 +50,7 @@ public class Tournament {
         this.term_of_application = term_of_application;
     }
 
-    public Tournament(String name, String password, String description, User leader, Date start_date, String start_time, Date end_date, String end_time, Date create_date, int nr_matchdays, String venue, Date term_of_application, List<Table> table) {
+    public Tournament(String name, String password, String description, User leader, Date start_date, Time start_time, Date end_date, Time end_time, Date create_date, int nr_matchdays, String venue, Date term_of_application, List<Table> table) {
         this.name = name;
         this.password = password;
         this.description = description;
@@ -155,18 +155,22 @@ public class Tournament {
     }
 
     public String getStart_time() {
-        return start_time;
+        String startTime = new SimpleDateFormat("HH:mm").format(end_time.getTime());
+        System.out.print("TOURNAMENT-OBJECT - startTime: " + startTime);
+        return startTime;
     }
 
     public String getEnd_time() {
-        return end_time;
+        String endTime = new SimpleDateFormat("HH:mm").format(end_time.getTime());
+        System.out.print("TOURNAMENT-OBJECT - endTime: " + endTime);
+        return endTime;
     }
 
-    public void setStart_time(String start_time) {
+    public void setStart_time(Time start_time) {
         this.start_time = start_time;
     }
 
-    public void setEnd_time(String end_time) {
+    public void setEnd_time(Time end_time) {
         this.end_time = end_time;
     }
 
