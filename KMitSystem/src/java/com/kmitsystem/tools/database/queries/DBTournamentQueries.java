@@ -11,6 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Date;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -21,6 +25,8 @@ public class DBTournamentQueries {
     private static Statement statement = null;
     private static Connection con = null;
     private static ResultSet resultSet = null;
+    private static final DateFormat FORMATTER_S = new SimpleDateFormat("HH:mm");
+    private static final DateFormat FORMATTER_E = new SimpleDateFormat("HH:mm");
 
     public static boolean isTournamentExisting(String name) {
         boolean result = false;
@@ -29,8 +35,8 @@ public class DBTournamentQueries {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             resultSet = statement.executeQuery("SELECT COUNT(*) AS count "
-                                             + "FROM tournament "
-                                             + "WHERE name= '" + name + "'");
+                    + "FROM tournament "
+                    + "WHERE name= '" + name + "'");
             resultSet.first();
 
             if (resultSet.getInt("count") > 0) {
@@ -48,10 +54,10 @@ public class DBTournamentQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application"
-                                             + "FROM tournament "
-                                             + "WHERE name= '" + name + "' "
-                                             + "ORDER BY name, start_date, end_date");
+            resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application, start_time, end_time"
+                    + "FROM tournament "
+                    + "WHERE name= '" + name + "' "
+                    + "ORDER BY name, start_date, end_date");
             resultSet.first();
 
             String tournamentname = resultSet.getString("name");
@@ -60,9 +66,9 @@ public class DBTournamentQueries {
             String description = resultSet.getString("description");
             String venue = resultSet.getString("venue");
             Date start_date = resultSet.getDate("start_date");
-            String start_time = resultSet.getString("start_time");
+            java.sql.Time start_time = resultSet.getTime("start_time");
             Date end_date = resultSet.getDate("end_date");
-            String end_time = resultSet.getString("end_time");
+            java.sql.Time end_time = resultSet.getTime("end_time");
             Date create_date = resultSet.getDate("create_date");
             Date term_of_application = resultSet.getDate("term_of_application");
             User leader = new User(resultSet.getString("leader"));
@@ -87,26 +93,26 @@ public class DBTournamentQueries {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
 
-            resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application"
-                                            + " FROM  tournament "
-                                            + " WHERE YEAR(create_date) = '" + yearNum + "'"
-                                            + " AND MONTH(create_date) = '" + monthNum + "'"
-                                            + " ORDER BY create_date");
+            resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application, start_time, end_time"
+                    + " FROM  tournament "
+                    + " WHERE YEAR(create_date) = '" + yearNum + "'"
+                    + " AND MONTH(create_date) = '" + monthNum + "'"
+                    + " ORDER BY create_date");
             resultSet.first();
 
             while (!resultSet.isAfterLast()) {
-                tournaments.add(new Tournament(resultSet.getString("name"), 
-                                               resultSet.getString("password"),
-                                               resultSet.getString("description"),
-                                      new User(resultSet.getString("leader")),
-                                               resultSet.getDate("start_date"), 
-                                               resultSet.getString("start_time"),
-                                               resultSet.getDate("end_date"), 
-                                               resultSet.getString("end_time"),
-                                               resultSet.getDate("create_date"), 
-                                               resultSet.getInt("nr_of_matchdays"), 
-                                               resultSet.getString("venue"), 
-                                               resultSet.getDate("term_of_application")));
+                tournaments.add(new Tournament(resultSet.getString("name"),
+                        resultSet.getString("password"),
+                        resultSet.getString("description"),
+                        new User(resultSet.getString("leader")),
+                        resultSet.getDate("start_date"),
+                        resultSet.getTime("start_time"),
+                        resultSet.getDate("end_date"),
+                        resultSet.getTime("end_time"),
+                        resultSet.getDate("create_date"),
+                        resultSet.getInt("nr_of_matchdays"),
+                        resultSet.getString("venue"),
+                        resultSet.getDate("term_of_application")));
                 resultSet.next();
             }
         } catch (SQLException ex) {
@@ -123,39 +129,39 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             if (status == 'r') {
-                resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application"
-                                                 + " FROM  tournament "
-                                                 + " WHERE CURDATE() < end_date"
-                                                 + " ORDER BY end_date");
+                resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application, start_time, end_time"
+                        + " FROM  tournament "
+                        + " WHERE CURDATE() < end_date"
+                        + " ORDER BY end_date");
                 resultSet.first();
 
             } else if (status == 'f') {
-                resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application"
-                                                + " FROM  tournament "
-                                                + " WHERE CURDATE() > end_date"
-                                                + " ORDER BY end_date");
+                resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application, start_time, end_time"
+                        + " FROM  tournament "
+                        + " WHERE CURDATE() > end_date"
+                        + " ORDER BY end_date");
                 resultSet.first();
-              
+
             } else if (status == 'o') {
-                resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application"
-                                                + " FROM  tournament "
-                                                + " WHERE CURDATE() < start_date"
-                                                + " ORDER BY end_date");
+                resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application, start_time, end_time"
+                        + " FROM  tournament "
+                        + " WHERE CURDATE() < start_date"
+                        + " ORDER BY end_date");
                 resultSet.first();
             }
             while (!resultSet.isAfterLast()) {
-                tournaments.add(new Tournament(resultSet.getString("name"), 
-                                               resultSet.getString("password"),
-                                               resultSet.getString("description"),
-                                      new User(resultSet.getString("leader")),
-                                               resultSet.getDate("start_date"), 
-                                               resultSet.getString("start_time"),
-                                               resultSet.getDate("end_date"), 
-                                               resultSet.getString("end_time"),
-                                               resultSet.getDate("create_date"), 
-                                               resultSet.getInt("nr_of_matchdays"), 
-                                               resultSet.getString("venue"), 
-                                               resultSet.getDate("term_of_application")));
+                tournaments.add(new Tournament(resultSet.getString("name"),
+                        resultSet.getString("password"),
+                        resultSet.getString("description"),
+                        new User(resultSet.getString("leader")),
+                        resultSet.getDate("start_date"),
+                        resultSet.getTime("start_time"),
+                        resultSet.getDate("end_date"),
+                        resultSet.getTime("end_time"),
+                        resultSet.getDate("create_date"),
+                        resultSet.getInt("nr_of_matchdays"),
+                        resultSet.getString("venue"),
+                        resultSet.getDate("term_of_application")));
                 resultSet.next();
             }
         } catch (SQLException ex) {
@@ -164,14 +170,18 @@ public class DBTournamentQueries {
         return tournaments;
     }
 
-    public static void createTournament(String name, String password, String description, User leader, String start_date, String start_time, String end_date, String end_time, String nr_matchdays, String venue, String term_of_application) {
+    public static void createTournament(String name, String password, String description, User leader, String start_date, String start_time, String end_date, String end_time, String nr_matchdays, String venue, String term_of_application) throws ParseException {
         try {
+            //Cast String to sql-Time
+            Time startTime = new Time(FORMATTER_S.parse(start_time).getTime());
+            Time endTime = new Time(FORMATTER_E.parse(end_time).getTime());
+
             con = DatabaseHandler.connect();
             statement = con.createStatement();
 
             statement.execute("insert into tournament"
-                            + "(name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application)"
-                            + " VALUES ('" + name + "','" + leader.getUsername() + "','" + start_date + "','" + end_date + "',CURRENT_TIMESTAMP,'" + password + "','" + description + "','" + nr_matchdays + "','" + venue + "','" + term_of_application + "')");
+                    + "(name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application, start_time, end_time)"
+                    + " VALUES ('" + name + "','" + leader.getUsername() + "','" + start_date + "','" + end_date + "',CURRENT_TIMESTAMP,'" + password + "','" + description + "','" + nr_matchdays + "','" + venue + "','" + term_of_application + "','" + startTime + "','" + endTime + "')");
 
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " + ex.getMessage());
@@ -185,8 +195,8 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("UPDATE tournament "
-                                           + "SET name = '" + new_name + "' "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "SET name = '" + new_name + "' "
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editName");
@@ -206,8 +216,8 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("UPDATE tournament "
-                                           + "SET password = '" + new_password + "' "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "SET password = '" + new_password + "' "
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editPassword");
@@ -227,8 +237,8 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("UPDATE tournament "
-                                           + "SET leader = '" + new_leader + "' "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "SET leader = '" + new_leader + "' "
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editLeader");
@@ -248,8 +258,8 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("UPDATE tournament "
-                                           + "SET venue = '" + new_venue + "' "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "SET venue = '" + new_venue + "' "
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editVenue");
@@ -269,8 +279,8 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("UPDATE tournament "
-                                           + "SET description = '" + description + "' "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "SET description = '" + description + "' "
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editDescription");
@@ -290,8 +300,8 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("UPDATE tournament "
-                                           + "SET nr_of_matchdays = '" + new_nr_matchdays + "' "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "SET nr_of_matchdays = '" + new_nr_matchdays + "' "
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editMatchdays");
@@ -311,8 +321,8 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("UPDATE tournament "
-                                           + "SET term_of_application = '" + DateKonverter.getWebDateString(new_term_of_application) + "' "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "SET term_of_application = '" + DateKonverter.getWebDateString(new_term_of_application) + "' "
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editTerm");
@@ -332,8 +342,8 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("UPDATE tournament "
-                                           + "SET start_date = '" + DateKonverter.getWebDateString(new_start_date) + "' "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "SET start_date = '" + DateKonverter.getWebDateString(new_start_date) + "' "
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editStart");
@@ -353,8 +363,8 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("UPDATE tournament "
-                                           + "SET start_date = '" + DateKonverter.getWebDateString(new_end_date) + "' "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "SET start_date = '" + DateKonverter.getWebDateString(new_end_date) + "' "
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.EDIT_SUCCESS, DBTournamentQueries.class.getName() + ":editEnd");
@@ -374,7 +384,7 @@ public class DBTournamentQueries {
             statement = con.createStatement();
 
             result = statement.executeUpdate("DELETE FROM tournament "
-                                           + "WHERE name = '" + tournamentname + "'");
+                    + "WHERE name = '" + tournamentname + "'");
 
             if (result > 0) {
                 ErrorHandler.handle(Errors.TOURNAMENT_DELETE_SUCCESSFUL, DBTournamentQueries.class.getName() + ":deleteTournament");

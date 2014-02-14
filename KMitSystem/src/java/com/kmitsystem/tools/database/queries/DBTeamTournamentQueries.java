@@ -82,7 +82,7 @@ public class DBTeamTournamentQueries {
             
             while(!resultSet.isAfterLast()) {
                 tournaments.add(new Tournament(resultSet.getString("name"),         resultSet.getString("password"),   resultSet.getString("description"), new User(resultSet.getString("leader")), 
-                                               resultSet.getDate("start_date"),     resultSet.getString("start_time"), resultSet.getDate("end_date"),               resultSet.getString("end_time"), resultSet.getDate("create_date"),            
+                                               resultSet.getDate("start_date"),     resultSet.getTime("start_time"), resultSet.getDate("end_date"),               resultSet.getTime("end_time"), resultSet.getDate("create_date"),            
                                                resultSet.getInt("nr_of_matchdays"), resultSet.getString("venue"),      resultSet.getDate("term_of_application")));
                 resultSet.next();
             }

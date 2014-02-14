@@ -23,6 +23,8 @@ import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 /**
  * @author Malte
@@ -35,23 +37,22 @@ public class TournamentServiceProvider {
     EditTournamentValidator editTournamentValidator = new EditTournamentValidator();
     DeleteTournamentValidator deleteTournamentValidator = new DeleteTournamentValidator();
 
-    public BaseResult createTournament(CreateTournamentInput input) {
+    public BaseResult createTournament(CreateTournamentInput input) throws ParseException {
         BaseResult result = new BaseResult();
-System.err.println("Drin");
         if (createTournamentValidator.validate(input)) {
 
-            System.err.println("1Name "+input.getName());
-            System.err.println("1Passwort "+input.getPassword());
-            System.err.println("1leader "+input.getLeader());
-            System.err.println("1desc "+input.getDescription());
-            System.err.println("1sdate "+input.getStart_date());
-            System.err.println("1stime "+input.getEnd_date());
-            System.err.println("1edate "+input.getStart_time());
-            System.err.println("1etime "+input.getEnd_date());
-            System.err.println("1matches "+input.getNr_matchdays());
-            System.err.println("1venue "+input.getVenue());
-            System.err.println("1term "+input.getTerm_of_application());
-            
+            System.err.println("1Name " + input.getName());
+            System.err.println("1Passwort " + input.getPassword());
+            System.err.println("1leader " + input.getLeader());
+            System.err.println("1desc " + input.getDescription());
+            System.err.println("1sdate " + input.getStart_date());
+            System.err.println("1stime " + input.getEnd_date());
+            System.err.println("1edate " + input.getStart_time());
+            System.err.println("1etime " + input.getEnd_date());
+            System.err.println("1matches " + input.getNr_matchdays());
+            System.err.println("1venue " + input.getVenue());
+            System.err.println("1term " + input.getTerm_of_application());
+
             // prepare the input
             String name = input.getName();
             String password = input.getPassword();
@@ -64,21 +65,7 @@ System.err.println("Drin");
             String nr_matchdays = input.getNr_matchdays();
             String venue = input.getVenue();
             String term_of_application = input.getTerm_of_application();
- 
-                
-            
-            System.err.println("Name "+name);
-            System.err.println("Passwort "+password);
-            System.err.println("leader "+leader.getUsername());
-            System.err.println("desc "+description);
-            System.err.println("sdate "+start_date);
-            System.err.println("stime "+start_time);
-            System.err.println("edate "+end_date);
-            System.err.println("etime "+end_time);
-            System.err.println("matches "+nr_matchdays);
-            System.err.println("venue "+venue);
-            System.err.println("term "+term_of_application);
-            
+
             java.util.Date sql = DateKonverter.getSQLDate(start_date);
             System.err.println("SQL: " + sql);
 
@@ -207,7 +194,7 @@ System.err.println("Drin");
         if ("on".equals(finished)) {
             result.addTournaments(DBTournamentQueries.getTournamentsRunningFinished('f'));
         }
-        
+
         // search outstanding
         if ("on".equals(outstanding)) {
             result.addTournaments(DBTournamentQueries.getTournamentsRunningFinished('o'));
@@ -218,7 +205,7 @@ System.err.println("Drin");
             result.setErrorList(ErrorHandler.getErrors());
             ErrorHandler.clear();
         }
-        
+
         return result;
     }
 

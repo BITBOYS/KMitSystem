@@ -122,8 +122,8 @@ public class DBUserTournamentQueries {
             
             while(!resultSet.isAfterLast()) {
                 tournaments.add(new Tournament(resultSet.getString("tou.name"),         resultSet.getString("tou.password"), resultSet.getString("description"), 
-                                      new User(resultSet.getString("tou.leader")),      resultSet.getDate("tou.start_date"), resultSet.getString("tou.start_time"),
-                                               resultSet.getDate("tou.end_date"),       resultSet.getString("tou.end_time"), resultSet.getDate("tou.create_date"), 
+                                      new User(resultSet.getString("tou.leader")),      resultSet.getDate("tou.start_date"), resultSet.getTime("tou.start_time"),
+                                               resultSet.getDate("tou.end_date"),       resultSet.getTime("tou.end_time"), resultSet.getDate("tou.create_date"), 
                                                resultSet.getInt("tou.nr_of_matchdays"), resultSet.getString("tou.venue"),    resultSet.getDate("tou.term_of_application")));
                 resultSet.next();
             }
