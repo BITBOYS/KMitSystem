@@ -23,7 +23,7 @@ public interface EmailInterface {
     }
 
     /**
-     * E-Mail Interface
+     * Senden der E-Mail
      *
      * @param to Mail-Empfänger
      * @param subject Mail-Betreff
