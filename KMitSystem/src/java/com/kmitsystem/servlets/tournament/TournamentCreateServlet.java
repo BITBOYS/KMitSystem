@@ -16,7 +16,10 @@ import com.kmitsystem.tools.errorhandling.Error;
 import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.Team;
 import java.sql.Date;
+import java.text.ParseException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 
 /**
@@ -34,7 +37,7 @@ public class TournamentCreateServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ParseException {
 
         RequestDispatcher rd;
 
@@ -109,7 +112,11 @@ public class TournamentCreateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(TournamentCreateServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -123,7 +130,11 @@ public class TournamentCreateServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ParseException ex) {
+            Logger.getLogger(TournamentCreateServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

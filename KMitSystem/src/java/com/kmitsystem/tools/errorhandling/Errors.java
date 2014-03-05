@@ -43,6 +43,7 @@ public class Errors {
     public static final Error KICK_USER_SUCCESSFUL = new Error(29, "Spieler erfolgreich entfernt", Error.SUCCESS);
     public static final Error TOURNAMENT_DELETE_SUCCESSFUL = new Error(30, "Turnier erfolgreich gel&ouml;scht", Error.SUCCESS);
     public static final Error TOURNAMENT_EXISTS = new Error(31, "Das Turnier existiert", Error.SUCCESS);
-    
+    public static final Error ENCODING_NOT_POSSIBLE = new Error(32, "Eine Char wird nicht von der Verschl&uuml;sselung unterstützt", Error.ERROR);
+    public static final Error ENCODING_NOT_FOUND = new Error(33, "Verschl&uuml;sselungsalgorithmus nicht gefunden", Error.ERROR);
     
 }
