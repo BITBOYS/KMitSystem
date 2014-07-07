@@ -44,7 +44,7 @@ public class TournamentsServlet extends HttpServlet {
         String outstanding = request.getParameter("outstanding_search");
                 
         TournamentServiceProvider provider = new TournamentServiceProvider();
-        SearchTournamentInput input = new SearchTournamentInput(team, tournament, user, createYearMonth, running, finished,outstanding);
+        SearchTournamentInput input = new SearchTournamentInput(team, tournament, user, createYearMonth, running, finished, outstanding);
         SearchTournamentResult result = provider.searchTournament(input);
                 
         // prepare the output and write it into the session

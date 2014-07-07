@@ -155,15 +155,21 @@ public class Tournament {
     }
 
     public String getStart_time() {
-        String startTime = new SimpleDateFormat("HH:mm").format(end_time.getTime());
+       String startTime = "--:--";
+       if(start_time != null){
+            startTime = new SimpleDateFormat("HH:mm").format(start_time.getTime());
+       }
         System.out.print("TOURNAMENT-OBJECT - startTime: " + startTime);
         return startTime;
     }
 
     public String getEnd_time() {
-        String endTime = new SimpleDateFormat("HH:mm").format(end_time.getTime());
-        System.out.print("TOURNAMENT-OBJECT - endTime: " + endTime);
-        return endTime;
+       String endTime = "--:--";
+       if(end_time != null)
+        endTime = new SimpleDateFormat("HH:mm").format(end_time.getTime());
+       
+       System.out.print("TOURNAMENT-OBJECT - endTime: " + endTime);
+       return endTime;
     }
 
     public void setStart_time(Time start_time) {

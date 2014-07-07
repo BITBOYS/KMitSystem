@@ -54,9 +54,9 @@ public class DBTournamentQueries {
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
-            resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application, start_time, end_time"
+            resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application, start_time, end_time "
                     + "FROM tournament "
-                    + "WHERE name= '" + name + "' "
+                    + "WHERE name = '" + name.trim() + "' "
                     + "ORDER BY name, start_date, end_date");
             resultSet.first();
 
