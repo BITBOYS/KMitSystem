@@ -6,9 +6,12 @@ package com.kmitsystem.servlets.user;
 
 import com.kmitsystem.services.user.UserServiceProvider;
 import com.kmitsystem.services.user.input.CreateUserInput;
+import com.kmitsystem.tools.errorhandling.Errors;
 import com.kmitsystem.tools.objects.BaseResult;
-import com.kmitsystem.tools.objects.User;
+import com.kmitsystem.tools.errorhandling.Error;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -49,7 +52,7 @@ public class CreateUserServlet extends HttpServlet {
             CreateUserInput input = new CreateUserInput(name, email, password);
             
             result = provider.createUser(input);
-        }else{
+        }else {
             fail = true;
         }
         
@@ -57,6 +60,10 @@ public class CreateUserServlet extends HttpServlet {
             request.getSession().setAttribute("errors", result.getErrorList());
             response.sendRedirect("register");
         }else{
+            List<Error> errorList = new ArrayList<Error>();
+            errorList.add(Errors.REGISTER_SUCCESSFUL);
+            request.setAttribute("errors", errorList);
+            
             response.sendRedirect("login");
         }
     }

@@ -14,7 +14,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateUserServlet</servlet-name>
-        <servlet-class>com.kmitsystem.servlets.user.readUserDataServlets.CreateUserServlet</servlet-class>
+        <servlet-class>com.kmitsystem.servlets.user.CreateUserServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TeamProfileServlet</servlet-name>

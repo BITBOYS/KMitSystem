@@ -11,7 +11,7 @@ package com.kmitsystem.tools.errorhandling;
  */
 public class Errors {
     
-    public static final Error NAME_ALREADY_TAKEN_ERROR = new Error(1, "Der Name wird bereits verwendet", Error.INFO);
+    public static final Error NAME_ALREADY_TAKEN_ERROR = new Error(1, "Der Name wird bereits verwendet", Error.ERROR);
     public static final Error DB_ERROR = new Error(2, "Es ist ein unbekannter Fehler aufgetreten", Error.ERROR);
     public static final Error TEAM_DOES_NOT_EXIST = new Error(3, "Das Team existiert nicht", Error.INFO);
     public static final Error USER_DOES_NOT_EXIST = new Error(4, "Der Benutzer existiert nicht", Error.ERROR);
@@ -45,5 +45,6 @@ public class Errors {
     public static final Error TOURNAMENT_EXISTS = new Error(31, "Das Turnier existiert", Error.SUCCESS);
     public static final Error ENCODING_NOT_POSSIBLE = new Error(32, "Eine Char wird nicht von der Verschl&uuml;sselung unterstützt", Error.ERROR);
     public static final Error ENCODING_NOT_FOUND = new Error(33, "Verschl&uuml;sselungsalgorithmus nicht gefunden", Error.ERROR);
+    public static final Error REGISTER_SUCCESSFUL = new Error(33, "Registrierung erfolgreich", Error.SUCCESS);
     
 }

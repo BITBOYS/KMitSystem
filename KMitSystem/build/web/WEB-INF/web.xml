@@ -14,7 +14,7 @@
     </servlet>
     <servlet>
         <servlet-name>CreateUserServlet</servlet-name>
-        <servlet-class>com.kmitsystem.servlets.user.readUserDataServlets.CreateUserServlet</servlet-class>
+        <servlet-class>com.kmitsystem.servlets.user.CreateUserServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TeamProfileServlet</servlet-name>
@@ -51,6 +51,14 @@
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.user.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UserProfileServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.user.UserProfileServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TournamentDashboardServlet</servlet-name>
+        <servlet-class>com.kmitsystem.servlets.tournament.TournamentDashboardServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TeamsCreateServlet</servlet-name>
@@ -104,6 +112,14 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TournamentDashboardServlet</servlet-name>
+        <url-pattern>/tournament/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UserProfileServlet</servlet-name>
+        <url-pattern>/user/profile</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -117,4 +133,10 @@
         <error-code>500</error-code>
         <location>/error/index.jsp</location>
     </error-page>
+    <resource-ref>
+        <res-ref-name>de</res-ref-name>
+        <res-type>javax.mail.Session</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+    </resource-ref>
 </web-app>

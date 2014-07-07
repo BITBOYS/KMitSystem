@@ -40,7 +40,7 @@ public class DBUserTeamQueries {
             Date enter_date = new Date();
             
             statement.execute("INSERT INTO user_team"
-                    + "(user, team, enter_date)"
+                    + "(user, team, enter_dat)"
                     + "VALUES ('" + username + "','" + teamname + "','" + formatter.format(enter_date) + "')");
             
         } catch (SQLException ex) {

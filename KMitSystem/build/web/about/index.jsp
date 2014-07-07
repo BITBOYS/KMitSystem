@@ -1,165 +1,117 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Das sind wir.">
-    <meta name="author" content="Malte Dammann">
+<html lang="en" manifest="../public/cache/cache.manifest">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Das sind wir.">
+        <meta name="author" content="Malte Dammann">
 
-    <title>About Us- KmS</title>
+        <title>About Us - leago</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../public/css/css/bootstrap.css" rel="stylesheet">
+        <%            String link = request.getContextPath();
+            String loged_in = String.valueOf(request.getSession().getAttribute("loged_in"));
+        %>
 
-    <!-- Add custom CSS here -->
-    <link href="../public/css/css/modern-business.css" rel="stylesheet">
-    <link href="../public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  </head>
+        <!-- Bootstrap core CSS -->
+        <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
 
-  <body>
+        <!-- Add custom CSS here -->
+        <link href="<%=link%>/public/css/css/modern-business.css" rel="stylesheet">
+        <link href="<%=link%>/public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    </head>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <!-- You'll want to use a responsive image option so this logo looks good on devices - I recommend using something like retina.js (do a quick Google search for it and you'll find it) -->
-          <a class="navbar-brand" href="../">KmS</a>
-        </div>
+    <body>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse navbar-ex1-collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="../login/index.jsp">Login</a></li>
-            <li><a href="../register/index.jsp">Sign Up</a></li>          
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Other Pages <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li role="presentation" class="dropdown-header">For your Interest</li>
-                <li role="presentation" class="divider"></li>
-                <li><a href="../about">About Us</a></li>
-                <li><a href="../contact">Kontakt</a></li>
-                <li><a href="../service">Info</a></li>
-                <li><a href="../faq">FAQ</a></li>
-                <li><a href="../sidebar">Sidebar Page</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container -->
-    </nav>
+        <%@include file="../snipplets/header.jspf" %>
 
-    <div class="container">
+        <div class="container">
 
-      <div class="row">
+            <div class="row">
 
-        <div class="col-lg-12">
-          <h1 class="page-header">About Us <small>Das sind wir!</small></h1>
-          <ol class="breadcrumb">
-            <li><a href="../">Home</a></li>
-            <li class="disabled"><a href="#">Other Pages</a></li>
-            <li class="active">About Us</li>
-          </ol>
-        </div>
+                <div class="col-lg-12">
+                    <h1 class="page-header">About Us <small>Das sind wir!</small></h1>
+                    <ol class="breadcrumb">
+                        <li><a href="<%=link%>">Home</a></li>
+                        <li class="disabled"><a href="#">Other Pages</a></li>
+                        <li class="active">About Us</li>
+                    </ol>
+                </div>
 
-      </div>
+            </div>
 
-      <div class="row">
+            <div class="row">
 
-        <div class="col-md-6">
-          <img class="img-responsive" src="http://placehold.it/500x250">
-        </div>
-        <div class="col-md-6">
-          <h2>Welcome to 'Kickern mit System'</h2>
-          <p>Wir sind ein junges Developer Team und haben unglaublich viel SpaÃŸ am Kickern. Deshalb haben wir erkannt, dass die Welt ein Kicker-Tool braucht.</p>
-          <p>Und genau hier kommt KmS ins Spiel.</p>
-        </div>
+                <div class="col-md-6">
+                    <img class="img-responsive" src="<%=link%>/public/images/team.jpg">
+                </div>
+                <div class="col-md-6">
+                    <h2>Welcome to 'leago'</h2>
+                    <p>Wir sind ein junges Developer Team aus Hamburg und haben unglaublich viel Spa&szlig; am Kickern. Deshalb haben wir erkannt, dass die Welt ein Kicker-Tool braucht.</p>
+                    <p>Und genau hier kommt leago ins Spiel. Aus einer scherzhaften Idee wurde ein Konzept. Leago ist in unserer Freizeit entstanden und dient keinen kommerziellen Zwecken. Wer uns trotzdem etwas Gutes tun möchte, kann uns gerne mal einen Kaffee ausgeben.</p>
+                </div>
 
-      </div>
+            </div>
 
-      <!-- Team Member Profiles -->
+            <!-- Team Member Profiles -->
 
-      <div class="row">
+            <div class="row">
 
-        <div class="col-lg-12">
-          <h2 class="page-header">Das Team</h2>
-        </div>
+                <div class="col-sm-12">
+                    <h2 class="page-header">Das Team</h2>
+                </div>
 
-        <div class="col-sm-4">
-        	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
-            <h3>Maik Schmaddebeck <small>Backend Developer und System Designer</small></h3>
-            <p>Maik weiß alles und Maik kann alles.</p>
-            <ul class="list-unstyled list-inline list-social-icons">
-              <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-            </ul>
-        </div>
+                    <div class="col-sm-4">
+                        <img class="img-circle img-responsive" src="<%=link%>/public/images/maik.png" width="200px" height="200px">
+                        <h3>Maik Schmaddebeck <small>Backend Developer und System Designer</small></h3>
+                        <p>Maik mag Kappies.</p>
+                        <ul class="list-unstyled list-inline list-social-icons">
+                            <li class="tooltip-social"><a href="#xing-profile" data-toggle="tooltip" target="blank" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                            <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                            <li class="tooltip-social facebook-link"><a href="#facebook-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                            <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+                        </ul>
+                    </div>
 
-        <div class="col-sm-4">
-        	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
-            <h3>Malte Dammann <small>Web Developer und System Designer</small></h3>
-            <p>Malte hat leitet das Frontend-Dev Teams. Au&szlig;erdem unterst&uuml;tzt er das Backend Team!</p>
-            <ul class="list-unstyled list-inline list-social-icons">
-              <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-            </ul>
-        </div>
+                    <div class="col-sm-4">
+                        <img class="img-circle img-responsive" src="<%=link%>/public/images/malte.png" width="200px" height="200px">
+                        <h3>Malte Dammann <small>Web/Backend Developer und System Designer</small></h3>
+                        <p>Malte mag Haxe.</p>
+                        <ul class="list-unstyled list-inline list-social-icons">
+                            <li class="tooltip-social"><a href="https://www.xing.com/profiles/Malte_Dammann2" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                            <li class="tooltip-social linkedin-link"><a href="https://de.linkedin.com/in/mdammann" target="_blank" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                            <li class="tooltip-social facebook-link"><a href="https://www.facebook.com/malte.da.3" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                            <li class="tooltip-social google-plus-link"><a href="https://google.com/+MalteDa" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+                        </ul>
+                    </div>
 
-        <div class="col-sm-4">
-        	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
-            <h3>Alexander Spottka <small>G&ouml;nnnnnnnnnnnnnnnenenenene</small></h3>
-            <p>Backen! Backen! Backen! Backen! Backen! Backen! Backen! Backen! Brot! Backen! </p>
-            <ul class="list-unstyled list-inline list-social-icons">
-              <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-            </ul>
-        </div>
+                <div class="col-xs-3"></div>                
+                    <div class="col-sm-4 col-xs-10">
+                        <img class="img-circle img-responsive" src="<%=link%>/public/images/alex.png" width="200px" height="200px">
+                        <h3>Alexander Spottka <small>Backend Devoloper und System Designer</small></h3>
+                        <p>Alex mag Dota.</p>
+                        <ul class="list-unstyled list-inline list-social-icons">
+                            <li class="tooltip-social"><a href="#xing-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Xing"><i class="fa fa-xing fa-2x"></i></a></li>
+                            <li class="tooltip-social linkedin-link"><a href="#linkedin-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                            <li class="tooltip-social facebook-link"><a href="#facebook-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                            <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" target="blank" data-toggle="tooltip" data-placement="bottom" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
+                        </ul>
+                    </div>
+       
 
-        <div class="col-sm-4">
-        	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
-            <h3>Louis Chan <small>Testoooo o o o o o o o oo o </small></h3>
-            <p>Macht nixxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx!</p>
-            <ul class="list-unstyled list-inline list-social-icons">
-              <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-            </ul>
-        </div>
+            </div><!-- /.row -->
 
-        <div class="col-sm-4">
-        	<img class="img-circle img-responsive" src="http://placehold.it/200x200">
-            <h3>Lorenz Spitzm&uuml;ller <small>Grafiker</small></h3>
-            <p>Macht heftig klar!</p>
-            <ul class="list-unstyled list-inline list-social-icons">
-              <li class="tooltip-social facebook-link"><a href="#facebook-profile" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
-              <li class="tooltip-social google-plus-link"><a href="#google-plus-profile" data-toggle="tooltip" data-placement="top" title="Google+"><i class="fa fa-google-plus-square fa-2x"></i></a></li>
-            </ul>
-        </div>
-      </div>
+        </div><!-- /.container -->
 
-    </div><!-- /.container -->
+        <div class="container">
 
-    <div class="container">
+            <%@include file="../snipplets/footer.jspf" %>
 
-      <hr>
+        </div><!-- /.container -->
 
-      <footer>
-        <div class="row">
-          <div class="col-lg-12">
-            <p>Copyright &copy; KmS 2013</p>
-          </div>
-        </div>
-      </footer>
-
-    </div><!-- /.container -->
-
-    <!-- Bootstrap core JavaScript -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="../public/js/jquery.js"></script>
-    <script src="../public/js/bootstrap.js"></script>
-    <script src="../public/js/modern-business.js"></script>
-  </body>
+        <!-- Bootstrap core JavaScript -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="<%=link%>/public/js/jquery.js"></script>
+        <script src="<%=link%>/public/js/bootstrap.js"></script>
+        <script src="<%=link%>/public/js/modern-business.js"></script>
+    </body>
 </html>

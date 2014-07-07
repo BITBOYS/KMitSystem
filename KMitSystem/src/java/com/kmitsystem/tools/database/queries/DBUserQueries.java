@@ -49,7 +49,7 @@ public class DBUserQueries {
         return result;
     }
     
-        public static boolean isUsernameExisting(String username) {
+    public static boolean isUsernameExisting(String username) {
         boolean result = false;
         
         try {

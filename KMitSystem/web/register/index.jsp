@@ -12,11 +12,6 @@
 
         <%
             String link = request.getContextPath();
-            
-            List<Error> errors = (ArrayList<Error>) request.getSession().getAttribute("errors");
-            if (errors == null) {
-                errors = new ArrayList<Error>();
-            }
         %>
 
         <title>Sign Up - KmS</title>
@@ -41,20 +36,7 @@
             <div class="row">
 
                 <!-- Alerts -->
-                <%System.out.print("Errors: "+errors);
-                if (errors.size() > 0) {
-                        for (int idx = 0; idx < errors.size(); idx++) {
-                            if (errors.get(idx).getStatus().equals("INFO")) {
-                %>
-
-                      <div class="alert alert-info"> <%= errors.get(idx).getErrorMessage()%> </div>
-
-                <% } else {%>
-                      <div class="alert alert-warning"> <%= errors.get(idx).getErrorMessage()%> </div>  
-                <%   }
-                        }
-                        request.getSession().setAttribute("errors", null);
-                    }%>
+                <%@include file="../snipplets/error.jspf" %>
 
                 <div class="col-lg-12">
                     <h1 class="page-header">Sign Up <small>Viel Spaﬂ beim Kickern!</small></h1>

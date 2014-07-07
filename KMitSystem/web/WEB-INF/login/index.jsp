@@ -10,8 +10,10 @@
         <%@page import="java.util.List"%>
         <%@page import="com.kmitsystem.tools.errorhandling.Error"%> 
 
-        <%  String link = request.getContextPath(); %>
-
+        <%
+            String link = request.getContextPath();
+        %>
+        
         <title>Login - leago</title>
 
         <!-- Bootstrap core CSS -->

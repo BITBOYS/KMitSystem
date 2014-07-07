@@ -48,7 +48,7 @@ public class TeamsCreateServlet extends HttpServlet {
             String password = request.getParameter("password");
             String reenter_password = request.getParameter("reenter_password");
             // @TODO: get the username from the leader out of the session
-            String leader = "Maik";
+            User leader = (User) request.getSession().getAttribute("user");
             
             // prepare the output
             BaseResult result = new BaseResult();
@@ -56,7 +56,7 @@ public class TeamsCreateServlet extends HttpServlet {
             // check if both passwords are equal, if true create the team
             if(password.equals(reenter_password)) {
                 TeamServiceProvider provider = new TeamServiceProvider();
-                CreateTeamInput input = new CreateTeamInput(name, tag, password, leader);
+                CreateTeamInput input = new CreateTeamInput(name, tag, password, leader.getUsername());
                 result = provider.createTeam(input);
 
                 // redirect to the profile of the new team
