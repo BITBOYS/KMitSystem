@@ -2,6 +2,7 @@ CACHE MANIFEST
 
 #Version 0.2
 
+
 CACHE:
 #seiten
 #../../index.jsp
@@ -16,18 +17,17 @@ CACHE:
 #../../snipplets/footer.jspf
 #../../snipplets/header.jspf
 
-
 #css
-../../public/css/css/bootstrap.css
-../../public/css/css/modern-business.css
-../../public/css/font-awesome/css/font-awesome.css
-../../public/css/font-awesome/css/font-awesome.min.css
-../../public/css/font-awesome/fonts/fontawesome-webfont.eot
-../../public/css/font-awesome/fonts/fontawesome-webfont.svg
-../../public/css/font-awesome/fonts/fontawesome-webfont.ttf
-../../public/css/font-awesome/fonts/fontawesome-webfont.woff
-../../public/css/font-awesome/fonts/segoeuil.ttf
-../../public/css/font-awesome/fonts/FontAwesome.otf
+#../../public/css/css/bootstrap.css
+#../../public/css/css/modern-business.css
+#../../public/css/font-awesome/css/font-awesome.css
+#../../public/css/font-awesome/css/font-awesome.min.css
+#../../public/css/font-awesome/fonts/fontawesome-webfont.eot
+#../../public/css/font-awesome/fonts/fontawesome-webfont.svg
+#../../public/css/font-awesome/fonts/fontawesome-webfont.ttf
+#../../public/css/font-awesome/fonts/fontawesome-webfont.woff
+#../../public/css/font-awesome/fonts/segoeuil.ttf
+#../../public/css/font-awesome/fonts/FontAwesome.otf
 
 #images
 ../../public/images/slide1.JPG
@@ -39,10 +39,10 @@ CACHE:
 ../../public/images/alex.png
 
 #js
-../../public/js/bootstrap.js  
-../../public/js/jquery.js 
-../../public/js/modal.js
-../../public/js/modern-business.js
+#../../public/js/bootstrap.js  
+#../../public/js/jquery.js 
+#../../public/js/modal.js
+#../../public/js/modern-business.js
 
 #test
 http://placehold.it/700x450/cccccc/ffffff
