@@ -64,16 +64,6 @@
                 <div class="col-md-12 col-xs-10">
                     <h2 class="page-header">Teamsuche</h2>
 
-                    <div class="row">
-                        <% for (int idx = 0; idx < errors.size(); idx++) { %>
-                        <% if (errors.get(idx).getStatus().equals(Error.ERROR)) {%>
-                        <div class="alert alert-danger"><%= errors.get(idx).getErrorMessage()%></div>
-                        <% } else if (errors.get(idx).getStatus().equals(Error.INFO)) {%>
-                        <div class="alert alert-info"><%= errors.get(idx).getErrorMessage()%></div>
-                        <% }
-                            }%>
-                    </div>
-
                     <div class="row well">
                         <form class="form-horizontal" role="form" action="<%=link%>/teams" method="get">
 
@@ -150,10 +140,10 @@
                 </div>
 
             </div>
+        </div> <!-- row --> 
 
             <% }
                 }%>
-        </div> <!-- row --> 
 
     </div><!-- /.container -->
 

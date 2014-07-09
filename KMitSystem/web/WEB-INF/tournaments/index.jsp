@@ -65,16 +65,6 @@
                 <div class="col-md-12 col-xs-10">
                     <h2 class="page-header">Turniersuche</h2>
 
-                    <div class="row">
-                        <% for (int idx = 0; idx < errors.size(); idx++) { %>
-                        <% if (errors.get(idx).getStatus().equals(Error.ERROR)) {%>
-                        <div class="alert alert-danger"><%= errors.get(idx).getErrorMessage()%></div>
-                        <% } else if (errors.get(idx).getStatus().equals(Error.INFO)) {%>
-                        <div class="alert alert-info"><%= errors.get(idx).getErrorMessage()%></div>
-                        <% }
-                            }%>
-                    </div>
-
                     <div class="row well">
                         <form class="form-horizontal" role="form" action="<%=link%>/tournaments" method="get">
 
@@ -99,7 +89,7 @@
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-sm-6 col-sm-offset-1">
 
                                 <div class="form-group">
@@ -136,25 +126,17 @@
                 </div>
             </div> <!-- row --> 
 
-            <div class="row">
-                <div class="col-xs-2"></div>
-                <div class="col-md-12 col-xs-8">
+            <% if (tournaments != null) { %>
 
-                    <% if (tournaments != null) { %>
-
-                    <% if (errors.size() > 0) { %>
-                    <div class="alert alert-info ">Es wurden keine Turniere geunden</div>
-                    <% } else { %>
-                    <% if (tournaments.size() == 1) {%>
-                    <hr>
-                    <div class="alert alert-success">Es wurde <%=tournaments.size()%> Turnier gefunden</div>
-                    <% } else {%>
-                    <hr>
-                    <div class="alert alert-success">Es wurden <%=tournaments.size()%> Turniere gefunden</div>
-                    <% } %>
-                    <% } %>
-                </div>
-            </div> <!-- row --> 
+            <% if (errors.size() > 0) { %>
+            <div class="alert alert-info ">Es wurden keine Turniere geunden</div>
+            <% } else { %>
+            <% if (tournaments.size() == 1) {%>
+            <div class="alert alert-success">Es wurde <%=tournaments.size()%> Turnier gefunden</div>
+            <% } else {%>
+            <div class="alert alert-success">Es wurden <%=tournaments.size()%> Turniere gefunden</div>
+            <% } %>
+            <% }%>
 
             <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
 
