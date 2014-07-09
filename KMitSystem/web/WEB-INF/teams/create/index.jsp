@@ -10,21 +10,20 @@
         <meta name="description" content="Teams erstellen">
         <meta name="author" content="Malte Dammann">
 
-        <% 
-            String path = request.getContextPath();
-            
+        <%            String path = request.getContextPath();
+
             List<com.kmitsystem.tools.errorhandling.Error> errors = (ArrayList<com.kmitsystem.tools.errorhandling.Error>) request.getAttribute("errors");
             if (errors == null) {
                 errors = new ArrayList<Error>();
             }
-            
+
             List<User> users = (ArrayList<User>) request.getAttribute("users");
             if (users == null) {
                 users = new ArrayList<User>();
             }
         %>
 
-        <title>Teams Erstellen - KmS</title>
+        <title>Teams Erstellen - Leago</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<%=path%>/public/css/css/bootstrap.css" rel="stylesheet">
@@ -54,78 +53,83 @@
                 </div>
             </div><!-- /.row -->
 
-            <div class="row">
-                   <div class="col-lg-12">
-                       <div class="row">
-                           <form class="form-horizontal" role="form" action="<%=path%>/teams/create" method="post">
 
-                               <div class="col-lg-4 col-lg-offset-1">
-                                   <div class="form-group">
-                                       <label for="inputTeamname" class="col-sm-2 control-label">Name</label>
-                                       <div class="col-lg-8">
-                                           <input type="text" class="form-control" name="name" placeholder="Teamname" required>
-                                       </div>
-                                   </div>
-                                   
-                                   <div class="form-group">
-                                       <label for="inputTurniername" class="col-sm-2 control-label">Tag</label>
-                                       <div class="col-lg-8">
-                                           <input type="text" class="form-control" name="tag" placeholder="Tag" required>
-                                       </div>
-                                   </div>
-                               </div>
-                               
-                               <div class="col-lg-6 col-lg-offset-1">
-                                    <div class="form-group">
-                                        <label for="inputUsername" class="col-sm-2 control-label">Passwort</label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control" name="password" placeholder="Passwort">
-                                        </div>
-                                    </div>
+            <div class="row">  
+                <div class="col-xs-1"></div>
+                <div class="col-sm-8 col-sm-offset-1 col-xs-10">
+                    <h2 class="page-header">Teamdatenblatt</h2>
 
-                                    <div class="form-group">
-                                        <label for="inputUsername" class="col-sm-2 control-label">Passwort wiederholen</label>
-                                        <div class="col-lg-6">
-                                            <input type="text" class="form-control" name="reenter_password" placeholder="Passwort wiederholen">
-                                        </div>
-                                    </div>
-                               </div>
-                               
-                               <div class="form-group">
-                                    <div class="col-lg-4 col-lg-offset-1">
-                                       <label for="userAuswahl" class="col-sm-2 control-label">User</label>
-                                       <div class="col-lg-8">
-                                           <input list="userAuswahl" name="user" autocomplete="off" class="form-control" >
-                                            <datalist id="userAuswahl">
-                                                <% for(int idx = 0; idx < users.size(); idx++) {%>
-                                                    <option value="<%= users.get(idx).getUsername() %>"> 
-                                                <% } %>
-                                            </datalist>
-                                            <a href="#">User hinzuf&uuml;gen</a>
-                                       </div>
-                                    </div>
-                               </div>
+                    <div class="row">
+                        <% for (int idx = 0; idx < errors.size(); idx++) { %>
+                        <% if (errors.get(idx).getStatus().equals(Error.ERROR)) {%>
+                        <div class="alert alert-danger"><%= errors.get(idx).getErrorMessage()%></div>
+                        <% } else if (errors.get(idx).getStatus().equals(Error.INFO)) {%>
+                        <div class="alert alert-info"><%= errors.get(idx).getErrorMessage()%></div>
+                        <% }
+                            }%>
+                    </div>
 
-                                <div class="form-group col-lg-4 col-lg-offset-1">
-                                    <div class="col-md-offset-6">
-                                        <button type="submit" class="btn btn-primary"><span class="fa fa-search"> Erstellen <i class="fa fa-angle-right"></i></button>
-                                    </div>
+                    <div class="row well">
+                        <form class="form-horizontal" role="form" action="<%=path%>/teams/create" method="post">
+
+                            <div class="form-group">
+                                <label for="inputTeamname" class="col-sm-3 control-label">Name</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="name" placeholder="Teamname" required>
                                 </div>
-                           </form>
-                        </div>
-                           
-                        <div class="row">
-                            <% for(int idx = 0; idx < errors.size(); idx++) { %>
-                                <% if(errors.get(idx).getStatus().equals(Error.ERROR)) { %>
-                                <div class="alert alert-danger"><%= errors.get(idx).getErrorMessage() %></div>
-                                <% } else if(errors.get(idx).getStatus().equals(Error.INFO)) { %>
-                                <div class="alert alert-info"><%= errors.get(idx).getErrorMessage() %></div>
-                            <% } } %>
-                        </div>
-                           
-                   </div>
-               </div>
-           </div> <!-- row --> 
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputTurniername" class="col-sm-3 control-label">Tag</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="tag" placeholder="Tag" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputUsername" class="col-sm-3 control-label">Passwort</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="password" placeholder="Passwort">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="inputUsername" class="col-sm-3 control-label">Passwort wiederholen</label>
+                                <div class="col-sm-7">
+                                    <input type="text" class="form-control" name="reenter_password" placeholder="Passwort wiederholen">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="userAuswahl" class="col-sm-3 control-label">User</label>
+                                <div class="col-sm-7">
+                                    <input list="userAuswahl" name="user" autocomplete="off" class="form-control" >
+                                    <datalist id="userAuswahl">
+                                        <% for (int idx = 0; idx < users.size(); idx++) {%>
+                                        <option value="<%= users.get(idx).getUsername()%>"> 
+                                            <% }%>
+                                    </datalist>
+                                    <a href="#">User hinzuf&uuml;gen</a>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-sm-7 col-sm-offset-3">
+                                    <small>*Nur der Teamname ist Pflicht. Alles andere kannst du auf dem Teamdashboard bearbeiten.</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-8 col-xs-10">
+                                    <button type="submit" class="btn btn-primary"><span class="fa fa-pencil"> Erstellen <i class="fa fa-angle-right"></i></button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div> <!-- row --> 
+
 
         </div><!-- /.container -->
 
