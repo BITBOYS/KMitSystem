@@ -4,10 +4,10 @@ CACHE MANIFEST
 
 CACHE:
 #seiten
-../../index.jsp
-../../about/index.jsp
-../../faq/index.jsp
-../../impressum/index.jsp
+#../../index.jsp
+#../../about/index.jsp
+#../../faq/index.jsp
+#../../impressum/index.jsp
 #? ../../contact/index.jsp
 #../../error/index.jsp
 
