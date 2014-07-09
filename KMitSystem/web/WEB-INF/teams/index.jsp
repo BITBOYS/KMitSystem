@@ -20,7 +20,7 @@
         <meta name="description" content="Teams Page">
         <meta name="author" content="Malte Dammann">
 
-        <title>Teams - leago</title>
+        <title>Teams - Leago</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
@@ -46,56 +46,69 @@
                         <li class="active">Teams</li>
                     </ol>
                 </div>
-            </div>
 
-            <%if (user != null) {%>
-            <div class="row">
-                <div class="col-xs-3">
-                </div>
-                <div class="col-lg-offset-10 col-xs-6">
-                    <a class="btn btn-success" href="<%=link%>/teams/create"><span class="fa fa-pencil"> Team erstellen <i class="fa fa-angle-right"></i></a>
-                </div>
-            </div><!-- .row -->
-            <%}%>
+                <%if (user != null) {%>
+                <div class="row">
+                    <div class="col-xs-3">
+                    </div>
+                    <div class="col-lg-offset-10 col-xs-2">
+                        <a class="btn btn-success" href="<%=link%>/teams/create"><span class="fa fa-pencil"> Team erstellen <i class="fa fa-angle-right"></i></a>
+                    </div>
+                </div><!-- .row -->
+                <%}%>
+
+            </div>
 
             <div class="row">
                 <div class="col-xs-1"></div>
                 <div class="col-md-12 col-xs-10">
                     <h2 class="page-header">Teamsuche</h2>
-                    <div class="row well">
-                        <form class="form-horizontal" role="form" action="<%=link%>/teams">
 
-                            <div class="col-lg-4 col-lg-offset-1">
+                    <div class="row">
+                        <% for (int idx = 0; idx < errors.size(); idx++) { %>
+                        <% if (errors.get(idx).getStatus().equals(Error.ERROR)) {%>
+                        <div class="alert alert-danger"><%= errors.get(idx).getErrorMessage()%></div>
+                        <% } else if (errors.get(idx).getStatus().equals(Error.INFO)) {%>
+                        <div class="alert alert-info"><%= errors.get(idx).getErrorMessage()%></div>
+                        <% }
+                            }%>
+                    </div>
+
+                    <div class="row well">
+                        <form class="form-horizontal" role="form" action="<%=link%>/teams" method="get">
+
+                            <div class="col-sm-4 col-sm-offset-1">
 
                                 <div class="form-group">
                                     <label for="inputTeamname" class="col-sm-2 control-label">Team</label>
-                                    <div class="col-lg-8">
+                                    <div class="col-sm-10">
                                         <input type="text" class="form-control" name="team" placeholder="Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="inputTurniername" class="col-sm-2 control-label">Turnier</label>
-                                    <div class="col-lg-8">
+                                    <div class="col-sm-10">
                                         <input type="text" class="form-control" name="tournament" placeholder="Name">
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="col-lg-6 col-lg-offset-1">
+                            <div class="col-sm-5 col-sm-offset-1">
 
                                 <div class="form-group">
-                                    <label for="inputUsername" class="col-sm-2 control-label">User</label>
-                                    <div class="col-lg-6 col-offset-2">
+                                    <label for="inputUsername" class="col-sm-4 control-label">User</label>
+                                    <div class="col-sm-6 ">
                                         <input type="text" class="form-control" name="user" placeholder="Name">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="inputDate" class="col-sm-3 control-label">Gr&uuml;ndungsdatum</label>
+                                    <label for="inputDate" class="col-sm-4 control-label">Gr&uuml;ndungsdatum</label>
                                     <div class="col-lg-6  col-offset-2">
                                         <input type="date" name="date">
                                     </div>
                                 </div>
+                                <hr>
                                 <p class="help-block">Suche nach Teamnamen, speziell nach Teams die in bestimmtet Turnieren spielen oder in den bestimmte User Mitglied sind.</p>
 
                                 <div class="form-group">
@@ -139,7 +152,7 @@
             </div>
 
             <% }
-            }%>
+                }%>
 
             <div class="container">
 

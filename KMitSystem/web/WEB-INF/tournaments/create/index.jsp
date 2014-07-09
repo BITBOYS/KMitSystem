@@ -157,7 +157,7 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <div class="col-md-offset-8 col-xs-10">
+                                <div class="col-md-offset-8 col-xs-4">
                                     <button type="submit" class="btn btn-primary"><span class="fa fa-pencil"> Erstellen <i class="fa fa-angle-right"></i></button>
                                 </div>
                             </div>
