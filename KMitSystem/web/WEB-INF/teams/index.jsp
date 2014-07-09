@@ -1,4 +1,5 @@
 
+<%@page import="com.kmitsystem.tools.DateKonverter"%>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -130,7 +131,7 @@
             <div class="col-md-10 col-xs-10">
                 <h3><%= teams.get(idx).getName()%></h3>
                 <h4>Leader: <a href="<%=link%>/user/profile?user=<%=teams.get(idx).getLeader().getUsername()%>"><%=teams.get(idx).getLeader().getUsername()%></a></h4>
-                <p>Gegr&uuml;ndet: <%= teams.get(idx).getCreate_date()%></p>
+                <p>Gegr&uuml;ndet: <%= DateKonverter.getWebDateString(teams.get(idx).getCreate_date()) %></p>
                 <div class="col-xs-6"></div>
                 <div class="col-sm-offset-10"> 
                     <a class="btn btn-success" href="<%=link%>/team/profile?team=<%=teams.get(idx).getName()%>">Zum Team <i class="fa fa-angle-right"></i></a>
