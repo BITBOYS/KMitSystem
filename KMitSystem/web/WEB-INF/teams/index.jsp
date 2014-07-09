@@ -57,7 +57,7 @@
                 </div><!-- .row -->
                 <%}%>
 
-            </div>
+            </div><!-- .row -->
 
             <div class="row">
                 <div class="col-xs-1"></div>
@@ -153,18 +153,21 @@
 
             <% }
                 }%>
+        </div> <!-- row --> 
 
-            <div class="container">
+    </div><!-- /.container -->
 
-                <%@include file="../../snipplets/footer.jspf" %>
+    <div class="container">
 
-            </div><!-- /.container -->
+        <%@include file="../../snipplets/footer.jspf" %>
 
-            <!-- Bootstrap core JavaScript -->
-            <!-- Placed at the end of the document so the pages load faster -->
-            <script src="<%=link%>/public/js/jquery.js"></script>
-            <script src="<%=link%>/public/js/bootstrap.js"></script>
-            <script src="<%=link%>/public/js/modern-business.js"></script>
+    </div><!-- /.container -->
 
-    </body>
+    <!-- Bootstrap core JavaScript -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="<%=link%>/public/js/jquery.js"></script>
+    <script src="<%=link%>/public/js/bootstrap.js"></script>
+    <script src="<%=link%>/public/js/modern-business.js"></script>
+
+</body>
 </html>
