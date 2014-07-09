@@ -55,7 +55,6 @@ public class TeamDashboardServlet extends HttpServlet {
         // get the team
         Team team = DBTeamQueries.getTeam(teamname);
         
-        
         if(!((User) request.getSession().getAttribute("user")).getUsername().equals(team.getLeader().getUsername())) {
             response.sendRedirect(request.getContextPath() + "/teams");
         }

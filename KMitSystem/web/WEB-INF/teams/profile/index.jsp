@@ -48,13 +48,7 @@
                     </ol>
                 </div>
             </div>
-                            
-            <% if(user != null && user.getUsername().equals(team.getLeader().getUsername())) {%>    
-                <form method="post" action="<%=link%>/team/dashboard" id="<%=team.getName()%>">
-                    <input type="text" value="<%=team.getName()%>" name="team" style="display:none">
-                    <a onclick="document.getElementById('<%=team.getName()%>').submit();" class="btn btn-primary"><span class="fa fa-pencil"> Team Dashboard <i class="fa fa-angle-right"></i></a>
-                </form>
-            <% } %>
+                           
 
             <div class="row">
 
@@ -63,6 +57,9 @@
                         <li class="active"><a href="#member" data-toggle="tab">Mitglieder</a></li>
                         <li><a href="#tournaments" data-toggle="tab">Turniere</a></li>
                         <li><a href="#statistics" data-toggle="tab">Statistiken</a></li>
+                        <%if (user != null && team.getLeader().getUsername().equals(user.getUsername())) {%>
+                            <li><a href="#dashboard" data-toggle="tab">Dashboard</a></li>
+                        <%}%>
                     </ul>
                     <div id="myTabContent" class="tab-content">
 
@@ -181,14 +178,235 @@
 
                             </div><!-- /.row -->
 
-
                         </div>
-                    </div>
+                                                    
+                        <div class="tab-pane fade" id="dashboard">
+                            <i class="fa fa-gears pull-left fa-4x"></i>
+                            <p>Nimm &Auml;nderungen an deinem Team vor</p>
+
+                            <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
+                                <!-- modal caller -->
+                                <a href="#modal-dialog-team" class="modal-toggle btn btn-danger" data-toggle="modal" data-modal-type="confirm" data-modal-title="Delete Property" data-modal-text="Are you sure you want to delete the team?" data-modal-confirm-url="#"><span class="fa fa-warning"> Team l&ouml;schen <i class="fa fa-angle-right"></i></span></a>
+                            </div>
+                            
+<!--####################################################################################-->
+<!--# T E A M M I T G L I E D E R ######################################################-->
+<!--####################################################################################-->
+                                                
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Teammitglieder</h3>
+                                </div>
+
+                                <div class="col-lg-6 col-lg-offset-2 col-md-6 hero-feature">
+                                    <div class="caption">
+                                        <div class="panel panel-default">
+                                            <!-- Default panel contents -->
+                                            <div class="panel-heading">Teammitglieder</div>
+
+                                            <!-- Table -->
+                                            <table class="table">
+                                                <tbody>
+                                                    <% for (int idx = 0; idx < member.size(); idx++) {%>
+                                                    <tr>
+                                                        <td><a href="<%=link%>/user/profile?user=<%=member.get(idx).getUsername()%>"><%=member.get(idx).getUsername()%></a> </td>
+                                                        <td>
+                                                            <form method="post" action="<%=link%>/team/profile?team=<%=team.getName()%>&action=kick" id="<%=member.get(idx).getUsername()%>">
+                                                                <input type="text" value="<%=member.get(idx).getUsername()%>" name="kick_user" style="display:none">
+                                                                <a onclick="document.getElementById('<%=member.get(idx).getUsername()%>').submit();" class="btn btn-danger">Entfernen <i class="fa fa-angle-right"></i></a>
+                                                            </form>
+                                                        </td> 
+                                                    </tr>  
+                                                    <% } %>
+                                                </tbody>
+                                            </table>
+                                        </div>     
+                                    </div>
+                                </div>
+                            </div>                    
+
+<!--####################################################################################-->
+<!--# A K T U E L L E # T U R N I E R E ################################################-->
+<!--####################################################################################-->
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Aktuelle Turniere</h3>
+                                </div>
+
+                                <div class="col-lg-6 col-lg-offset-2 col-md-6 hero-feature">
+                                    <div class="caption">
+                                        <div class="panel panel-default">
+                                            <!-- Default panel contents -->
+                                            <div class="panel-heading">Turniere</div>
+
+                                            <!-- Table -->
+                                            <table class="table">
+                                                <tbody>
+                                                    <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
+                                                    <tr>
+                                                        <td><a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>"><%=tournaments.get(idx).getName()%></a> </td>
+                                                        <td>
+                                                            <form method="post" action="<%=link%>/team/profile?team=<%=team.getName()%>&action=leaveT" id="<%=tournaments.get(idx).getName()%>">
+                                                                <input type="text" value="<%=tournaments.get(idx).getName()%>" name="leave_tournament" style="display:none">
+                                                                <a onclick="document.getElementById('<%=tournaments.get(idx).getName()%>').submit();" class="btn btn-danger">Entfernen <i class="fa fa-angle-right"></i></a>
+                                                            </form>
+                                                        </td> 
+                                                    </tr>  
+                                                    <% } %>
+                                                    <% if (tournaments.size() == 0) { %>
+                                                    <tr>Das Team ist in keinem Turnier.</tr>
+                                                    <% }%>
+                                                </tbody>
+                                            </table>
+                                        </div>     
+                                    </div>
+                                </div>
+                            </div> 
+
+<!--####################################################################################-->
+<!--# T E A M N A M E # Ä N D E R N ####################################################-->
+<!--####################################################################################-->                                                
+                                                
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Name &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_name" action="<%=link%>/team/profile?team=<%=team.getName()%>" method="post">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Name</label>
+                                            <div class="col-sm-6 ">
+                                                <input type="text" class="form-control" name="name_new" placeholder="'<%=team.getName()%>'" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div> 
+                            </div>
+                                            
+<!--####################################################################################-->
+<!--# T E A M T A G # Ä N D E R N ######################################################-->
+<!--####################################################################################--> 
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Tag &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_tag" action="<%=link%>/team/profile?team=<%=team.getName()%>" method="post">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Tag</label>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" name="tag_new" placeholder="neuer Tag" required>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>     
+                            </div>
+
+<!--####################################################################################-->
+<!--# T E A M P A S S W O R T # Ä N D E R N ############################################-->
+<!--####################################################################################--> 
+                                            
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Passwort &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_password" action="<%=link%>/team/profile?team=<%=team.getName()%>" method="post">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Passwort</label>
+                                            <div class="col-sm-6">
+                                                <input type="password" class="form-control" name="password_old" placeholder="altes Passwort">
+                                            </div>
+                                            <div class="col-sm-6 col-md-offset-2">
+                                                <input type="password" class="form-control" name="password_new" placeholder="neues Passwort">
+                                                <input type="password" class="form-control" name="password_new2" placeholder="neues Passwort">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+<!--####################################################################################-->
+<!--# T E A M L E I T E R # Ä N D E R N ################################################-->
+<!--####################################################################################-->                                         
+                                        
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h3 class="page-header">Teamleiter &auml;ndern</h3>
+                                    <form class="form-horizontal" role="form" name="change_leader" action="<%=link%>/team/profile?team=<%=team.getName()%>" method="post">
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label">Teamleiter</label>
+                                            <div class="col-sm-6">
+                                                <input type="password" class="form-control" name="password" placeholder="Team-Passwort">
+                                            </div>
+                                            <div class="col-lg-6 col-md-offset-2">
+                                                <input list="leaderAuswahl" name="leader_new" class="form-control" autocomplete="off" placeholder="Neuer Leader" required>
+                                                <datalist id="userAuswahl">
+                                                    <option value=""> 
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-2 col-sm-10">
+                                                <button class="btn btn-primary btn-default" type="submit">
+                                                    &Auml;ndern <i class="fa fa-angle-right"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                                        
+                                        
+                        </div>
+
+                    </div><!-- /Tab closed -->                            
+                    </div><!-- /Column closed -->
                 </div>
 
             </div><!-- /.row -->
 
         </div><!-- /.container -->
+ 
+<!--####################################################################################-->
+<!--# T E A M ## L Ö S C H E N ## M O D A L ############################################-->
+<!--####################################################################################-->         
+        
+        <!-- Alert to confirm the delet -->
+        <div id="modal-dialog-team" class="modal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h3>L&ouml;schen best&auml;tigen</h3>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bilst du sicher, dass du das Team <b>'<%=team.getName()%>'</b> l&ouml;schen willst?</p>
+                        <p>Alle Statistiken werden gel&ouml;scht. Du kannst das Team nicht wieder herstellen.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form method="post" action="<%=link%>/team/dashboard?action=delete" id="<%=team.getName()%>">
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Abbrechen</a>
+                            <input type="text" value="<%=team.getName()%>" name="delete_team" style="display:none">
+                            <a href="#" id="btnYes" class="btn btn-primary">L&ouml;schen</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="container">
 

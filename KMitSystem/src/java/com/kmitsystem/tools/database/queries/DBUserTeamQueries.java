@@ -140,8 +140,8 @@ public class DBUserTeamQueries {
                                             + " goals_conceded, wins, defeats, tournament_wins, tournament_participations"
                                             + " FROM  user, user_team"
                                             + " WHERE team = '" + teamname + "'"
-                                            + " AND (quit_dat is NULL OR quit_dat = '')"
-                                            + "   AND username = user" );
+                                            + " AND (quit_date is NULL OR quit_date = '')"
+                                            + "   AND username = user");
             resultSet.first();
             
             while(!resultSet.isAfterLast()) {
