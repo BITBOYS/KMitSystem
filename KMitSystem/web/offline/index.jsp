@@ -6,7 +6,7 @@
         <meta name="description" content="Offline Page">
         <meta name="author" content="Malte Dammann">
 
-        <title>Offline - leago</title>
+        <title>Offline - Leago</title>
 
         <%
                 String link = request.getContextPath();
