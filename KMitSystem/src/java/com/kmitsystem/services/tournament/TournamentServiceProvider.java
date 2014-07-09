@@ -164,10 +164,14 @@ public class TournamentServiceProvider {
         String finished = input.getTournamentIsFinished();
         String outstanding = input.getTournamentIsoutstanding();
 
+        
         // call the database
         // search tournament
         if (tournament_name != null && !tournament_name.equals("")) {
-            result.addTournament(DBTournamentQueries.getTournament(tournament_name));
+//            Tournament t = DBTournamentQueries.getTournament(tournament_name);
+//            if (!result.getTournaments().contains(t)) {
+                result.addTournament(DBTournamentQueries.getTournament(tournament_name));
+//            }
         }
 
         // search team
@@ -198,6 +202,13 @@ public class TournamentServiceProvider {
         // search outstanding
         if ("on".equals(outstanding)) {
             result.addTournaments(DBTournamentQueries.getTournamentsRunningFinished('o'));
+        }
+
+        // search after every team, if the user gives no input
+        if (user_name != null && tournament_name != null && team_name != null) {
+            if (user_name.equals("") && team_name.equals("") && tournament_name.equals("")) {
+                result.addTournaments(DBTournamentQueries.getAllTournaments());
+            }
         }
 
         // write the errors into the result object and empty the ErrorHandler
