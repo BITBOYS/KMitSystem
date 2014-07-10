@@ -219,7 +219,7 @@
                                     <h3 class="page-header">Turnier-Teams</h3>
                                 </div>
 
-                                <div class="col-lg-6 col-lg-offset-2 col-md-6 hero-feature">
+                                <div class="col-sm-4 col-lg-offset-2 col-md-6 hero-feature">
                                     <div class="caption">
                                         <div class="panel panel-default">
                                             <!-- Default panel contents -->
@@ -230,12 +230,19 @@
                                                 <tbody>
                                                     <% for (int idx = 0; idx < teams.size(); idx++) {%>
                                                     <tr>
-                                                        <td><a href="<%=link%>/team/profile?team=<%=teams.get(idx).getName()%>"><%=teams.get(idx).getName()%></a> </td>
                                                         <td>
-                                                            <form method="post" action="<%=link%>/team/dashboard?action=kick" id="<%=teams.get(idx).getName()%>">
-                                                                <input type="text" value="<%=teams.get(idx).getName()%>" name="kick_team" style="display:none">
-                                                                <a onclick="document.getElementById('<%=teams.get(idx).getName()%>').submit();" class="btn btn-danger">Entfernen <i class="fa fa-angle-right"></i></a>
-                                                            </form>
+                                                            <div class="col-md-9">
+                                                                <ul class="nav nav-pills">
+                                                                    <li class="caption"><a href="<%=link%>/team/profile?team=<%=teams.get(idx).getName()%>"><%=teams.get(idx).getName()%></a> 
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <form method="post" action="<%=link%>/team/profile?action=kick" id="<%=teams.get(idx).getName()%>">
+                                                                    <input type="text" value="<%=teams.get(idx).getName()%>" name="kick_team" style="display:none">
+                                                                    <a onclick="document.getElementById('<%=teams.get(idx).getName()%>').submit();" class="btn btn-danger">Entfernen <i class="fa fa-angle-right"></i></a>
+                                                                </form>
+                                                            </div>
                                                         </td> 
                                                     </tr>  
                                                     <% } %>
@@ -252,7 +259,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h3 class="page-header">Name &auml;ndern</h3>
-                                    <form class="form-horizontal" role="form" name="change_name" action="<%=link%>/tournament/dashboard" method="post">
+                                    <form class="form-horizontal" role="form" name="change_name" action="<%=link%>/tournament/profile" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Name</label>
                                             <div class="col-sm-6 ">
@@ -273,7 +280,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h3 class="page-header">Passwort &auml;ndern</h3>
-                                    <form class="form-horizontal" role="form" name="change_password" action="<%=link%>/tournament/dashboard">
+                                    <form class="form-horizontal" role="form" name="change_password" action="<%=link%>/tournament/profile">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Passwort</label>
                                             <div class="col-sm-6">
@@ -297,7 +304,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h3 class="page-header">Turnierleiter &auml;ndern</h3>
-                                    <form class="form-horizontal" role="form" name="change_leader" action="<%=link%>/tournament/dashboard" method="post">
+                                    <form class="form-horizontal" role="form" name="change_leader" action="<%=link%>/tournament/profile" method="post">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Turnierleiter</label>
                                             <div class="col-sm-6">
@@ -323,7 +330,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h3 class="page-header">Beschreibung &auml;ndern</h3>
-                                    <form class="form-horizontal" role="form" name="change_description" action="<%=link%>/tournament/dashboard">
+                                    <form class="form-horizontal" role="form" name="change_description" action="<%=link%>/tournament/profile">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Neuer Turnierbeschreibung</label>
                                             <div class="col-sm-6">
@@ -344,7 +351,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h3 class="page-header">Austragungsort &auml;ndern</h3>
-                                    <form class="form-horizontal" role="form" name="change_venue" action="<%=link%>/tournament/dashboard">
+                                    <form class="form-horizontal" role="form" name="change_venue" action="<%=link%>/tournament/profile">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Neuer Ort</label>
                                             <div class="col-sm-6">
@@ -365,7 +372,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h3 class="page-header">Spieltage &auml;ndern</h3>
-                                    <form class="form-horizontal" role="form" name="change_matchdays" action="<%=link%>/tournament/dashboard">
+                                    <form class="form-horizontal" role="form" name="change_matchdays" action="<%=link%>/tournament/profile">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Spieltage</label>
                                             <div class="col-sm-6">
@@ -385,7 +392,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <h3 class="page-header">Datum &auml;ndern</h3>
-                                    <form class="form-horizontal" role="form" name="change_start" action="<%=link%>/tournament/dashboard">
+                                    <form class="form-horizontal" role="form" name="change_start" action="<%=link%>/tournament/profile">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Startdatum</label>
                                             <div class="col-sm-6">
@@ -399,7 +406,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <form class="form-horizontal" role="form" name="change_end" action="<%=link%>/tournament/dashboard">
+                                    <form class="form-horizontal" role="form" name="change_end" action="<%=link%>/tournament/profile">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Enddatum</label>
                                             <div class="col-sm-6">
@@ -413,7 +420,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <form class="form-horizontal" role="form" name="change_term" action="<%=link%>/tournament/dashboard">
+                                    <form class="form-horizontal" role="form" name="change_term" action="<%=link%>/tournament/profile">
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label">Anmeldefrist</label>
                                             <div class="col-sm-6">
@@ -458,7 +465,7 @@
                         <p>Alle Statistiken werden gel&ouml;scht. Du kannst das Turnier nicht wieder herstellen.</p>
                     </div>
                     <div class="modal-footer">
-                        <form method="post" action="<%=link%>/tournament/dashboard?action=delete" id="<%=tournament.getName()%>">
+                        <form method="post" action="<%=link%>/tournament/profile?action=delete" id="<%=tournament.getName()%>">
                             <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Abbrechen</a>
                             <input type="text" value="<%=tournament.getName()%>" name="delete_tournament" style="display:none">
                             <a href="#" id="btnYes" class="btn btn-primary">L&ouml;schen</a>
@@ -474,6 +481,6 @@
         <script src="<%=link%>/public/js/bootstrap.js"></script>
         <script src="<%=link%>/public/js/modern-business.js"></script>
         <script src="<%=link%>/public/js/modal.js"></script>
-        
+
     </body>
 </html>
