@@ -14,7 +14,7 @@
             String link = request.getContextPath();
         %>
 
-        <title>Sign Up - KmS</title>
+        <title>Sign Up - Leago</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">

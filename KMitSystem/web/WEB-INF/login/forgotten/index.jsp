@@ -10,7 +10,7 @@
         <%@page import="java.util.List"%>
         <%@page import="com.kmitsystem.tools.errorhandling.Error"%>
 
-        <title>Password Forgotten - KmS</title>
+        <title>Password Forgotten - Leago</title>
         
         <%
             String link = request.getContextPath();
@@ -95,7 +95,7 @@
 
         <div class="container">
 
-            <%@include file="../../snipplets/footer.jspf" %>
+            <%@include file="../../../snipplets/footer.jspf" %>
 
         </div><!-- /.container -->
         <!-- Bootstrap core JavaScript -->

@@ -6,7 +6,7 @@
         <meta name="description" content="Impressum">
         <meta name="author" content="Malte Dammann">
 
-        <title>Impressum - leago</title>
+        <title>Impressum - Leago</title>
 
         <%
             String link = request.getContextPath();
@@ -48,7 +48,7 @@
                 <hr>
 
                 <h3>Nutzungsbedingungen</h3>
-                <p>dede de de d  ed ed ede d ededede d ed ed e de d eded<br>Euer leago Team</p>
+                <p>dede de de d  ed ed ede d ededede d ed ed e de d eded<br>Euer Leago Team</p>
                 <hr>
 
                 <h3>Datenschutzhinweis</h3>

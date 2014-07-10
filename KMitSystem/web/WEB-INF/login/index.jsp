@@ -14,7 +14,7 @@
             String link = request.getContextPath();
         %>
         
-        <title>Login - leago</title>
+        <title>Login - Leago</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
@@ -75,7 +75,7 @@
 
         <div class="container">
 
-            <%@include file="../snipplets/footer.jspf" %>
+            <%@include file="../../snipplets/footer.jspf" %>
 
         </div><!-- /.container -->
 

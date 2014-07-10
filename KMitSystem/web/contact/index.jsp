@@ -6,7 +6,7 @@
         <meta name="description" content="Kontaktinformationen">
         <meta name="author" content="Malte Dammann">
 
-        <title>Kontakt - leago</title>
+        <title>Kontakt - Leago</title>
 
         <%
             String link = request.getContextPath();
@@ -32,7 +32,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Kontakt <small>We'd Love to Hear From You!</small></h1>
+                    <h1 class="page-header">Contact <small>We'd Love to Hear From You!</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="<%=link%>">Home</a></li>
                         <li class="disabled"><a href="#">Other Pages</a></li>
@@ -52,7 +52,7 @@
                 <div class="col-sm-8">
                     <h3>Let's Get In Touch!</h3>
                     <p>Wenn du Fragen zum Tool oder uns hast, einfach mal 'Hallo' sagen willst oder dir was auf dem Herzen liegt, schreib uns! Das kannst du einfach über das Formaular machen. Wir w&uuml;rden uns sehr &uuml;ber Anregungen oder W&uuml;nsche freuen! Nat&uuml;rlich trefft ihr uns auch auf Facebook und Konsorten. Aber nicht auf Twiddrr! </p>
-                    <p>Euer leago-Team <strong> Malte, Maik und Alex</strong></p>
+                    <p>Euer Leago-Team <strong> Malte, Maik und Alex</strong></p>
                     <form role="form" method="POST" action="#">
                         <div class="row">
                             <div class="form-group col-lg-4">
@@ -85,7 +85,7 @@
                 </div>
 
                 <div class="col-sm-4">
-                    <h3>leago</h3>
+                    <h3>Leago</h3>
                     <h4>Dein Kicker-Tool</h4>
                     <p>
                         Hamburg City No1<br>
