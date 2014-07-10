@@ -1,4 +1,4 @@
-CACHE MANIFEST
+#CACHE MANIFEST
 
 #Version 0.2
 
@@ -45,7 +45,7 @@ CACHE:
 #../../public/js/modern-business.js
 
 #test
-http://placehold.it/700x450/cccccc/ffffff
+#http://placehold.it/700x450/cccccc/ffffff
 
 
 NETWORK:
