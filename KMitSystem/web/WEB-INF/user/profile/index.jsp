@@ -308,7 +308,7 @@
 
         <div class="container">
 
-            <%@include file="../../snipplets/footer.jspf" %>
+            <%@include file="../../../snipplets/footer.jspf" %>
 
         </div><!-- /.container -->
 
