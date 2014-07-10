@@ -98,16 +98,16 @@ public class Tournament {
         this.leader = leader;
     }
 
-    public String getStart_date() {
-        return DateKonverter.getWebDateString(start_date);
+    public Date getStart_date() {
+        return start_date;
     }
 
     public void setStart_date(Date start_date) {
         this.start_date = start_date;
     }
 
-    public String getEnd_date() {
-        return DateKonverter.getWebDateString(end_date);
+    public Date getEnd_date() {
+        return end_date;
     }
 
     public void setEnd_date(Date end_date) {

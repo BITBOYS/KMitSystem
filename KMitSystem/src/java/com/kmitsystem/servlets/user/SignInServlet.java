@@ -3,6 +3,7 @@ package com.kmitsystem.servlets.user;
 import com.kmitsystem.services.user.input.SignInInput;
 import com.kmitsystem.services.user.UserServiceProvider;
 import com.kmitsystem.services.user.result.SignInResult;
+import com.kmitsystem.tools.objects.User;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -31,6 +32,7 @@ public class SignInServlet extends HttpServlet {
         
         String email = request.getParameter("email");
         String password = request.getParameter("password");
+//        User user = request.getSession().getAttribute("user");
         
         // check if the user filled the form
         if(email != null && password != null) {
@@ -50,7 +52,7 @@ public class SignInServlet extends HttpServlet {
                 // write the user into the session
                 request.getSession().setAttribute("user", result.getUser());
                 // redirect to the page www.kmitsystem.de/user/dashboard
-                response.sendRedirect(request.getContextPath() + "/user/dashboard");
+                response.sendRedirect(request.getContextPath() + "/WEB-INF/user/profile?user=" + email);        //TODO: username 
             }
             
         } else {
