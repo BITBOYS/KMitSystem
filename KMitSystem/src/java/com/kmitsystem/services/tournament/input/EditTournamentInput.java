@@ -6,11 +6,13 @@ import java.sql.Date;
  * @author Malte
  */
 public class EditTournamentInput {
-    
+
     private String tournamentname;
     private String new_name;
+    private String old_password;
     private String new_password;
     private String new_leader;
+    private String new_description;
     private String new_venue;
     private int new_nr_matchdays;
     private Date new_start_date;
@@ -19,12 +21,13 @@ public class EditTournamentInput {
     private String kick_team;
     private String invite_team;
 
-    
-    public EditTournamentInput(String tournamentname, String new_name, String new_password, String new_leader, String new_venue, Integer new_nr_matchdays, Date new_start_date, Date new_end_date, Date new_term_of_application, String kick_team, String invite_team) {
+    public EditTournamentInput(String tournamentname, String new_name, String old_password, String new_password, String new_leader, String new_description, String new_venue, Integer new_nr_matchdays, Date new_start_date, Date new_end_date, Date new_term_of_application, String kick_team, String invite_team) {
         this.tournamentname = tournamentname;
         this.new_name = new_name;
+        this.old_password = old_password;
         this.new_password = new_password;
         this.new_leader = new_leader;
+        this.new_description = new_description;
         this.new_venue = new_venue;
         this.new_nr_matchdays = new_nr_matchdays;
         this.new_start_date = new_start_date;
@@ -33,7 +36,6 @@ public class EditTournamentInput {
         this.kick_team = kick_team;
         this.invite_team = invite_team;
     }
-    
 
     public String getTournamentname() {
         return tournamentname;
@@ -41,6 +43,10 @@ public class EditTournamentInput {
 
     public String getNew_name() {
         return new_name;
+    }
+
+    public String getOld_password() {
+        return old_password;
     }
 
     public String getNew_password() {
@@ -51,6 +57,10 @@ public class EditTournamentInput {
         return new_leader;
     }
 
+    public String getNew_description() {
+        return new_description;
+    }
+    
     public String getNew_venue() {
         return new_venue;
     }
@@ -79,6 +89,10 @@ public class EditTournamentInput {
         this.new_name = new_name;
     }
 
+    public void setOld_password(String old_password) {
+        this.old_password = old_password;
+    }
+
     public void setNew_password(String new_password) {
         this.new_password = new_password;
     }
@@ -87,6 +101,10 @@ public class EditTournamentInput {
         this.new_leader = new_leader;
     }
 
+    public void setNew_description(String new_description) {
+        this.new_venue = new_description;
+    }
+    
     public void setNew_venue(String new_venue) {
         this.new_venue = new_venue;
     }
@@ -125,8 +143,8 @@ public class EditTournamentInput {
 
     @Override
     public String toString() {
-        return "EditTournamentInput{" + "tournamentname=" + tournamentname + ", new_name=" + new_name + ", new_password=" + new_password + ", new_leader=" + new_leader + ", new_venue=" + new_venue + ", new_nr_matchdays=" + new_nr_matchdays + ", new_start_date=" + new_start_date + ", new_end_date=" + new_end_date + ", new_term_of_application=" + new_term_of_application + ", kick_team=" + kick_team + ", invite_team=" + invite_team + '}';
+        return "EditTournamentInput{" + "tournamentname=" + tournamentname + ", new_name=" + new_name + ", old_password=" + old_password + ", new_password=" + new_password + ", new_leader=" + new_leader + ", new_description=" + new_description + ", new_venue=" + new_venue + ", new_nr_matchdays=" + new_nr_matchdays + ", new_start_date=" + new_start_date + ", new_end_date=" + new_end_date + ", new_term_of_application=" + new_term_of_application + ", kick_team=" + kick_team + ", invite_team=" + invite_team + '}';
     }
 
-     
+
 }

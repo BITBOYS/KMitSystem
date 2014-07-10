@@ -6,6 +6,7 @@ import com.kmitsystem.services.tournament.input.DeleteTournamentInput;
 import com.kmitsystem.services.tournament.input.EditTournamentInput;
 import com.kmitsystem.services.tournament.input.GetEverythingInput;
 import com.kmitsystem.services.tournament.input.SearchTournamentInput;
+import com.kmitsystem.services.tournament.result.DeleteTournamentResult;
 import com.kmitsystem.services.tournament.result.EditTournamentResult;
 import com.kmitsystem.services.tournament.result.GetEverythingResult;
 import com.kmitsystem.services.tournament.result.SearchTournamentResult;
@@ -14,6 +15,7 @@ import com.kmitsystem.services.tournament.validator.CreateTournamentValidator;
 import com.kmitsystem.services.tournament.validator.DeleteTournamentValidator;
 import com.kmitsystem.services.tournament.validator.EditTournamentValidator;
 import com.kmitsystem.services.tournament.validator.GetEverythingValidator;
+import com.kmitsystem.services.tournament.validator.KickTeamValidator;
 import com.kmitsystem.tools.DateKonverter;
 import com.kmitsystem.tools.database.queries.DBTeamTournamentQueries;
 import com.kmitsystem.tools.database.queries.DBTournamentQueries;
@@ -33,6 +35,7 @@ public class TournamentServiceProvider {
 
     CreateTournamentValidator createTournamentValidator = new CreateTournamentValidator();
     AddTeamValidator addTeamValidator = new AddTeamValidator();
+    KickTeamValidator kickTeamValidator = new KickTeamValidator();
     GetEverythingValidator getEverythingValidator = new GetEverythingValidator();
     EditTournamentValidator editTournamentValidator = new EditTournamentValidator();
     DeleteTournamentValidator deleteTournamentValidator = new DeleteTournamentValidator();
@@ -40,18 +43,6 @@ public class TournamentServiceProvider {
     public BaseResult createTournament(CreateTournamentInput input) throws ParseException {
         BaseResult result = new BaseResult();
         if (createTournamentValidator.validate(input)) {
-
-            System.err.println("1Name " + input.getName());
-            System.err.println("1Passwort " + input.getPassword());
-            System.err.println("1leader " + input.getLeader());
-            System.err.println("1desc " + input.getDescription());
-            System.err.println("1sdate " + input.getStart_date());
-            System.err.println("1stime " + input.getEnd_date());
-            System.err.println("1edate " + input.getStart_time());
-            System.err.println("1etime " + input.getEnd_date());
-            System.err.println("1matches " + input.getNr_matchdays());
-            System.err.println("1venue " + input.getVenue());
-            System.err.println("1term " + input.getTerm_of_application());
 
             // prepare the input
             String name = input.getName();
@@ -82,8 +73,8 @@ public class TournamentServiceProvider {
         return result;
     }
 
-    public EditTournamentResult deleteTournament(DeleteTournamentInput input) {
-        EditTournamentResult result = new EditTournamentResult();
+    public DeleteTournamentResult deleteTournament(DeleteTournamentInput input) {
+        DeleteTournamentResult result = new DeleteTournamentResult();
 
         if (deleteTournamentValidator.validate(input)) {
 
@@ -113,6 +104,27 @@ public class TournamentServiceProvider {
 
             // call the database
             DBTeamTournamentQueries.addTeam(tournamentname, teamname);
+        }
+
+        // write the errors into the result object and empty the ErrorHandler
+        if (ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());
+            ErrorHandler.clear();
+        }
+
+        return result;
+    }
+    
+    public EditTournamentResult kickTeam(EditTournamentInput input) {
+        EditTournamentResult result = new EditTournamentResult();
+
+        if (kickTeamValidator.validate(input)) {
+            // prepare the input
+            String teamname = input.getKick_team();
+            String tournamentname = input.getTournamentname();
+
+            // call the database
+            DBTeamTournamentQueries.removeTeam(tournamentname, teamname);
         }
 
         // write the errors into the result object and empty the ErrorHandler
@@ -229,6 +241,7 @@ public class TournamentServiceProvider {
             String new_name = input.getNew_name();
             String new_password = input.getNew_password();
             String new_leader = input.getNew_leader();
+            String new_description = input.getNew_description();
             String new_venue = input.getNew_venue();
             String kickedTeam = input.getKick_team();
             String inviteTeam = input.getInvite_team();
@@ -248,6 +261,9 @@ public class TournamentServiceProvider {
             }
             if (new_leader != null) {
                 query = DBTournamentQueries.editTournamentLeader(tournamentname, new_leader);
+            }
+            if (new_description != null) {
+                query = DBTournamentQueries.editTournamentDescription(tournamentname, new_description);
             }
             if (new_venue != null) {
                 query = DBTournamentQueries.editTournamentVenue(tournamentname, new_venue);
