@@ -52,7 +52,7 @@ public class Table {
         else {
             double temp = ((double)tournament_team_wins / (double)tournament_team_matches) * 1000;
             temp = Math.round(temp);
-            temp = temp / 1000;
+            temp = temp / 10;
             return temp; 
         }
    }

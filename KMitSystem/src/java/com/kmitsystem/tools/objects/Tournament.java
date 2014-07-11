@@ -138,8 +138,8 @@ public class Tournament {
         this.venue = venue;
     }
 
-    public String getTerm_of_application() {
-        return DateKonverter.getWebDateString(term_of_application);
+    public Date getTerm_of_application() {
+        return term_of_application;
     }
 
     public void setTerm_of_application(Date term_of_application) {

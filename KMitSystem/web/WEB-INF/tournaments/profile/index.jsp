@@ -1,4 +1,5 @@
 
+<%@page import="com.kmitsystem.tools.DateKonverter"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kmitsystem.tools.objects.Tournament"%>
 <%@page import="com.kmitsystem.tools.objects.Team"%>
@@ -69,9 +70,9 @@
                             <div class="row">
                                 <div class="col-lg-5">
                                     <p>Leader: <b><a href="<%=link%>/user/profile?user=<%=tournament.getLeader().getUsername()%>"> <%=tournament.getLeader().getUsername()%> </a></b></p>
-                                    <p>Zeitraum: <b><%=tournament.getStart_date()%> <%=tournament.getStart_time()%></b> bis <b><%=tournament.getEnd_date()%> <%=tournament.getEnd_time()%></b></p>
+                                    <p>Zeitraum: <b><%=DateKonverter.getWebDateString(tournament.getStart_date())%> <%=tournament.getStart_time()%></b> bis <b><%=DateKonverter.getWebDateString(tournament.getEnd_date())%> <%=tournament.getEnd_time()%></b></p>
                                     <p>Anmeldefrist: <%if (tournament.getTerm_of_application() != null) {%>
-                                        <b><%=tournament.getTerm_of_application()%></b>, <b><%=tournament.getCountdown()%></b></p>
+                                        <b><%=DateKonverter.getWebDateString(tournament.getTerm_of_application())%></b>, <b><%=tournament.getCountdown()%></b></p>
                                     <%} else%> Keine Anmeldefrist
                                     <p>Spieltage: <b><%=tournament.getNr_matchdays()%></b></p>
                                     <p>Austragungsort: <b><a href="https://maps.google.com/maps?q=<%=tournament.getVenue()%>&hl=de&sll=28.149503,-71.71875&sspn=88.855059,173.144531&hnear=<%=tournament.getVenue()%>&t=m&z=10" target="_blank"><%=tournament.getVenue()%></a></b></p>
@@ -135,7 +136,7 @@
                                                     <th><a href="#" data-toggle="tooltip" data-placement="top" title="Platz" class="label label-default">Platz</a></th> 
                                                     <th><a href="#" data-toggle="tooltip" data-placement="top" title="Teamname" class="label label-default">TN</a></th> 
                                                     <th><a href="#" data-toggle="tooltip" data-placement="top" title="Spiele" class="label label-default">SP</a></th> 
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Punkte" class="label label-default">P</a></th> 
+                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Win-Rate in %" class="label label-default">WR</a></th> 
                                                     <th><a href="#" data-toggle="tooltip" data-placement="top" title="Siege" class="label label-success">S</a></th> 
                                                     <th><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-danger">N</a></th> 
                                                     <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-success">T</a></th> 
@@ -147,7 +148,7 @@
                                                 <%for (int idx = 0; idx < tournament.getTable().size(); idx++) {%>
                                                 <tr>  
                                                     <td><%=idx + 1%>.</td> 
-                                                    <td><%=tournament.getTable().get(idx).getTeam()%></td>  
+                                                    <td><a href="/KMitSystem/team/profile?team=<%=tournament.getTable().get(idx).getTeam()%>"><%=tournament.getTable().get(idx).getTeam()%></a></td>  
                                                     <td><%=tournament.getTable().get(idx).getTournament_team_matches()%></td>  
                                                     <td><%=tournament.getTable().get(idx).getTournament_team_winrate()%></td>  
                                                     <td><%=tournament.getTable().get(idx).getTournament_team_wins()%></td>  
