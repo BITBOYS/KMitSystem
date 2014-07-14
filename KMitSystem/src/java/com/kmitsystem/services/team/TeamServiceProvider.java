@@ -95,8 +95,11 @@ public class TeamServiceProvider {
         
         return result;
     }
-    
-    // no validation needed, because there are no false inputs
+  
+//##################################################
+//# T E A M # S U C H E N ##########################
+//##################################################    
+// no validation needed, because there are no false inputs
     public SearchTeamResult searchTeam(SearchTeamInput input) {
         SearchTeamResult result = new SearchTeamResult();
      
@@ -139,16 +142,6 @@ public class TeamServiceProvider {
         if(editTeamValidator.validate(input)) {
             
             // call the database
-            if(input.getNew_name() != null) 
-                query = DBTeamQueries.editName(input.getTeamname(), input.getNew_name());
-            if(input.getNew_tag() != null)
-                query = DBTeamQueries.editTag(input.getTeamname(), input.getNew_tag());
-            if(input.getNew_password() != null)
-                query = DBTeamQueries.editPassword(input.getTeamname(), input.getNew_password());
-            if(input.getNew_leader() != null)
-                query = DBTeamQueries.editLeader(input.getTeamname(), input.getNew_leader());
-            if(input.getLeave_tournament() != null)
-                query = DBTeamTournamentQueries.removeTeam(input.getLeave_tournament(), input.getTeamname());
             if(input.getKick_user() != null)
                 query = DBUserTeamQueries.kickUser(input.getTeamname(), input.getKick_user());
             
@@ -160,6 +153,120 @@ public class TeamServiceProvider {
             result.setErrorList(ErrorHandler.getErrors());                        
             ErrorHandler.clear();
         }
+        
+        return result;
+    }
+
+//##################################################
+//# T E A M N A M E N # Ä N D E R N ################
+//##################################################
+    public EditTeamResult changeName(EditTeamInput input) {
+        EditTeamResult result = new EditTeamResult();
+        boolean query = false;
+        
+        if(editTeamValidator.validate_changeName(input)) {
+            query = DBTeamQueries.editName(input.getTeamname(), input.getNew_name());
+            result.setQuerySuccessful(query);
+        }
+        
+        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
+        }
+        
+        return result;
+    }
+    
+//##################################################
+//# T E A M T A G # Ä N D E R N ####################
+//##################################################
+    public EditTeamResult changeTag(EditTeamInput input) {
+        EditTeamResult result = new EditTeamResult();
+        boolean query = false;
+        
+        query = DBTeamQueries.editTag(input.getTeamname(), input.getNew_tag());
+        result.setQuerySuccessful(query);
+        
+        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
+        }
+        
+        return result;
+    }    
+    
+//##################################################
+//# P A S S W O R T # Ä N D E R N ##################
+//##################################################
+    public EditTeamResult changePassword(EditTeamInput input) {
+        EditTeamResult result = new EditTeamResult();
+        boolean query = false;
+        
+        if(editTeamValidator.validate_changePassword(input)) {
+            query = DBTeamQueries.editPassword(input.getTeamname(), input.getNew_password()); 
+        }
+        
+        result.setQuerySuccessful(query);
+        
+        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
+        }
+        
+        return result;
+    }
+    
+//##################################################
+//# T E A M L E I T E R # Ä N D E R N ##############
+//##################################################
+    public EditTeamResult changeLeader(EditTeamInput input) {
+        EditTeamResult result = new EditTeamResult();
+        boolean query = false;
+        
+        if(editTeamValidator.validate_changeLeader(input)) {
+            query = DBTeamQueries.editLeader(input.getTeamname(), input.getNew_leader());
+        }
+        
+        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
+        }
+        
+        return result;
+    }     
+    
+//##################################################
+//# T U R N I E R # V E R L A S S E N ##############
+//##################################################
+    public EditTeamResult leaveTournament(EditTeamInput input) {
+        EditTeamResult result = new EditTeamResult();
+        boolean query = false;
+        
+        if(editTeamValidator.validate_leaveTournament(input)) {
+            query = DBTeamTournamentQueries.removeTeam(input.getLeave_tournament(), input.getTeamname());
+            result.setQuerySuccessful(query);
+        }
+        
+        // write the errors into the result object and empty the ErrorHandler
+        if(ErrorHandler.getErrors().size() > 0) {
+            result.setErrorList(ErrorHandler.getErrors());                        
+            ErrorHandler.clear();
+        }
+        
+        return result;
+    }    
+    
+//##################################################
+//# T E A M # L Ö S C H E N ########################
+//##################################################    
+    public BaseResult deleteTeam(String team, String password) {
+        BaseResult result = new BaseResult();
+        
+        boolean query = false;
         
         return result;
     }

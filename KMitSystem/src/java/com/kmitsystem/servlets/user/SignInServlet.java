@@ -52,7 +52,7 @@ public class SignInServlet extends HttpServlet {
                 // write the user into the session
                 request.getSession().setAttribute("user", result.getUser());
                 // redirect to the page www.kmitsystem.de/user/dashboard
-                response.sendRedirect(request.getContextPath() + "/WEB-INF/user/profile?user=" + email);        //TODO: username 
+                response.sendRedirect(request.getContextPath() + "/user/profile?user=" + result.getUser().getUsername());
             }
             
         } else {

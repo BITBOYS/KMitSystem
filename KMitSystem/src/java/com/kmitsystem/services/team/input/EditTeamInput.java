@@ -28,6 +28,10 @@ public class EditTeamInput {
         this.kick_user = kick_user;
         this.invite_user = invite_user;
     }
+    
+    public EditTeamInput() {
+        
+    }
 
     public String getTeamname() {
         return teamname;

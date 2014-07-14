@@ -6,7 +6,10 @@ import com.kmitsystem.services.team.input.EditTeamInput;
 import com.kmitsystem.services.team.input.GetEverythingInput;
 import com.kmitsystem.services.team.result.EditTeamResult;
 import com.kmitsystem.services.team.result.GetEverythingResult;
+import com.kmitsystem.tools.database.queries.DBUserQueries;
+import com.kmitsystem.tools.database.queries.DBUserTeamQueries;
 import com.kmitsystem.tools.errorhandling.Errors;
+import com.kmitsystem.tools.objects.BaseResult;
 import com.kmitsystem.tools.objects.Team;
 import com.kmitsystem.tools.objects.Tournament;
 import com.kmitsystem.tools.objects.User;
@@ -55,38 +58,63 @@ public class TeamProfileServlet extends HttpServlet {
         String password_old = request.getParameter("password_old");
         String password_new = request.getParameter("password_new");
         String password_new2 = request.getParameter("password_new2");
+        String password = request.getParameter("password");
+        String leader_new = request.getParameter("leader_new");
+        String tournament_name = request.getParameter("tournament_name");
         
-//##################################################
-//# A L L E S # H O L E N ##########################
-//##################################################
+        //##################################################
+        //# A L L E S # H O L E N ##########################
+        //##################################################
         getEverything(name);
         // prepare the output
         team = result.getTeam();
         List<User> member = result.getMember();
         List<Tournament> tournaments = result.getTournaments();
         
-//##################################################
-//# T E A M N A M E N # Ä N D E R N ################
-//##################################################
+        //##################################################
+        //# T E A M N A M E N # Ä N D E R N ################
+        //##################################################
         if(!team.getName().equals(name_new) && name_new != null && !name_new.trim().equals("")) { 
-            team.setName(changeName(team.getName(), name_new));
+            team.setName(changeName(name_new));
         }
         
-//##################################################
-//# T E A M T A G # Ä N D E R N ####################
-//##################################################           
+        //##################################################
+        //# T E A M T A G # Ä N D E R N ####################
+        //##################################################           
         if (!team.getTag().equals(tag_new) && tag_new != null && !tag_new.trim().equals("")) {
             team.setTag(changeTag(tag_new));
         }
         
-//##################################################
-//# P A S S W O R T # Ä N D E R N ##################
-//##################################################           
-        if (password_new != null && password_new2 != null && password_new.equals(password_new2) && 
-                   !password_new.trim().equals("") && team.getPassword().equals(password_old)) {
-            team.setPassword(changePassword(password_old, password_new));
-        }        
+        //##################################################
+        //# P A S S W O R T # Ä N D E R N ##################
+        //##################################################           
+        if (password_new != null && !password_new.trim().equals("") && password_new.equals(password_new2) ) {
+            if(team.getPassword() == null || team.getPassword().trim().equals("") || team.getPassword().equals(password_old)) {
+                team.setPassword(changePassword(password_old, password_new));
+            }
+        }   
         
+        //##################################################
+        //# T E A M L E I T E R # Ä N D E R N ##############
+        //##################################################    
+        if(team.getPassword() == null || team.getPassword().equals(password)) {
+            if (leader_new != null && !leader_new.trim().equals("")) {
+                team.setLeader(changeLeader(leader_new));
+            }   
+        }
+        
+        //##################################################
+        //# T U R N I E R # V E R L A S S E N ##############
+        //##################################################           
+        if (tournament_name != null && !tournament_name.trim().equals("")) {
+            leaveTournament(tournament_name);
+        }   
+        
+        // get all users and write them into an attribute 
+        List<User> users;
+        users = DBUserTeamQueries.getAllUserFromTeam(team.getName());
+        
+        request.setAttribute("users", users);
         request.setAttribute("team", team);
         request.setAttribute("member", member);
         request.setAttribute("tournaments", tournaments);
@@ -108,15 +136,16 @@ public class TeamProfileServlet extends HttpServlet {
     }
 
 //##################################################
-//# T E A M N A M E N # Ä N D E R N ################
+//# T E A M N A M E N # Ä N D E R N ################    
 //##################################################
-    private String changeName(String name_old, String name_new) {
-        String response = name_old;
+    private String changeName(String name_new) {
+        String response = team.getName();
         
-        // check if both names are equal, if true change the teamname
         provider = new TeamServiceProvider();
-        EditTeamInput input = new EditTeamInput(name_old, null, name_new, null, null, null, null, null, null);
-        EditTeamResult result = provider.editTeam(input);
+        EditTeamInput input = new EditTeamInput();
+        input.setTeamname(response);
+        input.setNew_name(name_new);
+        EditTeamResult result = provider.changeName(input);
         
         if(result.isQuerySuccessful()) 
             response = name_new;
@@ -136,8 +165,10 @@ public class TeamProfileServlet extends HttpServlet {
         
         // check if both names are equal, if true change the teamname
         provider = new TeamServiceProvider();
-        EditTeamInput input = new EditTeamInput(team.getName(), null, null, tag_new, null, null, null, null, null);
-        EditTeamResult result = provider.editTeam(input);
+        EditTeamInput input = new EditTeamInput();
+        input.setTeamname(team.getName());
+        input.setNew_tag(tag_new);
+        EditTeamResult result = provider.changeTag(input);
         
         if(result.isQuerySuccessful()) 
             response = tag_new;
@@ -156,8 +187,11 @@ public class TeamProfileServlet extends HttpServlet {
         String response = password_old;
         
         provider = new TeamServiceProvider();
-        EditTeamInput input = new EditTeamInput(team.getName(), password_old, null, null, password_new, null, null, null, null);
-        EditTeamResult result = provider.editTeam(input);
+        EditTeamInput input = new EditTeamInput();
+        input.setTeamname(team.getName());
+        input.setOld_password(password_old);
+        input.setNew_password(password_new);
+        EditTeamResult result = provider.changePassword(input);
             
         if(result.isQuerySuccessful()) 
             response = password_new;
@@ -168,6 +202,55 @@ public class TeamProfileServlet extends HttpServlet {
         
         return response;
     }
+    
+//##################################################
+//# T E A M L E I T E R # Ä N D E R N ##############
+//##################################################     
+    private User changeLeader(String leader_new) {
+        User response = team.getLeader();
+        
+        EditTeamInput input = new EditTeamInput();
+        input.setTeamname(team.getName());
+        input.setNew_leader(leader_new);
+        EditTeamResult result = provider.changeLeader(input);
+        
+        if(result.isQuerySuccessful()) 
+            response = DBUserQueries.getUser(leader_new);
+
+        // write the errorlist into the session-attribute "errors"
+        if(result.getErrorList().size() > 0) 
+            request.setAttribute("errors", result.getErrorList());
+        
+        return response;
+    }
+    
+//##################################################
+//# T U R N I E R # V E R L A S S E N ##############
+//##################################################     
+    private void leaveTournament(String tournament_name) {        
+        EditTeamInput input = new EditTeamInput();
+        input.setTeamname(team.getName());
+        input.setLeave_tournament(tournament_name);
+        EditTeamResult result = provider.leaveTournament(input);
+
+        // write the errorlist into the session-attribute "errors"
+        if(result.getErrorList().size() > 0) 
+            request.setAttribute("errors", result.getErrorList());
+    }    
+    
+//##################################################
+//# T E A M # L Ö S C H E N ########################
+//##################################################     
+    private void deleteTeam(String password) {
+        User response = team.getLeader();
+        
+        BaseResult result = provider.deleteTeam(team.getName(), password);
+
+        // write the errorlist into the session-attribute "errors"
+        if(result.getErrorList().size() > 0) 
+            request.setAttribute("errors", result.getErrorList());
+        
+    }    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

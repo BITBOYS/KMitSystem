@@ -45,6 +45,8 @@ public class Errors {
     public static final Error TOURNAMENT_EXISTS = new Error(31, "Das Turnier existiert", Error.SUCCESS);
     public static final Error ENCODING_NOT_POSSIBLE = new Error(32, "Eine Char wird nicht von der Verschl&uuml;sselung unterstützt", Error.ERROR);
     public static final Error ENCODING_NOT_FOUND = new Error(33, "Verschl&uuml;sselungsalgorithmus nicht gefunden", Error.ERROR);
-    public static final Error REGISTER_SUCCESSFUL = new Error(33, "Registrierung erfolgreich", Error.SUCCESS);
+    public static final Error REGISTER_SUCCESSFUL = new Error(34, "Registrierung erfolgreich", Error.SUCCESS);
+    public static final Error TEAM_NOT_IN_TOURNAMENT = new Error(35, "Das Team ist nicht im Turnier", Error.ERROR);
+    public static final Error USER_NOT_IN_TEAM = new Error(36, "Der Benutzer ist nicht Mitglied des Teams", Error.ERROR); 
     
 }

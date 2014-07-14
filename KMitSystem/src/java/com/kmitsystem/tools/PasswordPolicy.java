@@ -16,6 +16,6 @@ public class PasswordPolicy {
     
     public Boolean CheckPassword(String password){
         
-        return password.length()>7;
+        return true;
     }
 }
