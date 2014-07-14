@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html manifest="public/cache/cache.manifest">
+<!--manifest="public/cache/cache.manifest"--> 
+<html> 
     <head>
         <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
         <meta charset="utf-8">
@@ -12,7 +13,7 @@
         <%@page import="java.util.List"%>
         <%@page import="com.kmitsystem.tools.errorhandling.Error"%>
         
-        <title>Welcome - leago</title>
+        <title>Welcome - Leago</title>
 
         <%            
             String link = request.getContextPath();
@@ -82,7 +83,7 @@
                 <div class="row">
                     <div class="col-lg-4 col-md-4">
                         <h3><i class="fa fa-plus-circle"></i> Erstellt Teams und Turniere</h3>
-                        <p>Ladet Freunde in euer Team ein oder erstellt eure eigenen Turniere. Ihr bestimmt wer, wo und wann gespielt wird. Mit <strong>leago</strong> habt ihr die volle Kontrolle.</p>
+                        <p>Ladet Freunde in euer Team ein oder erstellt eure eigenen Turniere. Ihr bestimmt wer, wo und wann gespielt wird. Mit <strong>Leago</strong> habt ihr die volle Kontrolle.</p>
                     </div>
                     <div class="col-lg-4 col-md-4">
                         <h3><i class="fa fa-mobile"></i> Mobil unterwegs</h3>

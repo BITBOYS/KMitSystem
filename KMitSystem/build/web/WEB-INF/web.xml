@@ -29,10 +29,6 @@
         <servlet-class>com.kmitsystem.servlets.user.ChangeUserSettingsServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TeamDashboardServlet</servlet-name>
-        <servlet-class>com.kmitsystem.servlets.team.TeamDashboardServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AddTeamServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.tournament.AddTeamServlet</servlet-class>
     </servlet>
@@ -55,10 +51,6 @@
     <servlet>
         <servlet-name>UserProfileServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.user.UserProfileServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>TournamentDashboardServlet</servlet-name>
-        <servlet-class>com.kmitsystem.servlets.tournament.TournamentDashboardServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>TeamsCreateServlet</servlet-name>
@@ -89,10 +81,6 @@
         <url-pattern>/user/dashboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>TeamDashboardServlet</servlet-name>
-        <url-pattern>/team/dashboard</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AddTeamServlet</servlet-name>
         <url-pattern>/AddTeamServlet</url-pattern>
     </servlet-mapping>
@@ -111,10 +99,6 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TournamentDashboardServlet</servlet-name>
-        <url-pattern>/tournament/dashboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>UserProfileServlet</servlet-name>

@@ -6,7 +6,7 @@
         <meta name="description" content="Frequently Asked Questions">
         <meta name="author" content="Malte Dammann">
 
-        <title>FAQ Page - leago</title>
+        <title>FAQ Page - Leago</title>
 
         <%
             String link = request.getContextPath();
@@ -50,7 +50,7 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-                                        Wie sicher ist leago?
+                                        Wie sicher ist Leago?
                                     </a>
                                 </h4>
                             </div>
@@ -80,7 +80,7 @@
                             <div class="panel-heading">
                                 <h4 class="panel-title">
                                     <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-                                        Was kostet leago?
+                                        Was kostet Leago?
                                     </a>
                                 </h4>
                             </div>

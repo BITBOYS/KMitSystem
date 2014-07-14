@@ -6,7 +6,7 @@
         <meta name="description" content="Das sind wir.">
         <meta name="author" content="Malte Dammann">
 
-        <title>About Us - leago</title>
+        <title>About Us - Leago</title>
 
         <%            String link = request.getContextPath();
             String loged_in = String.valueOf(request.getSession().getAttribute("loged_in"));
@@ -45,9 +45,9 @@
                     <img class="img-responsive" src="<%=link%>/public/images/team.jpg">
                 </div>
                 <div class="col-md-6">
-                    <h2>Welcome to 'leago'</h2>
+                    <h2>Welcome to 'Leago'</h2>
                     <p>Wir sind ein junges Developer Team aus Hamburg und haben unglaublich viel Spa&szlig; am Kickern. Deshalb haben wir erkannt, dass die Welt ein Kicker-Tool braucht.</p>
-                    <p>Und genau hier kommt leago ins Spiel. Aus einer scherzhaften Idee wurde ein Konzept. Leago ist in unserer Freizeit entstanden und dient keinen kommerziellen Zwecken. Wer uns trotzdem etwas Gutes tun möchte, kann uns gerne mal einen Kaffee ausgeben.</p>
+                    <p>Und genau hier kommt Leago ins Spiel. Aus einer scherzhaften Idee wurde ein Konzept. Leago ist in unserer Freizeit entstanden und dient keinen kommerziellen Zwecken. Wer uns trotzdem etwas Gutes tun möchte, kann uns gerne mal einen Kaffee ausgeben.</p>
                 </div>
 
             </div>
