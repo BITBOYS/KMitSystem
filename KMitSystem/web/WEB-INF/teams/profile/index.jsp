@@ -7,10 +7,12 @@
 <html lang="en">
     <head>
 
-        <%            String link = request.getContextPath();
-            Team team = (Team) request.getAttribute("team");
-            List<User> member = (List<User>) request.getAttribute("member");
-            List<Tournament> tournaments = (List<Tournament>) request.getAttribute("tournaments");
+        <%
+            String link = request.getContextPath();
+            Team team = (Team)request.getAttribute("team");
+            List<User> member = (List<User>)request.getAttribute("member");
+            List<Tournament> tournaments = (List<Tournament>)request.getAttribute("tournaments");
+            List<User> users = (List<User>)request.getAttribute("users");
         %>
 
         <meta charset="utf-8">
@@ -99,7 +101,7 @@
                                         <h3><%= tournaments.get(idx).getName()%> <small> Leader: <a href="#"><%= tournaments.get(idx).getLeader().getUsername()%></a></small></h3>
                                         <img src="http://placehold.it/800x500" alt="">
                                         <div class="caption">
-                                            <p>Beschreibung Beschreibung Beschreibung Beschreibung </p>
+                                            <p><%= tournaments.get(idx).getDescription() %></p>
                                             <div class="panel panel-default">
                                                 <!-- Default panel contents -->
                                                 <div class="panel-heading">Daten</div>
@@ -127,7 +129,14 @@
                                                     </tbody>  
                                                 </table>  
                                             </div>  
-                                            <p><a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>" class="btn btn-success">Zum Turnierprofil <i class="fa fa-angle-right"></i></a></p>
+                                            <p><a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>" class="btn btn-primary">Zum Turnierprofil <i class="fa fa-angle-right"></i></a></p>
+                                            
+                                            <% if(tournaments.get(idx).getLeader().getUsername().equals(user.getUsername())) {%>
+                                            <form method="POST" action="<%=link%>/team/profile?team=<%=team.getName()%>">
+                                                <input type="hidden" value="<%=tournaments.get(idx).getName()%>" name="tournament_name" >
+                                                <button type="submit" class="btn btn-danger">Turnier verlassen</button>
+                                            </form>
+                                            <% } %>
                                         </div>
                                     </div>
                                 </div> 
@@ -362,9 +371,11 @@
                                                 <input type="password" class="form-control" name="password" placeholder="Team-Passwort">
                                             </div>
                                             <div class="col-lg-6 col-md-offset-2">
-                                                <input list="leaderAuswahl" name="leader_new" class="form-control" autocomplete="off" placeholder="Neuer Leader" required>
-                                                <datalist id="userAuswahl">
-                                                    <option value=""> 
+                                                <input list="leaderAuswahl" name="leader_new" autocomplete="on" class="form-control" placeholder="Neuer Leader" required>
+                                                <datalist id="leaderAuswahl">
+                                                    <% for (int idx = 0; idx < users.size(); idx++) {%>
+                                                    <option value="<%= users.get(idx).getUsername()%>"> 
+                                                        <% }%>
                                                 </datalist>
                                             </div>
                                         </div>

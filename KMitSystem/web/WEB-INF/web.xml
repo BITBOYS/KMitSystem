@@ -29,10 +29,6 @@
         <servlet-class>com.kmitsystem.servlets.user.ChangeUserSettingsServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>TeamDashboardServlet</servlet-name>
-        <servlet-class>com.kmitsystem.servlets.team.TeamDashboardServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AddTeamServlet</servlet-name>
         <servlet-class>com.kmitsystem.servlets.tournament.AddTeamServlet</servlet-class>
     </servlet>
@@ -83,10 +79,6 @@
     <servlet-mapping>
         <servlet-name>ChangeUserSettingsServlet</servlet-name>
         <url-pattern>/user/dashboard</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TeamDashboardServlet</servlet-name>
-        <url-pattern>/team/dashboard</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddTeamServlet</servlet-name>
