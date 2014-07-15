@@ -10,11 +10,10 @@
         <%@page import="java.util.List"%>
         <%@page import="com.kmitsystem.tools.errorhandling.Error"%> 
 
-        <%
-            String link = request.getContextPath();
+        <%            String link = request.getContextPath();
         %>
-        
-        <title>Login - Leago</title>
+
+        <title>Log in - Leago</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
@@ -38,38 +37,34 @@
                     <h1 class="page-header">Login <small>Hier einloggen!</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="<%=link%>/">Home</a></li>
-                        <li class="active">Login</li>
+                        <li class="active">Log in</li>
                     </ol>
                 </div>
 
-                <!-- Alerts -->
-                <%@include file="../snipplets/error.jspf" %>
-                    
-                <div class="col-lg-12">
-                    <div class="col-sm-6 col-md-4 col-md-offset-4">
-                        <div class="account-wall">
-                            <div align="center">
-                                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
-                                     alt="You!">
-                            </div>  
-                            <br>  
-                            <form class="form-signin" action="<%=link%>/login" method="post" role="form">
-                                <input type="email" class="form-control" placeholder="Email" name="email" required autofocus>
-                                <input type="password" class="form-control" placeholder="Password" name="password" required>
-                                <a href="<%=link%>/login/forgotten" class="pull-right need-help">Passwort vergessen? </a><span class="clearfix"></span>
-                                <br>
-                                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-                            </form>
+            <!-- Alerts -->
+            <%@include file="../snipplets/error.jspf" %>
+
+                <div align="center" class="col-sm-6 col-md-4 col-md-offset-4 well">  
+                    <form class="form" action="<%=link%>/login" method="post" role="form">
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Email" name="email" required autofocus>
                         </div>
-                        <a href="<%=link%>/faq" class="pull-right need-help">Brauchst du Hilfe? </a><span class="clearfix"></span>
-                        <br>
-                        <a href="<%=link%>/register" class="text-center new-account">Noch nicht angemeldet? Jetzt account erstellen! </a>
-                    </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" name="password" required>
+                        </div>
+                        <div class="form-group">
+                            <a href="<%=link%>/login/forgotten" class="pull-right need-help">Passwort vergessen? </a><span class="clearfix"></span>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-primary btn-block" type="submit">Log me in!</button>
+                        </div>
+                    </form>
+                    <a href="<%=link%>/faq" class="pull-right need-help">Brauchst du Hilfe? </a><span class="clearfix"></span>
+                    <hr>
+                    <p class="text-center">New to Leago? <b><a href="<%=link%>/register">Sign up! </a></b></p>
                 </div>
 
             </div><!-- /.row -->
-
-            <br>
 
         </div><!-- /.container -->
 
