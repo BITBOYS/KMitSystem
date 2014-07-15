@@ -90,7 +90,7 @@
                         <p>Kein PC in der Nähe? Kein Problem! Dank Responsive Design managst du deine Teams und Turniere vom Smartphone oder Tablet! Von &uuml;berall!</p>
                     </div>
                     <div class="col-lg-4 col-md-4">
-                        <h3><i class="fa fa-folder-open"></i> Ranking</h3>
+                        <h3><i class="fa fa-sort"></i> Ranking</h3>
                         <p>Dank der Statistikfunktion seht ihr immer eure pers&ouml;nliche Statisik. Ob allgemein im Vergleich zu anderen, oder immerhalb eines Turniers. Verfolgt eure Verbesserung.</p>
                     </div>
                 </div><!-- /.row -->
@@ -148,7 +148,7 @@
                 <div class="col-lg-8 col-md-8">
                     <h4>'Kickern mit System' ist ein Webbasiertes Tool um eure Kicker-Statistik zu f&uuml;hren!</h4>
                     <p>
-                        <a href="<%=link%>/login">Loggt</a> euch ein oder registriert euch jetzt!</p>
+                        <b><a href="<%=link%>/login">Loggt</a></b> euch ein oder registriert euch jetzt!</p>
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <a class="btn btn-lg btn-success pull-right" href="<%=link%>/register">Jetzt registrieren <i class="fa fa-angle-right"></i></a>
