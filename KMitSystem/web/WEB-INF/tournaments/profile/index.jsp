@@ -91,26 +91,28 @@
                                         <div class="panel-heading">Spielplan</div>
 
                                         <!-- Table -->
-                                        <table class="table">  
-                                            <thead>  
-                                                <tr>  
-                                                    <th><span class="label label-success">Datum</span></th> 
-                                                    <th><span class="label label-success">Heim</span></th> 
-                                                    <th><span class="label label-success">Gast</span></th> 
-                                                    <th><span class="label label-success">Ergebnis</span></th> 
-                                                </tr>  
-                                            </thead>  
-                                            <tbody>  
-                                                <%for (int idx = 0; idx < 10; idx++) {%>
-                                                <tr>  
-                                                    <td>1</td>  
-                                                    <td>1</td>  
-                                                    <td>10</td>  
-                                                    <td>2</td> 
-                                                </tr>  
-                                                <%}%>
-                                            </tbody>  
-                                        </table>  
+                                        <div class="table-responsive">                                               
+                                            <table class="table table-hover">  
+                                                <thead>  
+                                                    <tr>  
+                                                        <th><span class="label label-success">Datum</span></th> 
+                                                        <th><span class="label label-success">Heim</span></th> 
+                                                        <th><span class="label label-success">Gast</span></th> 
+                                                        <th><span class="label label-success">Ergebnis</span></th> 
+                                                    </tr>  
+                                                </thead>  
+                                                <tbody>  
+                                                    <%for (int idx = 0; idx < 10; idx++) {%>
+                                                    <tr>  
+                                                        <td>1</td>  
+                                                        <td>1</td>  
+                                                        <td>10</td>  
+                                                        <td>2</td> 
+                                                    </tr>  
+                                                    <%}%>
+                                                </tbody>  
+                                            </table>  
+                                        </div>
                                     </div>  
                                 </div>
                             </div><!-- /.row -->
@@ -130,36 +132,38 @@
                                         <div class="panel-heading">Tabelle</div>
 
                                         <!-- Table -->
-                                        <table class="table">  
-                                            <thead>  
-                                                <tr>   
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Platz" class="label label-default">Platz</a></th> 
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Teamname" class="label label-default">TN</a></th> 
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Spiele" class="label label-default">SP</a></th> 
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Win-Rate in %" class="label label-default">WR</a></th> 
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Siege" class="label label-success">S</a></th> 
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-danger">N</a></th> 
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-success">T</a></th> 
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Gegentore" class="label label-warning">GT</a></th> 
-                                                    <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tordifferenz" class="label label-default">TD</a></th> 
-                                                </tr>  
-                                            </thead>  
-                                            <tbody>  
-                                                <%for (int idx = 0; idx < tournament.getTable().size(); idx++) {%>
-                                                <tr>  
-                                                    <td><%=idx + 1%>.</td> 
-                                                    <td><a href="/KMitSystem/team/profile?team=<%=tournament.getTable().get(idx).getTeam()%>"><%=tournament.getTable().get(idx).getTeam()%></a></td>  
-                                                    <td><%=tournament.getTable().get(idx).getTournament_team_matches()%></td>  
-                                                    <td><%=tournament.getTable().get(idx).getTournament_team_winrate()%></td>  
-                                                    <td><%=tournament.getTable().get(idx).getTournament_team_wins()%></td>  
-                                                    <td><%=tournament.getTable().get(idx).getTournament_team_defeats()%></td>  
-                                                    <td><%=tournament.getTable().get(idx).getTournament_team_goals()%></td> 
-                                                    <td><%=tournament.getTable().get(idx).getTournament_team_goals_conceded()%></td> 
-                                                    <td><%=tournament.getTable().get(idx).getTournament_team_goal_difference()%></td>                                         
-                                                </tr>  
-                                                <%}%>
-                                            </tbody>  
-                                        </table>  
+                                        <div class="table-responsive">                                               
+                                            <table class="table table-hover">  
+                                                <thead>  
+                                                    <tr>   
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Platz" class="label label-default">Platz</a></th> 
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Teamname" class="label label-default">Teamname</a></th> 
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Spiele" class="label label-default">Spiele</a></th> 
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Win-Rate in %" class="label label-default">Win-Rate in %</a></th> 
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Siege" class="label label-success">Siege</a></th> 
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-danger">Niederlagen</a></th> 
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-success">Tore</a></th> 
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Gegentore" class="label label-warning">Gegentore</a></th> 
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tordifferenz" class="label label-default">Tordifferenz</a></th> 
+                                                    </tr>  
+                                                </thead>  
+                                                <tbody>  
+                                                    <%for (int idx = 0; idx < tournament.getTable().size(); idx++) {%>
+                                                    <tr>  
+                                                        <td><%=idx + 1%>.</td> 
+                                                        <td><a href="/KMitSystem/team/profile?team=<%=tournament.getTable().get(idx).getTeam()%>"><%=tournament.getTable().get(idx).getTeam()%></a></td>  
+                                                        <td><%=tournament.getTable().get(idx).getTournament_team_matches()%></td>  
+                                                        <td><%=tournament.getTable().get(idx).getTournament_team_winrate()%></td>  
+                                                        <td><%=tournament.getTable().get(idx).getTournament_team_wins()%></td>  
+                                                        <td><%=tournament.getTable().get(idx).getTournament_team_defeats()%></td>  
+                                                        <td><%=tournament.getTable().get(idx).getTournament_team_goals()%></td> 
+                                                        <td><%=tournament.getTable().get(idx).getTournament_team_goals_conceded()%></td> 
+                                                        <td><%=tournament.getTable().get(idx).getTournament_team_goal_difference()%></td>                                         
+                                                    </tr>  
+                                                    <%}%>
+                                                </tbody>  
+                                            </table>  
+                                        </div>
                                     </div>  
                                 </div>
                             </div><!-- /.row -->
@@ -178,28 +182,30 @@
                                         <div class="panel-heading">Userstatistik</div>
 
                                         <!-- Table -->
-                                        <table class="table">  
-                                            <thead>  
-                                                <tr>  
-                                                    <th><span class="label label-default">Platz</span></th> 
-                                                    <th><span class="label label-default">Spieler</span></th> 
-                                                    <th><span class="label label-default">Siege</span></th>
-                                                    <th><span class="label label-default">Tore</span></th> 
-                                                    <th><span class="label label-default">Team</span></th> 
-                                                </tr>  
-                                            </thead>  
-                                            <tbody>  
-                                                <%for (int idx = 0; idx < member.size(); idx++) {%>
-                                                <tr>  
-                                                    <td><%=idx + 1%>.</td>  
-                                                    <td><%=member.get(idx).getUsername()%></td>  
-                                                    <td><%=member.get(idx).getStatistics().getWins()%></td> 
-                                                    <td><%=member.get(idx).getStatistics().getGoals()%></td>  
-                                                    <td>kp</td> 
-                                                </tr>  
-                                                <%}%>
-                                            </tbody>  
-                                        </table>  
+                                        <div class="table-responsive">                                               
+                                            <table class="table table-hover">  
+                                                <thead>  
+                                                    <tr>  
+                                                        <th><span class="label label-default">Platz</span></th> 
+                                                        <th><span class="label label-default">Spieler</span></th> 
+                                                        <th><span class="label label-default">Siege</span></th>
+                                                        <th><span class="label label-default">Tore</span></th> 
+                                                        <th><span class="label label-default">Team</span></th> 
+                                                    </tr>  
+                                                </thead>  
+                                                <tbody>  
+                                                    <%for (int idx = 0; idx < member.size(); idx++) {%>
+                                                    <tr>  
+                                                        <td><%=idx + 1%>.</td>  
+                                                        <td><%=member.get(idx).getUsername()%></td>  
+                                                        <td><%=member.get(idx).getStatistics().getWins()%></td> 
+                                                        <td><%=member.get(idx).getStatistics().getGoals()%></td>  
+                                                        <td>kp</td> 
+                                                    </tr>  
+                                                    <%}%>
+                                                </tbody>  
+                                            </table>  
+                                        </div>
                                     </div>
                                 </div>
                             </div><!-- /.row -->
@@ -454,7 +460,7 @@
         </div><!-- /.container -->
 
         <!-- Alert to confirm the delet -->
-        <div id="modal-dialog-tournament" class="modal">
+        <div id="modal-dialog-tournament" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">

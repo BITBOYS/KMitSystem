@@ -169,18 +169,18 @@ public class DBTournamentQueries {
         }
         return tournaments;
     }
-    
+
     public static ArrayList<Tournament> getAllTournaments() {
         ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
-        
+
         try {
             con = DatabaseHandler.connect();
             statement = con.createStatement();
             resultSet = statement.executeQuery("SELECT name, leader, start_date, end_date, create_date, password, description, nr_of_matchdays, venue, term_of_application, start_time, end_time "
-                        + " FROM  tournament ");
+                    + " FROM  tournament ");
             resultSet.first();
-            
-            while(!resultSet.isAfterLast()) {
+
+            while (!resultSet.isAfterLast()) {
                 tournaments.add(new Tournament(resultSet.getString("name"),
                         resultSet.getString("password"),
                         resultSet.getString("description"),
@@ -195,19 +195,24 @@ public class DBTournamentQueries {
                         resultSet.getDate("term_of_application")));
                 resultSet.next();
             }
-            
+
         } catch (SQLException ex) {
             ErrorHandler.handle(Errors.DB_ERROR, ex.getSQLState() + " " + ex.getMessage());
         }
-        
+
         return tournaments;
-     }
+    }
 
     public static void createTournament(String name, String password, String description, User leader, String start_date, String start_time, String end_date, String end_time, String nr_matchdays, String venue, String term_of_application) throws ParseException {
         try {
             //Cast String to sql-Time
-            Time startTime = new Time(FORMATTER_S.parse(start_time).getTime());
-            Time endTime = new Time(FORMATTER_E.parse(end_time).getTime());
+            Time startTime = null;
+            Time endTime = null;
+            
+            if (start_time != null) {
+                startTime = new Time(FORMATTER_S.parse(start_time).getTime());
+                endTime = new Time(FORMATTER_E.parse(end_time).getTime());
+            }
 
             con = DatabaseHandler.connect();
             statement = con.createStatement();
