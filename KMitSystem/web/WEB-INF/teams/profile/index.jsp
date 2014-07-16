@@ -7,12 +7,11 @@
 <html lang="en">
     <head>
 
-        <%
-            String link = request.getContextPath();
-            Team team = (Team)request.getAttribute("team");
-            List<User> member = (List<User>)request.getAttribute("member");
-            List<Tournament> tournaments = (List<Tournament>)request.getAttribute("tournaments");
-            List<User> users = (List<User>)request.getAttribute("users");
+        <%            String link = request.getContextPath();
+            Team team = (Team) request.getAttribute("team");
+            List<User> member = (List<User>) request.getAttribute("member");
+            List<Tournament> tournaments = (List<Tournament>) request.getAttribute("tournaments");
+            List<User> users = (List<User>) request.getAttribute("users");
         %>
 
         <meta charset="utf-8">
@@ -20,7 +19,7 @@
         <meta name="description" content="Team Profil">
         <meta name="author" content="Malte Dammann">
 
-        <title>Team Profil - KmS</title>
+        <title>Team Profil - Leago</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
@@ -41,7 +40,7 @@
             <div class="row">
 
                 <div class="col-lg-12">
-                    <h1 class="page-header">Team-Profil <small>Alles &uuml;ber <%=team.getName()%>!</small></h1>
+                    <h1 class="page-header">Team-Profil <small>Alles &uuml;ber "<%=team.getName()%>"!</small></h1>
                     <ol class="breadcrumb">
                         <li><a href="<%=link%>">Home</a></li>
                         <li><a href="<%=link%>\teams">Teams</a></li>
@@ -49,7 +48,6 @@
                     </ol>
                 </div>
             </div>
-
 
             <div class="row">
 
@@ -70,10 +68,9 @@
                             <div class="row">  
 
                                 <div class="col-lg-12">
-                                    <h2 class="page-header"><%=team.getName()%>s Mitglieder</h2>
+                                    <h2 class="page-header">"<%=team.getName()%>'s" Mitglieder</h2>
 
                                     <div class="panel panel-default">
-                                        <!-- Default panel contents -->
                                         <div class="panel-heading">Teammitglieder</div>
                                         <div class="list-group">
                                             <% for (int idx = 0; idx < member.size(); idx++) {%>
@@ -81,7 +78,7 @@
                                             <% }%>
                                         </div>
                                     </div>
-                                </div>
+                                </div>          
 
                             </div><!-- /.row -->
                         </div>
@@ -92,46 +89,46 @@
                             <div class="row">
 
                                 <div class="col-lg-12">
-                                    <h2 class="page-header"><%=team.getName()%>s aktuelle Turniere</h2>
+                                    <h2 class="page-header">"<%=team.getName()%>'s" aktuelle Turniere</h2>
                                 </div>
 
                                 <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
                                 <div class="col-lg-4 col-md-4 hero-feature">
                                     <div class="thumbnail">
                                         <h3><%= tournaments.get(idx).getName()%> <small> Leader: <a href="#"><%= tournaments.get(idx).getLeader().getUsername()%></a></small></h3>
-                                        <img src="http://placehold.it/800x500" alt="">
                                         <div class="caption">
-                                            <p><%= tournaments.get(idx).getDescription() %></p>
+                                            <p><%= tournaments.get(idx).getDescription()%></p>
                                             <div class="panel panel-default">
-                                                <!-- Default panel contents -->
                                                 <div class="panel-heading">Daten</div>
 
                                                 <!-- Table -->
-                                                <table class="table">  
-                                                    <thead>  
-                                                        <tr>  
-                                                            <th>Startdatum</th>  
-                                                            <th>Enddatum</th>  
-                                                            <th>Status</th>   
-                                                        </tr>  
-                                                    </thead>  
-                                                    <tbody>  
-                                                        <tr>  
-                                                            <td><%= tournaments.get(idx).getStart_date()%></td>  
-                                                            <td><%= tournaments.get(idx).getEnd_date()%></td>  
-                                                            <td><% if (tournaments.get(idx).getPassword() == null) {
-                                                                    out.print("&Ouml;ffentlich");
-                                                                } else {
-                                                                    out.print("Privat");
-                                                                }%>
-                                                            </td> 
-                                                        </tr>  
-                                                    </tbody>  
-                                                </table>  
+                                                <div class="table-responsive">                                               
+                                                    <table class="table table-hover">  
+                                                        <thead>  
+                                                            <tr>  
+                                                                <th>Startdatum</th>  
+                                                                <th>Enddatum</th>  
+                                                                <th>Status</th>   
+                                                            </tr>  
+                                                        </thead>  
+                                                        <tbody>  
+                                                            <tr>  
+                                                                <td><%= tournaments.get(idx).getStart_date()%></td>  
+                                                                <td><%= tournaments.get(idx).getEnd_date()%></td>  
+                                                                <td><% if (tournaments.get(idx).getPassword() == null) {
+                                                                        out.print("&Ouml;ffentlich");
+                                                                    } else {
+                                                                        out.print("Privat");
+                                                                    }%>
+                                                                </td> 
+                                                            </tr>  
+                                                        </tbody>  
+                                                    </table>  
+                                                </div>
                                             </div>  
                                             <p><a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>" class="btn btn-primary">Zum Turnierprofil <i class="fa fa-angle-right"></i></a></p>
-                                            
-                                            <% if(tournaments.get(idx).getLeader().getUsername().equals(user.getUsername())) {%>
+
+                                            <% if (tournaments.get(idx).getLeader().getUsername().equals(user.getUsername())) {%>
                                             <form method="POST" action="<%=link%>/team/profile?team=<%=team.getName()%>">
                                                 <input type="hidden" value="<%=tournaments.get(idx).getName()%>" name="tournament_name" >
                                                 <button type="submit" class="btn btn-danger">Turnier verlassen</button>
@@ -151,37 +148,39 @@
                             <div class="row">
 
                                 <div class="col-lg-12">
-                                    <h2 class="page-header"><%= team.getName()%>s Statistik</h2>
+                                    <h2 class="page-header">"<%= team.getName()%>'s" Statistik</h2>
 
                                     <div class="panel panel-default">
                                         <!-- Default panel contents -->
                                         <div class="panel-heading">&Uuml;bersicht</div>
 
                                         <!-- Table -->
-                                        <table class="table">  
-                                            <thead>  
-                                                <tr>  
-                                                    <th>Turniersiege</th> 
-                                                    <th>Turnierteilnahmen</th> 
-                                                    <th>Gesmatsiege</th>  
-                                                    <th>Niederlagen</th>  
-                                                    <th>Tore</th>  
-                                                    <th>Gegentore</th>  
-                                                    <th>Matches</th>  
-                                                </tr>  
-                                            </thead>  
-                                            <tbody>  
-                                                <tr>  
-                                                    <td><%= team.getStatistics().getTournament_wins()%></td>
-                                                    <td><%= team.getStatistics().getTournament_participations()%></td>  
-                                                    <td><%= team.getStatistics().getWins()%></td>  
-                                                    <td><%= team.getStatistics().getDefeats()%></td>  
-                                                    <td><%= team.getStatistics().getGoals()%></td>  
-                                                    <td><%= team.getStatistics().getGoals_conceded()%></td> 
-                                                    <td>?</td> 
-                                                </tr>  
-                                            </tbody>  
-                                        </table>  
+                                        <div class="table-responsive">                                               
+                                            <table class="table table-hover">  
+                                                <thead>  
+                                                    <tr>  
+                                                        <th>Turniersiege</th> 
+                                                        <th>Turnierteilnahmen</th> 
+                                                        <th>Gesmatsiege</th>  
+                                                        <th>Niederlagen</th>  
+                                                        <th>Tore</th>  
+                                                        <th>Gegentore</th>  
+                                                        <th>Matches</th>  
+                                                    </tr>  
+                                                </thead>  
+                                                <tbody>  
+                                                    <tr>  
+                                                        <td><%= team.getStatistics().getTournament_wins()%></td>
+                                                        <td><%= team.getStatistics().getTournament_participations()%></td>  
+                                                        <td><%= team.getStatistics().getWins()%></td>  
+                                                        <td><%= team.getStatistics().getDefeats()%></td>  
+                                                        <td><%= team.getStatistics().getGoals()%></td>  
+                                                        <td><%= team.getStatistics().getGoals_conceded()%></td> 
+                                                        <td>?</td> 
+                                                    </tr>  
+                                                </tbody>  
+                                            </table> 
+                                        </div>
                                     </div>  
 
                                 </div>
@@ -208,28 +207,43 @@
                                     <h3 class="page-header">Teammitglieder</h3>
                                 </div>
 
-                                <div class="col-lg-6 col-lg-offset-2 col-md-6 hero-feature">
+                                <div class="col-sm-4 col-lg-offset-2 col-md-6 hero-feature">
                                     <div class="caption">
                                         <div class="panel panel-default">
                                             <!-- Default panel contents -->
-                                            <div class="panel-heading">Teammitglieder</div>
+                                            <div class="panel-heading">Turniermitglieder</div>
 
                                             <!-- Table -->
-                                            <table class="table">
-                                                <tbody>
-                                                    <% for (int idx = 0; idx < member.size(); idx++) {%>
-                                                    <tr>
-                                                        <td><a href="<%=link%>/user/profile?user=<%=member.get(idx).getUsername()%>"><%=member.get(idx).getUsername()%></a> </td>
-                                                        <td>
-                                                            <form method="post" action="<%=link%>/team/profile?team=<%=team.getName()%>&action=kick" id="<%=member.get(idx).getUsername()%>">
-                                                                <input type="text" value="<%=member.get(idx).getUsername()%>" name="kick_user" style="display:none">
-                                                                <a onclick="document.getElementById('<%=member.get(idx).getUsername()%>').submit();" class="btn btn-danger">Entfernen <i class="fa fa-angle-right"></i></a>
-                                                            </form>
-                                                        </td> 
-                                                    </tr>  
-                                                    <% } %>
-                                                </tbody>
-                                            </table>
+                                            <div class="table-responsive">                                               
+                                                <table class="table table-hover"> 
+                                                    <tbody>
+                                                        <% for (int idx = 0; idx < member.size(); idx++) {%>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="col-md-9">
+                                                                    <ul class="nav nav-pills">
+                                                                        <li class="caption"><a href="<%=link%>/user/profile?user=<%=member.get(idx).getUsername()%>"><%=member.get(idx).getUsername()%></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <form method="post" action="<%=link%>/team/profile?team=<%=team.getName()%>&action=kick" id="<%=member.get(idx).getUsername()%>">
+                                                                        <input type="text" value="<%=member.get(idx).getUsername()%>" name="kick_user" style="display:none">
+                                                                        <a onclick="document.getElementById('<%=member.get(idx).getUsername()%>').submit();" class="btn btn-danger">Entfernen <i class="fa fa-angle-right"></i></a>
+                                                                    </form>
+                                                                </div>
+                                                            </td> 
+                                                        </tr>  
+                                                        <% } %>
+                                                        <% if (member.size() == 0) { %>
+                                                        <tr>
+                                                    <p>Keine Spieler im Team</p>
+                                                    </tr>
+
+                                                    <% }%>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>     
                                     </div>
                                 </div>
@@ -251,31 +265,33 @@
                                             <div class="panel-heading">Turniere</div>
 
                                             <!-- Table -->
-                                            <table class="table">
-                                                <tbody>
-                                                    <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
-                                                    <tr>
-                                                        <td>
-                                                            <div class="col-md-9">
-                                                                <ul class="nav nav-pills">
-                                                                    <li class="caption"><a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>"><%=tournaments.get(idx).getName()%></a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="col-sm-3">
-                                                                <form method="post" action="<%=link%>/team/profile?team=<%=team.getName()%>&action=leaveT" id="<%=tournaments.get(idx).getName()%>">
-                                                                    <input type="text" value="<%=tournaments.get(idx).getName()%>" name="leave_tournament" style="display:none">
-                                                                    <a onclick="document.getElementById('<%=tournaments.get(idx).getName()%>').submit();" class="btn btn-danger">Entfernen <i class="fa fa-angle-right"></i></a>
-                                                                </form>
-                                                            </div>
-                                                        </td> 
-                                                    </tr>  
-                                                    <% } %>
-                                                    <% if (tournaments.size() == 0) { %>
-                                                    <tr>Das Team ist in keinem Turnier.</tr>
-                                                    <% }%>
-                                                </tbody>
-                                            </table>
+                                            <div class="table-responsive">                                               
+                                                <table class="table table-hover"> 
+                                                    <tbody>
+                                                        <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
+                                                        <tr>
+                                                            <td>
+                                                                <div class="col-md-9">
+                                                                    <ul class="nav nav-pills">
+                                                                        <li class="caption"><a href="<%=link%>/tournament/profile?tournament=<%=tournaments.get(idx).getName()%>"><%=tournaments.get(idx).getName()%></a>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <form method="post" action="<%=link%>/team/profile?team=<%=team.getName()%>&action=leaveT" id="<%=tournaments.get(idx).getName()%>">
+                                                                        <input type="text" value="<%=tournaments.get(idx).getName()%>" name="leave_tournament" style="display:none">
+                                                                        <a onclick="document.getElementById('<%=tournaments.get(idx).getName()%>').submit();" class="btn btn-danger">Entfernen <i class="fa fa-angle-right"></i></a>
+                                                                    </form>
+                                                                </div>
+                                                            </td> 
+                                                        </tr>  
+                                                        <% } %>
+                                                        <% if (tournaments.size() == 0) { %>
+                                                        <tr>Das Team ist in keinem Turnier.</tr>
+                                                        <% }%>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>     
                                     </div>
                                 </div>
@@ -405,7 +421,7 @@
     <!--####################################################################################-->         
 
     <!-- Alert to confirm the delet -->
-    <div id="modal-dialog-team" class="modal">
+    <div id="modal-dialog-team" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">

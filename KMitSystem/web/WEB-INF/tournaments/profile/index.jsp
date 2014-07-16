@@ -18,7 +18,7 @@
             String name = tournament.getName();
         %>
 
-        <title>Turnier Profil - <%=name%></title>
+        <title>Turnier Profil - <%=name%> - Leago</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
@@ -254,8 +254,10 @@
                                                     </tr>  
                                                     <% } %>
                                                     <% if (teams.size() == 0) { %>
-                                                    <tr>Keine Teams im Turnier</tr>
-                                                    <% }%>
+                                                    <tr>
+                                                <p>Kein Teams im Turnier</p> 
+                                                </tr>
+                                                <% }%>
                                                 </tbody>
                                             </table>
                                         </div>     

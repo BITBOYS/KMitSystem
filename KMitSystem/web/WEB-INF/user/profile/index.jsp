@@ -9,7 +9,7 @@
         <meta name="description" content="User Profil">
         <meta name="author" content="Malte Dammann">
 
-        <title>User Profil - KmS</title>
+        <title>User Profil - Leago</title>
 
         <%            String link = request.getContextPath();
             User loggedIn_user = (User) request.getSession().getAttribute("user");
@@ -127,7 +127,7 @@
                                 <% for (int idx = 0; idx < teams.size(); idx++) {%>
                                 <div class="col-lg-4 col-md-4 hero-feature">
                                     <div class="thumbnail">
-                                        <h3><%=teams.get(idx).getName()%> <small> Leader: 
+                                        <h3>"<%=teams.get(idx).getName()%> <small> Leader: 
                                                 <a href="<%=link%>/user/profile?user=<%=teams.get(idx).getLeader().getUsername()%>"><%=teams.get(idx).getLeader().getUsername()%></a></small></h3>
                                         <div class="caption">
                                             <div class="panel panel-default">
@@ -140,11 +140,11 @@
                                                         <thead>  
                                                             <tr>  
                                                                 <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Turniersiege" class="label label-success">TS</a></th>  
-                                                                <th><span title="Gesamtsiege" class="label label-success">GS</span></th>  
-                                                                <th><span title="Niederlagen" class="label label-danger">N</span></th>  
-                                                                <th><span title="Tore" class="label label-success">T</span></th>  
-                                                                <th><span title="Gegentore" class="label label-danger">GT</span></th>  
-                                                                <th><span title="Tordifferenz" class="label label-primary">TD</span></th> 
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Gesamtsiege" class="label label-success">GS</a></th>  
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-success">N</a></th>  
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-success">T</a></th>  
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Gegentore" class="label label-success">GT</a></th>  
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Tordifferenz" class="label label-success">TD</a></th> 
                                                             </tr>  
                                                         </thead>  
                                                         <tbody>  
