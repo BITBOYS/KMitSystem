@@ -1,3 +1,4 @@
+<%@page import="com.kmitsystem.tools.DateKonverter"%>
 <%@page import="com.kmitsystem.tools.objects.Tournament"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kmitsystem.tools.objects.Team"%>
@@ -9,8 +10,6 @@
         <meta name="description" content="User Profil">
         <meta name="author" content="Malte Dammann">
 
-        <title>User Profil - Leago</title>
-
         <%            String link = request.getContextPath();
             User loggedIn_user = (User) request.getSession().getAttribute("user");
             boolean edited = (Boolean) request.getAttribute("edited");
@@ -19,6 +18,8 @@
             List<Team> teams = (List<Team>) request.getAttribute("teams");
             List<Tournament> tournaments = (List<Tournament>) request.getAttribute("tournaments");
         %>
+
+        <title>User Profil - <%=user_profile.getUsername()%> - Leago</title>
 
         <!-- Bootstrap core CSS -->
         <link href="<%=link%>/public/css/css/bootstrap.css" rel="stylesheet">
@@ -139,12 +140,12 @@
                                                     <table class="table table-hover">   
                                                         <thead>  
                                                             <tr>  
-                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Turniersiege" class="label label-success">TS</a></th>  
-                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Gesamtsiege" class="label label-success">GS</a></th>  
-                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-success">N</a></th>  
-                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-success">T</a></th>  
-                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Gegentore" class="label label-success">GT</a></th>  
-                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Tordifferenz" class="label label-success">TD</a></th> 
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Turniersiege" class="label label-default">TS</a></th>  
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Gesamtsiege" class="label label-default">GS</a></th>  
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-default">N</a></th>  
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-default">T</a></th>  
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Gegentore" class="label label-default">GT</a></th>  
+                                                                <th class="tooltip-social"><a href="#" data-toggle="tooltip" data-placement="top" title="Tordifferenz" class="label label-default">TD</a></th> 
                                                             </tr>  
                                                         </thead>  
                                                         <tbody>  
@@ -179,6 +180,7 @@
                         <div class="tab-pane fade" id="turnier">
                             <i class="fa fa-flag pull-left fa-4x"></i>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
+
                             <div class="row">
 
                                 <div class="col-lg-12">
@@ -207,8 +209,8 @@
                                                         </thead>  
                                                         <tbody>  
                                                             <tr>  
-                                                                <td><%= tournaments.get(idx).getStart_date()%></td>  
-                                                                <td><%= tournaments.get(idx).getEnd_date()%></td>  
+                                                                <td><%= DateKonverter.getWebDateString(tournaments.get(idx).getStart_date())%></td>  
+                                                                <td><%= DateKonverter.getWebDateString(tournaments.get(idx).getEnd_date())%></td>  
                                                                 <td><% if (tournaments.get(idx).getPassword() == null) {
                                                                         out.print("&Ouml;ffentlich");
                                                                     } else {
@@ -236,6 +238,11 @@
 
                             <div class="row">
                                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
+                                <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10">
+                                    <!-- modal caller -->
+                                    <a href="#modal-dialog-user" class="modal-toggle btn btn-danger" data-toggle="modal" data-modal-type="confirm" data-modal-title="Delete Property" data-modal-text="Are you sure you want to delete the tournament?" data-modal-confirm-url="#"><span class="fa fa-warning"> Account l&ouml;schen <i class="fa fa-angle-right"></i></span></a>
+                                </div>
+
                                 <div class="col-lg-12">
                                     <h2 class="page-header">E-Mail &auml;ndern</h2>
                                     <form class="form-horizontal" role="form" name="form_email" action="<%=link%>/user/profile?user=<%=loggedIn_user.getUsername()%>" method="POST">
@@ -314,6 +321,29 @@
         </div><!-- /.row -->
 
     </div><!-- /.container -->
+
+    <!-- Alert to confirm the delet -->
+    <div id="modal-dialog-user" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h3>L&ouml;schen best&auml;tigen</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Bilst du sicher, dass du deinen <b>Account</b> l&ouml;schen willst?</p>
+                    <p>Alle Statistiken werden gel&ouml;scht. Du kannst das deinen User nicht wieder herstellen.</p>
+                </div>
+                <div class="modal-footer">
+                    <form method="post" action="<%=link%>/user/profile?action=delete" id="<%=user.getUsername()%>">
+                        <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Abbrechen</a>
+                        <input type="text" value="<%=user.getUsername()%>" name="delete_tournament" style="display:none">
+                        <a href="#" id="btnYes" class="btn btn-danger">L&ouml;schen</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>    
 
     <div class="container">
 

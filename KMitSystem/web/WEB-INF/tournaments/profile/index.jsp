@@ -139,7 +139,7 @@
                                                         <th><a href="#" data-toggle="tooltip" data-placement="top" title="Platz" class="label label-default">Platz</a></th> 
                                                         <th><a href="#" data-toggle="tooltip" data-placement="top" title="Teamname" class="label label-default">Teamname</a></th> 
                                                         <th><a href="#" data-toggle="tooltip" data-placement="top" title="Spiele" class="label label-default">Spiele</a></th> 
-                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Win-Rate in %" class="label label-default">Win-Rate in %</a></th> 
+                                                        <th><a href="#" data-toggle="tooltip" data-placement="top" title="Win-Rate in %" class="label label-primary">Win-Rate in %</a></th> 
                                                         <th><a href="#" data-toggle="tooltip" data-placement="top" title="Siege" class="label label-success">Siege</a></th> 
                                                         <th><a href="#" data-toggle="tooltip" data-placement="top" title="Niederlagen" class="label label-danger">Niederlagen</a></th> 
                                                         <th><a href="#" data-toggle="tooltip" data-placement="top" title="Tore" class="label label-success">Tore</a></th> 
@@ -475,7 +475,7 @@
                     </div>
                     <div class="modal-footer">
                         <form method="post" action="<%=link%>/tournament/profile?action=delete" id="<%=tournament.getName()%>">
-                            <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Abbrechen</a>
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-danger">Abbrechen</a>
                             <input type="text" value="<%=tournament.getName()%>" name="delete_tournament" style="display:none">
                             <a href="#" id="btnYes" class="btn btn-primary">L&ouml;schen</a>
                         </form>
