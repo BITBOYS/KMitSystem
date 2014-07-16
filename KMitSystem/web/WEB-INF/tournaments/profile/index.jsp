@@ -475,9 +475,9 @@
                     </div>
                     <div class="modal-footer">
                         <form method="post" action="<%=link%>/tournament/profile?action=delete" id="<%=tournament.getName()%>">
-                            <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-danger">Abbrechen</a>
+                            <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Abbrechen</a>
                             <input type="text" value="<%=tournament.getName()%>" name="delete_tournament" style="display:none">
-                            <a href="#" id="btnYes" class="btn btn-primary">L&ouml;schen</a>
+                            <a href="#" id="btnYes" class="btn btn-danger">L&ouml;schen</a>
                         </form>
                     </div>
                 </div>

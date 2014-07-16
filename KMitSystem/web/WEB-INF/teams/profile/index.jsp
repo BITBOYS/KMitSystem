@@ -1,3 +1,4 @@
+<%@page import="com.kmitsystem.tools.DateKonverter"%>
 <%@page import="com.kmitsystem.tools.objects.Team"%>
 <%@page import="com.kmitsystem.tools.objects.Tournament"%>
 <%@page import="com.kmitsystem.tools.objects.Statistics"%>
@@ -113,8 +114,8 @@
                                                         </thead>  
                                                         <tbody>  
                                                             <tr>  
-                                                                <td><%= tournaments.get(idx).getStart_date()%></td>  
-                                                                <td><%= tournaments.get(idx).getEnd_date()%></td>  
+                                                                <td><%= DateKonverter.getWebDateString(tournaments.get(idx).getStart_date())%></td>  
+                                                                <td><%= DateKonverter.getWebDateString(tournaments.get(idx).getEnd_date())%></td>  
                                                                 <td><% if (tournaments.get(idx).getPassword() == null) {
                                                                         out.print("&Ouml;ffentlich");
                                                                     } else {
@@ -266,7 +267,7 @@
 
                                             <!-- Table -->
                                             <div class="table-responsive">                                               
-                                                <table class="table table-hover"> 
+                                                <table class="table"> 
                                                     <tbody>
                                                         <% for (int idx = 0; idx < tournaments.size(); idx++) {%>
                                                         <tr>
@@ -436,7 +437,7 @@
                     <form method="post" action="<%=link%>/team/dashboard?action=delete" id="<%=team.getName()%>">
                         <a href="#" data-dismiss="modal" aria-hidden="true" class="btn btn-default">Abbrechen</a>
                         <input type="text" value="<%=team.getName()%>" name="delete_team" style="display:none">
-                        <a href="#" id="btnYes" class="btn btn-primary">L&ouml;schen</a>
+                        <a href="#" id="btnYes" class="btn btn-danger">L&ouml;schen</a>
                     </form>
                 </div>
             </div>
