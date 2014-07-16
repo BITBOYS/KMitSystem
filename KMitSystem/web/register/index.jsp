@@ -45,7 +45,8 @@
                 <!-- Alerts -->
                 <%@include file="../snipplets/error.jspf" %>
 
-                <div align="center" class="col-sm-6 col-md-4 col-md-offset-4 well">
+                <div align="center" class="col-sm-6 col-md-4 col-md-offset-4 thumbnail">
+                    <br>
                     <form action="<%=link%>/register" method="post" class="form" role="form">
                         <div class="form-group">
                             <input class="form-control" name="name" placeholder="Name" type="text"

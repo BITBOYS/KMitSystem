@@ -128,7 +128,7 @@
                                 <% for (int idx = 0; idx < teams.size(); idx++) {%>
                                 <div class="col-lg-4 col-md-4 hero-feature">
                                     <div class="thumbnail">
-                                        <h3>"<%=teams.get(idx).getName()%> <small> Leader: 
+                                        <h3>"<%=teams.get(idx).getName()%>" <small> Leader: 
                                                 <a href="<%=link%>/user/profile?user=<%=teams.get(idx).getLeader().getUsername()%>"><%=teams.get(idx).getLeader().getUsername()%></a></small></h3>
                                         <div class="caption">
                                             <div class="panel panel-default">

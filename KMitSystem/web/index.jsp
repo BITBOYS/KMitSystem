@@ -48,19 +48,19 @@
                 <div class="item active">
                     <div class="fill" style="background-image:url('public/images/slide1.JPG');"></div>
                     <div class="carousel-caption">
-                        <h1>Kickern Mit System - Dein Tool f&uuml;rs Kickern und Turniere!</h1>
+                        <h1>Leago - Your planing tool for every tournament!</h1>
                     </div>
                 </div>
                 <div class="item">
-                    <div class="fill" style="background-image:url('public/images/slide2.JPG');"></div>
+                    <div class="fill" style="background-image:url('public/images/original.jpg');"></div>
                     <div class="carousel-caption">
-                        <h1>Automatisiertre Statistiken</h1>
+                        <h1>K A P P A</h1>
                     </div>
                 </div>
                 <div class="item">
                     <div class="fill" style="background-image:url('public/images/slide3.JPG');"></div>
                     <div class="carousel-caption">
-                        <h1>Viel Spa&szlig; beim Kickern!</h1>
+                        <h1>Have fun with your friends!</h1>
                     </div>
                 </div>
             </div>

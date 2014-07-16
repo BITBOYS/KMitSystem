@@ -44,7 +44,8 @@
             <!-- Alerts -->
             <%@include file="../snipplets/error.jspf" %>
 
-                <div align="center" class="col-sm-6 col-md-4 col-md-offset-4 well">  
+                <div align="center" class="col-sm-6 col-md-4 col-md-offset-4 thumbnail">  
+                    <br>
                     <form class="form" action="<%=link%>/login" method="post" role="form">
                         <div class="form-group">
                             <input type="email" class="form-control" placeholder="Email" name="email" required autofocus>
