@@ -69,7 +69,7 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat diam quis nisl vestibulum dignissim. In hac habitasse platea dictumst. Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam placerat nunc ut tellus tristique, non posuere neque iaculis. Fusce aliquet dui ut felis rhoncus, vitae molestie mauris auctor. Donec pellentesque feugiat leo a adipiscing. Pellentesque quis tristique eros, sed rutrum mauris.</p>
                             <div class="row">
 
-                                <div class="col-lg-12">
+                                <div class="col-md-12">
                                     <h2 class="page-header"><%=user_profile.getUsername()%>s pers&ouml;nliche Statistik</h2>
 
                                     <div class="panel panel-default">
